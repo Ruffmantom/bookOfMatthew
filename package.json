@@ -1,0 +1,14 @@
+{
+  "name": "biblebook",
+  "version": "1.0.0",
+  "description": "making a bible app to test pagination and json implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "require": "^2.4.20"
+  }
+}

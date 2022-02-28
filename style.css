@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+    max-width: 450px;
+    padding: 20px;
+}
+.v_title{
+    font-size: 16px;
+    font-style: italic;
+    color: rgb(78, 78, 78);
+    line-height: normal;
+}
+.bible_read_body{
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 50px;
+}
+.b_verse_body{
+    margin-top: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+.b_chapter{
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0 10px 0 0;
+}
+span{
+    position: relative;
+}
+.v_para{
+    padding-left: 10px;
+}
+
+.v_num{
+    font-size: 10px;
+    position: absolute;
+    top: -3px;
+    left: -2px;
+    color: rgb(158, 0, 0);
+}
