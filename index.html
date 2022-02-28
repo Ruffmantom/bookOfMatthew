@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://use.fontawesome.com/ea858508e8.js"></script>
     <link rel="stylesheet" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -13,10 +14,24 @@
         <div class="bible_head">
             <h4 id="b_title">Moc Bible App</h4>
             <p id="app_version"></p>
-            <div class="loaded_bible_info">
-                <p id="b_type"></p>
-                <p id="b_version"></p>
-                <p id="b_date"></p>
+            <div class="menu_cont">
+                <div class="open"><i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+                <div id="app_menu_id" class="app_menu_close">
+                    <div class="info">
+                        <p id="b_type">Bible type</p>
+                        <p id="b_version">Bible version</p>
+                        <p id="b_date">Bible data</p>
+                    </div>
+                    <div class="switch">
+                        <div class="toggler">
+                            <i class="fa fa-moon-o" aria-hidden="true"></i>
+                            <i class="fa fa-sun-o hide" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="close"><i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="bible_read_body">
@@ -27,5 +42,6 @@
         </div>
         <script src="./bibleData.js"></script>
         <script src="./index.js"></script>
+        <script src="./actions.js"></script>
 </body>
 </html>
