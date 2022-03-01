@@ -10,11 +10,11 @@ $(document).ready(() => {
   // End get global variables
   // bring in global data variable
   var bData = bibleData;
-  function createVerseLine(v, vNum, title) {
+  function createVerseLine(v, vNum, title, id) {
     // console.log(vNum);
     // console.log(v);
     return `${title ? `<p class="v_title">${title}</p>` : ""}
-        <span class="v_para"><span class="v_num">${vNum}</span>${v}</span>`;
+        <span data-verseid=${id} class="v_para"><span class="v_num">${vNum}</span>${v}</span>`;
   }
   function loadBible() {
     appVersElm.text(`Version: ${bData.app_version}`);
@@ -23,7 +23,6 @@ $(document).ready(() => {
     const loadedBibleYear = bData.bibles[0].bible_year;
     const loadedBook = loadedBible.books[0];
     const loadedChapter = loadedBook.book_name;
-    const loadedChapterNum = loadedBook.chapters[0].chapter;
     const loadedVerses = loadedBook.chapters[0].verses;
     //set settings info
     appTypeElm.text("Bible Type: "+ loadedBibleType);
@@ -34,7 +33,7 @@ $(document).ready(() => {
     // map through loaded verses
 
     loadedVerses.map((v) => {
-      let line = createVerseLine(v.paragraph, v.verse, v.title);
+      let line = createVerseLine(v.paragraph, v.verse, v.title,v._id);
       appReadBodyElm.append(line);
     });
   }

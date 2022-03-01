@@ -17,7 +17,7 @@ const bibleData = {
                   new_para: false,
                   title: "The genealogy of Jesus Christ<br><br>",
                   paragraph:
-                    "The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.",
+                    "&emsp;The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.",
                 },
                 {
                   _id: "3vyv4y",
@@ -57,7 +57,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "and Jesse the father of David the king.<br>    And David was the father of Solomon bu the wife of Uriah, ",
+                    "and Jesse the father of David the king.<br> &emsp; And David was the father of Solomon bu the wife of Uriah, ",
                 },
                 {
                   _id: "254y4",
@@ -105,7 +105,7 @@ const bibleData = {
                   new_para: true,
                   title: "",
                   paragraph:
-                    "   And after the deportation to Babylon: Jechoniah was the father of Shealtiel, and Shealtiel the father of Zerubbabel, ",
+                    "&emsp; And after the deportation to Babylon: Jechoniah was the father of Shealtiel, and Shealtiel the father of Zerubbabel, ",
                 },
                 {
                   _id: "7mo897",
@@ -145,7 +145,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "So all the generations from Abraham to David were fourteen generathions, and from David to the deportation to Babulon fourteen generations, and from the deportations to Babulon to the Christ fourteen generations.<br>",
+                    "&emsp;So all the generations from Abraham to David were fourteen generathions, and from David to the deportation to Babulon fourteen generations, and from the deportations to Babulon to the Christ fourteen generations.<br><br>",
                 },
                 {
                   _id: "56u57ub",
@@ -153,7 +153,7 @@ const bibleData = {
                   new_para: true,
                   title: "The birth of Jesus Christ<br><br>",
                   paragraph:
-                    "Now the birth of Jesus Christ took place in this way.  When his mother Mary had been betrothed to Joseph, before they came together she was found to be with child from the Holy Spirit.",
+                    "&emsp;Now the birth of Jesus Christ took place in this way.  When his mother Mary had been betrothed to Joseph, before they came together she was found to be with child from the Holy Spirit.",
                 },
                 {
                   _id: "4v5yb6",
@@ -193,7 +193,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    '"Behold, the virgin shall conceive and bear a son,<br>and they shall call his name Immanuel"<br> (which means, God with us).<br><br>',
+                    '&emsp;"Behold, the virgin shall conceive and bear a son,<br>and they shall call his name Immanuel"<br> (which means, God with us).<br><br>',
                 },
                 {
                   _id: "34t6b5",
@@ -201,7 +201,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "When Joseph woke from sleep, he did as the angel of the Lord commanded him: he took his wife,",
+                    "&emsp;When Joseph woke from sleep, he did as the angel of the Lord commanded him: he took his wife,",
                 },
                 {
                   _id: "34b36t",
