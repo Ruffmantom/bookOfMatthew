@@ -79,7 +79,7 @@ $(document).ready(() => {
 
   //user clicks verse
   // menu pops up
-  // user clicks highlight color
+  // user clicks highlight color user can click on multiple verses
   // highlight color activates and pushes verse into state
   // user can then close menu
   var verse = { };
@@ -92,11 +92,12 @@ $(document).ready(() => {
   }
   let verseElm = $('.v_para');
   let verseElmArr = Array.from(verseElm);
+  let clickedVerseArr = []
   verseElmArr.forEach((v)=>{
-    v.click((e)=>{
-      if(e){
-        console.log("clicked!")
-      }
+    v.addEventListener("click",(e)=>{
+      console.log(e.target.dataset.verseid);
+      let verseToPush = {};
+      
     })
   })
 
