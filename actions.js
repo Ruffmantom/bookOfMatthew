@@ -22,8 +22,8 @@ $(document).ready(() => {
       console.log(error);
     }
   }
-  function updateUser(){
-    localStorage.setItem('bibleUser', JSON.stringify(activeUser))
+  function updateUser() {
+    localStorage.setItem("bibleUser", JSON.stringify(activeUser));
   }
   // when app loads it creates user
   createUser();
@@ -40,7 +40,7 @@ $(document).ready(() => {
     if (e && !menuState) {
       appMenu.addClass("app_menu");
       appMenu.removeClass("app_menu_close");
-      appMenuOpen.fadeOut()
+      appMenuOpen.fadeOut();
       menuState = true;
     }
   });
@@ -48,8 +48,8 @@ $(document).ready(() => {
     if (e && menuState) {
       appMenu.addClass("app_menu_close");
       appMenu.removeClass("app_menu");
-      appMenuOpen.fadeIn()
-      appMenuOpen.css("display","flex")
+      appMenuOpen.fadeIn();
+      appMenuOpen.css("display", "flex");
       menuState = false;
     }
   });
@@ -63,7 +63,7 @@ $(document).ready(() => {
       appToggleIcon.removeClass("fa-moon-o");
       appToggleIcon.addClass("fa-sun-o");
       activeUser.mode = true;
-      updateUser()
+      updateUser();
     } else {
       appToggle.removeClass("toggle_active");
       appToggle.addClass("toggler");
@@ -71,39 +71,95 @@ $(document).ready(() => {
       appToggleIcon.removeClass("fa-sun-o");
       toggleState = false;
       activeUser.mode = false;
-      updateUser()
+      updateUser();
     }
   });
-
-
 
   //user clicks verse
   // menu pops up
   // user clicks highlight color user can click on multiple verses
   // highlight color activates and pushes verse into state
   // user can then close menu
-  var verse = { };
-  var highlightColors = {
-    yellow:'#f1f100',
-    green:'#00ff51',
-    red:'#ff0a0ac7',
-    ltBlue:'#21fcff',
-    pink:'#ff55f0'
-  }
-  let verseElm = $('.v_para');
-  let verseElmArr = Array.from(verseElm);
-  let clickedVerseArr = []
-  verseElmArr.forEach((v)=>{
-    v.addEventListener("click",(e)=>{
-      console.log(e.target.dataset.verseid);
-      let verseToPush = {};
-      
-    })
+  const colorBox = $("#color_box");
+  const highlightMenu = $(".highlight_box");
+  const hlClose = $(".close_hlb");
+  var verse = {};
+
+  var hlColors = ["#f1f100", "#00ff51", "#ff0a0ac7", "#21fcff", "#ff55f0"];
+
+  hlColors.map((c) => {
+    colorBox.append(
+      `<div class="hl_color" style="background:${c}"data-clr=${c}></div>`
+    );
+  });
+
+  let verseElm = $(".v_para");
+  // this will be used to help find the elements with certain class and then remove it
+  // after color has been added.
+  let verseArr = Array.from(verseElm);
+  let clickedVerseArr = [];
+  let colorPick = $(".hl_color");
+  let highlightOpen = false;
+  // verse gets clicked
+  verseElm.click((e) => {
+    // console.log(e.target);
+    let vId = e.target.dataset.verseid;
+    // turn verse dotted underline
+    $(e.target).addClass("dotted");
+    // open highlight menu
+    if (!highlightOpen) {
+      highlightMenu.slideUp();
+      highlightMenu.css("display", "flex");
+      highlightOpen = true;
+    }
+    // move to clickedverse arr
+    clickedVerseArr.push(vId);
+    // checkClicked()
+  });
+  colorPick.click(e=>{
+    var c = e.target.dataset.clr;
+    console.log(c)
+    changeHighlight(c)
   })
+  function changeHighlight(color){
+    console.log(clickedVerseArr)
+    clickedVerseArr.forEach(id=>{
+      verseArr.map(v=>{
+        // console.log('-----------------')
+        // console.log(id)
+        // console.log(v.dataset.verseid)
+        // console.log(color)
+        // console.log('-----------------')
+        if(v.dataset.verseid === id ){
+          $(v).css(`background-color:${color}`)
+          console.log('should have given background color')
+        }
+      })
+    })
+    
+  }
+  // underline selected verses
+  function checkClicked() {
+    if (clickedVerseArr.length >= 1) {
+      clickedVerseArr.map((vId) => {
+        findVerse(vId);
+      });
+    }
+  }
+  function findVerse(v) {
+    verseArr;
+  }
 
-
-
-
-
+  // close the highlight menu
+  hlClose.click((e) => {
+    if (e && highlightOpen) {
+      highlightMenu.slideDown();
+      highlightMenu.css("display", "none");
+      highlightOpen = false;
+      verseArr.forEach(v=>{$(v).removeClass('dotted')})
+      // clear clicked arr
+      clickedVerseArr = []
+    }
+  });
   // end of doc ready
 });

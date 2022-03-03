@@ -158,7 +158,8 @@ span {
 .highlight_box{
   position: fixed;
   padding: 25px;
-  display: flex;
+  /* display: flex; */
+  display: none;
   flex-direction: column;
   bottom: 0;
   left: 0;
@@ -178,4 +179,23 @@ span {
   padding: 10px 13px;
   border-radius: 50%;
   background-color: rgb(255, 255, 255);
+}
+#color_box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+.hl_color{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 10px;
+  border: 1px solid black;
+}
+.dotted{
+  border-bottom:1px dotted black ;
 }
