@@ -104,39 +104,64 @@ $(document).ready(() => {
   verseElm.click((e) => {
     // console.log(e.target);
     let vId = e.target.dataset.verseid;
+    scrollTo();
+    if (e && clickedVerseArr.length >= 1) {
+      clickedVerseArr = clickedVerseArr.filter((x) => {
+        console.log('removed: '+ vId)
+        return x != vId;
+      });
+    }else{
+      // move to clickedverse arr
+      clickedVerseArr.push(vId);
+    }
+    if (e && highlightOpen && clickedVerseArr.length === 0) {
+      //close menu
+      highlightMenu.slideDown();
+      highlightMenu.css("display", "none");
+      highlightOpen = false;
+      // remove class dotted
+      verseArr.forEach((v) => {
+        $(v).removeClass("dotted");
+      });
+      console.log('should have closed menu and removed classname')
+    }
     // turn verse dotted underline
     $(e.target).addClass("dotted");
+    // scroll it to view
+    function scrollTo() {
+      $("html,body").animate(
+        {
+          scrollTop: $(e.target).offset().top - 230,
+        },
+        1000
+      );
+    }
+
     // open highlight menu
     if (!highlightOpen) {
       highlightMenu.slideUp();
       highlightMenu.css("display", "flex");
       highlightOpen = true;
     }
-    // move to clickedverse arr
-    clickedVerseArr.push(vId);
+
     // checkClicked()
+    console.log(clickedVerseArr);
   });
-  colorPick.click(e=>{
+  colorPick.click((e) => {
     var c = e.target.dataset.clr;
-    console.log(c)
-    changeHighlight(c)
-  })
-  function changeHighlight(color){
-    console.log(clickedVerseArr)
-    clickedVerseArr.forEach(id=>{
-      verseArr.map(v=>{
-        // console.log('-----------------')
-        // console.log(id)
-        // console.log(v.dataset.verseid)
-        // console.log(color)
-        // console.log('-----------------')
-        if(v.dataset.verseid === id ){
-          $(v).css(`background-color:${color}`)
-          console.log('should have given background color')
-        }
-      })
-    })
+    console.log(c);
+    changeHighlight(c);
+  });
+  function changeHighlight(color) {
     
+    clickedVerseArr.forEach((id) => {
+      verseArr.map((v) => {
+        if (v.dataset.verseid === id) {
+          $(v).css(`background`, color);
+          // console.log("should have given background color");
+        }
+      });
+    });
   }
   // underline selected verses
   function checkClicked() {
@@ -156,9 +181,11 @@ $(document).ready(() => {
       highlightMenu.slideDown();
       highlightMenu.css("display", "none");
       highlightOpen = false;
-      verseArr.forEach(v=>{$(v).removeClass('dotted')})
+      verseArr.forEach((v) => {
+        $(v).removeClass("dotted");
+      });
       // clear clicked arr
-      clickedVerseArr = []
+      clickedVerseArr = [];
     }
   });
   // end of doc ready

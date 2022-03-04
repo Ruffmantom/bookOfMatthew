@@ -136,6 +136,7 @@ body {
   margin-top: 15px;
   font-family: Georgia, "Times New Roman", Times, serif;
   text-align: justify;
+  padding-bottom: 100px;
 }
 .b_chapter {
   font-family: "Times New Roman", Times, serif;
@@ -145,7 +146,7 @@ span {
   position: relative;
 }
 .v_para {
-  padding-left: 10px;
+  padding: 4px 0 3px 10px;
 }
 
 .v_num {
