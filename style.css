@@ -1,202 +1,117 @@
-* {
+*{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-body {
-  max-width: 450px;
-  /* padding: 20px; */
-  position: relative;
+body{
+  display: flex;
+  flex-direction: column;
+  max-width: 455px;
+}
+h1,h2,h3,h4,h5{
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+p,span{
+font-family: Georgia, 'Times New Roman', Times, serif;
+line-height: 1.6;
+}
+.v_para{
+position: relative;
+padding: 10px 0 1px 15px;
+}
+.v_num{
+  color: rgb(211, 33, 33);
+  font-size: 12px;
+  position: absolute;
+  top:2px;
+  left: 0;
+}
+#b_chapter{
+  margin: 15px 0;
+}
+.v_title{
+  font-style: italic;
+  opacity: 0.6;
 }
 .bible_head{
-    position: fixed;
-    z-index: 9;
-    top: 0;
-    width: 100%;
-    padding: 20px;
-    background-color: #fffffff1;
+  display: flex;
+  position: fixed;
+  background: white;
+  box-shadow: 0 6px 13px #00000026;
+  z-index: 9;
+  border-radius: 0 0 15px 15px;
+  justify-content: space-between;
+  width: 100%;
 }
-.v_title {
-  font-size: 16px;
-  font-style: italic;
-  color: rgb(78, 78, 78);
-  line-height: normal;
+.app_info{
+  padding: 20px;
 }
-
-/* menu items */
-.info{
-    width: 100%;
-    padding: 25px;
-}
-.info>p{
-    margin: 10px 0;
-    
-}
-.open,
-.close {
+.open{
   position: absolute;
+  z-index: 9999;
+  bottom: 65px;
+  left: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 25px;
-  bottom: 45px;
-  height: 60px;
-  width: 60px;
-  font-size: 25px;
-  border-radius: 100%;
-  z-index: 9999;
-  color: white;
-  background-color: rgb(0, 0, 0);
-  opacity: 0.3;
+  background: white;
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  font-size: 18px;
+  box-shadow: 0 6px 13px rgba(0, 0, 0, 0.13);
 }
-.close{
-  z-index: 999;
-}
-.open{
-  position: fixed;
-  z-index: 99;
-}
-.app_menu {
+.app_menu{
+  width: 100%;
   position: absolute;
-  max-width: 100vw;
-  width: 1000%;
-  height: 100vh;
-  /* height: 100%; */
   top: 0;
   right: 0;
-  background: #fffffff1;
-  z-index: 9999;
-  opacity: 1;
-  transition: all 250ms ease-in;
-}
-.app_menu_close {
-    /* width: 0; */
-    position: absolute;
-    height: 100vh;
-    max-width: 0;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    z-index: 0;
-    transition: all 150ms ease-out;
+  z-index: 999;
+  height: 100%;
+  background-color: white;
 }
 
-/* toggle btn */
-.switch{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    top: 25px;
-    right: 25px;
-    width: 45px;
-    height: 25px;
-    border-radius: 30px;
-    background-color: #505050;
-}
-.toggler{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    left: -3px;
-    height: 28px;
-    width: 28px;
-    border-radius: 100%;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #505050;
-    transition: left 150ms ease;
-}
-.hide{
-  display: none;
-}
-.toggle_active{
-  position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: -3px;
-    height: 28px;
-    width: 28px;
-    border-radius: 100%;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #505050;
-    transition: left 150ms ease;
-}
-/* END toggle btn */
-/* END menu items */
-
-.bible_read_body {
-  line-height: 1.5;
-  text-align: center;
-  margin-top: 50px;
+.info{
   padding: 20px;
 }
-.b_verse_body {
-  margin-top: 15px;
-  font-family: Georgia, "Times New Roman", Times, serif;
+.switch{
+  width: 50px;
+  height: 20px;
+  border: 1px solid #1f1f1f;
+  background: grey;
+}
+.bible_read_body{
+  max-height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 100px 20px 50px 20px;
   text-align: justify;
-  padding-bottom: 100px;
-}
-.b_chapter {
-  font-family: "Times New Roman", Times, serif;
-  margin: 0 10px 0 0;
-}
-span {
-  position: relative;
-}
-.v_para {
-  padding: 4px 0 3px 10px;
-}
-
-.v_num {
-  font-size: 10px;
-  position: absolute;
-  top: -3px;
-  left: -2px;
-  color: rgb(158, 0, 0);
 }
 .highlight_box{
-  position: fixed;
-  padding: 25px;
-  /* display: flex; */
-  display: none;
+  height: 250px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
   flex-direction: column;
+  border-radius: 15px 15px 0 0;
+  background: #e4e4e4;
+  position: fixed;
   bottom: 0;
   left: 0;
-  height: 200px;
-  width: 100%;
-  background-color: rgb(235, 235, 235);
-  border-radius: 10px 10px 0 0;
-  z-index: 9999;
+  z-index: 99999;
 }
 .hlb_header{
-  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+
 }
 .close_hlb{
-  padding: 10px 13px;
+ width: 35px;
+ height: 35px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255);
-}
-#color_box{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: white;
-  border-radius: 5px;
-  margin-top: 15px;
-}
-.hl_color{
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  margin: 10px;
-  border: 1px solid black;
-}
-.dotted{
-  border-bottom:1px dotted black ;
+  background-color: #ffffff;
 }
