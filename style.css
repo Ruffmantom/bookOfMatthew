@@ -87,6 +87,7 @@ padding: 10px 0 1px 15px;
   overflow-y: scroll;
   padding: 100px 20px 50px 20px;
   text-align: justify;
+  transition: padding 250ms ease;
 }
 .highlight_box{
   height: 250px;
