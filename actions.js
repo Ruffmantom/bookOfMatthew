@@ -36,13 +36,6 @@ $(document).ready(() => {
     }
   }
 
-  // const borderBottom = {
-  //   "background-image":
-  //     "linear-gradient(to right, black 33%, rgba(255,255,255,0) 0%)",
-  //   "background-position": "bottom",
-  //   "background-size": "11px 2px",
-  //   "background-repeat": "repeat-x",
-  // };
   function addBorder(c){
     const borderBottom = {
       "background-image":
@@ -186,14 +179,7 @@ $(document).ready(() => {
   // scroll to function
   // - PROBLEM: lower verses scroll down for some reason
   function scrollTo(e) {
-    log($(e.target).offset());
-    let tVal = $(e.target).offset().top;
-    $(".bible_read_body").animate(
-      {
-        scrollTop: ($(e.target).offset().top = 250),
-      },
-      1000
-    );
+    e.target.scrollIntoView({behavior: "smooth", block: "center"});
   }
   // ---------------------------------------------
   // --------------------END VERSE CLICK FUNCTIONALITY -------------------------
