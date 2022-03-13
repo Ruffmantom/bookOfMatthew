@@ -8,11 +8,13 @@ $(document).ready(() => {
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
   const hlColors = ["#f1f100", "#00ff51", "#ff0a0ac7", "#21fcff", "#ff55f0"];
-  const colorBox = $('#color_box');
+  const colorBox = $("#color_box");
   // set colors into color box
-  hlColors.map(c=>{
-    colorBox.append(`<div class="color_swatch" style="background:${c}" data-colorid=${c}></div>`)
-  })
+  hlColors.map((c) => {
+    colorBox.append(
+      `<div class="color_swatch" style="background:${c}" data-colorid=${c}></div>`
+    );
+  });
   menuElm.hide();
   colorMenu.hide();
   menuBtn.click((e) => {
@@ -36,13 +38,14 @@ $(document).ready(() => {
     }
   }
 
-  function addBorder(c){
+  function addBorder(c) {
     const borderBottom = {
-      "background-image":
-        `linear-gradient(to right, ${c} 33%, rgba(255,255,255,0) 0%)`,
-      "background-position": "bottom",
-      "background-size": "11px 2px",
-      "background-repeat": "repeat-x",
+      // "background-image":
+      //   `linear-gradient(to right, ${c} 33%, rgba(255,255,255,0) 0%)`,
+      // "background-position": "bottom",
+      // "background-size": "11px 2px",
+      // "background-repeat": "repeat-x",
+      "border-bottom": `2px dashed ${c}`,
     };
     return borderBottom;
   }
@@ -84,7 +87,7 @@ $(document).ready(() => {
         }
       } else {
         // add underline
-        addUnderline(verseId,verseBkg);
+        addUnderline(verseId, verseBkg);
         // add to array
         verseIDArr.push(verseId);
       }
@@ -95,7 +98,7 @@ $(document).ready(() => {
       // first time click add underline and open HL box
       openColorMenu(true);
       scrollTo(e);
-      addUnderline(verseId,verseBkg);
+      addUnderline(verseId, verseBkg);
       verseIDArr.push(verseId);
     }
   });
@@ -128,11 +131,12 @@ $(document).ready(() => {
       colorMenu.hide("slide", { direction: "down" }, 350);
       // remove all verses from verseIDArr on close
       verseIDArr = [];
+      // remove all underlines
+      removeUnderline('null', true)
     } else {
       log("Opening HL box");
       $(".bible_read_body").css("padding", "100px 20px 270px 20px");
       colorMenu.show("slide", { direction: "down" }, 350);
-      
     }
   }
   // click function to close color highlight box from closeBtn
@@ -147,15 +151,15 @@ $(document).ready(() => {
     }
   });
   // function to add underline when verse is clicked
-  function addUnderline(id,bc) {
+  function addUnderline(id, bc) {
     vArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
         log("about to add underline to verse: " + id);
-        if(bc !== 'undefined'){
+        if (bc !== "undefined") {
           $(v).css(addBorder(bc));
-        }else{
-          $(v).css(addBorder('black'));
+        } else {
+          $(v).css(addBorder("black"));
         }
       }
     });
@@ -169,17 +173,17 @@ $(document).ready(() => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
         log("about to remove underline from verse: " + id);
-        $(v).css("background-image", "none");
+        $(v).css("border-bottom", "none");
       } else if (all === true) {
         // all verses get underline removed
-        $(v).css("background-image", "none");
+        $(v).css("border-bottom", "none");
       }
     });
   }
   // scroll to function
   // - PROBLEM: lower verses scroll down for some reason
   function scrollTo(e) {
-    e.target.scrollIntoView({behavior: "smooth", block: "center"});
+    e.target.scrollIntoView({ behavior: "smooth", block: "center" });
   }
   // ---------------------------------------------
   // --------------------END VERSE CLICK FUNCTIONALITY -------------------------
@@ -187,49 +191,49 @@ $(document).ready(() => {
   // ---------------------------------------------
   // --------------------END HL COLOR CLICK FUNCTIONALITY -------------------------
   // ---------------------------------------------
-  let colorSwatch = $('.color_swatch');
+  let colorSwatch = $(".color_swatch");
   let colorSwatchArr = Array.from(colorSwatch);
   // click on color
-  colorSwatch.click(e=>{
+  colorSwatch.click((e) => {
     // log('clicked color '+ e.target.dataset.colorid)
     let colorId = e.target.dataset.colorid;
     // when color is clicked
     // - highlight selected verse(s)
-    let userVerses = []
-    vArr.forEach(v=>{
+    let userVerses = [];
+    vArr.forEach((v) => {
       let vId = v.dataset.verseid;
-      verseIDArr.map(i =>{
-        if(i === vId){
-          $(v).css('background',colorId)
+      verseIDArr.map((i) => {
+        if (i === vId) {
+          $(v).css("background", colorId);
           // set versebkg data
           v.dataset.versebkg = colorId;
           // set verses into arr
           let verseData = {
-            verse_id:vId,
-            verse_high_light:colorId
-          }
-          userVerses.push(verseData)
+            verse_id: vId,
+            verse_high_light: colorId,
+          };
+          userVerses.push(verseData);
         }
-      })
-    })
+      });
+    });
     // - close HL box
-    openColorMenu(false)
+    openColorMenu(false);
     // - Save to DB
-    if(userVerses.length >=1){
-      saveUser(userVerses)
+    if (userVerses.length >= 1) {
+      saveUser(userVerses);
     }
-  })
-  function saveUser(savedVerses){
-    log(activeUser)
-    savedVerses.map(i=>{
-      activeUser.verses.push(i)
-    })
+  });
+  function saveUser(savedVerses) {
+    log(activeUser);
+    savedVerses.map((i) => {
+      activeUser.verses.push(i);
+    });
     updateUser();
-    var saveTimeOut = setTimeout(()=>{
-      log('updated user')
-      log(activeUser)
-      clearTimeout(saveTimeOut)
-    },1500)
+    var saveTimeOut = setTimeout(() => {
+      log("updated user");
+      log(activeUser);
+      clearTimeout(saveTimeOut);
+    }, 1500);
   }
   // ---------------------------------------------
   // --------------------END HL COLOR CLICK FUNCTIONALITY -------------------------
