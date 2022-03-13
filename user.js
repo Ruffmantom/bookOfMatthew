@@ -41,16 +41,11 @@ $(document).ready(() => {
   function loadVerses() {
     log("about to load verses");
     if (activeUser.verses.length >= 1) {
-      //   log("found more than one verse, going to load verses backgrounds");
-      // find verses that match user saved verses
-      // log('userVerses' + userVerses)
       activeUser.verses.map((uv) => {
-        // log(activeUser.verses.length)
-        // log(uv.verse_id)
-        // log(uv.verse_high_light)
         addBKG(uv.verse_id, uv.verse_high_light);
       });
     }
+    log('loaded verses!')
   }
   function addBKG(uv_id, uv_c) {
     // log("adding background to: " + uv_id);
@@ -59,10 +54,10 @@ $(document).ready(() => {
     // creat verse element arr
     let vArr = Array.from(verseElm);
     vArr.forEach((v) => {
-      log("foreach ID addBKG " + v.dataset.verseid);
+    //   log("foreach ID addBKG " + v.dataset.verseid);
       if (v.dataset.verseid === uv_id) {
-        log("About to add " + uv_c);
-        log("to element " + v.dataset.verseid);
+        // log("About to add " + uv_c);
+        // log("to element " + v.dataset.verseid);
         $(v).css("background", uv_c);
         v.dataset.versebkg = uv_c;
       }
