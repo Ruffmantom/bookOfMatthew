@@ -7,7 +7,7 @@ $(document).ready(() => {
   // let colorOpen = false;
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
-  const hlColors = ["#f1f100", "#00ff51", "#ff0a0ac7", "#21fcff", "#ff55f0"];
+  const hlColors = ["#ffff0bbe", "#16ff60c4", "#ff2d2db2", "#00fbffc7", "#ff2feecb"];
   const colorBox = $("#color_box");
   // set colors into color box
   hlColors.map((c) => {
@@ -132,7 +132,7 @@ $(document).ready(() => {
       // remove all verses from verseIDArr on close
       verseIDArr = [];
       // remove all underlines
-      removeUnderline('null', true)
+      removeUnderline("null", true);
     } else {
       log("Opening HL box");
       $(".bible_read_body").css("padding", "100px 20px 270px 20px");
@@ -159,7 +159,11 @@ $(document).ready(() => {
         if (bc !== "undefined") {
           $(v).css(addBorder(bc));
         } else {
-          $(v).css(addBorder("black"));
+          if(darkModeThemeOn){
+            $(v).css(addBorder("#d5d5d5"));
+          }else{
+            $(v).css(addBorder("black"));
+          }
         }
       }
     });
@@ -260,7 +264,35 @@ $(document).ready(() => {
   // get all child elements
   // add the elements class name to "_dark"
   // ex: before: .highlight_box | After: .highlight_box_dark etc.
-
+  const toggleBtn = $("#toggler_btn");
+  // save the usersTheme
+  function saveUserTheme(val) {
+    activeUser.mode = val;
+    updateUser();
+    var saveTimeOut = setTimeout(() => {
+      log("updated user");
+      log(activeUser);
+      clearTimeout(saveTimeOut);
+    }, 1500);
+  }
+  toggleBtn.click((e) => {
+    if (e && !darkModeThemeOn) {
+      log("first time click! turned it on");
+      // toggleBtn.css(togCss[1].css);
+      darkModeThemeOn = true;
+      transitionToDarkMode();
+      //update user
+      saveUserTheme(true);
+    } else {
+      log("clicked second time to turn off");
+      // toggleBtn.css(togCss[0].css);
+      darkModeThemeOn = false;
+      transitionToDarkMode();
+      //update user
+      saveUserTheme(false);
+    }
+  });
+ 
   //-------------------------------------------
   // end of doc ready
 });

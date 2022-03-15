@@ -1,3 +1,10 @@
+.highlight-colors{
+  color: #ffff0bbe;
+  color: #16ff60c4;
+  color: #ff2d2db2;
+  color: #00fbffc7;
+  color: #ff2feecb;
+}
 *{
   padding: 0;
   margin: 0;
@@ -24,8 +31,11 @@ padding: 3px 0 3px 15px;
   color: rgb(211, 33, 33);
   font-size: 12px;
   position: absolute;
-  top:2px;
-  left: 0;
+  top: -5px;
+  left: 1px;
+}
+.v_num_dark{
+  color: rgb(255 124 124);
 }
 #b_chapter{
   margin: 15px 0;
@@ -43,6 +53,11 @@ padding: 3px 0 3px 15px;
   border-radius: 0 0 15px 15px;
   justify-content: space-between;
   width: 100%;
+}
+.bible_head_dark{
+  background: #1f1f1f;
+  color: #ffff;
+  box-shadow: none;
 }
 .app_info{
   padding: 20px;
@@ -64,6 +79,10 @@ padding: 3px 0 3px 15px;
   box-shadow: 0 6px 13px rgba(0, 0, 0, 0.13);
   transition: opacity 250ms ease;
 }
+.open_dark{
+  background: #353535;
+  color: #ffff;
+}
 .app_menu{
   width: 100%;
   position: absolute;
@@ -73,16 +92,23 @@ padding: 3px 0 3px 15px;
   height: 100%;
   background-color: white;
 }
-
+.app_menu_dark{
+  background: #1f1f1f;
+  color: #ffff;
+}
 .info{
-  padding: 20px;
+  padding: 35px 25px;
 }
-.switch{
-  width: 50px;
-  height: 20px;
-  border: 1px solid #1f1f1f;
-  background: grey;
+.info_dark{
+  background: #1f1f1f;
+  color: #ffff;
 }
+.info>*{
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 15px;
+}
+
+
 .bible_read_body{
   max-height: 100vh;
   overflow: hidden;
@@ -90,6 +116,10 @@ padding: 3px 0 3px 15px;
   padding: 100px 20px 50px 20px;
   text-align: justify;
   transition: padding 250ms ease;
+}
+.bible_read_body_dark{
+  background: #1f1f1f;
+  color: #ffff;
 }
 .highlight_box{
   height: 250px;
@@ -105,6 +135,10 @@ padding: 3px 0 3px 15px;
   box-shadow: 0 0 13px rgba(0, 0, 0, 0.13);
   z-index: 99999;
 }
+.highlight_box_dark{
+  background: #1f1f1f;
+  color: #ffff;
+}
 .hlb_header{
   display: flex;
   justify-content: space-between;
@@ -119,17 +153,63 @@ padding: 3px 0 3px 15px;
   border-radius: 50%;
   background-color: #f0f0f0;
 }
-#color_box{
+.close_hlb_dark{
+  background: #353535;
+  color: #ffff;
+}
+.color_box{
   display: flex;
   width: 100%;
-  padding: 15px 0;
+  justify-content: space-between;
+  padding: 15px;
   border-radius: 5px;
   align-items: center;
   margin-top: 15px;
+  /* background: white; */
+  border-radius: 10px;
+}
+
+.color_box_dark{
+  background: #353535;
+  color: #ffff;
 }
 .color_swatch{
   height:40px;
   width: 40px;
   border-radius: 5px;
   margin-right: 10px;
+}
+.switch{
+  width: 55px;
+  height: 27px;
+  border: 1px solid black;
+  background: #333333;
+  border-radius: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.switch_dark{
+  border: 1px solid #ffff;
+  background: #353535;
+  color: white;
+}
+.toggler{
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  /* left: -2px; */
+  background: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  transition: left 250ms ease;
+}
+
+.toggler_dark{
+  background: #ffff;
+  color: #1f1f1f;
 }
