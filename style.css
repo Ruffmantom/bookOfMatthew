@@ -160,7 +160,7 @@ padding: 3px 0 3px 15px;
 .color_box{
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 15px;
   border-radius: 5px;
   align-items: center;
@@ -173,11 +173,33 @@ padding: 3px 0 3px 15px;
   background: #353535;
   color: #ffff;
 }
+#delete_hl{
+  width: 25%;
+/* display: flex; */
+display: none;
+align-items: center;
+justify-content: center;
+}
+#hl_colors{
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
 .color_swatch{
   height:40px;
   width: 40px;
   border-radius: 5px;
   margin-right: 10px;
+}
+#delete_bkg_btn{
+  /* display: flex; */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  border-radius: 50%;
+  margin: 0 auto;
 }
 .switch{
   width: 55px;

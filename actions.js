@@ -7,14 +7,32 @@ $(document).ready(() => {
   // let colorOpen = false;
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
-  const hlColors = ["#ffff0bbe", "#16ff60c4", "#ff2d2db2", "#00fbffc7", "#ff2feecb"];
-  const colorBox = $("#color_box");
+  const hlColors = [
+    "#ffff0bbe",
+    "#16ff60c4",
+    "#ff2d2db2",
+    "#00fbffc7",
+    "#ff2feecb",
+  ];
+  const hlBox = $("#hl_colors");
+  const deleteHlBox = $("#delete_hl");
+  const removeBkgBtn = $("#delete_bkg_btn");
   // set colors into color box
   hlColors.map((c) => {
-    colorBox.append(
+    hlBox.append(
       `<div class="color_swatch" style="background:${c}" data-colorid=${c}></div>`
     );
   });
+  function AddDeleteBKG(c, show) {
+    if (show) {
+      deleteHlBox.css('display','flex')
+      removeBkgBtn.css({'display':'flex','background':c});
+      hlBox.css('width','75%')
+    } else {
+      deleteHlBox.css({'display':'none','background':'none'});
+      hlBox.css('width','100%')
+    }
+  }
   menuElm.hide();
   colorMenu.hide();
   menuBtn.click((e) => {
@@ -88,6 +106,7 @@ $(document).ready(() => {
       } else {
         // add underline
         addUnderline(verseId, verseBkg);
+        checkIfVerseHasBkg(e);
         // add to array
         verseIDArr.push(verseId);
       }
@@ -97,6 +116,7 @@ $(document).ready(() => {
       log("First ever verse click");
       // first time click add underline and open HL box
       openColorMenu(true);
+      checkIfVerseHasBkg(e);
       scrollTo(e);
       addUnderline(verseId, verseBkg);
       verseIDArr.push(verseId);
@@ -159,9 +179,9 @@ $(document).ready(() => {
         if (bc !== "undefined") {
           $(v).css(addBorder(bc));
         } else {
-          if(darkModeThemeOn){
+          if (darkModeThemeOn) {
             $(v).css(addBorder("#d5d5d5"));
-          }else{
+          } else {
             $(v).css(addBorder("black"));
           }
         }
@@ -227,6 +247,25 @@ $(document).ready(() => {
       saveUser(userVerses);
     }
   });
+  function checkIfVerseHasBkg(e) {
+    let verseBkg = e.target.dataset.versebkg;
+    log(verseBkg)
+    // if verse has BKG
+    // add a Delete swatch
+    if (verseBkg === undefined || verseBkg === "undefined") {
+      AddDeleteBKG(undefined, false);
+    } else {
+      AddDeleteBKG(verseBkg, true);
+    }
+  }
+
+  function removeBkgColor() {
+    // need to remove color
+    // set bkgDataset to undefined
+    // remove verse from user verse array
+    // save/ update user
+  }
+
   function saveUser(savedVerses) {
     log(activeUser);
     savedVerses.map((i) => {
@@ -239,6 +278,9 @@ $(document).ready(() => {
       clearTimeout(saveTimeOut);
     }, 1500);
   }
+  $("#delete_bkg_btn").click((e) => {
+    // do functions here
+  });
   // ---------------------------------------------
   // --------------------END HL COLOR CLICK FUNCTIONALITY -------------------------
   // ---------------------------------------------
@@ -292,7 +334,7 @@ $(document).ready(() => {
       saveUserTheme(false);
     }
   });
- 
+
   //-------------------------------------------
   // end of doc ready
 });
