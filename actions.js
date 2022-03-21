@@ -25,12 +25,12 @@ $(document).ready(() => {
   });
   function AddDeleteBKG(c, show) {
     if (show) {
-      deleteHlBox.css('display','flex')
-      removeBkgBtn.css({'display':'flex','background':c});
-      hlBox.css('width','75%')
+      deleteHlBox.css("display", "flex");
+      removeBkgBtn.css({ display: "flex", background: c });
+      hlBox.css("width", "75%");
     } else {
-      deleteHlBox.css({'display':'none','background':'none'});
-      hlBox.css('width','100%')
+      deleteHlBox.css({ display: "none", background: "none" });
+      hlBox.css("width", "100%");
     }
   }
   menuElm.hide();
@@ -90,6 +90,7 @@ $(document).ready(() => {
       // second click
       let check = checkClickedVerse(verseId);
       log("second click is same? " + check);
+
       if (check) {
         // remove underline
         removeUnderline(verseId, false);
@@ -117,7 +118,10 @@ $(document).ready(() => {
       // first time click add underline and open HL box
       openColorMenu(true);
       checkIfVerseHasBkg(e);
-      scrollTo(e);
+      var waitToShowBox = setTimeout(()=>{
+        scrollTo(e);
+        clearTimeout(waitToShowBox);
+      },50)
       addUnderline(verseId, verseBkg);
       verseIDArr.push(verseId);
     }
@@ -147,7 +151,7 @@ $(document).ready(() => {
   function openColorMenu(open) {
     if (!open) {
       log("Closing HL box");
-      $(".bible_read_body").css("padding", "100px 20px 50px 20px");
+      $(".bible_read_body").css("padding", "100px 20px 150px 20px");
       colorMenu.hide("slide", { direction: "down" }, 350);
       // remove all verses from verseIDArr on close
       verseIDArr = [];
@@ -247,18 +251,32 @@ $(document).ready(() => {
       saveUser(userVerses);
     }
   });
+  var clickedBKGs = [];
   function checkIfVerseHasBkg(e) {
     let verseBkg = e.target.dataset.versebkg;
-    log(verseBkg)
+    log(verseBkg);
+    clickedBKGs.push(verseBkg);
     // if verse has BKG
+    // check if backgrounds are the same
+    let checked = checkClickedBkg();
+    // if bkg is same when multiple are selected: show delete btn
+    // if not: hide delete btn
     // add a Delete swatch
     if (verseBkg === undefined || verseBkg === "undefined") {
       AddDeleteBKG(undefined, false);
     } else {
-      AddDeleteBKG(verseBkg, true);
+      if (clickedBKGs.length >= 2 && checked) {
+        AddDeleteBKG(verseBkg, true);
+      } else {
+        AddDeleteBKG(undefined, false);
+      }
     }
   }
-
+  function checkClickedBkg() {
+    let allEqual = (clickedBKGs) =>
+      clickedBKGs.every((v) => v === clickedBKGs[0]);
+    return allEqual;
+  }
   function removeBkgColor() {
     // need to remove color
     // set bkgDataset to undefined
