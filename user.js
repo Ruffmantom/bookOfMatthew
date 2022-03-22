@@ -2,8 +2,9 @@ const log = (l) => {
   console.log(l);
 };
 let activeUser;
-function updateUser() {
+function updateUser(notify) {
   localStorage.setItem("bibleUser", JSON.stringify(activeUser));
+  notify();
 }
 let bibleLoaded = false;
 // set state for theme
