@@ -19,7 +19,7 @@
     <div id="noti_box" class="dark notification_box"><p>Saved!</p></div>
     <!-- notification box -->
     <!-- app header -->
-    <div class="dark bible_head ">
+    <div class="dark bible_head">
       <div class="dark app_info">
         <h4 id="b_title">Moc Bible App</h4>
         <p id="app_version"></p>
@@ -28,13 +28,25 @@
     <div class="dark open"><i class="fa fa-bars" aria-hidden="true"></i></div>
     <!-- app header -->
     <!-- main menu -->
-    <div id="app_menu_id" class="dark app_menu ">
+    <div id="app_menu_id" class="dark app_menu">
       <div class="dark info">
         <p id="b_type"></p>
         <p id="b_version"></p>
-        <div class="dark switch">
-          <div id="toggler_btn" class="dark toggler">
-            <i id="t_icon" class="fa fa-moon-o" aria-hidden="true"></i>
+        <div class="b_s_line">
+          <p>Screen Mode</p>
+          <div class="dark switch">
+            <div id="toggler_btn" class="dark toggler">
+              <i id="t_icon" class="fa fa-moon-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <p style="margin-bottom: 5px;">Font Select:</p>
+        <div class="dark dropdown_main_cont">
+          <div class="selection_cont">
+            <p id="selection_name"></p>
+           <i id="drop_icon" class="fa fa-angle-down" aria-hidden="true"></i>
+          </div>
+          <div class="dark font_list_cont">
           </div>
         </div>
       </div>
@@ -55,7 +67,15 @@
         </div>
       </div>
       <div id="color_box" class="dark color_box">
-        <div id="delete_hl"><div id="delete_bkg_btn"class="color_swatch" data-colorid='undefined'><i class="fa fa-times" aria-hidden="true"></i></div></div>
+        <div id="delete_hl">
+          <div
+            id="delete_bkg_btn"
+            class="color_swatch"
+            data-colorid="undefined"
+          >
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
         <div id="hl_colors"></div>
       </div>
       <div id="options_box" class="dark option_box"></div>
@@ -66,5 +86,6 @@
     <script src="./user.js"></script>
     <script src="./index.js"></script>
     <script src="./actions.js"></script>
+    <script src="./fontActions.js"></script>
   </body>
 </html>

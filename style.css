@@ -1,30 +1,52 @@
-.highlight-colors{
-  color: #ffff0bbe;
-  color: #16ff60c4;
-  color: #ff2d2db2;
-  color: #00fbffc7;
-  color: #ff2feecb;
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Libre+Bodoni:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Work+Sans:ital,wght@0,400;0,700;1,400&display=swap");
+.highlight-colors {
+  color: #ffff0b;
+  color: #16ff60;
+  color: #ff6666;
+  color: #00fbff;
+  color: #ff2fee;
+  color: #d5d5d5;
 }
-*{
+/* fonts only have regular, regular-italic, and bold options */
+.fonts {
+  font-family: "Lato", sans-serif;
+  font-family: "Libre Bodoni", serif;
+  font-family: "Lora", serif;
+  font-family: "Merriweather", serif;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Mono", monospace;
+  font-family: "Work Sans", sans-serif;
+}
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-body{
+body {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   max-width: 455px;
 }
-h1,h2,h3,h4,h5{
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: Arial, Helvetica, sans-serif;
+}
+p,
+span {
+  line-height: 1.6;
+}
+.body_spacer {
+  height: 270px;
+  width: 100%;
+}
 
-}
-p,span{
-font-family: Georgia, 'Times New Roman', Times, serif;
-line-height: 1.6;
-}
-.notification_box{
+.notification_box {
   position: fixed;
   top: -50px;
   left: 50%;
@@ -41,37 +63,41 @@ line-height: 1.6;
   z-index: 9999999;
   /* transition: opacity 250ms ease-in; */
 }
-.notification_box>p{
+.notification_box > p {
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   color: white;
   font-weight: 600;
 }
-.notification_box_dark{
+.notification_box_dark {
   background-color: rgb(0, 198, 233);
 }
-.v_para{
-position: relative;
-padding: 3px 0 3px 15px;
+.v_para {
+  position: relative;
+  padding: 3px 0 3px 5px;
+  background-clip: padding-box;
+  /* background-clip: content-box; */
 }
-.v_num{
-  color: rgb(211, 33, 33);
+.v_num {
+  /* color: rgb(211, 33, 33); */
   font-size: 12px;
-  position: absolute;
-  top: -5px;
-  left: 1px;
+  vertical-align: super;
+  margin-right: 5px;
+  /* position: absolute; */
+  /* top: -5px; */
+  /* left: 1px; */
 }
-.v_num_dark{
-  color: rgb(255 124 124);
+.v_num_dark {
+  /* color: rgb(255 124 124); */
 }
-#b_chapter{
+#b_chapter {
   margin: 15px 0;
 }
-.v_title{
+.v_title {
   font-style: italic;
   opacity: 0.6;
 }
-.bible_head{
+.bible_head {
   display: flex;
   position: fixed;
   background: white;
@@ -81,15 +107,15 @@ padding: 3px 0 3px 15px;
   justify-content: space-between;
   width: 100%;
 }
-.bible_head_dark{
+.bible_head_dark {
   background: #1f1f1f;
   color: #ffff;
   box-shadow: none;
 }
-.app_info{
+.app_info {
   padding: 20px;
 }
-.open{
+.open {
   position: absolute;
   z-index: 9999;
   bottom: 65px;
@@ -106,11 +132,11 @@ padding: 3px 0 3px 15px;
   box-shadow: 0 6px 13px rgba(0, 0, 0, 0.13);
   transition: opacity 250ms ease;
 }
-.open_dark{
+.open_dark {
   background: #353535;
   color: #ffff;
 }
-.app_menu{
+.app_menu {
   width: 100%;
   position: absolute;
   top: 0;
@@ -120,24 +146,71 @@ padding: 3px 0 3px 15px;
   overflow: hidden;
   background-color: white;
 }
-.app_menu_dark{
+.app_menu_dark {
   background: #1f1f1f;
   color: #ffff;
 }
-.info{
+.info {
   padding: 35px 25px;
 }
-.info_dark{
+/* dropdown box for fonts */
+.dropdown_main_cont {
+  width: 100%;
+  background: white;
+  box-shadow: 0 6px 13px lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.dropdown_main_cont_dark{
+  background: #333333;
+  box-shadow: none;
+  color: white;
+}
+.selection_cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+}
+
+.font_list_cont {
+  padding: 10px 0;
+  max-height: 150px;
+  width: 95%;
+  margin-top: 15px;
+  overflow-y: scroll;
+  border-radius: 0 0 5px 5px;
+  background-color: white;
+  border-bottom: 5px solid white;
+  display:none;
+}
+.font_list_cont_dark{
+  background-color: #333333;
+  border-bottom: 10px solid #333333;
+}
+.font_list_cont::-webkit-scrollbar {
+  display: none;
+}
+.font_list_item {
+  padding: 10px 30px;
+  font-size: 13px;
+}
+/* End dropdown box for fonts */
+.b_s_line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info_dark {
   background: #1f1f1f;
   color: #ffff;
 }
-.info>*{
+.info > * {
   font-family: Arial, Helvetica, sans-serif;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-
-.bible_read_body{
+.bible_read_body {
   max-height: 100vh;
   overflow: hidden;
   overflow-y: scroll;
@@ -145,11 +218,11 @@ padding: 3px 0 3px 15px;
   text-align: justify;
   transition: padding 250ms ease;
 }
-.bible_read_body_dark{
+.bible_read_body_dark {
   background: #1f1f1f;
   color: #ffff;
 }
-.highlight_box{
+.highlight_box {
   height: 250px;
   padding: 20px;
   width: 100%;
@@ -163,29 +236,28 @@ padding: 3px 0 3px 15px;
   box-shadow: 0 0 13px rgba(0, 0, 0, 0.13);
   z-index: 99999;
 }
-.highlight_box_dark{
+.highlight_box_dark {
   background: #1f1f1f;
   color: #ffff;
 }
-.hlb_header{
+.hlb_header {
   display: flex;
   justify-content: space-between;
-
 }
-.close_hlb{
- width: 35px;
- height: 35px;
- display: flex;
- align-items: center;
- justify-content: center;
+.close_hlb {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   background-color: #f0f0f0;
 }
-.close_hlb_dark{
+.close_hlb_dark {
   background: #353535;
   color: #ffff;
 }
-.color_box{
+.color_box {
   display: flex;
   width: 100%;
   /* justify-content: space-between; */
@@ -197,30 +269,30 @@ padding: 3px 0 3px 15px;
   border-radius: 10px;
 }
 
-.color_box_dark{
+.color_box_dark {
   background: #353535;
   color: #ffff;
 }
-#delete_hl{
+#delete_hl {
   width: 25%;
-/* display: flex; */
-display: none;
-align-items: center;
-justify-content: center;
+  /* display: flex; */
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
-#hl_colors{
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
+#hl_colors {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.color_swatch{
-  height:40px;
+.color_swatch {
+  height: 40px;
   width: 40px;
   border-radius: 5px;
   margin-right: 10px;
 }
-#delete_bkg_btn{
+#delete_bkg_btn {
   /* display: flex; */
   display: none;
   justify-content: center;
@@ -229,7 +301,7 @@ justify-content: space-between;
   border-radius: 50%;
   margin: 0 auto;
 }
-.switch{
+.switch {
   width: 55px;
   height: 27px;
   border: 1px solid black;
@@ -239,12 +311,12 @@ justify-content: space-between;
   position: relative;
   align-items: center;
 }
-.switch_dark{
+.switch_dark {
   border: 1px solid #ffff;
   background: #353535;
   color: white;
 }
-.toggler{
+.toggler {
   height: 30px;
   width: 30px;
   position: absolute;
@@ -259,7 +331,36 @@ justify-content: space-between;
   transition: left 250ms ease;
 }
 
-.toggler_dark{
+.toggler_dark {
   background: #ffff;
   color: #1f1f1f;
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) {
+}
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+}
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (max-width: 768px) {
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  body::-webkit-scrollbar,
+  .bible_read_body::-webkit-scrollbar,
+  #app_menu_id::-webkit-scrollbar,#app_menu_id>*::-webkit-scrollbar,.bible_head::-webkit-scrollbar {
+    display: none;
+  }
+  .font_list_cont::-webkit-scrollbar{
+    display: block;
+    width: 4px;
+  }
+  .font_list_cont::-webkit-scrollbar-thumb{
+    background-color: #1f1f1f;
+    border-radius: 10px;
+  }
+  .font_list_cont_dark::-webkit-scrollbar-thumb{
+    background-color: white;
+    border-radius: 10px;
+  }
 }

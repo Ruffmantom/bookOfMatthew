@@ -10,10 +10,10 @@ $(document).ready(() => {
   // End get global variables
   // bring in global data variable
   var bData = bibleData;
-  function createVerseLine(v, vNum, title, id) {
+  function createVerseLine(v, vNum, title, id,isNewParah) {
     let verse = `${
       title ? '<p class="v_title">' + title + "</p>" : ""
-    }<span data-verseid=${id} data-versebkg="undefined" class="v_para"><span class="dark v_num">${vNum}</span>${v}</span>`;
+    }<span data-verseid=${id} data-versebkg="undefined" class="v_para"><span class="dark v_num">${isNewParah? "&emsp;":""} ${vNum}</span><span>${v}</span></span>`;
     return verse;
   }
   function loadBible() {
@@ -33,7 +33,7 @@ $(document).ready(() => {
     // map through loaded verses
 
     loadedVerses.map((v) => {
-      let line = createVerseLine(v.paragraph, v.verse, v.title, v._id);
+      let line = createVerseLine(v.paragraph, v.verse, v.title, v._id,v.new_para);
       appReadBodyElm.append(line);
     });
     bibleLoaded = true;

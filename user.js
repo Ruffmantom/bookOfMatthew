@@ -119,7 +119,8 @@ $(document).ready(() => {
       if (v.dataset.verseid === uv_id) {
         // log("About to add " + uv_c);
         // log("to element " + v.dataset.verseid);
-        $(v).css("background", uv_c);
+        $(v).css("background-color", uv_c);
+        $(v).css("color","black")
         v.dataset.versebkg = uv_c;
       }
     });
