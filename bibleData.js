@@ -1,3 +1,15 @@
+// for future use with Database
+function createVerseId() {
+  var s =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+  var id = "";
+  for (let i = 0; i < 10 + 1; i++) {
+    let b = s.split("");
+    id+= b[Math.floor(Math.random() * 68)];
+  }
+  return id;
+}
+// END for future use with Database
 const bibleData = {
   app_version: "000.005",
   bibles: [
