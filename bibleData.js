@@ -137,7 +137,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "and Jacob the father of Joseph the husband of Mary, of whom Jesus was born, who is called Christ.<br>",
+                    "and Jacob the father of Joseph the husband of Mary, of whom Jesus was born, who is called Christ.",
                 },
                 {
                   _id: "wc45y563ub",
