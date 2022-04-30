@@ -287,15 +287,15 @@ span {
   align-items: center;
   justify-content: space-between;
 }
-.color_swatch {
+.color_swatch, .color_swatch_dlt {
   height: 40px;
   width: 40px;
   border-radius: 5px;
   margin-right: 10px;
 }
 #delete_bkg_btn {
-  /* display: flex; */
-  display: none;
+  display: flex;
+  /* display: none; */
   justify-content: center;
   align-items: center;
   font-size: 16px;

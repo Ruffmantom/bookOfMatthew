@@ -7,13 +7,7 @@ $(document).ready(() => {
   // let colorOpen = false;
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
-  const hlColors = [
-    "#ffff0b",
-    "#16ff60",
-    "#ff6666",
-    "#00fbff",
-    "#ff2fee",
-  ];
+  const hlColors = ["#ffff0b", "#16ff60", "#ff6666", "#00fbff", "#ff2fee"];
   const hlBox = $("#hl_colors");
   const deleteHlBox = $("#delete_hl");
   const removeBkgBtn = $("#delete_bkg_btn");
@@ -25,15 +19,18 @@ $(document).ready(() => {
       `<div class="color_swatch" style="background-color:${c}" data-colorid=${c}></div>`
     );
   });
-  function AddDeleteBKG(c, show, delete_Ids) {
+  // adds delete background BTN
+  function AddDeleteBKG(c, show) {
+    // this will be the color that gets cleared when clicked
+    removeBkgBtn.attr("data-colorid", c);
+    // add the dataid to the icon as well since it click function might target that instead
+    $("#delete_bkg_btn>i").attr("data-colorid", c);
     if (show) {
       deleteHlBox.css("display", "flex");
       removeBkgBtn.css({ display: "flex", background: c });
-      removeBkgBtn.dataset.deleteids = delete_Ids.join();
       hlBox.css("width", "75%");
     } else {
       deleteHlBox.css({ display: "none", background: "none" });
-      // removeBkgBtn.dataset.deleteids = delete_Ids;
       hlBox.css("width", "100%");
     }
   }
@@ -106,7 +103,6 @@ $(document).ready(() => {
       } else {
         // add underline
         addUnderline(verseId);
-        checkIfVerseHasBkg(e);
         // add to array
         verseIDArr.push(verseId);
       }
@@ -116,7 +112,6 @@ $(document).ready(() => {
       log("First ever verse click");
       // first time click add underline and open HL box
       openColorMenu(true);
-      checkIfVerseHasBkg(e);
       var waitToShowBox = setTimeout(() => {
         scrollTo(e);
         clearTimeout(waitToShowBox);
@@ -124,6 +119,7 @@ $(document).ready(() => {
       addUnderline(verseId);
       verseIDArr.push(verseId);
     }
+    checkIfVerseHasBkg();
   });
   //function to remove specific id from clicked array
   function deleteVerseFromArray(vId) {
@@ -156,11 +152,11 @@ $(document).ready(() => {
       // remove all underlines
       removeUnderline("null", true);
       // remove spacer
-      $('.body_spacer').remove();
+      $(".body_spacer").remove();
     } else {
       log("Opening HL box");
       // add spacer for bottom text to move up
-      $(".bible_read_body").append(`<div class="body_spacer"></div>`)
+      $(".bible_read_body").append(`<div class="body_spacer"></div>`);
       colorMenu.show("slide", { direction: "down" }, 350);
     }
   }
@@ -181,11 +177,11 @@ $(document).ready(() => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
         log("about to add underline to verse: " + id);
-          if (darkModeThemeOn) {
-            $(v).css(addBorder("#d5d5d5"));
-          } else {
-            $(v).css(addBorder("black"));
-          }
+        if (darkModeThemeOn) {
+          $(v).css(addBorder("#d5d5d5"));
+        } else {
+          $(v).css(addBorder("black"));
+        }
       }
     });
   }
@@ -217,7 +213,7 @@ $(document).ready(() => {
   // --------------------END HL COLOR CLICK FUNCTIONALITY -------------------------
   // ---------------------------------------------
   let colorSwatch = $(".color_swatch");
-  let colorSwatchArr = Array.from(colorSwatch);
+  // let colorSwatchArr = Array.from(colorSwatch);
   // click on color
   colorSwatch.click((e) => {
     // log('clicked color '+ e.target.dataset.colorid)
@@ -230,7 +226,7 @@ $(document).ready(() => {
       verseIDArr.map((i) => {
         if (i === vId) {
           // adding background to verse
-          $(v).css({"background-color": colorId, "color":"black"});
+          $(v).css({ "background-color": colorId, color: "black" });
           // set versebkg data
           v.dataset.versebkg = colorId;
           // set verses into arr
@@ -249,57 +245,81 @@ $(document).ready(() => {
       saveUser(userVerses);
     }
   });
-  var clickedBKGs = [];
-  function checkIfVerseHasBkg(e) {
-    let verseBkg = e.target.dataset.versebkg;
-    log(verseBkg);
-    clickedBKGs.push(verseBkg);
-    // if verse has BKG
-    // check if backgrounds are the same
-    let checked = checkClickedBkg();
-    log(checked);
-    // if bkg is same when multiple are selected: show delete btn
-    // if not: hide delete btn
-    // add a Delete swatch
-    if (verseBkg === undefined || verseBkg === "undefined") {
-      AddDeleteBKG(undefined, false, undefined);
-    } else {
-      if (clickedBKGs.length >= 2 && checked === true) {
-        AddDeleteBKG(verseBkg, true, clickedBKGs);
-      } else {
-        AddDeleteBKG(undefined, false, undefined);
-      }
+  function checkIfVerseHasBkg() {
+    // this should only return true of false
+    // take verse ID map through and check for bkg
+    if (verseIDArr.length >= 1) {
+      verseIDArr.forEach((i) => {
+        // let match = false;
+        // map through all verses and mach with ID
+        // matchIdColor will equal a HEX color or undefined
+        let matchIdColor = checkClickedBkg(i, true);
+        if (matchIdColor === "undefined") {
+          // console.log(matchIdColor + " Should be Undefined");
+          AddDeleteBKG(matchIdColor, false);
+        } else {
+          // console.log(matchIdColor + " Should be HEX Color");
+          // show bkg remove btn
+          AddDeleteBKG(matchIdColor, true);
+        }
+      });
     }
   }
-  function checkClickedBkg() {
-    let allEqual = (clickedBKGs) =>
-      clickedBKGs.every((v) => v === clickedBKGs[0]);
-    return allEqual;
+  function checkClickedBkg(id) {
+    let checkBkg;
+    vArr.map((v) => {
+      if (v.dataset.verseid === id) {
+        // returns the background of matched verse with ID
+        checkBkg = v.dataset.versebkg;
+      }
+    });
+    return checkBkg;
   }
-  function searchAndRemoveColor() {
+  // click function for deleteBackground
+  removeBkgBtn.click((e) => {
+    console.log(e.target.dataset.colorid);
+    let colorToDelete = e.target.dataset.colorid;
+    // run through clicked Id Array return ID that matches BKG
+    // use ID to search VerseElm Array if match
+    //  > delete BKG
+    searchVerseElementsAndDeleteBkg(colorToDelete);
+    //  > update user
+  });
+  function searchVerseElementsAndDeleteBkg(color) {
+    // look through all verses with this BKG
+    verseIDArr.forEach((vId) => {
+      // now remove bkg color
+      searchAndRemoveColor(vId, color)
+    });
+  }
+  function searchAndRemoveColor(vId ,color) {
     // for each clicked verse id
     // search and see if if it has a background color set
     // if it does, remove it and search for it in the useres saved verses
     // if matches, then remove that saved verse
     //search through elements
+    vArr.forEach(elm => {
+      let elmId = elm.dataset.verseid;
+      let elmBkg = elm.dataset.versebkg;
+      if (elmId === vId && elmBkg === color) {
+        console.log("------------- START REMOVE BKG -----------");
+        console.log(elmId + " " + vId);
+        console.log(elmBkg + " " + color);
+        console.log("------------- END REMOVE BKG -----------");
+        $(elm).css("background-color", "none");
+        $(elm).data("versebkg", "undefined");
+        // if successful
+        //  > close highlightbox
+        openColorMenu(false);
+      }
+    });
   }
-  function searchVerseElements() {}
   function removeHlVerseFromUser(id) {
     let userVArr = activeUser.verses.map((v) => {
       return v.verse_id !== id;
     });
     activeUser.verses = userVArr;
     updateUser(notifyUser);
-  }
-  function removeBkgColor(e) {
-    let verseIdArr = e.target.dataset.deleteids;
-    log(verseIdArr);
-    // need to remove color
-    // set bkgDataset to undefined
-    // searchAndRemoveColor(verseId)
-    // remove verse from user verse array
-    // save/ update user
-    // removeHlVerseFromUser(verseId)
   }
   var notiBoxStyles = [
     {
@@ -335,10 +355,6 @@ $(document).ready(() => {
       clearTimeout(saveTimeOut);
     }, 1500);
   }
-  $("#delete_bkg_btn").click((e) => {
-    // do functions here
-    removeBkgColor(e);
-  });
   // ---------------------------------------------
   // --------------------END HL COLOR CLICK FUNCTIONALITY -------------------------
   // ---------------------------------------------
