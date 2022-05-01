@@ -154,7 +154,7 @@ $(document).ready(() => {
       // remove spacer
       $(".body_spacer").remove();
     } else {
-      log("Opening HL box");
+      // log("Opening HL box");
       // add spacer for bottom text to move up
       $(".bible_read_body").append(`<div class="body_spacer"></div>`);
       colorMenu.show("slide", { direction: "down" }, 350);
@@ -176,7 +176,7 @@ $(document).ready(() => {
     vArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
-        log("about to add underline to verse: " + id);
+        // log("about to add underline to verse: " + id);
         if (darkModeThemeOn) {
           $(v).css(addBorder("#d5d5d5"));
         } else {
@@ -287,40 +287,32 @@ $(document).ready(() => {
   });
   function searchVerseElementsAndDeleteBkg(color) {
     // look through all verses with this BKG
-    verseIDArr.forEach((vId) => {
-      // now remove bkg color
-      searchAndRemoveColor(vId, color)
+    vArr.forEach((v) => {
+      let vId = v.dataset.verseid;
+      let vColorId = v.dataset.versebkg;
+      verseIDArr.map((i) => {
+        if (i === vId && vColorId === color) {
+          // adding background to verse
+          $(v).css({ "background-color": "inherit", color: "inherit" });
+          // set versebkg data
+          v.dataset.versebkg = "undefined";
+          // remove verses from user arr
+          //let currUserVerse = activeUser.verses;
+          var newArr = activeUser.verses.filter(function(value, index, arr){ 
+            return value.verse_id !== vId;
+        });
+          // console.log(newArr);
+          activeUser.verses = newArr;
+          // console.log(activeUser.verses);
+          // close HL box
+          openColorMenu(false);
+          // update user
+          updateUser(notifyUser)
+        }
+      });
     });
   }
-  function searchAndRemoveColor(vId ,color) {
-    // for each clicked verse id
-    // search and see if if it has a background color set
-    // if it does, remove it and search for it in the useres saved verses
-    // if matches, then remove that saved verse
-    //search through elements
-    vArr.forEach(elm => {
-      let elmId = elm.dataset.verseid;
-      let elmBkg = elm.dataset.versebkg;
-      if (elmId === vId && elmBkg === color) {
-        console.log("------------- START REMOVE BKG -----------");
-        console.log(elmId + " " + vId);
-        console.log(elmBkg + " " + color);
-        console.log("------------- END REMOVE BKG -----------");
-        $(elm).css("background-color", "none");
-        $(elm).data("versebkg", "undefined");
-        // if successful
-        //  > close highlightbox
-        openColorMenu(false);
-      }
-    });
-  }
-  function removeHlVerseFromUser(id) {
-    let userVArr = activeUser.verses.map((v) => {
-      return v.verse_id !== id;
-    });
-    activeUser.verses = userVArr;
-    updateUser(notifyUser);
-  }
+
   var notiBoxStyles = [
     {
       opacity: 1,

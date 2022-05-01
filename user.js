@@ -74,7 +74,7 @@ $(document).ready(() => {
       } else {
         let t = localStorage.getItem("bibleUser");
         activeUser = JSON.parse(t);
-        log("user found!");
+        // log("user found!");
         var loadTimeout = setTimeout(() => {
           if (bibleLoaded === true) {
             loadVerses();
@@ -90,16 +90,16 @@ $(document).ready(() => {
   // If user
   // - Load highlighted verses
   function loadVerses() {
-    log("about to load verses");
+    // log("about to load verses");
     if (activeUser.verses.length >= 1) {
       activeUser.verses.map((uv) => {
         addBKG(uv.verse_id, uv.verse_high_light);
       });
     }
-    log("loaded verses!");
+    // log("loaded verses!");
   }
   function loadDarkModeTheme() {
-    log("about to load theme");
+    // log("about to load theme");
     if (activeUser.mode === true || activeUser.mode === "true") {
       darkModeThemeOn = true;
       transitionToDarkMode();
