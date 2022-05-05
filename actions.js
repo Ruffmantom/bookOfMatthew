@@ -286,33 +286,35 @@ $(document).ready(() => {
     //  > update user
   });
   function searchVerseElementsAndDeleteBkg(color) {
-    // look through all verses with this BKG
-    vArr.forEach((v) => {
+    //------- NEW IDEA ---------------------
+    verseIDArr.forEach((vId)=>{
+      loopThroughverseElements(vId,color);
+    })
+  }
+  const loopThroughverseElements = (sVerseId, color)=>{
+    vArr.forEach(v=>{
       let vId = v.dataset.verseid;
       let vColorId = v.dataset.versebkg;
-      verseIDArr.map((i) => {
-        if (i === vId && vColorId === color) {
-          // adding background to verse
-          $(v).css({ "background-color": "inherit", color: "inherit" });
-          // set versebkg data
-          v.dataset.versebkg = "undefined";
-          // remove verses from user arr
-          //let currUserVerse = activeUser.verses;
-          var newArr = activeUser.verses.filter(function(value, index, arr){ 
-            return value.verse_id !== vId;
-        });
-          // console.log(newArr);
-          activeUser.verses = newArr;
-          // console.log(activeUser.verses);
-          // close HL box
-          openColorMenu(false);
-          // update user
-          updateUser(notifyUser)
-        }
+      if(sVerseId === vId && vColorId === color){
+        // adding background to verse
+        $(v).css({ "background-color": "inherit", color: "inherit" });
+        // set versebkg data
+        v.dataset.versebkg = "undefined";
+        // remove verses from user arr
+        //let currUserVerse = activeUser.verses;
+        var newArr = activeUser.verses.filter(function(value, index, arr){ 
+          return value.verse_id !== vId;
       });
-    });
+        // console.log(newArr);
+        activeUser.verses = newArr;
+        // console.log(activeUser.verses);
+        // close HL box
+        openColorMenu(false);
+        // update user
+        updateUser(notifyUser)
+      }
+    })
   }
-
   var notiBoxStyles = [
     {
       opacity: 1,
