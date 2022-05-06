@@ -6,9 +6,37 @@ function updateUser(notify) {
   localStorage.setItem("bibleUser", JSON.stringify(activeUser));
   notify();
 }
+//--NOTIFY FUNTION GLOBAL
+var notiBoxStyles = [
+  {
+    opacity: 1,
+    top: "50px",
+    transition: "all 250ms ease-in",
+  },
+  {
+    opacity: 0,
+    top: "-50px",
+    transition: "all 250ms ease-out",
+  },
+];
+function notifyUser() {
+  const notifBox = $("#noti_box");
+  var addNotification = setTimeout(() => {
+    notifBox.css(notiBoxStyles[0]);
+    clearTimeout(addNotification);
+  }, 1500);
+  var removeNotification = setTimeout(() => {
+    notifBox.css(notiBoxStyles[1]);
+    clearTimeout(removeNotification);
+  }, 5000);
+}
+//-- bible loadState
 let bibleLoaded = false;
 // set state for theme
 let darkModeThemeOn = false;
+// set state for verse and font
+let verseSizeState = "16";
+let verseFontState = "Georgia";
 // renderer
 var togCss = [
   {
@@ -52,16 +80,39 @@ function transitionToDarkMode() {
     }
   });
 }
+// set verse font
+const setVerseFont = (verseFontName) => {
+  $("#bible_read_body").css("font-family", verseFontName);
+};
+// set verse font size
+const setVerseFontSize = (verseSize) => {
+  // set fontsize
+  $(".v_para").css("font-size", parseInt(verseSize));
+  // set value in settings
+  $("#b_versesize_value").text(`${verseSize}px`);
+};
 // ------------------------------------------------
 // ------------------------------------------------
 // DOCUMENT.READY
 // ------------------------------------------------
 // ------------------------------------------------
+function createId() {
+  var s =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+  var id = "";
+  for (let i = 0; i < 10 + 1; i++) {
+    let b = s.split("");
+    id+= b[Math.floor(Math.random() * 68)];
+  }
+  return id;
+}
 $(document).ready(() => {
   var user = {
-    id: "23kjhr2h",
+    id: createId(),
     verses: [],
     mode: false,
+    verseFont: 'undefined',
+    verseFontSize: '16'
   };
   //  console.log(user)
   // functions for setting local storage with darkmode
@@ -77,8 +128,10 @@ $(document).ready(() => {
         // log("user found!");
         var loadTimeout = setTimeout(() => {
           if (bibleLoaded === true) {
+            //loading all USER DATA
             loadVerses();
             loadDarkModeTheme();
+            loadFontAndFontSize();
           }
           clearTimeout(loadTimeout);
         }, 150);
@@ -108,6 +161,22 @@ $(document).ready(() => {
       transitionToDarkMode();
     }
   }
+  // load font and font size
+  function loadFontAndFontSize() {
+    if (activeUser.verseFont !== 'undefined') {
+      console.log("on load setting font to " + activeUser.verseFont);
+      setVerseFont(activeUser.verseFont);
+    } else {
+      setVerseFont(verseFontState);
+    }
+    if (activeUser.verseFontSize) {
+      console.log("on load setting font size to " + activeUser.verseFontSize + "px");
+      setVerseFontSize(parseInt(activeUser.verseFontSize));
+    } else {
+      setVerseFontSize(verseSizeState);
+      return;
+    }
+  }
   function addBKG(uv_id, uv_c) {
     // log("adding background to: " + uv_id);
     // get verse elements
@@ -120,7 +189,7 @@ $(document).ready(() => {
         // log("About to add " + uv_c);
         // log("to element " + v.dataset.verseid);
         $(v).css("background-color", uv_c);
-        $(v).css("color","black")
+        $(v).css("color", "black");
         v.dataset.versebkg = uv_c;
       }
     });

@@ -3,9 +3,42 @@
 // - changing size
 $(document).ready(() => {
   // on load font family for bible is font-family: Georgia, "Times New Roman", Times, serif;
-  $(".bible_read_body").css(
-    'font-family: Georgia, "Times New Roman", Times, serif;'
-  );
+  var bibleVerseSizeInput = $("#b_versesize_input");
+  const verseIncreaseBtn = $("#v_s_btn_r");
+  const verseDecreaseBtn = $("#v_s_btn_l");
+  let userTextSize = parseInt(activeUser.verseFontSize);
+  verseDecreaseBtn.click(() => {
+    addOrMinusFontSize(false, userTextSize);
+  });
+  verseIncreaseBtn.click(() => {
+    addOrMinusFontSize(true, userTextSize);
+  });
+  function addOrMinusFontSize(add, userFs) {
+    //need to set limit
+    if (add) {
+      if (userFs < 27) {
+        userTextSize = userFs + 1;
+      } else {
+        return;
+      }
+    } else {
+      if (userFs === 16) {
+        return;
+      } else {
+        userTextSize = userFs - 1;
+      }
+    }
+    // update dom
+    console.log(userTextSize);
+    console.log(typeof userTextSize);
+    setVerseFontSize(userTextSize);
+    // update user
+    activeUser.verseFontSize = userTextSize
+    var sizeTimer = setTimeout(()=>{
+      updateUser(notifyUser)
+      clearTimeout(sizeTimer)
+    },3500)
+  }
   const fontList = [
     "Lato",
     "Libre Bodoni",
@@ -17,13 +50,13 @@ $(document).ready(() => {
     "Roboto Mono",
     "Work Sans",
   ];
-// script from github from other project
-$(document).ready(function () {
+  // script from github from other project
+  $(document).ready(function () {
     const dropDown = $(".selection_cont");
     const dropList = $(".font_list_cont");
     const dropIcon = $("#drop_icon");
     const selectionName = $("#selection_name");
-  
+
     let listOpen = false;
     selectionName.text(fontList[0]);
     dropList.hide();
@@ -40,7 +73,7 @@ $(document).ready(function () {
         dropIcon.removeClass("fa-angle-down");
       }
     });
-  
+
     fontList.map((f, i) => {
       dropList.append(() => {
         return `<div class="font_list_item" data-fontKey="${f}" style="font-family:${f}">${f}</div>`;
@@ -60,12 +93,12 @@ $(document).ready(function () {
       }
       // selectionName.css('font-family', `${font}`)
     });
-  
+
     //----------------------------------
     //end of Document.ready
   });
-  
-// END script from github from other project
+
+  // END script from github from other project
 
   // end of doc ready
 });

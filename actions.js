@@ -11,7 +11,6 @@ $(document).ready(() => {
   const hlBox = $("#hl_colors");
   const deleteHlBox = $("#delete_hl");
   const removeBkgBtn = $("#delete_bkg_btn");
-  const notifBox = $("#noti_box");
   // set colors into color box
 
   hlColors.map((c) => {
@@ -315,28 +314,7 @@ $(document).ready(() => {
       }
     })
   }
-  var notiBoxStyles = [
-    {
-      opacity: 1,
-      top: "50px",
-      transition: "all 250ms ease-in",
-    },
-    {
-      opacity: 0,
-      top: "-50px",
-      transition: "all 250ms ease-out",
-    },
-  ];
-  function notifyUser() {
-    var addNotification = setTimeout(() => {
-      notifBox.css(notiBoxStyles[0]);
-      clearTimeout(addNotification);
-    }, 1500);
-    var removeNotification = setTimeout(() => {
-      notifBox.css(notiBoxStyles[1]);
-      clearTimeout(removeNotification);
-    }, 5000);
-  }
+ 
   function saveUser(savedVerses) {
     log(activeUser);
     savedVerses.map((i) => {

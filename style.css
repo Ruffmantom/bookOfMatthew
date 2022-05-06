@@ -154,6 +154,22 @@ span {
 .info {
   padding: 35px 25px;
 }
+.b_r_fontsize_input_cont{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.b_versesize_btn{
+  padding: 12px 50px;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 6px 13px lightgray;
+}
+.b_versesize_btn_dark{
+  background: #333333;
+  box-shadow: none;
+}
 /* dropdown box for fonts */
 .dropdown_main_cont {
   width: 100%;
