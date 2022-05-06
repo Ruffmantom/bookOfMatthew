@@ -47,7 +47,7 @@ span {
 }
 
 .notification_box {
-  position: fixed;
+  position: absolute;
   top: -50px;
   left: 50%;
   /* opacity: 0; */
@@ -60,7 +60,7 @@ span {
   justify-content: center;
   border-radius: 50px;
   background-color: rgb(59, 226, 255);
-  z-index: 9999999;
+  z-index: 99999999;
   /* transition: opacity 250ms ease-in; */
 }
 .notification_box > p {
