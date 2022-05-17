@@ -154,19 +154,19 @@ span {
 .info {
   padding: 35px 25px;
 }
-.b_r_fontsize_input_cont{
+.b_r_fontsize_input_cont {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-.b_versesize_btn{
+.b_versesize_btn {
   padding: 12px 50px;
   border-radius: 5px;
   background: white;
   box-shadow: 0 6px 13px lightgray;
 }
-.b_versesize_btn_dark{
+.b_versesize_btn_dark {
   background: #333333;
   box-shadow: none;
 }
@@ -176,9 +176,10 @@ span {
   background: white;
   box-shadow: 0 6px 13px lightgray;
   border-radius: 5px;
+  position: relative;
   cursor: pointer;
 }
-.dropdown_main_cont_dark{
+.dropdown_main_cont_dark {
   background: #333333;
   box-shadow: none;
   color: white;
@@ -199,9 +200,13 @@ span {
   border-radius: 0 0 5px 5px;
   background-color: white;
   border-bottom: 5px solid white;
-  display:none;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  width: 100%;
+  display: none;
 }
-.font_list_cont_dark{
+.font_list_cont_dark {
   background-color: #333333;
   border-bottom: 10px solid #333333;
 }
@@ -210,7 +215,7 @@ span {
 }
 .font_list_item {
   padding: 10px 30px;
-  font-size: 13px;
+  font-size: 16px;
 }
 /* End dropdown box for fonts */
 .b_s_line {
@@ -304,7 +309,8 @@ span {
   align-items: center;
   justify-content: space-between;
 }
-.color_swatch, .color_swatch_dlt {
+.color_swatch,
+.color_swatch_dlt {
   height: 40px;
   width: 40px;
   border-radius: 5px;
@@ -366,18 +372,20 @@ span {
 @media (max-width: 576px) {
   body::-webkit-scrollbar,
   .bible_read_body::-webkit-scrollbar,
-  #app_menu_id::-webkit-scrollbar,#app_menu_id>*::-webkit-scrollbar,.bible_head::-webkit-scrollbar {
+  #app_menu_id::-webkit-scrollbar,
+  #app_menu_id > *::-webkit-scrollbar,
+  .bible_head::-webkit-scrollbar {
     display: none;
   }
-  .font_list_cont::-webkit-scrollbar{
+  .font_list_cont::-webkit-scrollbar {
     display: block;
     width: 4px;
   }
-  .font_list_cont::-webkit-scrollbar-thumb{
+  .font_list_cont::-webkit-scrollbar-thumb {
     background-color: #1f1f1f;
     border-radius: 10px;
   }
-  .font_list_cont_dark::-webkit-scrollbar-thumb{
+  .font_list_cont_dark::-webkit-scrollbar-thumb {
     background-color: white;
     border-radius: 10px;
   }

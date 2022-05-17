@@ -40,6 +40,7 @@ $(document).ready(() => {
     },3500)
   }
   const fontList = [
+    "Georgia",
     "Lato",
     "Libre Bodoni",
     "Lora",
@@ -90,6 +91,8 @@ $(document).ready(() => {
         dropIcon.addClass("fa-angle-down");
         dropIcon.removeClass("fa-angle-up");
         selectionName.text(font);
+        console.log(font)
+        setVerseFont(font)
       }
       // selectionName.css('font-family', `${font}`)
     });

@@ -82,7 +82,7 @@ function transitionToDarkMode() {
 }
 // set verse font
 const setVerseFont = (verseFontName) => {
-  $("#bible_read_body").css("font-family", verseFontName);
+  $(".bible_read_body").css("font-family", verseFontName);
 };
 // set verse font size
 const setVerseFontSize = (verseSize) => {

@@ -11,7 +11,7 @@ function createVerseId() {
 }
 // END for future use with Database
 const bibleData = {
-  app_version: "000.006",
+  app_version: "000.009",
   bibles: [
     {
       bible_type: "ESV",
@@ -37,7 +37,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    " Abraham was the father of Isaac, and Isaac the father of Jacob, and Jacob the father of Judah and his brothers, ",
+                    "Abraham was the father of Isaac, and Isaac the father of Jacob, and Jacob the father of Judah and his brothers, ",
                 },
                 {
                   _id: "346u5",
