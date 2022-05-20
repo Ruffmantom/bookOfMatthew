@@ -112,7 +112,9 @@ $(document).ready(() => {
     verses: [],
     mode: false,
     verseFont: 'undefined',
-    verseFontSize: '16'
+    verseFontSize: '16',
+    imageUrl:'undefined',
+    userName:'Username'
   };
   //  console.log(user)
   // functions for setting local storage with darkmode

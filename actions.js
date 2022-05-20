@@ -1,18 +1,18 @@
-// const log = (l) => {
-//   console.log(l);
-// };
 $(document).ready(() => {
   const menuBtn = $(".open");
   let menuOpen = false;
   // let colorOpen = false;
+  const apiKey = 'ec36dc6d4f4ea50dcc07a148d9728fd6';
+  // const apiLink = ''
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
   const hlColors = ["#ffff0b", "#16ff60", "#ff6666", "#00fbff", "#ff2fee"];
   const hlBox = $("#hl_colors");
   const deleteHlBox = $("#delete_hl");
   const removeBkgBtn = $("#delete_bkg_btn");
+  const editUserCloseBtn = $("#exit_edit");
+  const bibleUserImageBtn = $("#b_user_img");
   // set colors into color box
-
   hlColors.map((c) => {
     hlBox.append(
       `<div class="color_swatch" style="background-color:${c}" data-colorid=${c}></div>`
@@ -380,7 +380,19 @@ $(document).ready(() => {
       saveUserTheme(false);
     }
   });
+// edit user close btn
+editUserCloseBtn.click((e)=>{
+  if(e){
+    $('.b_user_edit').addClass('b_user_edit_closed')
+  }
+})
+// open edit user pop up
+bibleUserImageBtn.click((e)=>{
+  if(e){
+    $('.b_user_edit').removeClass('b_user_edit_closed')
 
+  }
+})
   //-------------------------------------------
   // end of doc ready
 });

@@ -154,6 +154,19 @@ span {
 .info {
   padding: 35px 25px;
 }
+#b_user_img{
+  height: 70px;
+  width: 70px;
+}
+.divide_line{
+  height: 5px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #1f1f1f;
+}
+.divide_line_dark{
+  background-color: #333333;
+}
 .b_r_fontsize_input_cont {
   display: flex;
   justify-content: space-between;
@@ -218,6 +231,94 @@ span {
   font-size: 16px;
 }
 /* End dropdown box for fonts */
+/* User edit popUp */
+#exit_edit {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.b_user_edit {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  z-index: 9999999;
+  background-color: white;
+  transition: opacity 350ms ease-in;
+}
+.b_user_edit_closed{
+  opacity: 0;
+  z-index: -1;
+  transition: all 350ms ease-out;
+}
+.b_user_edit_dark {
+  background-color: #1f1f1f;
+  color: white;
+}
+.user_preview {
+  margin: 50px 0;
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user_image_prev {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  box-shadow: 0 6px 13px #00000026;
+}
+.user_edit_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.user_edit_form > p {
+  margin-bottom: 10px;
+}
+.user_edit_form > input {
+  margin-bottom: 15px;
+  font-size: 16px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  box-shadow: 0 6px 13px #00000026;
+}
+.upload_image_btn {
+  width: 100%;
+  padding: 15px 0;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 6px 13px #00000026;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.upload_image_btn_dark{
+    background-color: #333333;
+    box-shadow: none;
+    color: white;
+}
+/* hide actual image input */
+#image_uploader {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+/* end hide actual image input */
+
+/* End User edit popUp */
 .b_s_line {
   display: flex;
   justify-content: space-between;
@@ -267,7 +368,8 @@ span {
   display: flex;
   justify-content: space-between;
 }
-.close_hlb {
+.close_hlb,
+.close_btn {
   width: 35px;
   height: 35px;
   display: flex;
@@ -276,19 +378,18 @@ span {
   border-radius: 50%;
   background-color: #f0f0f0;
 }
-.close_hlb_dark {
+.close_hlb_dark,
+.close_btn_dark {
   background: #353535;
   color: #ffff;
 }
 .color_box {
   display: flex;
   width: 100%;
-  /* justify-content: space-between; */
   padding: 15px;
   border-radius: 5px;
   align-items: center;
   margin-top: 15px;
-  /* background: white; */
   border-radius: 10px;
 }
 

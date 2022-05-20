@@ -7,6 +7,7 @@ $(document).ready(() => {
   const appDateElm = $("#b_date");
   const appReadBodyElm = $(".b_verse_body");
   const appChapterElm = $("#b_chapter");
+  const appChapterNumElm = $("#b_chapter_num");
   // End get global variables
   // bring in global data variable
   var bData = bibleData;
@@ -27,12 +28,14 @@ $(document).ready(() => {
     const loadedBook = loadedBible.books[0];
     const loadedChapter = loadedBook.book_name;
     const loadedVerses = loadedBook.chapters[0].verses;
+    const loadedChapterNum = loadedBook.chapters[0].chapter;
     //set settings info
     appTypeElm.text("Bible Type: " + loadedBibleType);
     appBibleVersElm.text("Bible Year: " + loadedBibleYear);
     appDateElm.text();
     // set chapter elm
     appChapterElm.text(`The Book of ${loadedChapter}`);
+    appChapterNumElm.text(`Chapter ${loadedChapterNum}`);
     // map through loaded verses
 
     loadedVerses.map((v) => {

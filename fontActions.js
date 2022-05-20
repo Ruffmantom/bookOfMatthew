@@ -33,13 +33,14 @@ $(document).ready(() => {
     console.log(typeof userTextSize);
     setVerseFontSize(userTextSize);
     // update user
-    activeUser.verseFontSize = userTextSize
-    var sizeTimer = setTimeout(()=>{
-      updateUser(notifyUser)
-      clearTimeout(sizeTimer)
-    },3500)
+    activeUser.verseFontSize = userTextSize;
+    var sizeTimer = setTimeout(() => {
+      updateUser(notifyUser);
+      clearTimeout(sizeTimer);
+    }, 3500);
   }
   const fontList = [
+    "Arial",
     "Georgia",
     "Lato",
     "Libre Bodoni",
@@ -59,7 +60,9 @@ $(document).ready(() => {
     const selectionName = $("#selection_name");
 
     let listOpen = false;
-    selectionName.text(fontList[0]);
+    selectionName.text(
+      activeUser.verseFont ? activeUser.verseFont : fontList[0]
+    );
     dropList.hide();
     dropDown.click(() => {
       if (listOpen) {
@@ -91,8 +94,14 @@ $(document).ready(() => {
         dropIcon.addClass("fa-angle-down");
         dropIcon.removeClass("fa-angle-up");
         selectionName.text(font);
-        console.log(font)
-        setVerseFont(font)
+        console.log(font);
+        setVerseFont(font);
+        // update user
+        activeUser.verseFont = font;
+        var fontChangeTimer = setTimeout(() => {
+          updateUser(notifyUser);
+          clearTimeout(fontChangeTimer);
+        }, 3500);
       }
       // selectionName.css('font-family', `${font}`)
     });

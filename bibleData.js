@@ -11,7 +11,7 @@ function createVerseId() {
 }
 // END for future use with Database
 const bibleData = {
-  app_version: "000.009",
+  app_version: "000.012",
   bibles: [
     {
       bible_type: "ESV",
@@ -117,7 +117,7 @@ const bibleData = {
                   new_para: true,
                   title: "",
                   paragraph:
-                    " And after the deportation to Babylon: Jechoniah was the father of Shealtiel, and Shealtiel the father of Zerubbabel, ",
+                    "And after the deportation to Babylon: Jechoniah was the father of Shealtiel, and Shealtiel the father of Zerubbabel, ",
                 },
                 {
                   _id: "7mo897",

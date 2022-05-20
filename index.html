@@ -8,13 +8,32 @@
     <link rel="stylesheet" href="./style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
     <title>Bible App</title>
   </head>
   <body id="main_body">
     <!-- notification box -->
     <div id="noti_box" class="dark notification_box"><p>Saved!</p></div>
     <!-- notification box -->
+    <!-- upload user image and change username menu -->
+    <div class="dark b_user_edit b_user_edit_closed">
+      <div id="exit_edit" class="dark close_btn">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <div class="user_preview">
+        <img class="user_image_prev" src="./assets/images/userIcon.png">
+      </div>
+      <div class="user_edit_form">
+        <p>Username</p>
+        <input type="text" id="user_name_input" placeholder="Add Username"></input>
+        <p>Upload Image</p>
+        <div id="upload_image_btn" class="dark upload_image_btn">
+          <p>Upload Image</p>
+        </div>
+        <!-- hide the file input and when div btn gets clicked connect clicks to input -->
+        <input type="file" name="image" id="image_uploader">
+      </div>
+    </div>
+    <!-- upload user image and change username menu -->
     <!-- app header -->
     <div class="dark bible_head">
       <div class="dark app_info">
@@ -27,6 +46,9 @@
     <!-- main menu -->
     <div id="app_menu_id" class="dark app_menu">
       <div class="dark info">
+        <img src="./assets/images/userIcon.png" alt="user" id="b_user_img">
+        <h3 id="b_user_username">Username</h3>
+        <div class="dark divide_line"></div>
         <p id="b_type"></p>
         <p id="b_version"></p>
         <div class="b_s_line">
@@ -62,6 +84,7 @@
     <!-- reading body -->
     <div class="dark bible_read_body">
       <h1 id="b_chapter"></h1>
+      <h3 id="b_chapter_num"></h2>
       <div class="b_verse_body"></div>
     </div>
     <!-- reading body -->
@@ -75,11 +98,7 @@
       </div>
       <div id="color_box" class="dark color_box">
         <div id="delete_hl">
-          <div
-            id="delete_bkg_btn"
-            class="color_swatch_dlt"
-            
-          >
+          <div id="delete_bkg_btn" class="color_swatch_dlt">
             <i class="fa fa-times" aria-hidden="true"></i>
           </div>
         </div>
