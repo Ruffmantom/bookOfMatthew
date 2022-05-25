@@ -84,6 +84,11 @@ function transitionToDarkMode() {
 const setVerseFont = (verseFontName) => {
   $(".bible_read_body").css("font-family", verseFontName);
 };
+// set user image and username
+const setUserImage = (imgUrl) => {
+  $("#b_user_img").attr("src", imgUrl);
+  $(".user_image_prev").attr("src", imgUrl);
+};
 // set verse font size
 const setVerseFontSize = (verseSize) => {
   // set fontsize
@@ -97,12 +102,11 @@ const setVerseFontSize = (verseSize) => {
 // ------------------------------------------------
 // ------------------------------------------------
 function createId() {
-  var s =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+  var s = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
   var id = "";
   for (let i = 0; i < 10 + 1; i++) {
     let b = s.split("");
-    id+= b[Math.floor(Math.random() * 68)];
+    id += b[Math.floor(Math.random() * 68)];
   }
   return id;
 }
@@ -111,10 +115,10 @@ $(document).ready(() => {
     id: createId(),
     verses: [],
     mode: false,
-    verseFont: 'undefined',
-    verseFontSize: '16',
-    imageUrl:'undefined',
-    userName:'Username'
+    verseFont: "undefined",
+    verseFontSize: "16",
+    imageUrl: "undefined",
+    userName: "Username",
   };
   //  console.log(user)
   // functions for setting local storage with darkmode
@@ -134,6 +138,7 @@ $(document).ready(() => {
             loadVerses();
             loadDarkModeTheme();
             loadFontAndFontSize();
+            loadImage();
           }
           clearTimeout(loadTimeout);
         }, 150);
@@ -165,18 +170,27 @@ $(document).ready(() => {
   }
   // load font and font size
   function loadFontAndFontSize() {
-    if (activeUser.verseFont !== 'undefined') {
+    if (activeUser.verseFont !== "undefined") {
       console.log("on load setting font to " + activeUser.verseFont);
       setVerseFont(activeUser.verseFont);
     } else {
       setVerseFont(verseFontState);
     }
     if (activeUser.verseFontSize) {
-      console.log("on load setting font size to " + activeUser.verseFontSize + "px");
+      console.log(
+        "on load setting font size to " + activeUser.verseFontSize + "px"
+      );
       setVerseFontSize(parseInt(activeUser.verseFontSize));
     } else {
       setVerseFontSize(verseSizeState);
       return;
+    }
+  }
+  function loadImage() {
+    if (activeUser.imageUrl !== "undefined") {
+      setUserImage(activeUser.imageUrl);
+    } else {
+      setUserImage("https://i.ibb.co/bQrMNV1/userIcon.png");
     }
   }
   function addBKG(uv_id, uv_c) {

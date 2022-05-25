@@ -23,14 +23,20 @@
         <img class="user_image_prev" src="./assets/images/userIcon.png">
       </div>
       <div class="user_edit_form">
-        <p>Username</p>
-        <input type="text" id="user_name_input" placeholder="Add Username"></input>
         <p>Upload Image</p>
         <div id="upload_image_btn" class="dark upload_image_btn">
-          <p>Upload Image</p>
+          <p>Choose Image</p>
         </div>
-        <!-- hide the file input and when div btn gets clicked connect clicks to input -->
-        <input type="file" name="image" id="image_uploader">
+        <form action="">
+          <!-- hide the file input and when div btn gets clicked connect clicks to input -->
+          <input type="file" name="image" accept="image/png, image/jpeg" id="image_uploader">
+          <!-- hide submit btn untill image is selected -->
+          <input type="submit" value="Save" id="submit_imag_btn">
+        </form>
+        <!-- username info -->
+        <p>Username</p>
+        <input type="text" id="user_name_input" placeholder="Add Username"></input>
+        
       </div>
     </div>
     <!-- upload user image and change username menu -->

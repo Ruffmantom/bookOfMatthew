@@ -11,7 +11,7 @@ function createVerseId() {
 }
 // END for future use with Database
 const bibleData = {
-  app_version: "000.012",
+  app_version: "000.015",
   bibles: [
     {
       bible_type: "ESV",

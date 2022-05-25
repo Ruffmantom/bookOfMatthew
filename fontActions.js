@@ -3,7 +3,6 @@
 // - changing size
 $(document).ready(() => {
   // on load font family for bible is font-family: Georgia, "Times New Roman", Times, serif;
-  var bibleVerseSizeInput = $("#b_versesize_input");
   const verseIncreaseBtn = $("#v_s_btn_r");
   const verseDecreaseBtn = $("#v_s_btn_l");
   let userTextSize = parseInt(activeUser.verseFontSize);
@@ -61,7 +60,7 @@ $(document).ready(() => {
 
     let listOpen = false;
     selectionName.text(
-      activeUser.verseFont ? activeUser.verseFont : fontList[0]
+      activeUser.verseFont !== 'undefined' ? activeUser.verseFont : verseFontState
     );
     dropList.hide();
     dropDown.click(() => {

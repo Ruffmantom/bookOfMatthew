@@ -88,9 +88,7 @@ span {
   /* top: -5px; */
   /* left: 1px; */
 }
-.v_num_dark {
-  /* color: rgb(255 124 124); */
-}
+
 #b_chapter {
   margin: 15px 0;
 }
@@ -157,12 +155,14 @@ span {
 #b_user_img{
   height: 70px;
   width: 70px;
+  border-radius: 50%;
 }
+
 .divide_line{
   height: 5px;
   width: 100%;
   border-radius: 10px;
-  background-color: #1f1f1f;
+  background-color: #d5d5d5;
 }
 .divide_line_dark{
   background-color: #333333;
@@ -262,7 +262,7 @@ span {
   color: white;
 }
 .user_preview {
-  margin: 50px 0;
+  margin: 50px 0 15px 0;
   border-radius: 5px;
   padding: 30px;
   display: flex;
@@ -270,8 +270,8 @@ span {
   justify-content: center;
 }
 .user_image_prev {
-  width: 180px;
-  height: 180px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   box-shadow: 0 6px 13px #00000026;
 }
@@ -292,15 +292,19 @@ span {
   outline: none;
   box-shadow: 0 6px 13px #00000026;
 }
-.upload_image_btn {
+.upload_image_btn, #submit_imag_btn {
   width: 100%;
   padding: 15px 0;
   border-radius: 5px;
+  margin-bottom: 15px;
   background-color: white;
   box-shadow: 0 6px 13px #00000026;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#submit_imag_btn{
+  display: none;
 }
 .upload_image_btn_dark{
     background-color: #333333;

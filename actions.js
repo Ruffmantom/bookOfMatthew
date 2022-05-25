@@ -2,7 +2,7 @@ $(document).ready(() => {
   const menuBtn = $(".open");
   let menuOpen = false;
   // let colorOpen = false;
-  const apiKey = 'ec36dc6d4f4ea50dcc07a148d9728fd6';
+  const apiKey = "23fe147172f01ef601d968c14776cb14";
   // const apiLink = ''
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
@@ -12,6 +12,9 @@ $(document).ready(() => {
   const removeBkgBtn = $("#delete_bkg_btn");
   const editUserCloseBtn = $("#exit_edit");
   const bibleUserImageBtn = $("#b_user_img");
+  const fileInput = $("#image_uploader");
+  const chooseFileBtn = $("#upload_image_btn");
+  const fileSubmitBtn = $("#submit_imag_btn");
   // set colors into color box
   hlColors.map((c) => {
     hlBox.append(
@@ -286,35 +289,35 @@ $(document).ready(() => {
   });
   function searchVerseElementsAndDeleteBkg(color) {
     //------- NEW IDEA ---------------------
-    verseIDArr.forEach((vId)=>{
-      loopThroughverseElements(vId,color);
-    })
+    verseIDArr.forEach((vId) => {
+      loopThroughverseElements(vId, color);
+    });
   }
-  const loopThroughverseElements = (sVerseId, color)=>{
-    vArr.forEach(v=>{
+  const loopThroughverseElements = (sVerseId, color) => {
+    vArr.forEach((v) => {
       let vId = v.dataset.verseid;
       let vColorId = v.dataset.versebkg;
-      if(sVerseId === vId && vColorId === color){
+      if (sVerseId === vId && vColorId === color) {
         // adding background to verse
         $(v).css({ "background-color": "inherit", color: "inherit" });
         // set versebkg data
         v.dataset.versebkg = "undefined";
         // remove verses from user arr
         //let currUserVerse = activeUser.verses;
-        var newArr = activeUser.verses.filter(function(value, index, arr){ 
+        var newArr = activeUser.verses.filter(function (value, index, arr) {
           return value.verse_id !== vId;
-      });
+        });
         // console.log(newArr);
         activeUser.verses = newArr;
         // console.log(activeUser.verses);
         // close HL box
         openColorMenu(false);
         // update user
-        updateUser(notifyUser)
+        updateUser(notifyUser);
       }
-    })
-  }
- 
+    });
+  };
+
   function saveUser(savedVerses) {
     log(activeUser);
     savedVerses.map((i) => {
@@ -380,19 +383,69 @@ $(document).ready(() => {
       saveUserTheme(false);
     }
   });
-// edit user close btn
-editUserCloseBtn.click((e)=>{
-  if(e){
-    $('.b_user_edit').addClass('b_user_edit_closed')
-  }
-})
-// open edit user pop up
-bibleUserImageBtn.click((e)=>{
-  if(e){
-    $('.b_user_edit').removeClass('b_user_edit_closed')
+  // edit user close btn
+  editUserCloseBtn.click((e) => {
+    if (e) {
+      $(".b_user_edit").addClass("b_user_edit_closed");
+    }
+  });
+  // open edit user pop up
+  bibleUserImageBtn.click((e) => {
+    if (e) {
+      $(".b_user_edit").removeClass("b_user_edit_closed");
+    }
+  });
+  // upload btn and file uploader section
+  chooseFileBtn.click(() => {
+    // will need to have an onchange for when a file is in
+    console.log("clicked");
+    fileInput.click();
+  });
+  // choose file input change
+  let imageData = new FormData();
+  let imgUrl;
+  fileInput.on("change", (e) => {
+    try {
+      let raw = e.target.files[0];
+      imgUrl = URL.createObjectURL(raw);
+      imageData.append("image", raw);
+      // set preview image
+      $(".user_image_prev").attr("src", imgUrl);
+      // hide upload btn
+      chooseFileBtn.css({ display: "none" });
+      // upload file / save btn show
+      fileSubmitBtn.css({ display: "flex" });
 
-  }
-})
+      console.log("File Selected" + imgUrl);
+    } catch (error) {
+      console.log("user did not select file");
+      console.log(error);
+    }
+  });
+
+  var apiSettings = {
+    url: `https://api.imgbb.com/1/upload?key=${apiKey}`,
+    method: "POST",
+    timeout: 0,
+    processData: false,
+    mimeType: "multipart/form-data",
+    contentType: false,
+    data: imageData
+  };
+
+  // submit file and save
+  fileSubmitBtn.click((e) => {
+    e.preventDefault();
+    $.ajax(apiSettings).done(function (response) {
+      console.log(response);
+      var jx = JSON.parse(response);
+      console.log('image url: '+jx.data.url);
+      let returnedImg = jx.data.url;
+      activeUser.imageUrl = returnedImg;
+      setUserImage(returnedImg)
+      updateUser(notifyUser);
+    });
+  });
   //-------------------------------------------
   // end of doc ready
 });
