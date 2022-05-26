@@ -430,22 +430,99 @@ $(document).ready(() => {
     processData: false,
     mimeType: "multipart/form-data",
     contentType: false,
-    data: imageData
+    data: imageData,
   };
-
+  // state for image recieved
+  let imageState = false;
   // submit file and save
   fileSubmitBtn.click((e) => {
     e.preventDefault();
+
     $.ajax(apiSettings).done(function (response) {
-      console.log(response);
+      // console.log(response);
       var jx = JSON.parse(response);
-      console.log('image url: '+jx.data.url);
+      // console.log("image url: " + jx.data.url);
       let returnedImg = jx.data.url;
       activeUser.imageUrl = returnedImg;
-      setUserImage(returnedImg)
-      updateUser(notifyUser);
+      if (activeUser.imageUrl !== "undefined") {
+        imageState = true;
+        imageStateCheck();
+      }
     });
   });
+  //function for checking image state
+  const imageStateCheck = () => {
+    if (imageState === false) {
+      // hide save btn
+      // hide upload btn
+      chooseFileBtn.css({ display: "flex" });
+      // upload file / save btn show
+      fileSubmitBtn.css({ display: "none" });
+      // set loading icon inside btn
+      $("#upload_image_btn>p").css("display", "none");
+      chooseFileBtn.append(`
+      <div class="loading_dots_cont">
+      <div class="dot scale_dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      </div>
+      `);
+      startDots(true);
+    } else {
+      startDots(false);
+      fileSubmitBtn.css({ display: "none" });
+      chooseFileBtn.css({ display: "flex" });
+      // set save btn back to upload
+      $(".loading_dots_cont").remove();
+      $("#upload_image_btn>p").css("display", "block");
+      // set state back to false
+      imageState = false;
+      // set user image to active user state
+      setUserImage(activeUser.imageUrl);
+      updateUser(notifyUser);
+    }
+  };
+
+  var startDots = (start) => {
+    const dot = $(".dot");
+    const dots = Array.from(dot);
+    let dotCount = 0;
+    var dotTimer = setInterval(() => {
+      $(dots[dotCount]).removeClass("scale_dot");
+      dotCount++;
+      if (dotCount >= dots.length) {
+        dotCount = 0;
+      }
+      $(dots[dotCount]).addClass("scale_dot");
+      if (!start) {
+        clearInterval(dotTimer);
+      }
+    }, 420);
+  };
+  startDots();
+  // username state
+  let usernameVal = "";
+  // add username
+  const saveUsernameBtn = $("#save_username");
+  $("#user_name_input").on("keyup", (e) => {
+    usernameVal = e.target.value;
+    if (usernameVal.length >= 1) {
+      // show save username btn
+      saveUsernameBtn.css({ display: "flex" });
+    } else {
+      saveUsernameBtn.css({ display: "none" });
+    }
+  });
+  saveUsernameBtn.click((e) => {
+    activeUser.userName = usernameVal;
+    setUsername(activeUser.userName);
+    updateUser(notifyUser);
+    var removeSaveBtn = setTimeout(() => {
+      saveUsernameBtn.css({ display: "none" });
+      clearTimeout(removeSaveBtn);
+    }, 500);
+  });
+
   //-------------------------------------------
   // end of doc ready
 });

@@ -84,10 +84,16 @@ function transitionToDarkMode() {
 const setVerseFont = (verseFontName) => {
   $(".bible_read_body").css("font-family", verseFontName);
 };
-// set user image and username
+// set user image
+
 const setUserImage = (imgUrl) => {
   $("#b_user_img").attr("src", imgUrl);
   $(".user_image_prev").attr("src", imgUrl);
+};
+// set username
+const setUsername = (name) => {
+  $("#b_users_username_prev").text(name);
+  $("#b_user_username").text(name);
 };
 // set verse font size
 const setVerseFontSize = (verseSize) => {
@@ -139,6 +145,7 @@ $(document).ready(() => {
             loadDarkModeTheme();
             loadFontAndFontSize();
             loadImage();
+            loadUsername();
           }
           clearTimeout(loadTimeout);
         }, 150);
@@ -191,6 +198,13 @@ $(document).ready(() => {
       setUserImage(activeUser.imageUrl);
     } else {
       setUserImage("https://i.ibb.co/bQrMNV1/userIcon.png");
+    }
+  }
+  function loadUsername() {
+    if (activeUser.userName !== "undefined") {
+      setUsername(activeUser.userName);
+    } else {
+      return;
     }
   }
   function addBKG(uv_id, uv_c) {

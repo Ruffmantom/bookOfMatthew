@@ -263,11 +263,14 @@ span {
 }
 .user_preview {
   margin: 50px 0 15px 0;
-  border-radius: 5px;
   padding: 30px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+#b_users_username_prev{
+  margin-top: 15px;
 }
 .user_image_prev {
   width: 280px;
@@ -292,9 +295,11 @@ span {
   outline: none;
   box-shadow: 0 6px 13px #00000026;
 }
-.upload_image_btn, #submit_imag_btn {
+.upload_image_btn, #submit_imag_btn, .save_username_btn {
   width: 100%;
-  padding: 15px 0;
+  /* padding: 15px 0; */
+  height: 56px;
+  position: relative;
   border-radius: 5px;
   margin-bottom: 15px;
   background-color: white;
@@ -306,11 +311,34 @@ span {
 #submit_imag_btn{
   display: none;
 }
-.upload_image_btn_dark{
+#save_username{
+  display: none;
+}
+.upload_image_btn_dark, .save_username_btn_dark{
     background-color: #333333;
     box-shadow: none;
     color: white;
 }
+/* loading dots */
+.loading_dots_cont{
+  display:flex;
+  justify-content:space-between;
+  width:25%;
+  position:absolute;
+}
+.dot{
+  height:16px;
+  width:16px;
+  border-radius:50%;
+  background-color:black;
+  transform:scale(1);
+  transition:all 420ms ease-out;
+}
+.scale_dot{
+  transform:scale(1.5);
+  transition:all 420ms ease-in;
+}
+/* end loading dots */
 /* hide actual image input */
 #image_uploader {
   width: 0;
