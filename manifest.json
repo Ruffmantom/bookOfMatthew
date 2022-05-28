@@ -1,0 +1,26 @@
+{  
+    "name": "The Gospel, Out of the ESV",   
+    "short_name": "The Gospel", 
+    "icons": [
+        {
+          "src": "assets/images/24px.png",
+          "sizes": "24x24",
+          "type": "image/png"
+        },
+        {
+          "src": "assets/images/64px.png",
+          "type": "image/png",
+          "sizes": "64x64"
+        },
+        {
+          "src": "assets/images/120px.png",
+          "type": "image/png",
+          "sizes": "120x120"
+        }
+      ],
+    "lang": "en-US",     
+    "start_url": "/index.html", 
+    "display": "standalone",  
+    "background_color": "white",   
+    "theme_color": "black" 
+}
