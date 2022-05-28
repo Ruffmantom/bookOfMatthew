@@ -15,3 +15,4 @@ This app is made with HTML5, CCS3, and Js/Jquery library.
 - Next, right-click the HTML and "Open with live server"
 
 The best way to view this app is in mobile view.
+To view the live version click here: https://ruffmantom.github.io/bookOfMatthew/
