@@ -7,43 +7,120 @@
     <script src="https://use.fontawesome.com/ea858508e8.js"></script>
     <link rel="stylesheet" href="./style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
-
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Bible App</title>
   </head>
   <body id="main_body">
-    <div class="open"><i class="fa fa-bars" aria-hidden="true"></i></div>
-    <div class="bible_head">
-      <h4 id="b_title">Moc Bible App</h4>
-      <p id="app_version"></p>
-      <div id="app_menu_id" class="app_menu_close">
-        <div class="info">
-          <p id="b_type"></p>
-          <p id="b_version"></p>
+    <!-- notification box -->
+    <div id="noti_box" class="dark notification_box"><p>Saved!</p></div>
+    <!-- notification box -->
+    <!-- upload user image and change username menu -->
+    <div class="dark b_user_edit b_user_edit_closed">
+      <div id="exit_edit" class="dark close_btn">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <div class="user_preview">
+        <img class="user_image_prev" src="./assets/images/userIcon.png">
+        <h2 id="b_users_username_prev">Username</h2>
+      </div>
+      <div class="user_edit_form">
+        <p>Upload Image</p>
+        <div id="upload_image_btn" class="dark upload_image_btn">
+          <p>Choose Image</p>
         </div>
-        <div class="switch">
-          <div class="toggler">
-            <i id="t_icon" class="fa fa-moon-o" aria-hidden="true"></i>
-          </div>
+        <form action="">
+          <!-- hide the file input and when div btn gets clicked connect clicks to input -->
+          <input type="file" name="image" accept="image/png, image/jpeg" id="image_uploader">
+          <!-- hide submit btn untill image is selected -->
+          <input type="submit" value="Save" id="submit_imag_btn">
+        </form>
+        <!-- username info -->
+        <p>Username</p>
+        <input type="text" id="user_name_input" placeholder="Add Username"></input>
+        <div id="save_username" class="dark save_username_btn">
+          <p>Save Username</p>
         </div>
-        <div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
       </div>
     </div>
-    <div class="bible_read_body">
+    <!-- upload user image and change username menu -->
+    <!-- app header -->
+    <div class="dark bible_head">
+      <div class="dark app_info">
+        <h4 id="b_title">Moc Bible App</h4>
+        <p id="app_version"></p>
+      </div>
+    </div>
+    <div class="dark open"><i class="fa fa-bars" aria-hidden="true"></i></div>
+    <!-- app header -->
+    <!-- main menu -->
+    <div id="app_menu_id" class="dark app_menu">
+      <div class="dark info">
+        <img src="./assets/images/userIcon.png" alt="user" id="b_user_img">
+        <h3 id="b_user_username">Username</h3>
+        <div class="dark divide_line"></div>
+        <p id="b_type"></p>
+        <p id="b_version"></p>
+        <div class="b_s_line">
+          <p>Screen Mode</p>
+          <div class="dark switch">
+            <div id="toggler_btn" class="dark toggler">
+              <i id="t_icon" class="fa fa-moon-o" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <p style="margin-bottom: 5px;">Reading Font Select:</p>
+        <div class="dark dropdown_main_cont">
+          <div class="selection_cont">
+            <p id="selection_name"></p>
+           <i id="drop_icon" class="fa fa-angle-down" aria-hidden="true"></i>
+          </div>
+          <div class="dark font_list_cont">
+          </div>
+        </div>
+        <p style="margin-bottom: 5px;">Reading Font Size:</p>
+        <div class="b_r_fontsize_input_cont">
+          <div id="v_s_btn_l" class="dark b_versesize_btn">
+            <i id="drop_icon" class="fa fa-angle-left" aria-hidden="true"></i>
+          </div>
+          <p id="b_versesize_value" class="dark b_versesize_value">16px</p>
+          <div id="v_s_btn_r" class="dark b_versesize_btn">
+            <i id="drop_icon" class="fa fa-angle-right" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- main menu -->
+    <!-- reading body -->
+    <div class="dark bible_read_body">
       <h1 id="b_chapter"></h1>
+      <h3 id="b_chapter_num"></h2>
       <div class="b_verse_body"></div>
     </div>
-    <div class="highlight_box">
-      <div class="hlb_header">
+    <!-- reading body -->
+    <!-- options box -->
+    <div class="dark highlight_box">
+      <div class="dark hlb_header">
         <h3>Highlight verse</h3>
-        <div class="close_hlb">
+        <div class="dark close_hlb">
           <i class="fa fa-times" aria-hidden="true"></i>
         </div>
       </div>
-      <div id="color_box"></div>
+      <div id="color_box" class="dark color_box">
+        <div id="delete_hl">
+          <div id="delete_bkg_btn" class="color_swatch_dlt">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div id="hl_colors"></div>
+      </div>
+      <div id="options_box" class="dark option_box"></div>
     </div>
+    <!-- options box -->
+    <!-- custom scripts -->
     <script src="./bibleData.js"></script>
+    <script src="./user.js"></script>
     <script src="./index.js"></script>
     <script src="./actions.js"></script>
+    <script src="./fontActions.js"></script>
   </body>
 </html>

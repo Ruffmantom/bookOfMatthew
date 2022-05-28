@@ -1,5 +1,18 @@
+// for future use with Database
+function createVerseId() {
+  var s =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+  var id = "";
+  for (let i = 0; i < 10 + 1; i++) {
+    let b = s.split("");
+    id+= b[Math.floor(Math.random() * 68)];
+  }
+  return id;
+}
+
+// END for future use with Database
 const bibleData = {
-  app_version: "000.001",
+  app_version: "000.015",
   bibles: [
     {
       bible_type: "ESV",
@@ -14,10 +27,10 @@ const bibleData = {
                 {
                   _id: "weth3r5",
                   verse: "1",
-                  new_para: false,
+                  new_para: true,
                   title: "The genealogy of Jesus Christ<br><br>",
                   paragraph:
-                    "&emsp;The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.",
+                    "The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.",
                 },
                 {
                   _id: "3vyv4y",
@@ -25,7 +38,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    " Abraham was the father of Isaac, and Isaac the father of Jacob, and Jacob the father of Judah and his brothers, ",
+                    "Abraham was the father of Isaac, and Isaac the father of Jacob, and Jacob the father of Judah and his brothers, ",
                 },
                 {
                   _id: "346u5",
@@ -57,7 +70,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "and Jesse the father of David the king.<br> &emsp; And David was the father of Solomon bu the wife of Uriah, ",
+                    "and Jesse the father of David the king.<br>  And David was the father of Solomon bu the wife of Uriah, ",
                 },
                 {
                   _id: "254y4",
@@ -105,7 +118,7 @@ const bibleData = {
                   new_para: true,
                   title: "",
                   paragraph:
-                    "&emsp; And after the deportation to Babylon: Jechoniah was the father of Shealtiel, and Shealtiel the father of Zerubbabel, ",
+                    "And after the deportation to Babylon: Jechoniah was the father of Shealtiel, and Shealtiel the father of Zerubbabel, ",
                 },
                 {
                   _id: "7mo897",
@@ -137,7 +150,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "and Jacob the father of Joseph the husband of Mary, of whom Jesus was born, who is called Christ.<br>",
+                    "and Jacob the father of Joseph the husband of Mary, of whom Jesus was born, who is called Christ.",
                 },
                 {
                   _id: "wc45y563ub",
@@ -145,7 +158,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "&emsp;So all the generations from Abraham to David were fourteen generathions, and from David to the deportation to Babulon fourteen generations, and from the deportations to Babulon to the Christ fourteen generations.<br><br>",
+                    "So all the generations from Abraham to David were fourteen generathions, and from David to the deportation to Babulon fourteen generations, and from the deportations to Babulon to the Christ fourteen generations.<br><br>",
                 },
                 {
                   _id: "56u57ub",
@@ -153,7 +166,7 @@ const bibleData = {
                   new_para: true,
                   title: "The birth of Jesus Christ<br><br>",
                   paragraph:
-                    "&emsp;Now the birth of Jesus Christ took place in this way.  When his mother Mary had been betrothed to Joseph, before they came together she was found to be with child from the Holy Spirit.",
+                    "Now the birth of Jesus Christ took place in this way.  When his mother Mary had been betrothed to Joseph, before they came together she was found to be with child from the Holy Spirit.",
                 },
                 {
                   _id: "4v5yb6",
@@ -193,7 +206,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    '&emsp;"Behold, the virgin shall conceive and bear a son,<br>and they shall call his name Immanuel"<br> (which means, God with us).<br><br>',
+                    '"Behold, the virgin shall conceive and bear a son,<br>and they shall call his name Immanuel"<br> (which means, God with us).<br><br>',
                 },
                 {
                   _id: "34t6b5",
@@ -201,7 +214,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "&emsp;When Joseph woke from sleep, he did as the angel of the Lord commanded him: he took his wife,",
+                    "When Joseph woke from sleep, he did as the angel of the Lord commanded him: he took his wife,",
                 },
                 {
                   _id: "34b36t",
