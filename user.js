@@ -94,6 +94,7 @@ const setUserImage = (imgUrl) => {
 const setUsername = (name) => {
   $("#b_users_username_prev").text(name);
   $("#b_user_username").text(name);
+  $("#user_name_input").val(name)
 };
 // set verse font size
 const setVerseFontSize = (verseSize) => {
