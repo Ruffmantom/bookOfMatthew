@@ -8,6 +8,7 @@ I wanted to try and make a similar app that has a lot of the same functionality 
 - Allow for dark mode. X
 - Allow for notes in scripture
 - Allow for a user to copy/share the verse and have the reference with it.
+- navigation to different books, with user pinned verses
 
 ## About this app and how to run it
 This app is made with HTML5, CCS3, and Js/Jquery library.

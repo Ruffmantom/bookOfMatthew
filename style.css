@@ -257,10 +257,11 @@ span {
   z-index: -1;
   transition: all 350ms ease-out;
 }
-.b_user_edit_dark {
+.b_user_edit_dark, .un_input_dark {
   background-color: #1f1f1f;
   color: white;
 }
+
 .user_preview {
   margin: 50px 0 15px 0;
   padding: 30px;
@@ -295,7 +296,7 @@ span {
   outline: none;
   box-shadow: 0 6px 13px #00000026;
 }
-.upload_image_btn, #submit_imag_btn, .save_username_btn {
+.upload_image_btn, #submit_imag_btn, .save_username_btn,.un_input {
   width: 100%;
   /* padding: 15px 0; */
   height: 56px;
@@ -314,13 +315,19 @@ span {
 #save_username{
   display: none;
 }
-.upload_image_btn_dark, .save_username_btn_dark{
+.upload_image_btn_dark, .save_username_btn_dark, .img_upload_btn_dark{
     background-color: #333333;
     box-shadow: none;
     color: white;
 }
+/* submit btn hide */
+.remove_btn{
+  display: none;
+}
+/* submit btn hide */
 /* loading dots */
-.loading_dots_cont{
+
+#loading_dots_cont{
   display:flex;
   justify-content:space-between;
   width:25%;
@@ -451,7 +458,7 @@ span {
 }
 #delete_bkg_btn {
   display: flex;
-  /* display: none; */
+  color:black;
   justify-content: center;
   align-items: center;
   font-size: 16px;

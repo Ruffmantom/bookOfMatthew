@@ -80,7 +80,6 @@ $(document).ready(() => {
   // CLICKING THE VERSE
   verseElm.click((e) => {
     let verseTarget = e.target;
-    let verseBkg = verseTarget.dataset.versebkg;
     let verseId = verseTarget.dataset.verseid;
     if (e && verseIDArr.length >= 1) {
       log("recognized second click");
@@ -437,49 +436,53 @@ $(document).ready(() => {
   // submit file and save
   fileSubmitBtn.click((e) => {
     e.preventDefault();
-
+    // hide save btn
+    // upload file / save btn show
+    $("#submit_imag_btn").addClass('remove_btn');
+    $("#upload_image_btn>p").css("display", "none");
+    // start loading dots
+    $("#loading_dots_cont").css("display", "flex");
+    startDots(true);
+    // upload to ibgg
     $.ajax(apiSettings).done(function (response) {
-      // console.log(response);
       var jx = JSON.parse(response);
       // console.log("image url: " + jx.data.url);
       let returnedImg = jx.data.url;
       activeUser.imageUrl = returnedImg;
-      if (activeUser.imageUrl !== "undefined") {
-        imageState = true;
-        imageStateCheck();
-      }
-    });
-  });
-  //function for checking image state
-  const imageStateCheck = () => {
-    if (imageState === false) {
-      // hide save btn
-      // hide upload btn
-      chooseFileBtn.css({ display: "flex" });
-      // upload file / save btn show
-      fileSubmitBtn.css({ display: "none" });
-      // set loading icon inside btn
-      $("#upload_image_btn>p").css("display", "none");
-      chooseFileBtn.append(`
-      <div class="loading_dots_cont">
-      <div class="dot scale_dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      </div>
-      `);
-      startDots(true);
-    } else {
+      // hide loading dots and show the p inside upload btn
       startDots(false);
-      fileSubmitBtn.css({ display: "none" });
-      chooseFileBtn.css({ display: "flex" });
-      // set save btn back to upload
-      $(".loading_dots_cont").remove();
+      $("#loading_dots_cont").css("display", "none");
       $("#upload_image_btn>p").css("display", "block");
-      // set state back to false
-      imageState = false;
+      // if (activeUser.imageUrl !== "undefined") {
+      //   imageState = true;
+      //   imageStateCheck();
+      // }
       // set user image to active user state
       setUserImage(activeUser.imageUrl);
       updateUser(notifyUser);
+    });
+  });
+
+  //function for checking image state
+  const imageStateCheck = () => {
+    if (imageState === false) {
+      //if false.. uploading is happening..
+      // hide save btn
+      // hide upload btn untill loading is finished
+      chooseFileBtn.css({ display: "flex" });
+
+      // set loading icon inside btn
+
+      startDots(true);
+    } else {
+      startDots(false);
+      // fix this
+      $("#loading_dots_cont").css("display", "none");
+      fileSubmitBtn.css({ display: "none" });
+      chooseFileBtn.css({ display: "flex" });
+      // set save btn back to upload
+      // $(".loading_dots_cont").remove();
+      $("#upload_image_btn>p").css("display", "block");
     }
   };
 

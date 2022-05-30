@@ -26,19 +26,24 @@
         <h2 id="b_users_username_prev">Username</h2>
       </div>
       <div class="user_edit_form">
+        <div id="loading_dots_cont">
+          <div class="dot scale_dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
         <p>Upload Image</p>
         <div id="upload_image_btn" class="dark upload_image_btn">
           <p>Choose Image</p>
         </div>
-        <form action="">
+        <form>
           <!-- hide the file input and when div btn gets clicked connect clicks to input -->
-          <input type="file" name="image" accept="image/png, image/jpeg" id="image_uploader">
+          <input type="file" name="image" accept="image/png, image/jpeg" id="image_uploader" >
           <!-- hide submit btn untill image is selected -->
-          <input type="submit" value="Save" id="submit_imag_btn">
+          <input type="submit" value="Save" id="submit_imag_btn" class="dark img_upload_btn">
         </form>
         <!-- username info -->
         <p>Username</p>
-        <input type="text" id="user_name_input" placeholder="Add Username"></input>
+        <input type="text" id="user_name_input" class="dark un_input" placeholder="Add Username"></input>
         <div id="save_username" class="dark save_username_btn">
           <p>Save Username</p>
         </div>
