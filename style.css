@@ -96,7 +96,7 @@ span {
   font-style: italic;
   opacity: 0.6;
 }
-.bible_head {
+.bible_book_navigation {
   display: flex;
   position: fixed;
   background: white;
@@ -106,14 +106,12 @@ span {
   justify-content: space-between;
   width: 100%;
 }
-.bible_head_dark {
+.bible_book_navigation {
   background: #1f1f1f;
   color: #ffff;
   box-shadow: none;
 }
-.app_info {
-  padding: 20px;
-}
+
 .open {
   position: absolute;
   z-index: 9999;
@@ -394,7 +392,18 @@ span {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 20px;
 }
-
+.app_info{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+.app_info>p{
+  font-size: 12px;
+}
+.app_info_dark{
+  background-color: #333333;
+}
 .bible_read_body {
   max-height: 100vh;
   overflow: hidden;

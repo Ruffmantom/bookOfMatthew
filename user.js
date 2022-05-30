@@ -71,12 +71,16 @@ function transitionToDarkMode() {
       toggleBtn.css(togCss[1].css);
       toggleIcon.removeClass("fa-moon-o");
       toggleIcon.addClass("fa-sun-o");
+      // make html have dark bkg
+      $(document.body).css("background-color","#1f1f1f")
       // log(classString);
     } else {
       $(elm).removeClass(finishedClassName);
       toggleBtn.css(togCss[0].css);
       toggleIcon.addClass("fa-moon-o");
       toggleIcon.removeClass("fa-sun-o");
+      // document background color
+      $(document.body).css("background-color","white")
     }
   });
 }
