@@ -22,15 +22,17 @@
         <i class="fa fa-times" aria-hidden="true"></i>
       </div>
       <div class="user_preview">
+        <div id="loading_dots_overlay" class="dark loading_d_ovl">
+          <div class="loading_dots_cont">
+            <div class="dot scale_dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
         <img class="user_image_prev" src="./assets/images/userIcon.png">
         <h2 id="b_users_username_prev">Username</h2>
       </div>
       <div class="user_edit_form">
-        <div id="loading_dots_cont">
-          <div class="dot scale_dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </div>
         <p>Upload Image</p>
         <div id="upload_image_btn" class="dark upload_image_btn">
           <p>Choose Image</p>
@@ -124,7 +126,8 @@
     </div>
     <!-- options box -->
     <!-- service worker -->
-    <script src="./main.js"></script>
+    <!-- comment out this when testing -->
+    <!-- <script src="./main.js"></script> -->
     <!-- service worker -->
     <!-- custom scripts -->
     <script src="./bibleData.js"></script>

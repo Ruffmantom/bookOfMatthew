@@ -2,7 +2,7 @@ $(document).ready(() => {
   const menuBtn = $(".open");
   let menuOpen = false;
   // let colorOpen = false;
-  const apiKey = "23fe147172f01ef601d968c14776cb14";
+  const apiKey = "622f91b0503eed7cb5964a9ae2ca95ae";
   // const apiLink = ''
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
@@ -411,17 +411,15 @@ $(document).ready(() => {
       // set preview image
       $(".user_image_prev").attr("src", imgUrl);
       // hide upload btn
-      chooseFileBtn.css({ display: "none" });
+      chooseFileBtn.css("display", "none");
       // upload file / save btn show
-      fileSubmitBtn.css({ display: "flex" });
-
+      fileSubmitBtn.css("display", "flex");
       console.log("File Selected" + imgUrl);
     } catch (error) {
       console.log("user did not select file");
       console.log(error);
     }
   });
-
   var apiSettings = {
     url: `https://api.imgbb.com/1/upload?key=${apiKey}`,
     method: "POST",
@@ -436,12 +434,8 @@ $(document).ready(() => {
   // submit file and save
   fileSubmitBtn.click((e) => {
     e.preventDefault();
-    // hide save btn
-    // upload file / save btn show
-    $("#submit_imag_btn").addClass('remove_btn');
-    $("#upload_image_btn>p").css("display", "none");
     // start loading dots
-    $("#loading_dots_cont").css("display", "flex");
+    $("#loading_dots_overlay").css("display", "flex");
     startDots(true);
     // upload to ibgg
     $.ajax(apiSettings).done(function (response) {
@@ -451,42 +445,18 @@ $(document).ready(() => {
       activeUser.imageUrl = returnedImg;
       // hide loading dots and show the p inside upload btn
       startDots(false);
-      $("#loading_dots_cont").css("display", "none");
-      $("#upload_image_btn>p").css("display", "block");
-      // if (activeUser.imageUrl !== "undefined") {
-      //   imageState = true;
-      //   imageStateCheck();
-      // }
+      $("#loading_dots_overlay").css("display", "none");
+        // hide upload btn
+        fileSubmitBtn.css("display","none");
+        // show file picker btn
+        chooseFileBtn.css("display", "flex");
       // set user image to active user state
       setUserImage(activeUser.imageUrl);
       updateUser(notifyUser);
     });
   });
-
-  //function for checking image state
-  const imageStateCheck = () => {
-    if (imageState === false) {
-      //if false.. uploading is happening..
-      // hide save btn
-      // hide upload btn untill loading is finished
-      chooseFileBtn.css({ display: "flex" });
-
-      // set loading icon inside btn
-
-      startDots(true);
-    } else {
-      startDots(false);
-      // fix this
-      $("#loading_dots_cont").css("display", "none");
-      fileSubmitBtn.css({ display: "none" });
-      chooseFileBtn.css({ display: "flex" });
-      // set save btn back to upload
-      // $(".loading_dots_cont").remove();
-      $("#upload_image_btn>p").css("display", "block");
-    }
-  };
-
-  var startDots = (start) => {
+// loading dots function
+  function startDots(start) {
     const dot = $(".dot");
     const dots = Array.from(dot);
     let dotCount = 0;
@@ -500,9 +470,10 @@ $(document).ready(() => {
       if (!start) {
         clearInterval(dotTimer);
       }
-    }, 420);
+    }, 400);
   };
-  startDots();
+  // testing dots
+  // startDots(true);
   // username state
   let usernameVal = "";
   // add username
