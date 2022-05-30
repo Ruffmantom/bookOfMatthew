@@ -21,6 +21,7 @@ $(document).ready(() => {
     return verse;
   }
   function loadBible() {
+    // need to load this as pageanation for all chapters
     appVersElm.text(`Version: ${bData.app_version}`);
     const loadedBible = bData.bibles[0];
     const loadedBibleType = bData.bibles[0].bible_type;
