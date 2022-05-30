@@ -28,6 +28,7 @@ $(document).ready(() => {
       }
     }
     // update dom
+    // if the font gets bigger than 20px add lineheight to body of 2.5
     console.log(userTextSize);
     console.log(typeof userTextSize);
     setVerseFontSize(userTextSize);

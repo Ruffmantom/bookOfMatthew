@@ -409,7 +409,8 @@ span {
   overflow: hidden;
   overflow-y: scroll;
   padding: 100px 20px 150px 20px;
-  text-align: justify;
+  /* text-align: justify; */
+  text-align: left;
   transition: padding 250ms ease;
   line-height: 1.8;
 }

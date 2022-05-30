@@ -69,7 +69,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "and Jesse the father of David the king.<br>  And David was the father of Solomon bu the wife of Uriah, ",
+                    "and Jesse the father of David the king.<br>  &emsp;And David was the father of Solomon bu the wife of Uriah, ",
                 },
                 {
                   _id: "m1-v7",
