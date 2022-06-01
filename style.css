@@ -112,7 +112,7 @@ span {
   box-shadow: none;
 }
 
-.open {
+.open{
   position: absolute;
   z-index: 9999;
   bottom: 65px;
@@ -120,7 +120,7 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
+  background-color: white;
   border-radius: 50%;
   height: 55px;
   width: 55px;
@@ -129,10 +129,45 @@ span {
   box-shadow: 0 6px 13px rgba(0, 0, 0, 0.13);
   transition: opacity 250ms ease;
 }
-.open_dark {
-  background: #353535;
+.b_pagenation_cont{
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  right: 30px;
+  bottom: 65px;
+  z-index: 9999;
+  display: flex;
+  font-size: 18px;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 55px;
+  height: 55px;
+  width: 45%;
+  background-color: white;
+  left: auto;
+  opacity: 1;
+  box-shadow: 0 6px 13px rgba(0, 0, 0, 0.13);
+}
+.b_pn_btn{
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: #d5d5d5;
+}
+.b_pn_btn_dark{
+  background-color: #1f1f1f;
+  color: #ffff;
+
+}
+.open_dark, .b_pagenation_cont_dark{
+  background-color: #353535;
   color: #ffff;
 }
+
+
 .app_menu {
   width: 100%;
   position: absolute;
