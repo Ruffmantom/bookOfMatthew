@@ -121,115 +121,119 @@ function createId() {
   }
   return id;
 }
-$(document).ready(() => {
-  var user = {
-    id: createId(),
-    verses: [],
-    mode: false,
-    verseFont: "undefined",
-    verseFontSize: "16",
-    imageUrl: "undefined",
-    userName: "Username",
-  };
-  //  console.log(user)
-  // functions for setting local storage with darkmode
-  function createUser() {
-    try {
-      if (localStorage.getItem("bibleUser") === null) {
-        localStorage.setItem("bibleUser", JSON.stringify(user));
-        activeUser = user;
-        log("created user");
-      } else {
-        let t = localStorage.getItem("bibleUser");
-        activeUser = JSON.parse(t);
-        // log("user found!");
-        var loadTimeout = setTimeout(() => {
-          if (bibleLoaded === true) {
-            //loading all USER DATA
-            loadVerses();
-            loadDarkModeTheme();
-            loadFontAndFontSize();
-            loadImage();
-            loadUsername();
-          }
-          clearTimeout(loadTimeout);
-        }, 150);
+function loadUserSettings(){
+  $(document).ready(() => {
+    var user = {
+      id: createId(),
+      verses: [],
+      mode: false,
+      verseFont: "undefined",
+      verseFontSize: "16",
+      imageUrl: "undefined",
+      userName: "Username",
+    };
+    // function for setting up user if one isnt found
+    // if found then load the user data
+    function createUserAndLoad() {
+      try {
+        if (localStorage.getItem("bibleUser") === null) {
+          localStorage.setItem("bibleUser", JSON.stringify(user));
+          activeUser = user;
+          log("created user");
+        } else {
+          let t = localStorage.getItem("bibleUser");
+          activeUser = JSON.parse(t);
+          // log("user found!");
+          var loadTimeout = setTimeout(() => {
+            if (bibleLoaded === true) {
+              //loading all USER DATA
+              loadVerses();
+              loadDarkModeTheme();
+              loadFontAndFontSize();
+              loadImage();
+              loadUsername();
+            }
+            clearTimeout(loadTimeout);
+          }, 150);
+        }
+      } catch (error) {
+        log(error);
       }
-    } catch (error) {
-      log(error);
     }
-  }
-  // If user
-  // - Load highlighted verses
-  function loadVerses() {
-    // log("about to load verses");
-    if (activeUser.verses.length >= 1) {
-      activeUser.verses.map((uv) => {
-        addBKG(uv.verse_id, uv.verse_high_light);
+    // If user
+    // - Load highlighted verses
+    function loadVerses() {
+      // log("about to load verses");
+      if (activeUser.verses.length >= 1) {
+        activeUser.verses.map((uv) => {
+          addBKG(uv.verse_id, uv.verse_high_light);
+        });
+      }
+      // log("loaded verses!");
+    }
+    function loadDarkModeTheme() {
+      // log("about to load theme");
+      if (activeUser.mode === true || activeUser.mode === "true") {
+        darkModeThemeOn = true;
+        transitionToDarkMode();
+      } else {
+        darkModeThemeOn = false;
+        transitionToDarkMode();
+      }
+    }
+    // load font and font size
+    function loadFontAndFontSize() {
+      if (activeUser.verseFont !== "undefined") {
+        console.log("on load setting font to " + activeUser.verseFont);
+        setVerseFont(activeUser.verseFont);
+      } else {
+        setVerseFont(verseFontState);
+      }
+      if (activeUser.verseFontSize) {
+        console.log(
+          "on load setting font size to " + activeUser.verseFontSize + "px"
+        );
+        setVerseFontSize(parseInt(activeUser.verseFontSize));
+      } else {
+        setVerseFontSize(verseSizeState);
+        return;
+      }
+    }
+    function loadImage() {
+      if (activeUser.imageUrl !== "undefined") {
+        setUserImage(activeUser.imageUrl);
+      } else {
+        setUserImage("https://i.ibb.co/bQrMNV1/userIcon.png");
+      }
+    }
+    function loadUsername() {
+      if (activeUser.userName !== "undefined") {
+        setUsername(activeUser.userName);
+      } else {
+        return;
+      }
+    }
+    function addBKG(uv_id, uv_c) {
+      // log("adding background to: " + uv_id);
+      // get verse elements
+      var verseElm = $(".v_para");
+      // creat verse element arr
+      let vArr = Array.from(verseElm);
+      vArr.forEach((v) => {
+        //   log("foreach ID addBKG " + v.dataset.verseid);
+        if (v.dataset.verseid === uv_id) {
+          // log("About to add " + uv_c);
+          // log("to element " + v.dataset.verseid);
+          $(v).css("background-color", uv_c);
+          $(v).css("color", "black");
+          v.dataset.versebkg = uv_c;
+        }
       });
     }
-    // log("loaded verses!");
-  }
-  function loadDarkModeTheme() {
-    // log("about to load theme");
-    if (activeUser.mode === true || activeUser.mode === "true") {
-      darkModeThemeOn = true;
-      transitionToDarkMode();
-    } else {
-      darkModeThemeOn = false;
-      transitionToDarkMode();
-    }
-  }
-  // load font and font size
-  function loadFontAndFontSize() {
-    if (activeUser.verseFont !== "undefined") {
-      console.log("on load setting font to " + activeUser.verseFont);
-      setVerseFont(activeUser.verseFont);
-    } else {
-      setVerseFont(verseFontState);
-    }
-    if (activeUser.verseFontSize) {
-      console.log(
-        "on load setting font size to " + activeUser.verseFontSize + "px"
-      );
-      setVerseFontSize(parseInt(activeUser.verseFontSize));
-    } else {
-      setVerseFontSize(verseSizeState);
-      return;
-    }
-  }
-  function loadImage() {
-    if (activeUser.imageUrl !== "undefined") {
-      setUserImage(activeUser.imageUrl);
-    } else {
-      setUserImage("https://i.ibb.co/bQrMNV1/userIcon.png");
-    }
-  }
-  function loadUsername() {
-    if (activeUser.userName !== "undefined") {
-      setUsername(activeUser.userName);
-    } else {
-      return;
-    }
-  }
-  function addBKG(uv_id, uv_c) {
-    // log("adding background to: " + uv_id);
-    // get verse elements
-    var verseElm = $(".v_para");
-    // creat verse element arr
-    let vArr = Array.from(verseElm);
-    vArr.forEach((v) => {
-      //   log("foreach ID addBKG " + v.dataset.verseid);
-      if (v.dataset.verseid === uv_id) {
-        // log("About to add " + uv_c);
-        // log("to element " + v.dataset.verseid);
-        $(v).css("background-color", uv_c);
-        $(v).css("color", "black");
-        v.dataset.versebkg = uv_c;
-      }
-    });
-  }
-  // when app loads it creates user
-  createUser();
-  // end of doc ready
-});
+    // when app loads it creates user
+    createUserAndLoad();
+    // end of doc ready
+  });
+}
+loadUserSettings()
+

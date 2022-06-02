@@ -72,13 +72,14 @@ $(document).ready(() => {
   // verse array to store HL verse for user
   let verseIDArr = [];
   // get verse elements
-  var verseElm = $(".v_para");
+  var verseElm = bibleLoaded ? $(".v_para") : "";
   // creat verse element arr
   let vArr = Array.from(verseElm);
   // get HL box closeBtn
   const colorCloseBtn = $(".close_hlb");
   // CLICKING THE VERSE
   verseElm.click((e) => {
+    console.log("clicked a verse");
     let verseTarget = e.target;
     let verseId = verseTarget.dataset.verseid;
     if (e && verseIDArr.length >= 1) {
@@ -342,9 +343,11 @@ $(document).ready(() => {
   let bibleBody = document.querySelector(".bible_read_body");
   bibleBody.addEventListener("touchmove", function (e) {
     menuBtn.css("opacity", "0.5");
+    $(".b_pagenation_cont").css("opacity", "0.5");
   });
   bibleBody.addEventListener("touchend", function (e) {
     menuBtn.css("opacity", "1");
+    $(".b_pagenation_cont").css("opacity", "1");
   });
   // ---------------------------------------------
   // --------------------END ON SCROLL FUNCTIONALITY -------------------------
@@ -446,16 +449,16 @@ $(document).ready(() => {
       // hide loading dots and show the p inside upload btn
       startDots(false);
       $("#loading_dots_overlay").css("display", "none");
-        // hide upload btn
-        fileSubmitBtn.css("display","none");
-        // show file picker btn
-        chooseFileBtn.css("display", "flex");
+      // hide upload btn
+      fileSubmitBtn.css("display", "none");
+      // show file picker btn
+      chooseFileBtn.css("display", "flex");
       // set user image to active user state
       setUserImage(activeUser.imageUrl);
       updateUser(notifyUser);
     });
   });
-// loading dots function
+  // loading dots function
   function startDots(start) {
     const dot = $(".dot");
     const dots = Array.from(dot);
@@ -471,7 +474,7 @@ $(document).ready(() => {
         clearInterval(dotTimer);
       }
     }, 400);
-  };
+  }
   // testing dots
   // startDots(true);
   // username state
