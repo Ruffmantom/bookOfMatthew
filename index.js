@@ -38,7 +38,7 @@ $(document).ready(() => {
   // set chapter elm
   appChapterElm.text(`The Book of ${loadedChapterName}`);
   // set pagination state
-  let chapterState = 1;
+ 
   let rows = 1;
   // load chapter and verses function
   function loadChapterAndVerses(items, cont, rowsPerChapter, chapter) {
@@ -67,11 +67,11 @@ $(document).ready(() => {
       });
     });
 
-    $("#b_p_num").text(
-      `Ch. ${chapterState}`
-    );
+    $("#b_p_num").text(`Ch. ${chapterState}`);
     bibleLoaded = true;
+    // load settings and actions
     loadUserSettings();
+    loadActions();
   }
   // set btn display
   function checkDisplay() {
@@ -95,7 +95,10 @@ $(document).ready(() => {
     bibleLoaded = false;
     // if state = 1 then you can click
     if (chapterState >= 1 && chapterState < loadedChaptersArr.length) {
-      chapterState++;
+      // chapterState++;
+      activeUser.userChapterState++;
+      // update users position
+      updateUser();
       loadChapterAndVerses(
         loadedChaptersArr,
         appReadBodyElm,
@@ -110,7 +113,10 @@ $(document).ready(() => {
     bibleLoaded = false;
     // if state = 1 then you can click
     if (chapterState >= 2) {
-      chapterState--;
+      // chapterState--;
+      activeUser.userChapterState--;
+      // update users position
+      updateUser();
       loadChapterAndVerses(
         loadedChaptersArr,
         appReadBodyElm,

@@ -37,6 +37,8 @@ let darkModeThemeOn = false;
 // set state for verse and font
 let verseSizeState = "16";
 let verseFontState = "Georgia";
+// user chapter state
+let chapterState = 1;
 // renderer
 var togCss = [
   {
@@ -72,7 +74,7 @@ function transitionToDarkMode() {
       toggleIcon.removeClass("fa-moon-o");
       toggleIcon.addClass("fa-sun-o");
       // make html have dark bkg
-      $(document.body).css("background-color","#1f1f1f")
+      $(document.body).css("background-color", "#1f1f1f");
       // log(classString);
     } else {
       $(elm).removeClass(finishedClassName);
@@ -80,7 +82,7 @@ function transitionToDarkMode() {
       toggleIcon.addClass("fa-moon-o");
       toggleIcon.removeClass("fa-sun-o");
       // document background color
-      $(document.body).css("background-color","white")
+      $(document.body).css("background-color", "white");
     }
   });
 }
@@ -98,7 +100,7 @@ const setUserImage = (imgUrl) => {
 const setUsername = (name) => {
   $("#b_users_username_prev").text(name);
   $("#b_user_username").text(name);
-  $("#user_name_input").val(name)
+  $("#user_name_input").val(name);
 };
 // set verse font size
 const setVerseFontSize = (verseSize) => {
@@ -121,7 +123,7 @@ function createId() {
   }
   return id;
 }
-function loadUserSettings(){
+function loadUserSettings() {
   $(document).ready(() => {
     var user = {
       id: createId(),
@@ -131,6 +133,7 @@ function loadUserSettings(){
       verseFontSize: "16",
       imageUrl: "undefined",
       userName: "Username",
+      userChapterState: 1,
     };
     // function for setting up user if one isnt found
     // if found then load the user data
@@ -152,6 +155,8 @@ function loadUserSettings(){
               loadFontAndFontSize();
               loadImage();
               loadUsername();
+              // this will be used later when I have more books
+              loadUsersBiblePlace();
             }
             clearTimeout(loadTimeout);
           }, 150);
@@ -213,6 +218,13 @@ function loadUserSettings(){
         return;
       }
     }
+    function loadUsersBiblePlace() {
+      if (activeUser.userChapterState !== 1) {
+        chapterState == activeUser.userChapterState;
+      } else {
+        chapterState = 1;
+      }
+    }
     function addBKG(uv_id, uv_c) {
       // log("adding background to: " + uv_id);
       // get verse elements
@@ -235,5 +247,4 @@ function loadUserSettings(){
     // end of doc ready
   });
 }
-loadUserSettings()
-
+loadUserSettings();
