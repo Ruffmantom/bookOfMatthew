@@ -68,7 +68,7 @@ $(document).ready(() => {
     });
 
     $("#b_p_num").text(
-      `Ch. ${chapterState} out of ${loadedChaptersArr.length}`
+      `Ch. ${chapterState}`
     );
     bibleLoaded = true;
     loadUserSettings();
