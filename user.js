@@ -133,7 +133,7 @@ function loadUserSettings() {
       verseFontSize: "16",
       imageUrl: "undefined",
       userName: "Username",
-      userChapterState: 1,
+      userChapterState: 0,
     };
     // function for setting up user if one isnt found
     // if found then load the user data
@@ -219,11 +219,9 @@ function loadUserSettings() {
       }
     }
     function loadUsersBiblePlace() {
-      if (activeUser.userChapterState !== 1) {
-        chapterState == activeUser.userChapterState;
-      } else {
-        chapterState = 1;
-      }
+      // load bible
+      // load book
+      // load chapter
     }
     function addBKG(uv_id, uv_c) {
       // log("adding background to: " + uv_id);

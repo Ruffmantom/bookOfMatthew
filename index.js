@@ -38,7 +38,7 @@ $(document).ready(() => {
   // set chapter elm
   appChapterElm.text(`The Book of ${loadedChapterName}`);
   // set pagination state
- 
+
   let rows = 1;
   // load chapter and verses function
   function loadChapterAndVerses(items, cont, rowsPerChapter, chapter) {
@@ -73,59 +73,55 @@ $(document).ready(() => {
     loadUserSettings();
     loadActions();
   }
-  // set btn display
   function checkDisplay() {
+    // set btn display
     $("#pn_btn_cont_back").show();
     $("#pn_btn_cont_next").show();
-    if (chapterState <= 1) {
-      // hide back btn
-      $("#pn_btn_cont_back").hide();
-    } else if (
-      chapterState > 1 ||
-      chapterState === loadedChaptersArr.length - 1
-    ) {
-      $("#pn_btn_cont_back").show();
-      // hide next btn
+    console.log('checkDisplay - chapter state: '+chapterState)
+    if (chapterState >= loadedChaptersArr.length) {
+      // hide next btn since you cant go further than chapter length
       $("#pn_btn_cont_next").hide();
+    } else if (chapterState == 1 ) {
+      // hide back btn since you cant go negative chapter length
+      $("#pn_btn_cont_back").hide();
     }
   }
   // btn clicks
-  pagenationNextBtnElm.click((e) => {
-    // console.log("clicked next");
-    bibleLoaded = false;
-    // if state = 1 then you can click
-    if (chapterState >= 1 && chapterState < loadedChaptersArr.length) {
-      // chapterState++;
-      activeUser.userChapterState++;
-      // update users position
-      updateUser();
-      loadChapterAndVerses(
-        loadedChaptersArr,
-        appReadBodyElm,
-        rows,
-        chapterState
-      );
-      checkDisplay();
-    }
+  pagenationNextBtnElm.click(() => {
+    pageClick(true);
   });
-  pagenationBackBtnElm.click((e) => {
-    console.log("clicked back");
-    bibleLoaded = false;
-    // if state = 1 then you can click
-    if (chapterState >= 2) {
-      // chapterState--;
-      activeUser.userChapterState--;
-      // update users position
-      updateUser();
-      loadChapterAndVerses(
-        loadedChaptersArr,
-        appReadBodyElm,
-        rows,
-        chapterState
-      );
-      checkDisplay();
-    }
+
+  pagenationBackBtnElm.click(() => {
+    // console.log("clicked back");
+    pageClick(false);
   });
+
+  function pageClick(next) {
+    bibleLoaded = false;
+    if (next) {
+      // if state greater than or = 1 then you can click but has to be less than amount of chapters
+      if (chapterState >= 1 && chapterState < loadedChaptersArr.length) {
+        chapterState++;
+        // activeUser.userChapterState == newChap;
+        // update users position
+        // updateUser();
+        // check display sees if state is at 1 and below chapter amount, if so then show next btn
+        checkDisplay();
+        loadChapterAndVerses(loadedChaptersArr, appReadBodyElm, rows,chapterState );
+      }
+    } else {
+      // if state is greaterthan = 2 then it can go down
+      if (chapterState >= 2) {
+        chapterState--;
+        // activeUser.userChapterState == newChap;
+        // update users position
+        // updateUser();
+        // check display sees if the chapter state is below 2 to hide back btn
+        checkDisplay();
+        loadChapterAndVerses(loadedChaptersArr, appReadBodyElm, rows,chapterState );
+      }
+    }
+  }
   // run loadChapterAndVerses
   loadChapterAndVerses(loadedChaptersArr, appReadBodyElm, rows, chapterState);
   checkDisplay();
