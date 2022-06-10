@@ -29,12 +29,6 @@ body {
   flex-direction: column;
   /* align-items: center; */
   max-width: 455px;
-}
-h1,
-h2,
-h3,
-h4,
-h5 {
   font-family: Arial, Helvetica, sans-serif;
 }
 p,
@@ -50,20 +44,17 @@ span {
   position: absolute;
   top: -50px;
   left: 50%;
-  /* opacity: 0; */
   transform: translate(-50%, -50%);
   min-width: 170px;
   min-height: 45px;
   display: flex;
-  /* display: none; */
   align-items: center;
   justify-content: center;
   border-radius: 50px;
   background-color: #3be2ff;
   z-index: 99999999;
-  /* transition: opacity 250ms ease-in; */
 }
-#noti_box_text{
+#noti_box_text {
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   color: white;
@@ -75,24 +66,19 @@ span {
 .v_para {
   position: relative;
   padding: 0px 0px 3px 5px;
-  /* background-clip: padding-box; */
   background-clip: content-box;
 }
 .v_num {
-  /* color: rgb(211, 33, 33); */
   font-size: 12px;
   vertical-align: super;
   margin-right: 5px;
   padding-left: 3px;
-  /* position: absolute; */
-  /* top: -5px; */
-  /* left: 1px; */
 }
 
 #b_chapter {
   margin: 15px 0;
 }
-#b_chapter_num{
+#b_chapter_num {
   margin-bottom: 15px;
 }
 .v_title {
@@ -101,6 +87,7 @@ span {
 }
 .bible_book_navigation {
   display: flex;
+  flex-direction: column;
   position: fixed;
   background: white;
   box-shadow: 0 6px 13px #00000026;
@@ -109,13 +96,24 @@ span {
   justify-content: space-between;
   width: 100%;
 }
-.bible_book_navigation {
+.bible_book_navigation_dark {
   background: #1f1f1f;
   color: #ffff;
   box-shadow: none;
 }
-
-.open{
+.b_nav_dd_cont{
+  padding: 15px 20px;
+}
+.b_nav_dd_cont>*{
+  margin-bottom: 15px;
+}
+.b_nav_prev {
+  padding: 25px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.open {
   position: absolute;
   z-index: 9999;
   bottom: 65px;
@@ -132,7 +130,7 @@ span {
   box-shadow: 0 6px 13px rgba(0, 0, 0, 0.13);
   transition: opacity 250ms ease;
 }
-.b_pagenation_cont{
+.b_pagenation_cont {
   font-family: Arial, Helvetica, sans-serif;
   position: absolute;
   right: 30px;
@@ -151,10 +149,10 @@ span {
   box-shadow: 0 6px 13px rgba(0, 0, 0, 0.13);
   transition: opacity 250ms ease;
 }
-#b_p_num{
+#b_p_num {
   padding: 0 10px;
 }
-.b_pn_btn{
+.b_pn_btn {
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -163,31 +161,31 @@ span {
   background-color: #f0f0f0;
   position: relative;
 }
-#b_pn_btn_overlay_back, #b_pn_btn_overlay_next{
+#b_pn_btn_overlay_back,
+#b_pn_btn_overlay_next {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 9;
   border-radius: 100%;
 }
-.b_p_back{
+.b_p_back {
   margin: auto;
   padding-right: 4px;
 }
-.b_p_next{
+.b_p_next {
   margin: auto;
   padding-left: 4px;
 }
-.b_pn_btn_dark{
+.b_pn_btn_dark {
   background-color: #1f1f1f;
   color: #ffff;
-
 }
-.open_dark, .b_pagenation_cont_dark{
+.open_dark,
+.b_pagenation_cont_dark {
   background-color: #353535;
   color: #ffff;
 }
-
 
 .app_menu {
   width: 100%;
@@ -238,7 +236,7 @@ span {
   box-shadow: none;
 }
 /* dropdown box for fonts */
-.dropdown_main_cont {
+.dropdown_main_cont, .b_book_dd_cont {
   width: 100%;
   background: white;
   box-shadow: 0 6px 13px lightgray;
@@ -246,10 +244,41 @@ span {
   position: relative;
   cursor: pointer;
 }
-.dropdown_main_cont_dark {
+.dropdown_main_cont_dark, .b_book_dd_cont_dark {
   background: #333333;
   box-shadow: none;
   color: white;
+}
+.b_book_dd_cont{
+  box-shadow: none;
+}
+.b_book_dd_cont>div{
+  margin-bottom:15px;
+}
+.b_dd_cpts{
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(5, 15%);
+  grid-auto-rows: 25%;
+  justify-content: center;
+}
+.chapter_box{
+  /* width: 45px;
+  height: 45px; */
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cb_active{
+  background-color: #d5d5d5;
+  border: 1px solid #333333;
+}
+.cb_active_dark{
+  background-color: #333333;
+  border: 1px solid #d5d5d5;
+  color: black;
 }
 .selection_cont {
   display: flex;
@@ -264,11 +293,11 @@ span {
   align-items: center;
   padding: 12px 15px;
 }
-.select_open{
+.select_open {
   border-radius: 5px 5px 0 0;
   border: 1px solid #d5d5d5;
 }
-.font_list_cont {
+.font_list_cont,.b_dd_list {
   padding: 10px 0;
   max-height: 150px;
   width: 95%;
@@ -463,16 +492,16 @@ span {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 20px;
 }
-.app_info{
+.app_info {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
   background-color: #f0f0f0;
 }
-.app_info>p{
+.app_info > p {
   font-size: 12px;
 }
-.app_info_dark{
+.app_info_dark {
   background-color: #333333;
 }
 .bible_read_body {
@@ -512,7 +541,8 @@ span {
   justify-content: space-between;
 }
 .close_hlb,
-.close_btn {
+.close_btn,
+.nav_close_btn {
   width: 35px;
   height: 35px;
   display: flex;
@@ -521,6 +551,14 @@ span {
   border-radius: 50%;
   background-color: #f0f0f0;
 }
+
+.nav_close_btn {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
 .close_hlb_dark,
 .close_btn_dark {
   background: #353535;

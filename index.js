@@ -71,8 +71,6 @@ $(document).ready(() => {
     bibleLoaded = true;
     // load settings and actions
     loadUserSettings();
-    loadActions();
-   
   }
   function checkDisplay() {
     // set btn display
