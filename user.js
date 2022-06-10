@@ -2,9 +2,11 @@ const log = (l) => {
   console.log(l);
 };
 let activeUser;
-function updateUser(notify) {
+function updateUser(notify, message, alert) {
   localStorage.setItem("bibleUser", JSON.stringify(activeUser));
-  notify();
+  if (notify) {
+    notifyUser(message, alert);
+  }
 }
 //--NOTIFY FUNTION GLOBAL
 var notiBoxStyles = [
@@ -19,16 +21,19 @@ var notiBoxStyles = [
     transition: "all 250ms ease-out",
   },
 ];
-function notifyUser() {
+function notifyUser(mess,alert) {
   const notifBox = $("#noti_box");
   var addNotification = setTimeout(() => {
+    $('#noti_box_text').text(mess? mess:'Saved!');
     notifBox.css(notiBoxStyles[0]);
+    notifBox.css({backgroundColor: alert? "#ff6666": "#3be2ff"});
     clearTimeout(addNotification);
   }, 1500);
   var removeNotification = setTimeout(() => {
     notifBox.css(notiBoxStyles[1]);
     clearTimeout(removeNotification);
   }, 5000);
+  $('#noti_box_text').text('');
 }
 //-- bible loadState
 let bibleLoaded = false;
@@ -38,53 +43,26 @@ let darkModeThemeOn = false;
 let verseSizeState = "16";
 let verseFontState = "Georgia";
 // user chapter state
-let chapterState = 1;
-// renderer
-var togCss = [
-  {
-    name: "off",
-    css: {
-      left: "-2px",
-      right: "inherit",
-      transition: "all 350ms ease",
-    },
-  },
-  {
-    name: "on",
-    css: {
-      right: "-2px",
-      left: "inherit",
-      transition: "all 350ms ease",
-    },
-  },
-];
+let chapterState = 1
 // darkmode function
 function transitionToDarkMode() {
-  const toggleBtn = $("#toggler_btn");
-  const toggleIcon = $("#t_icon");
-  let darkElms = $(".dark");
-  let darkElmArr = Array.from(darkElms);
-  darkElmArr.forEach((elm) => {
-    let classString = elm.className;
-    let splitString = classString.split(" ")[1];
-    let finishedClassName = splitString + "_dark";
-    if (darkModeThemeOn) {
-      $(elm).addClass(finishedClassName);
-      toggleBtn.css(togCss[1].css);
-      toggleIcon.removeClass("fa-moon-o");
-      toggleIcon.addClass("fa-sun-o");
-      // make html have dark bkg
-      $(document.body).css("background-color", "#1f1f1f");
-      // log(classString);
-    } else {
-      $(elm).removeClass(finishedClassName);
-      toggleBtn.css(togCss[0].css);
-      toggleIcon.addClass("fa-moon-o");
-      toggleIcon.removeClass("fa-sun-o");
-      // document background color
-      $(document.body).css("background-color", "white");
-    }
-  });
+    let darkElms = $(".dark");
+    let darkElmArr = Array.from(darkElms);
+    darkElmArr.forEach((elm) => {
+      let classString = elm.className;
+      let splitString = classString.split(" ")[1];
+      let finishedClassName = splitString + "_dark";
+      if (darkModeThemeOn) {
+        $(elm).addClass(finishedClassName);
+        // make html have dark bkg
+        $(document.body).css("background-color", "#1f1f1f");
+        // log(classString);
+      } else {
+        $(elm).removeClass(finishedClassName);
+        // document background color
+        $(document.body).css("background-color", "white");
+      }
+    });
 }
 // set verse font
 const setVerseFont = (verseFontName) => {
@@ -142,7 +120,7 @@ function loadUserSettings() {
         if (localStorage.getItem("bibleUser") === null) {
           localStorage.setItem("bibleUser", JSON.stringify(user));
           activeUser = user;
-          log("created user");
+          // log("created user");
         } else {
           let t = localStorage.getItem("bibleUser");
           activeUser = JSON.parse(t);
@@ -177,27 +155,27 @@ function loadUserSettings() {
       // log("loaded verses!");
     }
     function loadDarkModeTheme() {
-      // log("about to load theme");
+      console.log("about to load theme");
       if (activeUser.mode === true || activeUser.mode === "true") {
         darkModeThemeOn = true;
         transitionToDarkMode();
+        console.log("loaded theme: dark");
       } else {
         darkModeThemeOn = false;
+        console.log("loaded theme: light");
         transitionToDarkMode();
       }
     }
     // load font and font size
     function loadFontAndFontSize() {
       if (activeUser.verseFont !== "undefined") {
-        console.log("on load setting font to " + activeUser.verseFont);
+        // console.log("on load setting font to " + activeUser.verseFont);
         setVerseFont(activeUser.verseFont);
       } else {
         setVerseFont(verseFontState);
       }
       if (activeUser.verseFontSize) {
-        console.log(
-          "on load setting font size to " + activeUser.verseFontSize + "px"
-        );
+        // console.log("on load setting font size to " + activeUser.verseFontSize + "px");
         setVerseFontSize(parseInt(activeUser.verseFontSize));
       } else {
         setVerseFontSize(verseSizeState);

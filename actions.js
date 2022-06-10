@@ -32,7 +32,11 @@ function loadActions() {
       const fileInput = $("#image_uploader");
       const chooseFileBtn = $("#upload_image_btn");
       const fileSubmitBtn = $("#submit_imag_btn");
-
+      const toggleBtn = $("#toggler_btn");
+      const toggleIcon = $("#t_icon");
+      const verseIncreaseBtn = $("#v_s_btn_r");
+      const verseDecreaseBtn = $("#v_s_btn_l");
+      let userTextSize = parseInt(activeUser.verseFontSize);
       // adds delete background BTN
       function AddDeleteBKG(c, show) {
         // this will be the color that gets cleared when clicked
@@ -325,7 +329,7 @@ function loadActions() {
             // close HL box
             openColorMenu(false);
             // update user
-            updateUser(notifyUser);
+            updateUser(true, "Saved!", false);
           }
         });
       };
@@ -335,7 +339,7 @@ function loadActions() {
         savedVerses.map((i) => {
           activeUser.verses.push(i);
         });
-        updateUser(notifyUser);
+        updateUser(true, "Saved!", false);
         var saveTimeOut = setTimeout(() => {
           log("updated user");
           log(activeUser);
@@ -369,32 +373,46 @@ function loadActions() {
       // get all child elements
       // add the elements class name to "_dark"
       // ex: before: .highlight_box | After: .highlight_box_dark etc.
-      const toggleBtn = $("#toggler_btn");
-      // save the usersTheme
-      function saveUserTheme(val) {
-        activeUser.mode = val;
-        updateUser(notifyUser);
-        var saveTimeOut = setTimeout(() => {
-          log("updated user");
-          log(activeUser);
-          clearTimeout(saveTimeOut);
-        }, 1500);
-      }
+      // renderer
+      var togCss = [
+        {
+          name: "off",
+          css: {
+            left: "-2px",
+            right: "inherit",
+            transition: "all 350ms ease",
+          },
+        },
+        {
+          name: "on",
+          css: {
+            right: "-2px",
+            left: "inherit",
+            transition: "all 350ms ease",
+          },
+        },
+      ];
       toggleBtn.click((e) => {
         if (e && !darkModeThemeOn) {
-          log("first time click! turned it on");
-          // toggleBtn.css(togCss[1].css);
+          console.log("clicked toggle: " + darkModeThemeOn);
+          toggleBtn.css(togCss[1].css);
+          toggleIcon.removeClass("fa-moon-o");
+          toggleIcon.addClass("fa-sun-o");
           darkModeThemeOn = true;
           transitionToDarkMode();
           //update user
-          saveUserTheme(true);
+          activeUser.mode = true;
+          updateUser(true, "Theme Saved!", false);
         } else {
-          log("clicked second time to turn off");
-          // toggleBtn.css(togCss[0].css);
+          console.log("clicked toggle: " + darkModeThemeOn);
+          toggleBtn.css(togCss[0].css);
+          toggleIcon.addClass("fa-moon-o");
+          toggleIcon.removeClass("fa-sun-o");
           darkModeThemeOn = false;
           transitionToDarkMode();
           //update user
-          saveUserTheme(false);
+          activeUser.mode = false;
+          updateUser(true, "Theme Saved!", false);
         }
       });
       // edit user close btn
@@ -467,7 +485,7 @@ function loadActions() {
           chooseFileBtn.css("display", "flex");
           // set user image to active user state
           setUserImage(activeUser.imageUrl);
-          updateUser(notifyUser);
+          updateUser(true, "Image Saved!", false);
         });
       });
       // loading dots function
@@ -505,13 +523,122 @@ function loadActions() {
       saveUsernameBtn.click((e) => {
         activeUser.userName = usernameVal;
         setUsername(activeUser.userName);
-        updateUser(notifyUser);
+        updateUser(true, "Username Saved!", false);
         var removeSaveBtn = setTimeout(() => {
           saveUsernameBtn.css({ display: "none" });
           clearTimeout(removeSaveBtn);
         }, 500);
       });
+      // FONT ACTIONS IN MENU
+      // on load font family for bible is font-family: Georgia, "Times New Roman", Times, serif;
+      verseDecreaseBtn.click(() => {
+        addOrMinusFontSize(false, userTextSize);
+      });
+      verseIncreaseBtn.click(() => {
+        addOrMinusFontSize(true, userTextSize);
+      });
+      function addOrMinusFontSize(add, userFs) {
+        //need to set limit
+        if (add) {
+          if (userFs < 27) {
+            userTextSize = userFs + 1;
+          } else {
+            return;
+          }
+        } else {
+          if (userFs === 16) {
+            return;
+          } else {
+            userTextSize = userFs - 1;
+          }
+        }
+        // update dom
+        // if the font gets bigger than 20px add lineheight to body of 2.5
+        console.log(userTextSize);
+        console.log(typeof userTextSize);
+        setVerseFontSize(userTextSize);
+        // update user
+        activeUser.verseFontSize = userTextSize;
+        var sizeTimer = setTimeout(() => {
+          updateUser(notifyUser);
+          clearTimeout(sizeTimer);
+        }, 3500);
+      }
+      const fontList = [
+        "Arial",
+        "Georgia",
+        "Lato",
+        "Libre Bodoni",
+        "Lora",
+        "Merriweather",
+        "Montserrat",
+        "Open Sans",
+        "Roboto",
+        "Roboto Mono",
+        "Work Sans",
+      ];
+      // script from github from other project
+      $(document).ready(function () {
+        const dropDown = $(".selection_cont");
+        const dropList = $(".font_list_cont");
+        const dropIcon = $("#drop_icon");
+        const selectionName = $("#selection_name");
 
+        let listOpen = false;
+        selectionName.text(
+          activeUser.verseFont !== "undefined"
+            ? activeUser.verseFont
+            : verseFontState
+        );
+        dropList.hide();
+        dropDown.click(() => {
+          if (listOpen) {
+            dropList.hide();
+            dropDown.removeClass("select_open");
+            listOpen = false;
+            dropIcon.addClass("fa-angle-down");
+            dropIcon.removeClass("fa-angle-up");
+          } else {
+            dropList.show();
+            dropDown.addClass("select_open");
+            listOpen = true;
+            dropIcon.addClass("fa-angle-up");
+            dropIcon.removeClass("fa-angle-down");
+          }
+        });
+
+        fontList.map((f, i) => {
+          dropList.append(() => {
+            return `<div class="font_list_item" data-fontKey="${f}" style="font-family:${f}">${f}</div>`;
+          });
+        });
+        const fontListItem = $(".font_list_item");
+        fontListItem.click(function () {
+          var font = $(this).attr("data-fontKey");
+          // console.log(font);
+          if (listOpen) {
+            listOpen = false;
+            dropList.hide();
+            dropDown.removeClass("select_open");
+            listOpen = false;
+            dropIcon.addClass("fa-angle-down");
+            dropIcon.removeClass("fa-angle-up");
+            selectionName.text(font);
+            console.log(font);
+            setVerseFont(font);
+            // update user
+            activeUser.verseFont = font;
+            var fontChangeTimer = setTimeout(() => {
+              updateUser(notifyUser);
+              clearTimeout(fontChangeTimer);
+            }, 3500);
+          }
+          // selectionName.css('font-family', `${font}`)
+        });
+
+        //----------------------------------
+        //end of Document.ready
+      });
       //-------------------------------------------
       // end of doc ready
     });

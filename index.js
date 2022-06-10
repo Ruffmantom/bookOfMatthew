@@ -72,6 +72,7 @@ $(document).ready(() => {
     // load settings and actions
     loadUserSettings();
     loadActions();
+   
   }
   function checkDisplay() {
     // set btn display
@@ -102,9 +103,6 @@ $(document).ready(() => {
       // if state greater than or = 1 then you can click but has to be less than amount of chapters
       if (chapterState >= 1 && chapterState < loadedChaptersArr.length) {
         chapterState++;
-        // activeUser.userChapterState == newChap;
-        // update users position
-        // updateUser();
         // check display sees if state is at 1 and below chapter amount, if so then show next btn
         checkDisplay();
         loadChapterAndVerses(loadedChaptersArr, appReadBodyElm, rows,chapterState );
@@ -113,14 +111,14 @@ $(document).ready(() => {
       // if state is greaterthan = 2 then it can go down
       if (chapterState >= 2) {
         chapterState--;
-        // activeUser.userChapterState == newChap;
-        // update users position
-        // updateUser();
         // check display sees if the chapter state is below 2 to hide back btn
         checkDisplay();
         loadChapterAndVerses(loadedChaptersArr, appReadBodyElm, rows,chapterState );
       }
     }
+     // save user
+     activeUser.userChapterState = chapterState;
+     updateUser(false);
   }
   // run loadChapterAndVerses
   loadChapterAndVerses(loadedChaptersArr, appReadBodyElm, rows, chapterState);
