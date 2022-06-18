@@ -282,9 +282,15 @@ span {
 .b_book_dd_cont_open{
   padding-bottom: 20px;
 }
+/* rotate icon */
+.rotate_btnicon{
+  transform: rotate(180deg);
+}
+/* rotate icon */
 /* chapter drop down */
 .b_dd_chapter_cont{
   display: none;
+  padding-bottom: 20px;
 }
 /* End chapter drop down */
 .b_dd_cpts{
