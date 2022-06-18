@@ -108,6 +108,9 @@ span {
   padding: 15px 20px;
   max-height: 90vh;
   overflow-y:scroll ;
+  /* for testing purpose */
+  display: none;
+  /* for testing purpose */
 
 }
 .b_nav_titles{
@@ -125,7 +128,7 @@ span {
   padding: 15px;
   border-radius: 7px;
 }
-.b_saved_verse_card>h4,p{
+.b_saved_verse_card>h5,.b_saved_verse_card>p{
   padding-bottom: 10px;
 }
 .svd_verse_footer{
@@ -273,10 +276,17 @@ span {
 }
 .b_book_dd_cont{
   box-shadow: none;
+  border-bottom: 1px solid #d5d5d5;
 }
-.b_book_dd_cont>div{
-  margin-bottom:15px;
+/* book navigation dd open */
+.b_book_dd_cont_open{
+  padding-bottom: 20px;
 }
+/* chapter drop down */
+.b_dd_chapter_cont{
+  display: none;
+}
+/* End chapter drop down */
 .b_dd_cpts{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -303,13 +313,13 @@ span {
   border: 1px solid #d5d5d5;
   color: black;
 }
-.selection_cont {
+.selection_cont, .b_book_c_dd_btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
 }
-.selection_cont_dark {
+.selection_cont_dark,.b_book_c_dd_btn_dark{
   display: flex;
   justify-content: space-between;
   border: none;
@@ -577,6 +587,7 @@ span {
 
 .nav_close_btn {
   display: none;
+  /* display: flex; */
   position: absolute;
   top: 20px;
   right: 20px;
