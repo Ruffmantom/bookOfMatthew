@@ -7,7 +7,8 @@ let activeUser = {
   verseFontSize: "16",
   imageUrl: "undefined",
   userName: "Username",
-  userbibleState: "esv-matt-1" // default
+  userbibleState: "esv-matt-1", // default
+  usersFavVerses: []
 }
 $(function () {
   // state
@@ -35,29 +36,39 @@ $(function () {
   const bibleBooksContElm = $(".b_nav_books_container");
   const bibleVersionsSelctContElm = $('#b_version_choice_dd_cont')
   // global function
+
   // main drop down close function
-  const showOrHideDropDown = (event, show, btnID, cont) => {
-    function findIcon(id) {
-      let iconArr = Array.from($('.drop_icon'))
-      iconArr.filter(iElm => {
-        $(iElm).hasClass('rotate_btnicon') ? $(iElm).removeClass('rotate_btnicon') : ''
-        if (iElm.dataset.ddbtnid === id) {
-          $(iElm).toggleClass('rotate_btnicon')
-        }
-      })
-    }
-    if (event && show) {
+  const showOrHideDropDown = (show, cont) => {
+    if (show) {
+      console.log('Open event')
       cont.slideDown("fast");
-      btnID ? findIcon(btnID) : "";
-    } else {
-      // console.log("hit second else if = slide down and rotate");
+    } else if (!show) {
+      console.log('close event')
       cont.slideUp("fast");
-      btnID ? findIcon(btnID) : "";
     }
   };
-
-  // render the book drop down
-  const renderBookDropDown = (bookName, bookId, chapters) => {
+  // toggle  for drop down containers
+  const toggleDropDown = (btnID, cont) => {
+    console.log('toggle event');
+    cont.slideToggle("fast");
+    btnID ? findAndRotateIcon(btnID) : "";
+  }
+  // find and rotate icon
+  function findAndRotateIcon(id) {
+    let iconArr = Array.from($('.drop_icon'))
+    iconArr.filter(iElm => {
+      // first remove all rotate
+      if (iElm.dataset.ddbtnid === id) {
+        // console.log('add rotate')
+        $(iElm).hasClass('rotate_btnicon') ? $(iElm).removeClass('rotate_btnicon') : $(iElm).addClass('rotate_btnicon')
+      }else{
+        $(iElm).removeClass('rotate_btnicon')
+      }
+    })
+  }
+  // HTML Creation
+  // Create HTML the book drop down
+  const createBookDropDownHtml = (bookName, bookId) => {
     return `
       <div class="dark b_book_dd_cont">
         <div  data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
@@ -79,7 +90,7 @@ $(function () {
       </div>
   `;
   };
-  // render the saved verse card
+  // Create HTML the saved verse card
   const renderSavedVerseCard = (book, chap, vSrt, vEnd, vTxt, vId) => {
     return `
             <div class="b_saved_verse_card">
@@ -103,21 +114,21 @@ $(function () {
             </div>
   `;
   };
-  // render chapter box
-  const renderChapterBoxElm = (cId, chapterNum) => {
+  // create HTML chapter box
+  const createChapterBoxElmHtml = (cId, chapterNum) => {
     return `
   <div data-chpid="${cId}" class="chapter_box">${chapterNum}</div>
   `;
   };
-  // render bible version choices
-  const renderBibleVersionChoices = (bId, bVersion, bibleInfo) => {
+  // create HTML bible version choices
+  const createBibleVersionChoicesHtml = (bId, bVersion, bibleInfo) => {
     return `
   <div class="font_list_item" data-bibleversion="${bId}">${bVersion}: ${bibleInfo}</div>
   `;
   };
 
   // render navigation on users preloaded choices
-  const renderNavigation = (bData) => {
+  const renderNavigationHtml = (bData) => {
     // console.log(bData);
     // console.log("loadNavigation");
     // load user data and set navigation
@@ -125,7 +136,7 @@ $(function () {
     // first we need to render the choices for the bible version drop down
     bData.bibles.forEach((bible) => {
       bibleVersionsSelctContElm.append(
-        renderBibleVersionChoices(
+        createBibleVersionChoicesHtml(
           bible.bible_id,
           bible.bible_type,
           bible.bible_year
@@ -157,13 +168,13 @@ $(function () {
   const renderBooks = (bArr) => {
     bArr.forEach((b) => {
       let bookChapters = b.chapters;
-      bibleBooksContElm.append(renderBookDropDown(b.book_name, b.book_id));
+      bibleBooksContElm.append(createBookDropDownHtml(b.book_name, b.book_id));
       renderChapters(bookChapters);
     });
   };
   const renderChapters = (cArr) => {
     cArr.forEach((c) => {
-      $(".b_dd_cpts").append(renderChapterBoxElm(c.chapter_id, c.chapter));
+      $(".b_dd_cpts").append(createChapterBoxElmHtml(c.chapter_id, c.chapter));
     });
   };
 
@@ -173,13 +184,14 @@ $(function () {
     // this function checks for all the type of drop down buttons
     // Navigation, Bible version, and Book drop down
     let eIdTag = e.target.id;
+    let ddValId = e.target.dataset.ddbtnid;
     switch (eIdTag) {
       // finding the Button clicks and running the open function
       case bibleNavBtnElmID:
         // Main Nav DD btn
         e.stopPropagation();
         // console.log(bibleNavBtnElmID + ' Was asdf Clicked!')
-        showOrHideDropDown(e, true, '', bibleNavDdContElm);
+        showOrHideDropDown(true, bibleNavDdContElm);
         closeNaveBtnElm.fadeIn();
         closeNaveBtnElm.css({ display: "flex" });
         break;
@@ -187,36 +199,34 @@ $(function () {
         // close Nav DD btn
         e.stopPropagation();
         // console.log(closeNaveBtnElmID + ' Was Clicked!');
-        showOrHideDropDown(e, false, '', bibleNavDdContElm);
+        showOrHideDropDown(false, bibleNavDdContElm);
         closeNaveBtnElm.fadeOut();
         break;
       case bibleVersionBtnId:
         // Bible DD version drop down
         e.stopPropagation();
-        showOrHideDropDown(e, true, '', bibleVersionsSelctContElm);
+        toggleDropDown(ddValId, bibleVersionsSelctContElm)
         break;
       case bookDropDownBtnElmID:
         // Book DD btn (atleast 4 with the same ID)
         e.stopPropagation();
-        let bookVal = e.target.dataset.ddbtnid;
         // console.log(bookDropDownBtnElmID + ' Was Clicked! With book id: ' + bookVal)
         let bookContArr = Array.from($('.b_dd_chapter_cont'));
         // console.log(bookContArr)
         bookContArr.forEach((elm) => {
           let elmBookId = elm.dataset.ddcontid;
           // console.log(elmBookId)
-          if (bookVal !== elmBookId) {
-            // console.log('about to open dd')
-            showOrHideDropDown(e, false, elmBookId, $(elm))
+          if (ddValId === elmBookId) {
+            console.log('about to open dd')
+            toggleDropDown(elmBookId, $(elm))
           } else {
-            showOrHideDropDown(e, true, elmBookId, $(elm));
+            showOrHideDropDown(false, $(elm))
           }
-          // hiding all that dont match
         });
         break;
     }
   })
   // render
-  renderNavigation(bibleData);
+  renderNavigationHtml(bibleData);
   // end
 });

@@ -284,8 +284,13 @@ span {
   padding-bottom: 20px;
 }
 /* rotate icon */
+.drop_icon{
+  transition: all 250ms ease-out;
+
+}
 .rotate_btnicon{
   transform: rotate(180deg);
+  transition: all 250ms ease-in;
 }
 /* rotate icon */
 /* chapter drop down */
@@ -325,6 +330,7 @@ span {
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
+  position: relative;
 }
 .selection_cont_dark,.b_book_c_dd_btn_cl_dark{
   display: flex;
@@ -355,6 +361,7 @@ span {
   left: 0;
   width: 100%;
   display: none;
+  z-index: 9;
 }
 .font_list_cont_dark {
   background-color: #333333;
