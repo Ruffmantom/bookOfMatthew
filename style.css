@@ -118,6 +118,7 @@ span {
 
 }
 .b_nav_prev {
+  position: relative;
   padding: 25px 20px;
   font-size: 18px;
   font-weight: bold;
@@ -319,13 +320,13 @@ span {
   border: 1px solid #d5d5d5;
   color: black;
 }
-.selection_cont, .b_book_c_dd_btn {
+.selection_cont, .b_book_c_dd_btn_cl {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
 }
-.selection_cont_dark,.b_book_c_dd_btn_dark{
+.selection_cont_dark,.b_book_c_dd_btn_cl_dark{
   display: flex;
   justify-content: space-between;
   border: none;

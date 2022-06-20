@@ -1,3 +1,14 @@
+// fake user
+let activeUser = {
+  id: "PCWloAd0E8L",
+  verses: [],
+  mode: false,
+  verseFont: "undefined",
+  verseFontSize: "16",
+  imageUrl: "undefined",
+  userName: "Username",
+  userbibleState: "esv-matt-1" // default
+}
 $(function () {
   // state
   let checkRenderedNav = false;
@@ -5,9 +16,12 @@ $(function () {
   //const bibleNavBtnElm = $("#b_nav_btn");
   //const bookDropDownBtnElm = $(".b_book_c_dd_btn"); // there are multiple and will be dynamically added on app load
   const bibleNavBtnElmID = "b_nav_btn";
-  const bookDropDownBtnElmCL = "b_book_c_dd_btn"; // there are multiple and will be dynamically added on app load
+  const bookDropDownBtnBtn = $("b_book_c_dd_btn"); // there are multiple and will be dynamically added on app load
+  const bookDropDownBtnElmID = "b_book_c_dd_btn";
   const closeNaveBtnElm = $(".nav_close_btn");
   const closeNaveBtnElmID = "close_nav_btn";
+  const bibleVersionBtnElm = $('#close_bv_dd_btn');
+  const bibleVersionBtnId = 'close_bv_dd_btn';
   // Navigation drop down content containers
   // nav drop down
   const bibleNavDdContElm = $(".b_nav_dd_cont");
@@ -18,23 +32,27 @@ $(function () {
   const navMainTxtID = "nav_prev_text";
   const chapterContElm = $(".b_dd_cpts");
   const savedVersesContElm = $(".b_dd_saved_verses_cont");
-  const bibleVersionChoiceDdElm = $("#b_version_choice_dd_cont");
   const bibleBooksContElm = $(".b_nav_books_container");
+  const bibleVersionsSelctContElm = $('#b_version_choice_dd_cont')
   // global function
   // main drop down close function
-  const showOrHideDropDown = (event, toggle, show, btnicon, cont) => {
-    if (event && toggle) {
-      console.log("hit first if = toggle slide and rotate");
-      cont.slideToggle("slow");
-      btnicon ? $(btnicon).toggleClass("rotate_btnicon") : "";
-    } else if (event && !toggle && show) {
-      console.log("hit second else if = slide down and rotate");
-      cont.slideDown("slow");
-      btnicon ? $(btnicon).addClass("rotate_btnicon") : "";
-    } else if (event && !show) {
-      console.log("hit third else if = slide up");
-      cont.slideUp("slow");
-      btnicon & !show ? $(btnicon).removeClass("rotate_btnicon") : "";
+  const showOrHideDropDown = (event, show, btnID, cont) => {
+    function findIcon(id) {
+      let iconArr = Array.from($('.drop_icon'))
+      iconArr.filter(iElm => {
+        $(iElm).hasClass('rotate_btnicon') ? $(iElm).removeClass('rotate_btnicon') : ''
+        if (iElm.dataset.ddbtnid === id) {
+          $(iElm).toggleClass('rotate_btnicon')
+        }
+      })
+    }
+    if (event && show) {
+      cont.slideDown("fast");
+      btnID ? findIcon(btnID) : "";
+    } else {
+      // console.log("hit second else if = slide down and rotate");
+      cont.slideUp("fast");
+      btnID ? findIcon(btnID) : "";
     }
   };
 
@@ -42,11 +60,12 @@ $(function () {
   const renderBookDropDown = (bookName, bookId, chapters) => {
     return `
       <div class="dark b_book_dd_cont">
-        <div data-bookid="${bookId}" class="dark  b_book_c_dd_btn">
+        <div  data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
+          <div data-ddbtnid="${bookId}" id="b_book_c_dd_btn" class="b_btn_overlay_click"></div>
           <p id="selection_name">${bookName}</p>
-          <i id="drop_icon" class="fa fa-angle-down" aria-hidden="true"></i>
+          <i data-ddbtnid="${bookId}" class="fa fa-angle-down drop_icon" aria-hidden="true"></i>
         </div>
-        <div data-bookid="${bookId}" class="dark b_dd_chapter_cont">
+        <div data-ddcontid="${bookId}" class="dark b_dd_chapter_cont">
           <h4 class="b_nav_titles">Chapters</h4>
           <div class="b_dd_cpts">
           </div>
@@ -99,13 +118,13 @@ $(function () {
 
   // render navigation on users preloaded choices
   const renderNavigation = (bData) => {
-    console.log(bData);
-    console.log("loadNavigation");
+    // console.log(bData);
+    // console.log("loadNavigation");
     // load user data and set navigation
     navMainTxt.text(`ESV | Matthew 1`);
     // first we need to render the choices for the bible version drop down
     bData.bibles.forEach((bible) => {
-      bibleVersionChoiceDdElm.append(
+      bibleVersionsSelctContElm.append(
         renderBibleVersionChoices(
           bible.bible_id,
           bible.bible_type,
@@ -149,75 +168,53 @@ $(function () {
   };
 
   // actions
-
-  // if the nav is clicked
-  // open nav and shoe close btn
-  // bibleNavBtnElm.on("click", (e) => {
-  //   showOrHideDropDown(e, false, true, false, bibleNavDdContElm);
-  //   closeNaveBtnElm.fadeIn();
-  //   closeNaveBtnElm.css({ display: "flex" });
-  // });
-  // // if close btn clicked
-  // // close nav and hide close btn
-  // closeNaveBtnElm.on("click", (e) => {
-  //   showOrHideDropDown(e, false, false, false, bibleNavDdContElm);
-  //   closeNaveBtnElm.fadeOut();
-  // });
-  // // book drop down click
-  // bibleBooksContElm.delegate(bookDropDownBtnElm, 'click', (e) => {
-  //   // console.log(e.target.dataset.bookid)
-  //   console.log(e.target.hasClass === 'b_book_c_dd_btn')
-  //   console.log(e.target)
-  //   let eventElm = e.target;
-  //   let bookIdVal = e.target.dataset.bookid;
-  //   let eventElmIcon = $(eventElm).children()[1];
-  //   let bookContArr = Array.from($('.b_dd_chapter_cont'));
-  //   // console.log(bookContArr)
-  //   bookContArr.forEach((elm) => {
-  //     let elmBookId = elm.dataset.bookid;
-  //     // console.log(elmBookId)
-  //     if (bookIdVal === elmBookId) {
-  //       console.log('about to open dd')
-  //       showOrHideDropDown(e, true, true, eventElmIcon, $(elm));
-  //       e.stopPropagation()
-  //     } else {
-  //       console.log('about to close dd')
-  //       showOrHideDropDown(e, false, false, eventElmIcon, $(elm));
-  //       e.stopPropagation()
-  //     }
-  //   });
-  // });
+  // drop down handlers
   $('.bible_book_navigation').on('click', (e) => {
-    console.log($(e.target))
-    // look for class name
-    // bookDropDownBtnElmCL
-    // bibleNavBtnElmID
-    // closeNaveBtnElmID
-    let eClass = e.target.className;
+    // this function checks for all the type of drop down buttons
+    // Navigation, Bible version, and Book drop down
     let eIdTag = e.target.id;
-      switch (eIdTag) {
-        // finding the Button clicks and running the open function
-        case bibleNavBtnElmID:
-          // main nav btn
-          e.stopPropagation();
-          console.log(bibleNavBtnElmID + ' Was asdf Clicked!')
-          showOrHideDropDown(e, false, true, false, bibleNavDdContElm);
-          closeNaveBtnElm.fadeIn();
-          closeNaveBtnElm.css({ display: "flex" });
-          break;
-          case closeNaveBtnElmID:
-          // close nav btn
-          e.stopPropagation();
-          console.log(closeNaveBtnElmID + ' Was Clicked!');
-          showOrHideDropDown(e, false, false, false, bibleNavDdContElm);
-          closeNaveBtnElm.fadeOut();
-          break;
-        case navMainTxtID:
-          e.stopPropagation();
-          console.log(navMainTxtID + ' Was Clicked!')
-         
-          break;
-      }
+    switch (eIdTag) {
+      // finding the Button clicks and running the open function
+      case bibleNavBtnElmID:
+        // Main Nav DD btn
+        e.stopPropagation();
+        // console.log(bibleNavBtnElmID + ' Was asdf Clicked!')
+        showOrHideDropDown(e, true, '', bibleNavDdContElm);
+        closeNaveBtnElm.fadeIn();
+        closeNaveBtnElm.css({ display: "flex" });
+        break;
+      case closeNaveBtnElmID:
+        // close Nav DD btn
+        e.stopPropagation();
+        // console.log(closeNaveBtnElmID + ' Was Clicked!');
+        showOrHideDropDown(e, false, '', bibleNavDdContElm);
+        closeNaveBtnElm.fadeOut();
+        break;
+      case bibleVersionBtnId:
+        // Bible DD version drop down
+        e.stopPropagation();
+        showOrHideDropDown(e, true, '', bibleVersionsSelctContElm);
+        break;
+      case bookDropDownBtnElmID:
+        // Book DD btn (atleast 4 with the same ID)
+        e.stopPropagation();
+        let bookVal = e.target.dataset.ddbtnid;
+        // console.log(bookDropDownBtnElmID + ' Was Clicked! With book id: ' + bookVal)
+        let bookContArr = Array.from($('.b_dd_chapter_cont'));
+        // console.log(bookContArr)
+        bookContArr.forEach((elm) => {
+          let elmBookId = elm.dataset.ddcontid;
+          // console.log(elmBookId)
+          if (bookVal !== elmBookId) {
+            // console.log('about to open dd')
+            showOrHideDropDown(e, false, elmBookId, $(elm))
+          } else {
+            showOrHideDropDown(e, true, elmBookId, $(elm));
+          }
+          // hiding all that dont match
+        });
+        break;
+    }
   })
   // render
   renderNavigation(bibleData);
