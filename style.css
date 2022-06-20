@@ -598,7 +598,15 @@ span {
   top: 20px;
   right: 20px;
 }
-
+/* close btn overlay */
+.b_btn_overlay_click{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+}
 .close_hlb_dark,
 .close_btn_dark {
   background: #353535;

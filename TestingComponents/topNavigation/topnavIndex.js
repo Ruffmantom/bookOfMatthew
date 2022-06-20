@@ -2,9 +2,12 @@ $(function () {
   // state
   let checkRenderedNav = false;
   // Navigation drop down Buttons
-  const bibleNavBtnElm = $("#b_nav_btn");
-  const bookDropDownBtnElm = $(".b_book_c_dd_btn"); // there are multiple and will be dynamically added on app load
-  const closeNaveBtnElm = $("#close_nav_btn");
+  //const bibleNavBtnElm = $("#b_nav_btn");
+  //const bookDropDownBtnElm = $(".b_book_c_dd_btn"); // there are multiple and will be dynamically added on app load
+  const bibleNavBtnElmID = "b_nav_btn";
+  const bookDropDownBtnElmCL = "b_book_c_dd_btn"; // there are multiple and will be dynamically added on app load
+  const closeNaveBtnElm = $(".nav_close_btn");
+  const closeNaveBtnElmID = "close_nav_btn";
   // Navigation drop down content containers
   // nav drop down
   const bibleNavDdContElm = $(".b_nav_dd_cont");
@@ -12,6 +15,7 @@ $(function () {
   const bibleBookDdContElm = $(".b_dd_chapter_cont");
   // navigation rendering
   const navMainTxt = $("#nav_prev_text");
+  const navMainTxtID = "nav_prev_text";
   const chapterContElm = $(".b_dd_cpts");
   const savedVersesContElm = $(".b_dd_saved_verses_cont");
   const bibleVersionChoiceDdElm = $("#b_version_choice_dd_cont");
@@ -148,56 +152,73 @@ $(function () {
 
   // if the nav is clicked
   // open nav and shoe close btn
-  bibleNavBtnElm.on("click", (e) => {
-    showOrHideDropDown(e, false, true, false, bibleNavDdContElm);
-    closeNaveBtnElm.fadeIn();
-    closeNaveBtnElm.css({ display: "flex" });
-  });
-  // if close btn clicked
-  // close nav and hide close btn
-  closeNaveBtnElm.on("click", (e) => {
-    showOrHideDropDown(e, false, false, false, bibleNavDdContElm);
-    closeNaveBtnElm.fadeOut();
-  });
-  // book drop down click
-  // bookDropDownBtnElm.on("click", (e) => {
-  //   console.log("clicked");
+  // bibleNavBtnElm.on("click", (e) => {
+  //   showOrHideDropDown(e, false, true, false, bibleNavDdContElm);
+  //   closeNaveBtnElm.fadeIn();
+  //   closeNaveBtnElm.css({ display: "flex" });
+  // });
+  // // if close btn clicked
+  // // close nav and hide close btn
+  // closeNaveBtnElm.on("click", (e) => {
+  //   showOrHideDropDown(e, false, false, false, bibleNavDdContElm);
+  //   closeNaveBtnElm.fadeOut();
+  // });
+  // // book drop down click
+  // bibleBooksContElm.delegate(bookDropDownBtnElm, 'click', (e) => {
+  //   // console.log(e.target.dataset.bookid)
+  //   console.log(e.target.hasClass === 'b_book_c_dd_btn')
+  //   console.log(e.target)
   //   let eventElm = e.target;
   //   let bookIdVal = e.target.dataset.bookid;
   //   let eventElmIcon = $(eventElm).children()[1];
-  //   let bookContArr = Array.from(bibleBookDdContElm);
+  //   let bookContArr = Array.from($('.b_dd_chapter_cont'));
+  //   // console.log(bookContArr)
   //   bookContArr.forEach((elm) => {
   //     let elmBookId = elm.dataset.bookid;
+  //     // console.log(elmBookId)
   //     if (bookIdVal === elmBookId) {
+  //       console.log('about to open dd')
   //       showOrHideDropDown(e, true, true, eventElmIcon, $(elm));
+  //       e.stopPropagation()
   //     } else {
+  //       console.log('about to close dd')
   //       showOrHideDropDown(e, false, false, eventElmIcon, $(elm));
+  //       e.stopPropagation()
   //     }
   //   });
   // });
-  bibleBooksContElm.delegate(bookDropDownBtnElm,'click',(e)=>{
-    // console.log(e.target.dataset.bookid)
-    console.log(e.target.hasClass === 'b_book_c_dd_btn')
-    console.log(e.target)
-    let eventElm = e.target;
-    let bookIdVal = e.target.dataset.bookid;
-    let eventElmIcon = $(eventElm).children()[1];
-    let bookContArr = Array.from($('.b_dd_chapter_cont'));
-    // console.log(bookContArr)
-    bookContArr.forEach((elm) => {
-      let elmBookId = elm.dataset.bookid;
-      // console.log(elmBookId)
-      if (bookIdVal === elmBookId) {
-        console.log('about to open dd')
-        showOrHideDropDown(e, true, true, eventElmIcon, $(elm));
-      } else {
-        console.log('about to close dd')
-        
-        showOrHideDropDown(e, false, false, eventElmIcon, $(elm));
+  $('.bible_book_navigation').on('click', (e) => {
+    console.log($(e.target))
+    // look for class name
+    // bookDropDownBtnElmCL
+    // bibleNavBtnElmID
+    // closeNaveBtnElmID
+    let eClass = e.target.className;
+    let eIdTag = e.target.id;
+      switch (eIdTag) {
+        // finding the Button clicks and running the open function
+        case bibleNavBtnElmID:
+          // main nav btn
+          e.stopPropagation();
+          console.log(bibleNavBtnElmID + ' Was asdf Clicked!')
+          showOrHideDropDown(e, false, true, false, bibleNavDdContElm);
+          closeNaveBtnElm.fadeIn();
+          closeNaveBtnElm.css({ display: "flex" });
+          break;
+          case closeNaveBtnElmID:
+          // close nav btn
+          e.stopPropagation();
+          console.log(closeNaveBtnElmID + ' Was Clicked!');
+          showOrHideDropDown(e, false, false, false, bibleNavDdContElm);
+          closeNaveBtnElm.fadeOut();
+          break;
+        case navMainTxtID:
+          e.stopPropagation();
+          console.log(navMainTxtID + ' Was Clicked!')
+         
+          break;
       }
-    });
-  } )
-
+  })
   // render
   renderNavigation(bibleData);
   // end
