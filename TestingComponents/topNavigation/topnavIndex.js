@@ -35,6 +35,7 @@ $(function () {
   const chapterContElm = $(".b_dd_cpts");
   const bibleBooksContElm = $(".b_nav_books_container");
   const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
+  const savedVerseContElm = $('.b_dd_saved_verses_cont');
   const bibleVersionPrevElm = $("#b_version_choice_prev");
   // get user global variables
   // set local variables to users pos
@@ -64,23 +65,38 @@ $(function () {
           ${favVerses ? '<h4 class="b_nav_titles">Favorite Verses</h4>' : ""}
           <!-- these will all be dynamically placed  up to 3 and then click to view more-->
           <!-- Favorite verse CONTAINER -->
-          <div class="b_dd_saved_verses_cont">
+          <div data-bookid="${bookId}" class="b_dd_saved_verses_cont">
             <!-- Favorite verse card - these will be added when the user likes a verse  -->
+           ${()=>{
+            if (activeUser.usersFavVerses.length >= 1) {
+              activeUser.usersFavVerses.map(fv => {
+                let findBookIdFromUser = fv.verse_ids.split('-')[2].toLowerCase();
+                let fvLoc = fv.verse_loc
+                let fvTxt = fv.verse_text
+                let fvId = fv.verse_ids
+                let fvShrData = fv.verse_share_data
+                if (findBookIdFromUser === contId.split('-')[2].toLowerCase()) {
+                  return renderSavedVerseCard(fvLoc,fvTxt,fvId,fvShrData)
+                }
+              })
+            }
+           }}
           </div>
         </div>
       </div>
     `;
   };
   // Create HTML the saved verse card
-  const renderSavedVerseCard = (book, chap, vSrt, vEnd, vTxt, vId) => {
+  const renderSavedVerseCard = (vLoc, vTxt, vId, vShrData) => {
     console.log("create saved verse card HTML");
+    // vId can be a single or array of ID's
     return `
             <div class="b_saved_verse_card">
-              <h5 class="">${book} ${chap}:${vSrt}${vEnd ? `-${vEnd}` : ""}</h4>
+              <h5 class="">${vLoc}</h4>
                 <p>${vTxt}</p>
                 <div class="svd_verse_footer">
-                  <i data-verseid="${vId}" class="fa fa-heart-o"></i>
-                  <svg data-shareid="${vId}" class="share_icon" xmlns="http://www.w3.org/2000/svg" width="15.318" height="15.318"
+                  <i data-verseid="${vId}" class="fa fa-heart-o svd_vc_heart svd_true"></i>
+                  <svg data-shareid="${vId}" data-shardata="${vShrData}" class="share_icon" xmlns="http://www.w3.org/2000/svg" width="15.318" height="15.318"
                     viewBox="0 0 15.318 15.318">
                     <g transform="translate(0.75 0.75)">
                       <path d="M6,18v5.527a1.584,1.584,0,0,0,1.727,1.382H18.091a1.584,1.584,0,0,0,1.727-1.382V18"
@@ -207,7 +223,27 @@ $(function () {
   const findAndCreateFavVerses = () => {
     // give color to verse heart icon class = .svd_true
     // for each favVerse find corrrect drop down
-    // add to drop down
+    // add to drop down savedVerseContElm
+    // svd_vc_heart gets added class svd_true
+    let contArr = Array.from(savedVerseContElm);
+    contArr.forEach(cont => {
+      let contId = cont.dataset.bookid;
+      if (activeUser.usersFavVerses.length >= 1) {
+        activeUser.usersFavVerses.map(fv => {
+          let findBookIdFromUser = fv.verse_ids.split('-')[2].toLowerCase();
+          let fvLoc = fv.verse_loc
+          let fvTxt = fv.verse_text
+          let fvId = fv.verse_ids
+          let fvShrData = fv.verse_share_data
+          if (findBookIdFromUser === contId.split('-')[2].toLowerCase()) {
+            $(cont).append(renderSavedVerseCard(fvLoc,
+              fvTxt,
+              fvId,
+              fvShrData))
+          }
+        })
+      }
+    })
   }
   // NAVIGATION actions
   // main drop down close function
