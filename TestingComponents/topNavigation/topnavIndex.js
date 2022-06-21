@@ -8,7 +8,15 @@ let activeUser = {
   imageUrl: "undefined",
   userName: "Username",
   userbiblePos: "esv-matt-1", // default
-  usersFavVerses: [],
+  usersFavVerses: [
+    {
+      verse_ids: ['esv-nt-matt-1-v1','esv-nt-matt-1-v2','esv-nt-matt-1-v3','esv-nt-matt-1-v4','esv-nt-matt-1-v5'],
+      verse_data: 'ESV: 2001 - 2022 Crossway',
+      verse_loc: 'Matthew 6:1-5',
+      verse_text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!',
+      verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
+    }
+  ],
 };
 $(function () {
   // Navigation drop down Buttons
@@ -28,39 +36,7 @@ $(function () {
   const bibleBooksContElm = $(".b_nav_books_container");
   const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
   const bibleVersionPrevElm = $("#b_version_choice_prev");
-  // global function
 
-  // main drop down close function
-  const showOrHideDropDown = (show, cont) => {
-    if (show) {
-      console.log("Open event");
-      cont.slideDown("fast");
-    } else if (!show) {
-      console.log("close event");
-      cont.slideUp("fast");
-    }
-  };
-  // toggle  for drop down containers
-  const toggleDropDown = (btnID, cont) => {
-    console.log("toggle event");
-    cont.slideToggle("fast");
-    btnID ? findAndRotateIcon(btnID) : "";
-  };
-  // find and rotate icon
-  function findAndRotateIcon(id) {
-    let iconArr = Array.from($(".drop_icon"));
-    iconArr.filter((iElm) => {
-      // first remove all rotate
-      if (iElm.dataset.ddbtnid === id) {
-        // console.log('add rotate')
-        $(iElm).hasClass("rotate_btnicon")
-          ? $(iElm).removeClass("rotate_btnicon")
-          : $(iElm).addClass("rotate_btnicon");
-      } else {
-        $(iElm).removeClass("rotate_btnicon");
-      }
-    });
-  }
   // HTML Creation
   // Create HTML the book drop down
   const createBookDropDownHtml = (bookName, bookId, favVerses, chapters) => {
@@ -75,8 +51,13 @@ $(function () {
         <div data-ddcontid="${bookId}" class="dark b_dd_chapter_cont">
           <h4 class="b_nav_titles">Chapters</h4>
           <div class="b_dd_cpts">
+          ${chapters.map(c => {
+      return `
+            <div data-chpid="${c.chapter_id}" class="chapter_box">${c.chapter}</div>
+            `
+    }).join('')}
           </div>
-          ${favVerses ? '<h4 class="b_nav_titles">Favorite Verses</h4>' : ""}
+          ${favVerses.length >= 1 ? '<h4 class="b_nav_titles">Favorite Verses</h4>' : ""}
           <!-- these will all be dynamically placed  up to 3 and then click to view more-->
           <!-- Favorite verse CONTAINER -->
           <div class="b_dd_saved_verses_cont">
@@ -121,42 +102,36 @@ $(function () {
   // create HTML bible version choices
   const createBibleVersionChoicesHtml = (bId, bVersion, bibleInfo) => {
     return `
-      <div class="font_list_item" data-bibleversion="${bId}">${bVersion}: ${bibleInfo}</div>
+      <div class="font_list_item" data-bibleversion="${bId}">${bVersion.toUpperCase()}: ${bibleInfo}</div>
     `;
   };
-  // parse out users position
-  // this might be a function for the user.js
-  // render User pos it on nav 
-  // and render navigation
-  const findUsersPosition = (bv, bk, ch) => {
-    // set local variables to users pos
-    bv = activeUser.userbiblePos.split("-")[0];
-    bk = activeUser.userbiblePos.split("-")[1];
-    ch = activeUser.userbiblePos.split("-")[2];
+
+  // New Load User and render Function
+  const newRenderAndLoadNavigation = (bv, bk, ch, bData) => {
+    let bibleVersion = bData.bible_type;
+    console.log(bibleVersion)
+    let booksArr = bData.books;
+    let bookId = bData.book_id;
+    let bookYear = bData.bible_year;
+    let bookChapterNum = booksArr.length;
+    // bData comes in as bibles[0] or what ever version the use has chose
     // goal is to set loaded text for the bible version, book and chapter
     // set main text for nav as well
     navMainTxt.text(`${bv.toUpperCase()} | ${findFullName(bk)}: ${ch}`);
-    // set bible version choice text
-    setBibleVersionChoice(bv);
+    // set current bible version choice text
+    setBibleVersionChoice(bv, bookYear);
+    // render Book Drop downs
+    // ------ render saved verses if any
+    // this function also renders the chapter numbers for each book
+    renderBooks(booksArr);
+    // set active chapter
+    setActivChapter()
+  }
 
-    // set active chapter css
-    // load and render navigation
-    loadAndRenderBible(bv)
-  };
   // find bible choice info and set choice
-  const setBibleVersionChoice = (version) => {
+  const setBibleVersionChoice = (version, info) => {
     // find version in data and set p tag
-    console.log(bibleData);
-    let bv;
-    let info;
-    bibleData.bibles.map((b) => {
-      bv = b.bible_type.toLowerCase();
-      console.log(`loading bible version ${version} ffrom bData = ${bv}`);
-      if (bv === version) {
-        info = b.bible_year;
-      }
-    });
-    bibleVersionPrevElm.text(`${bv.toUpperCase()}: ${info}`);
+    bibleVersionPrevElm.text(`${version.toUpperCase()}: ${info}`);
   };
   // find Full name
   const findFullName = (name) => {
@@ -178,36 +153,12 @@ $(function () {
     return l;
   };
   // render navigation on users preloaded choices
-  const renderNavigationHtml = (bData) => {
-    console.log("renderNavigationHtml " + bData);
-    // console.log("loadNavigation");
-    // load user data and set navigation
-    let bibleVersion;
-    let bookPos; // depends on active chapter
-    let chapterPos;
-    findUsersPosition(bibleVersion, bookPos, chapterPos);
-    // first we need to render the choices for the bible version drop down
-
+  const renderBibleVersionChoices = (b_id, b_type, b_year) => {
     bibleVersionsSelctContElm.append(
-      createBibleVersionChoicesHtml(
-        bData.bible_id,
-        bData.bible_type,
-        bData.bible_year
-      )
+      createBibleVersionChoicesHtml(b_id, b_type, b_year)
     );
-
-    //render the books
-    renderBooksAndChapters(bData);
   };
 
-  // render books and chapters for navigation
-  const renderBooksAndChapters = (bData) => {
-    console.log("renderBooksAndChapters " + bData);
-    // this is all based on the bible type the user chooses
-    // if user chooses ESV then load from that bible etc.
-    let booksArr = bData.books;
-    renderBooks(booksArr);
-  };
   // render books
   const renderBooks = (bArr) => {
     console.log("renderBooks " + bArr);
@@ -219,24 +170,49 @@ $(function () {
       bookChapters = b.chapters;
       bName = b.book_name;
       bId = b.book_id;
+      bibleBooksContElm.append(
+        createBookDropDownHtml(bName, bId, favVerses, bookChapters)
+      );
     });
-    renderChapters(bookChapters);
-    bibleBooksContElm.append(
-      createBookDropDownHtml(bName, bId, favVerses, bookChapters)
-    );
   };
-  // render chapters
-  const renderChapters = (cArr) => {
-    let cId;
-    let cNum;
-    cArr.forEach((c) => {
-      cId = c.chapter_id;
-      cNum = c.chapter;
+  // render active chapter
+  const setActivChapter = () => {
+    // need users pos for book and chapter
+    // filter through all chapter elms inside current book DD
+    console.log('setting active chapter')
+  }
+  // NAVIGATION actions
+  // main drop down close function
+  const showOrHideDropDown = (show, cont) => {
+    if (show) {
+      console.log("Open event");
+      cont.slideDown("fast");
+    } else if (!show) {
+      console.log("close event");
+      cont.slideUp("fast");
+    }
+  };
+  // toggle  for drop down containers
+  const toggleDropDown = (btnID, cont) => {
+    console.log("toggle event");
+    cont.slideToggle("fast");
+    btnID ? findAndRotateIcon(btnID) : "";
+  };
+  // find and rotate icon
+  function findAndRotateIcon(id) {
+    let iconArr = Array.from($(".drop_icon"));
+    iconArr.filter((iElm) => {
+      // first remove all rotate
+      if (iElm.dataset.ddbtnid === id) {
+        // console.log('add rotate')
+        $(iElm).hasClass("rotate_btnicon")
+          ? $(iElm).removeClass("rotate_btnicon")
+          : $(iElm).addClass("rotate_btnicon");
+      } else {
+        $(iElm).removeClass("rotate_btnicon");
+      }
     });
-    chapterContElm.append(createChapterBoxElmHtml(cId, cNum));
   };
-
-  // actions
   // drop down handlers
   $(".bible_book_navigation").on("click", (e) => {
     // this function checks for all the type of drop down buttons
@@ -285,15 +261,27 @@ $(function () {
     }
   });
   // render
-  const loadAndRenderBible = (userPos) => {
+  const loadAndRenderBible = (user) => {
+    // set local variables to users pos
+    let userBv = user.userbiblePos.split("-")[0];
+    let userBk = user.userbiblePos.split("-")[1];
+    let userCh = user.userbiblePos.split("-")[2];
+
     bibleData.bibles.map((b) => {
-      let bibleType = b.bible_type.toLowerCase()
-      if (bibleType !== userPos) {
+      let bibleVersion = b.bible_type.toLowerCase();
+      let bookId = b.bible_id;
+      let bookYear = b.bible_year;
+      // render choices
+      renderBibleVersionChoices(bookId, bibleVersion, bookYear)
+      if (bibleVersion !== userBv.toLowerCase()) {
         return;
       } else {
-        renderNavigationHtml(b);
+        console.log(`user pos: ${userBv.toLowerCase()} --- found bible Type: ${bibleVersion}`)
+        newRenderAndLoadNavigation(userBv, userBk, userCh, b)
       }
     });
   };
+  // START
+  loadAndRenderBible(activeUser)
   // end
 });
