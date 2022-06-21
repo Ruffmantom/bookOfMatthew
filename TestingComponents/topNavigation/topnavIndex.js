@@ -11,30 +11,23 @@ let activeUser = {
   usersFavVerses: [],
 };
 $(function () {
-  // state
-  let checkRenderedNav = false;
   // Navigation drop down Buttons
   //const bibleNavBtnElm = $("#b_nav_btn");
   //const bookDropDownBtnElm = $(".b_book_c_dd_btn"); // there are multiple and will be dynamically added on app load
   const bibleNavBtnElmID = "b_nav_btn";
-  const bookDropDownBtnBtn = $("b_book_c_dd_btn"); // there are multiple and will be dynamically added on app load
   const bookDropDownBtnElmID = "b_book_c_dd_btn";
   const closeNaveBtnElm = $(".nav_close_btn");
   const closeNaveBtnElmID = "close_nav_btn";
-  const bibleVersionBtnElm = $("#close_bv_dd_btn");
   const bibleVersionBtnId = "close_bv_dd_btn";
   // Navigation drop down content containers
   // nav drop down
   const bibleNavDdContElm = $(".b_nav_dd_cont");
-  // nav book drop down
-  const bibleBookDdContElm = $(".b_dd_chapter_cont");
   // navigation rendering
   const navMainTxt = $("#nav_prev_text");
-  const navMainTxtID = "nav_prev_text";
   const chapterContElm = $(".b_dd_cpts");
-  const savedVersesContElm = $(".b_dd_saved_verses_cont");
   const bibleBooksContElm = $(".b_nav_books_container");
   const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
+  const bibleVersionPrevElm = $("#b_version_choice_prev");
   // global function
 
   // main drop down close function
@@ -70,7 +63,8 @@ $(function () {
   }
   // HTML Creation
   // Create HTML the book drop down
-  const createBookDropDownHtml = (bookName, bookId, favVerses) => {
+  const createBookDropDownHtml = (bookName, bookId, favVerses, chapters) => {
+    console.log("create book dd HTML");
     return `
       <div class="dark b_book_dd_cont">
         <div  data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
@@ -90,10 +84,11 @@ $(function () {
           </div>
         </div>
       </div>
-  `;
+    `;
   };
   // Create HTML the saved verse card
   const renderSavedVerseCard = (book, chap, vSrt, vEnd, vTxt, vId) => {
+    console.log("create saved verse card HTML");
     return `
             <div class="b_saved_verse_card">
               <h5 class="">${book} ${chap}:${vSrt}${vEnd ? `-${vEnd}` : ""}</h4>
@@ -114,24 +109,25 @@ $(function () {
                   </svg>
                 </div>
             </div>
-  `;
+    `;
   };
   // create HTML chapter box
   const createChapterBoxElmHtml = (cId, chapterNum) => {
+    console.log("create chapter dd HTML");
     return `
-  <div data-chpid="${cId}" class="chapter_box">${chapterNum}</div>
-  `;
+      <div data-chpid="${cId}" class="chapter_box">${chapterNum}</div>
+    `;
   };
   // create HTML bible version choices
   const createBibleVersionChoicesHtml = (bId, bVersion, bibleInfo) => {
     return `
-  <div class="font_list_item" data-bibleversion="${bId}">${bVersion}: ${bibleInfo}</div>
-  `;
+      <div class="font_list_item" data-bibleversion="${bId}">${bVersion}: ${bibleInfo}</div>
+    `;
   };
   // parse out users position
   // this might be a function for the user.js
-
-  // render User pos it on nav
+  // render User pos it on nav 
+  // and render navigation
   const findUsersPosition = (bv, bk, ch) => {
     // set local variables to users pos
     bv = activeUser.userbiblePos.split("-")[0];
@@ -139,14 +135,51 @@ $(function () {
     ch = activeUser.userbiblePos.split("-")[2];
     // goal is to set loaded text for the bible version, book and chapter
     // set main text for nav as well
-    navMainTxt.text(`${bv.toUpperCase()} | ${bk.charAt(0).toUpperCase() + bk.slice(1)}: ${ch}`);
+    navMainTxt.text(`${bv.toUpperCase()} | ${findFullName(bk)}: ${ch}`);
     // set bible version choice text
-    
+    setBibleVersionChoice(bv);
+
     // set active chapter css
+    // load and render navigation
+    loadAndRenderBible(bv)
+  };
+  // find bible choice info and set choice
+  const setBibleVersionChoice = (version) => {
+    // find version in data and set p tag
+    console.log(bibleData);
+    let bv;
+    let info;
+    bibleData.bibles.map((b) => {
+      bv = b.bible_type.toLowerCase();
+      console.log(`loading bible version ${version} ffrom bData = ${bv}`);
+      if (bv === version) {
+        info = b.bible_year;
+      }
+    });
+    bibleVersionPrevElm.text(`${bv.toUpperCase()}: ${info}`);
+  };
+  // find Full name
+  const findFullName = (name) => {
+    let l;
+    switch (name) {
+      case "matt":
+        l = "Matthew";
+        break;
+      case "mark":
+        l = "Mark";
+        break;
+      case "luke":
+        l = "Luke";
+        break;
+      default:
+        "John";
+        break;
+    }
+    return l;
   };
   // render navigation on users preloaded choices
   const renderNavigationHtml = (bData) => {
-    // console.log(bData);
+    console.log("renderNavigationHtml " + bData);
     // console.log("loadNavigation");
     // load user data and set navigation
     let bibleVersion;
@@ -154,48 +187,53 @@ $(function () {
     let chapterPos;
     findUsersPosition(bibleVersion, bookPos, chapterPos);
     // first we need to render the choices for the bible version drop down
-    bData.bibles.forEach((bible) => {
-      bibleVersionsSelctContElm.append(
-        createBibleVersionChoicesHtml(
-          bible.bible_id,
-          bible.bible_type,
-          bible.bible_year
-        )
-      );
-    });
+
+    bibleVersionsSelctContElm.append(
+      createBibleVersionChoicesHtml(
+        bData.bible_id,
+        bData.bible_type,
+        bData.bible_year
+      )
+    );
+
     //render the books
-    try {
-      renderBooksAndChapters("b_esv", bData);
-      checkRenderedNav = true;
-    } catch (error) {
-      console.log("error loading data");
-    }
+    renderBooksAndChapters(bData);
   };
 
   // render books and chapters for navigation
-  const renderBooksAndChapters = (bibleVersionId, bData) => {
+  const renderBooksAndChapters = (bData) => {
+    console.log("renderBooksAndChapters " + bData);
     // this is all based on the bible type the user chooses
     // if user chooses ESV then load from that bible etc.
-    bData.bibles.map((b) => {
-      if (b.bible_id === bibleVersionId) {
-        // render books and chapters
-        let booksArr = b.books;
-        renderBooks(booksArr);
-      }
-    });
+    let booksArr = bData.books;
+    renderBooks(booksArr);
   };
   // render books
   const renderBooks = (bArr) => {
+    console.log("renderBooks " + bArr);
+    let bookChapters;
+    let favVerses = activeUser.usersFavVerses;
+    let bName;
+    let bId;
     bArr.forEach((b) => {
-      let bookChapters = b.chapters;
-      bibleBooksContElm.append(createBookDropDownHtml(b.book_name, b.book_id));
-      renderChapters(bookChapters);
+      bookChapters = b.chapters;
+      bName = b.book_name;
+      bId = b.book_id;
     });
+    renderChapters(bookChapters);
+    bibleBooksContElm.append(
+      createBookDropDownHtml(bName, bId, favVerses, bookChapters)
+    );
   };
+  // render chapters
   const renderChapters = (cArr) => {
+    let cId;
+    let cNum;
     cArr.forEach((c) => {
-      $(".b_dd_cpts").append(createChapterBoxElmHtml(c.chapter_id, c.chapter));
+      cId = c.chapter_id;
+      cNum = c.chapter;
     });
+    chapterContElm.append(createChapterBoxElmHtml(cId, cNum));
   };
 
   // actions
@@ -247,6 +285,15 @@ $(function () {
     }
   });
   // render
-  renderNavigationHtml(bibleData);
+  const loadAndRenderBible = (userPos) => {
+    bibleData.bibles.map((b) => {
+      let bibleType = b.bible_type.toLowerCase()
+      if (bibleType !== userPos) {
+        return;
+      } else {
+        renderNavigationHtml(b);
+      }
+    });
+  };
   // end
 });
