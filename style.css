@@ -139,6 +139,10 @@ span {
 .svd_verse_footer>i{
   padding-right: 15px;
 }
+/* for saved verses color #00fbff */
+.svd_true{
+  color: #00fbff;
+}
 .open {
   position: absolute;
   z-index: 9999;

@@ -10,7 +10,7 @@ let activeUser = {
   userbiblePos: "esv-matt-1", // default
   usersFavVerses: [
     {
-      verse_ids: ['esv-nt-matt-1-v1','esv-nt-matt-1-v2','esv-nt-matt-1-v3','esv-nt-matt-1-v4','esv-nt-matt-1-v5'],
+      verse_ids: ['esv-nt-matt-1-v1', 'esv-nt-matt-1-v2', 'esv-nt-matt-1-v3', 'esv-nt-matt-1-v4', 'esv-nt-matt-1-v5'],
       verse_data: 'ESV: 2001 - 2022 Crossway',
       verse_loc: 'Matthew 6:1-5',
       verse_text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!',
@@ -36,7 +36,11 @@ $(function () {
   const bibleBooksContElm = $(".b_nav_books_container");
   const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
   const bibleVersionPrevElm = $("#b_version_choice_prev");
-
+  // get user global variables
+  // set local variables to users pos
+  let userBv = activeUser.userbiblePos.split("-")[0];
+  let userBk = activeUser.userbiblePos.split("-")[1];
+  let userCh = activeUser.userbiblePos.split("-")[2];
   // HTML Creation
   // Create HTML the book drop down
   const createBookDropDownHtml = (bookName, bookId, favVerses, chapters) => {
@@ -57,7 +61,7 @@ $(function () {
             `
     }).join('')}
           </div>
-          ${favVerses.length >= 1 ? '<h4 class="b_nav_titles">Favorite Verses</h4>' : ""}
+          ${favVerses ? '<h4 class="b_nav_titles">Favorite Verses</h4>' : ""}
           <!-- these will all be dynamically placed  up to 3 and then click to view more-->
           <!-- Favorite verse CONTAINER -->
           <div class="b_dd_saved_verses_cont">
@@ -92,13 +96,6 @@ $(function () {
             </div>
     `;
   };
-  // create HTML chapter box
-  const createChapterBoxElmHtml = (cId, chapterNum) => {
-    console.log("create chapter dd HTML");
-    return `
-      <div data-chpid="${cId}" class="chapter_box">${chapterNum}</div>
-    `;
-  };
   // create HTML bible version choices
   const createBibleVersionChoicesHtml = (bId, bVersion, bibleInfo) => {
     return `
@@ -109,23 +106,22 @@ $(function () {
   // New Load User and render Function
   const newRenderAndLoadNavigation = (bv, bk, ch, bData) => {
     let bibleVersion = bData.bible_type;
-    console.log(bibleVersion)
-    let booksArr = bData.books;
-    let bookId = bData.book_id;
-    let bookYear = bData.bible_year;
-    let bookChapterNum = booksArr.length;
-    // bData comes in as bibles[0] or what ever version the use has chose
-    // goal is to set loaded text for the bible version, book and chapter
+    let bibleId = bData.book_id;
+    let bibleYear = bData.bible_year;
+    let bibleBooksArr = bData.books;
+    let bookChapterNum = bibleBooksArr.length;
     // set main text for nav as well
     navMainTxt.text(`${bv.toUpperCase()} | ${findFullName(bk)}: ${ch}`);
     // set current bible version choice text
-    setBibleVersionChoice(bv, bookYear);
+    setBibleVersionChoice(bv, bibleYear);
     // render Book Drop downs
     // ------ render saved verses if any
     // this function also renders the chapter numbers for each book
-    renderBooks(booksArr);
+    renderBooks(bibleBooksArr);
     // set active chapter
     setActivChapter()
+    // render and load favorite verses
+    findAndCreateFavVerses()
   }
 
   // find bible choice info and set choice
@@ -163,13 +159,14 @@ $(function () {
   const renderBooks = (bArr) => {
     console.log("renderBooks " + bArr);
     let bookChapters;
-    let favVerses = activeUser.usersFavVerses;
+    // let favVerses = activeUser.usersFavVerses.length >= 1;
     let bName;
     let bId;
     bArr.forEach((b) => {
       bookChapters = b.chapters;
       bName = b.book_name;
       bId = b.book_id;
+      let favVerses = findSavedVerses(bId.split('-')[2]);
       bibleBooksContElm.append(
         createBookDropDownHtml(bName, bId, favVerses, bookChapters)
       );
@@ -178,8 +175,39 @@ $(function () {
   // render active chapter
   const setActivChapter = () => {
     // need users pos for book and chapter
-    // filter through all chapter elms inside current book DD
-    console.log('setting active chapter')
+    let findUserCurrChId = userBk + "-" + userCh;
+    // ex of chapterbtn_ID: esv-nt-matt-1
+    let chapterBtnArr = Array.from($('.chapter_box'));
+    chapterBtnArr.forEach(c => {
+      let cId = c.dataset.chpid.split('-');
+      let findId = `${cId[2]}-${cId[3]}`;
+      if (findId === findUserCurrChId) {
+        $(c).addClass('cb_active')
+      } else {
+        $(c).removeClass('cb_active')
+      }
+    })
+  }
+  // return true if there are saved verses for that drop down
+  const findSavedVerses = (ddId) => {
+    let isInBook = false;
+    activeUser.usersFavVerses.map(fv => {
+      let fvId = fv.verse_ids[0];
+      // book drop down
+      // verse Id ex: esv-nt-matt-1-v1
+      let findBook = fvId.split('-')[2].toLowerCase()
+      if (findBook === ddId.toLowerCase()) {
+        console.log(true)
+        isInBook = true
+      }
+    })
+    return isInBook;
+  }
+  // create the fav verses cards
+  const findAndCreateFavVerses = () => {
+    // give color to verse heart icon class = .svd_true
+    // for each favVerse find corrrect drop down
+    // add to drop down
   }
   // NAVIGATION actions
   // main drop down close function
@@ -261,12 +289,7 @@ $(function () {
     }
   });
   // render
-  const loadAndRenderBible = (user) => {
-    // set local variables to users pos
-    let userBv = user.userbiblePos.split("-")[0];
-    let userBk = user.userbiblePos.split("-")[1];
-    let userCh = user.userbiblePos.split("-")[2];
-
+  const loadAndRenderBible = () => {
     bibleData.bibles.map((b) => {
       let bibleVersion = b.bible_type.toLowerCase();
       let bookId = b.bible_id;
