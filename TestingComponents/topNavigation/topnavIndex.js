@@ -7,9 +7,9 @@ let activeUser = {
   verseFontSize: "16",
   imageUrl: "undefined",
   userName: "Username",
-  userbibleState: "esv-matt-1", // default
-  usersFavVerses: []
-}
+  userbiblePos: "esv-matt-1", // default
+  usersFavVerses: [],
+};
 $(function () {
   // state
   let checkRenderedNav = false;
@@ -21,8 +21,8 @@ $(function () {
   const bookDropDownBtnElmID = "b_book_c_dd_btn";
   const closeNaveBtnElm = $(".nav_close_btn");
   const closeNaveBtnElmID = "close_nav_btn";
-  const bibleVersionBtnElm = $('#close_bv_dd_btn');
-  const bibleVersionBtnId = 'close_bv_dd_btn';
+  const bibleVersionBtnElm = $("#close_bv_dd_btn");
+  const bibleVersionBtnId = "close_bv_dd_btn";
   // Navigation drop down content containers
   // nav drop down
   const bibleNavDdContElm = $(".b_nav_dd_cont");
@@ -34,41 +34,43 @@ $(function () {
   const chapterContElm = $(".b_dd_cpts");
   const savedVersesContElm = $(".b_dd_saved_verses_cont");
   const bibleBooksContElm = $(".b_nav_books_container");
-  const bibleVersionsSelctContElm = $('#b_version_choice_dd_cont')
+  const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
   // global function
 
   // main drop down close function
   const showOrHideDropDown = (show, cont) => {
     if (show) {
-      console.log('Open event')
+      console.log("Open event");
       cont.slideDown("fast");
     } else if (!show) {
-      console.log('close event')
+      console.log("close event");
       cont.slideUp("fast");
     }
   };
   // toggle  for drop down containers
   const toggleDropDown = (btnID, cont) => {
-    console.log('toggle event');
+    console.log("toggle event");
     cont.slideToggle("fast");
     btnID ? findAndRotateIcon(btnID) : "";
-  }
+  };
   // find and rotate icon
   function findAndRotateIcon(id) {
-    let iconArr = Array.from($('.drop_icon'))
-    iconArr.filter(iElm => {
+    let iconArr = Array.from($(".drop_icon"));
+    iconArr.filter((iElm) => {
       // first remove all rotate
       if (iElm.dataset.ddbtnid === id) {
         // console.log('add rotate')
-        $(iElm).hasClass('rotate_btnicon') ? $(iElm).removeClass('rotate_btnicon') : $(iElm).addClass('rotate_btnicon')
-      }else{
-        $(iElm).removeClass('rotate_btnicon')
+        $(iElm).hasClass("rotate_btnicon")
+          ? $(iElm).removeClass("rotate_btnicon")
+          : $(iElm).addClass("rotate_btnicon");
+      } else {
+        $(iElm).removeClass("rotate_btnicon");
       }
-    })
+    });
   }
   // HTML Creation
   // Create HTML the book drop down
-  const createBookDropDownHtml = (bookName, bookId) => {
+  const createBookDropDownHtml = (bookName, bookId, favVerses) => {
     return `
       <div class="dark b_book_dd_cont">
         <div  data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
@@ -80,7 +82,7 @@ $(function () {
           <h4 class="b_nav_titles">Chapters</h4>
           <div class="b_dd_cpts">
           </div>
-          <h4 class="b_nav_titles">Favorite Verses</h4>
+          ${favVerses ? '<h4 class="b_nav_titles">Favorite Verses</h4>' : ""}
           <!-- these will all be dynamically placed  up to 3 and then click to view more-->
           <!-- Favorite verse CONTAINER -->
           <div class="b_dd_saved_verses_cont">
@@ -126,13 +128,31 @@ $(function () {
   <div class="font_list_item" data-bibleversion="${bId}">${bVersion}: ${bibleInfo}</div>
   `;
   };
+  // parse out users position
+  // this might be a function for the user.js
 
+  // render User pos it on nav
+  const findUsersPosition = (bv, bk, ch) => {
+    // set local variables to users pos
+    bv = activeUser.userbiblePos.split("-")[0];
+    bk = activeUser.userbiblePos.split("-")[1];
+    ch = activeUser.userbiblePos.split("-")[2];
+    // goal is to set loaded text for the bible version, book and chapter
+    // set main text for nav as well
+    navMainTxt.text(`${bv.toUpperCase()} | ${bk.charAt(0).toUpperCase() + bk.slice(1)}: ${ch}`);
+    // set bible version choice text
+    
+    // set active chapter css
+  };
   // render navigation on users preloaded choices
   const renderNavigationHtml = (bData) => {
     // console.log(bData);
     // console.log("loadNavigation");
     // load user data and set navigation
-    navMainTxt.text(`ESV | Matthew 1`);
+    let bibleVersion;
+    let bookPos; // depends on active chapter
+    let chapterPos;
+    findUsersPosition(bibleVersion, bookPos, chapterPos);
     // first we need to render the choices for the bible version drop down
     bData.bibles.forEach((bible) => {
       bibleVersionsSelctContElm.append(
@@ -180,7 +200,7 @@ $(function () {
 
   // actions
   // drop down handlers
-  $('.bible_book_navigation').on('click', (e) => {
+  $(".bible_book_navigation").on("click", (e) => {
     // this function checks for all the type of drop down buttons
     // Navigation, Bible version, and Book drop down
     let eIdTag = e.target.id;
@@ -205,27 +225,27 @@ $(function () {
       case bibleVersionBtnId:
         // Bible DD version drop down
         e.stopPropagation();
-        toggleDropDown(ddValId, bibleVersionsSelctContElm)
+        toggleDropDown(ddValId, bibleVersionsSelctContElm);
         break;
       case bookDropDownBtnElmID:
         // Book DD btn (atleast 4 with the same ID)
         e.stopPropagation();
         // console.log(bookDropDownBtnElmID + ' Was Clicked! With book id: ' + bookVal)
-        let bookContArr = Array.from($('.b_dd_chapter_cont'));
+        let bookContArr = Array.from($(".b_dd_chapter_cont"));
         // console.log(bookContArr)
         bookContArr.forEach((elm) => {
           let elmBookId = elm.dataset.ddcontid;
           // console.log(elmBookId)
           if (ddValId === elmBookId) {
-            console.log('about to open dd')
-            toggleDropDown(elmBookId, $(elm))
+            console.log("about to open dd");
+            toggleDropDown(elmBookId, $(elm));
           } else {
-            showOrHideDropDown(false, $(elm))
+            showOrHideDropDown(false, $(elm));
           }
         });
         break;
     }
-  })
+  });
   // render
   renderNavigationHtml(bibleData);
   // end
