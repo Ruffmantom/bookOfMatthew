@@ -396,6 +396,136 @@ const bibleData = {
                 },
               ],
             },
+            {
+              chapter: "3",
+              chapter_id: "esv-nt-matt-3",
+              verses: []
+            },
+            {
+              chapter: "4",
+              chapter_id: "esv-nt-matt-4",
+              verses: []
+            },
+            {
+              chapter: "5",
+              chapter_id: "esv-nt-matt-5",
+              verses: []
+            },
+            {
+              chapter: "6",
+              chapter_id: "esv-nt-matt-6",
+              verses: []
+            },
+            {
+              chapter: "7",
+              chapter_id: "esv-nt-matt-7",
+              verses: []
+            },
+            {
+              chapter: "8",
+              chapter_id: "esv-nt-matt-8",
+              verses: []
+            },
+            {
+              chapter: "9",
+              chapter_id: "esv-nt-matt-9",
+              verses: []
+            },
+            {
+              chapter: "10",
+              chapter_id: "esv-nt-matt-10",
+              verses: []
+            },
+            {
+              chapter: "11",
+              chapter_id: "esv-nt-matt-11",
+              verses: []
+            },
+            {
+              chapter: "12",
+              chapter_id: "esv-nt-matt-12",
+              verses: []
+            },
+            {
+              chapter: "13",
+              chapter_id: "esv-nt-matt-13",
+              verses: []
+            },
+            {
+              chapter: "14",
+              chapter_id: "esv-nt-matt-14",
+              verses: []
+            },
+            {
+              chapter: "15",
+              chapter_id: "esv-nt-matt-15",
+              verses: []
+            },
+            {
+              chapter: "16",
+              chapter_id: "esv-nt-matt-16",
+              verses: []
+            },
+            {
+              chapter: "17",
+              chapter_id: "esv-nt-matt-17",
+              verses: []
+            },
+            {
+              chapter: "18",
+              chapter_id: "esv-nt-matt-18",
+              verses: []
+            },
+            {
+              chapter: "19",
+              chapter_id: "esv-nt-matt-19",
+              verses: []
+            },
+            {
+              chapter: "20",
+              chapter_id: "esv-nt-matt-20",
+              verses: []
+            },
+            {
+              chapter: "21",
+              chapter_id: "esv-nt-matt-21",
+              verses: []
+            },
+           {
+              chapter: "22",
+              chapter_id: "esv-nt-matt-22",
+              verses: []
+            },
+            {
+              chapter: "23",
+              chapter_id: "esv-nt-matt-23",
+              verses: []
+            },
+            {
+              chapter: "24",
+              chapter_id: "esv-nt-matt-24",
+              verses: []
+            },
+            {
+              chapter: "25",
+              chapter_id: "esv-nt-matt-25",
+              verses: []
+            },
+            {
+              chapter: "26",
+              chapter_id: "esv-nt-matt-26",
+              verses: []
+            },
+            {
+              chapter: "27",
+              chapter_id: "esv-nt-matt-27",
+              verses: []
+            },
+            {
+              chapter: "28",
+              chapter_id: "esv-nt-matt-28",
+              verses: []
+            }
           ],
         },
         // adding another book for testing

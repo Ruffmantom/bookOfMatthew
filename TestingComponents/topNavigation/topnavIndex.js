@@ -44,7 +44,7 @@ $(function () {
   let userCh = activeUser.userbiblePos.split("-")[2];
   // HTML Creation
   // Create HTML the book drop down
-  const createBookDropDownHtml = (bookName, bookId, favVerses, chapters) => {
+  const createBookDropDownHtml = (bookName, bookId, favVerses,favVArr, chapters) => {
     console.log("create book dd HTML");
     return `
       <div class="dark b_book_dd_cont">
@@ -67,20 +67,9 @@ $(function () {
           <!-- Favorite verse CONTAINER -->
           <div data-bookid="${bookId}" class="b_dd_saved_verses_cont">
             <!-- Favorite verse card - these will be added when the user likes a verse  -->
-           ${()=>{
-            if (activeUser.usersFavVerses.length >= 1) {
-              activeUser.usersFavVerses.map(fv => {
-                let findBookIdFromUser = fv.verse_ids.split('-')[2].toLowerCase();
-                let fvLoc = fv.verse_loc
-                let fvTxt = fv.verse_text
-                let fvId = fv.verse_ids
-                let fvShrData = fv.verse_share_data
-                if (findBookIdFromUser === contId.split('-')[2].toLowerCase()) {
-                  return renderSavedVerseCard(fvLoc,fvTxt,fvId,fvShrData)
-                }
-              })
-            }
-           }}
+           ${favVArr.length >=1? favVArr.map(fv=>{
+            return renderSavedVerseCard(fv.verse_loc,fv.verse_text,fv.verse_ids,fv.verse_share_data)
+           }): ''}
           </div>
         </div>
       </div>
@@ -89,13 +78,14 @@ $(function () {
   // Create HTML the saved verse card
   const renderSavedVerseCard = (vLoc, vTxt, vId, vShrData) => {
     console.log("create saved verse card HTML");
+    console.log(`${vLoc} - ${vTxt} - ${vId} - ${vShrData}`);
     // vId can be a single or array of ID's
     return `
             <div class="b_saved_verse_card">
               <h5 class="">${vLoc}</h4>
                 <p>${vTxt}</p>
                 <div class="svd_verse_footer">
-                  <i data-verseid="${vId}" class="fa fa-heart-o svd_vc_heart svd_true"></i>
+                  <i data-verseid="${vId}" class="fa fa-heart svd_vc_heart svd_true"></i>
                   <svg data-shareid="${vId}" data-shardata="${vShrData}" class="share_icon" xmlns="http://www.w3.org/2000/svg" width="15.318" height="15.318"
                     viewBox="0 0 15.318 15.318">
                     <g transform="translate(0.75 0.75)">
@@ -136,8 +126,6 @@ $(function () {
     renderBooks(bibleBooksArr);
     // set active chapter
     setActivChapter()
-    // render and load favorite verses
-    findAndCreateFavVerses()
   }
 
   // find bible choice info and set choice
@@ -173,7 +161,7 @@ $(function () {
 
   // render books
   const renderBooks = (bArr) => {
-    console.log("renderBooks " + bArr);
+    // console.log("renderBooks " + bArr);
     let bookChapters;
     // let favVerses = activeUser.usersFavVerses.length >= 1;
     let bName;
@@ -184,7 +172,7 @@ $(function () {
       bId = b.book_id;
       let favVerses = findSavedVerses(bId.split('-')[2]);
       bibleBooksContElm.append(
-        createBookDropDownHtml(bName, bId, favVerses, bookChapters)
+        createBookDropDownHtml(bName, bId, favVerses,favVerses? findAndGetFavVerses(bId):'', bookChapters)
       );
     });
   };
@@ -213,37 +201,29 @@ $(function () {
       // verse Id ex: esv-nt-matt-1-v1
       let findBook = fvId.split('-')[2].toLowerCase()
       if (findBook === ddId.toLowerCase()) {
-        console.log(true)
+        // console.log(true)
         isInBook = true
       }
     })
     return isInBook;
   }
   // create the fav verses cards
-  const findAndCreateFavVerses = () => {
-    // give color to verse heart icon class = .svd_true
-    // for each favVerse find corrrect drop down
-    // add to drop down savedVerseContElm
-    // svd_vc_heart gets added class svd_true
-    let contArr = Array.from(savedVerseContElm);
-    contArr.forEach(cont => {
-      let contId = cont.dataset.bookid;
-      if (activeUser.usersFavVerses.length >= 1) {
-        activeUser.usersFavVerses.map(fv => {
-          let findBookIdFromUser = fv.verse_ids.split('-')[2].toLowerCase();
-          let fvLoc = fv.verse_loc
-          let fvTxt = fv.verse_text
-          let fvId = fv.verse_ids
-          let fvShrData = fv.verse_share_data
-          if (findBookIdFromUser === contId.split('-')[2].toLowerCase()) {
-            $(cont).append(renderSavedVerseCard(fvLoc,
-              fvTxt,
-              fvId,
-              fvShrData))
-          }
-        })
+  const findAndGetFavVerses = (contId) => {
+    // console.log('about to sort fav verses to create cards')
+    let favVArr = [];
+    activeUser.usersFavVerses.map(fv => {
+      let fvId = fv.verse_ids[0];
+      // book drop down
+      // verse Id ex: esv-nt-matt-1-v1 example of book id esv-nt-matt
+      let favVerseBookId = fvId.split('-');
+      let findFavsId = `${favVerseBookId[0]}-${favVerseBookId[1]}-${favVerseBookId[2]}`
+      // console.log(contId+" - "+findFavsId)   
+      if (findFavsId === contId.toLowerCase()) {
+       favVArr.push(fv)
       }
     })
+    console.log(favVArr)
+    return favVArr;
   }
   // NAVIGATION actions
   // main drop down close function
@@ -335,7 +315,7 @@ $(function () {
       if (bibleVersion !== userBv.toLowerCase()) {
         return;
       } else {
-        console.log(`user pos: ${userBv.toLowerCase()} --- found bible Type: ${bibleVersion}`)
+        // console.log(`user pos: ${userBv.toLowerCase()} --- found bible Type: ${bibleVersion}`)
         newRenderAndLoadNavigation(userBv, userBk, userCh, b)
       }
     });
