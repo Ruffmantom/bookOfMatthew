@@ -15,6 +15,20 @@ let activeUser = {
       verse_loc: 'Matthew 6:1-5',
       verse_text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!',
       verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
+    },
+    {
+      verse_ids: ['esv-nt-matt-5-v2'],
+      verse_data: 'ESV: 2001 - 2022 Crossway',
+      verse_loc: 'Matthew 5:2',
+      verse_text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!',
+      verse_share_data: 'Matthew 5:2<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
+    },
+    {
+      verse_ids: ['esv-nt-mark-3-v6'],
+      verse_data: 'ESV: 2001 - 2022 Crossway',
+      verse_loc: 'Mark 3:1-6',
+      verse_text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!',
+      verse_share_data: 'Mark 3:1-6<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
     }
   ],
 };
@@ -69,7 +83,7 @@ $(function () {
             <!-- Favorite verse card - these will be added when the user likes a verse  -->
            ${favVArr.length >=1? favVArr.map(fv=>{
             return renderSavedVerseCard(fv.verse_loc,fv.verse_text,fv.verse_ids,fv.verse_share_data)
-           }): ''}
+           }).join(''): ''}
           </div>
         </div>
       </div>

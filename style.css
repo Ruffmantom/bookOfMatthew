@@ -128,6 +128,7 @@ span {
   background-color:#f0f0f0;
   padding: 15px;
   border-radius: 7px;
+  margin-bottom: 15px;
 }
 .b_saved_verse_card>h5,.b_saved_verse_card>p{
   padding-bottom: 10px;
@@ -138,6 +139,7 @@ span {
 }
 .svd_verse_footer>i{
   padding-right: 15px;
+  -webkit-text-stroke: 1.5px #000000;
 }
 /* for saved verses color #00fbff */
 .svd_true{
