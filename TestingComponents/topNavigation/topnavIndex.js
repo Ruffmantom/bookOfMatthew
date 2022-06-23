@@ -59,7 +59,6 @@ $(function () {
   // HTML Creation
   // Create HTML the book drop down
   const createBookDropDownHtml = (bookName, bookId, favVerses,favVArr, chapters) => {
-    console.log("create book dd HTML");
     return `
       <div class="dark b_book_dd_cont">
         <div  data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
@@ -91,8 +90,6 @@ $(function () {
   };
   // Create HTML the saved verse card
   const renderSavedVerseCard = (vLoc, vTxt, vId, vShrData) => {
-    console.log("create saved verse card HTML");
-    console.log(`${vLoc} - ${vTxt} - ${vId} - ${vShrData}`);
     // vId can be a single or array of ID's
     return `
             <div class="b_saved_verse_card">
@@ -175,7 +172,6 @@ $(function () {
 
   // render books
   const renderBooks = (bArr) => {
-    // console.log("renderBooks " + bArr);
     let bookChapters;
     // let favVerses = activeUser.usersFavVerses.length >= 1;
     let bName;
@@ -215,7 +211,6 @@ $(function () {
       // verse Id ex: esv-nt-matt-1-v1
       let findBook = fvId.split('-')[2].toLowerCase()
       if (findBook === ddId.toLowerCase()) {
-        // console.log(true)
         isInBook = true
       }
     })
@@ -223,36 +218,30 @@ $(function () {
   }
   // create the fav verses cards
   const findAndGetFavVerses = (contId) => {
-    // console.log('about to sort fav verses to create cards')
     let favVArr = [];
     activeUser.usersFavVerses.map(fv => {
       let fvId = fv.verse_ids[0];
       // book drop down
       // verse Id ex: esv-nt-matt-1-v1 example of book id esv-nt-matt
       let favVerseBookId = fvId.split('-');
-      let findFavsId = `${favVerseBookId[0]}-${favVerseBookId[1]}-${favVerseBookId[2]}`
-      // console.log(contId+" - "+findFavsId)   
+      let findFavsId = `${favVerseBookId[0]}-${favVerseBookId[1]}-${favVerseBookId[2]}`;
       if (findFavsId === contId.toLowerCase()) {
        favVArr.push(fv)
       }
     })
-    console.log(favVArr)
     return favVArr;
   }
   // NAVIGATION actions
   // main drop down close function
   const showOrHideDropDown = (show, cont) => {
     if (show) {
-      console.log("Open event");
       cont.slideDown("fast");
     } else if (!show) {
-      console.log("close event");
       cont.slideUp("fast");
     }
   };
   // toggle  for drop down containers
   const toggleDropDown = (btnID, cont) => {
-    console.log("toggle event");
     cont.slideToggle("fast");
     btnID ? findAndRotateIcon(btnID) : "";
   };
@@ -262,7 +251,6 @@ $(function () {
     iconArr.filter((iElm) => {
       // first remove all rotate
       if (iElm.dataset.ddbtnid === id) {
-        // console.log('add rotate')
         $(iElm).hasClass("rotate_btnicon")
           ? $(iElm).removeClass("rotate_btnicon")
           : $(iElm).addClass("rotate_btnicon");
@@ -282,7 +270,6 @@ $(function () {
       case bibleNavBtnElmID:
         // Main Nav DD btn
         e.stopPropagation();
-        // console.log(bibleNavBtnElmID + ' Was asdf Clicked!')
         showOrHideDropDown(true, bibleNavDdContElm);
         closeNaveBtnElm.fadeIn();
         closeNaveBtnElm.css({ display: "flex" });
@@ -290,7 +277,6 @@ $(function () {
       case closeNaveBtnElmID:
         // close Nav DD btn
         e.stopPropagation();
-        // console.log(closeNaveBtnElmID + ' Was Clicked!');
         showOrHideDropDown(false, bibleNavDdContElm);
         closeNaveBtnElm.fadeOut();
         break;
@@ -302,14 +288,10 @@ $(function () {
       case bookDropDownBtnElmID:
         // Book DD btn (atleast 4 with the same ID)
         e.stopPropagation();
-        // console.log(bookDropDownBtnElmID + ' Was Clicked! With book id: ' + bookVal)
         let bookContArr = Array.from($(".b_dd_chapter_cont"));
-        // console.log(bookContArr)
         bookContArr.forEach((elm) => {
           let elmBookId = elm.dataset.ddcontid;
-          // console.log(elmBookId)
           if (ddValId === elmBookId) {
-            console.log("about to open dd");
             toggleDropDown(elmBookId, $(elm));
           } else {
             showOrHideDropDown(false, $(elm));
@@ -329,7 +311,6 @@ $(function () {
       if (bibleVersion !== userBv.toLowerCase()) {
         return;
       } else {
-        // console.log(`user pos: ${userBv.toLowerCase()} --- found bible Type: ${bibleVersion}`)
         newRenderAndLoadNavigation(userBv, userBk, userCh, b)
       }
     });
