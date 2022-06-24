@@ -53,76 +53,50 @@
     </div>
     <!-- upload user image and change username menu -->
     <!-- app header -->
+    <!-- app header -->
+    <!-- app header -->
     <div class="dark bible_book_navigation bible_book_navigation_open">
       <!-- this text will be replaced by JS current book and bible type -->
-      <div class="b_nav_prev"><p id="nav_prev_text">ESV | Matthew 1</p></div>
-      <div id="close_nav_btn" class="nav_close_btn">
+      <div class="b_nav_prev">
+        <div id="b_nav_btn" class="b_btn_overlay_click"></div>
+        <p id="nav_prev_text"></p>
+      </div>
+      <!-- close button ABSOLUTE -->
+      <div  class="nav_close_btn">
+        <div id="close_nav_btn" class="b_btn_overlay_click"></div>
         <i class="fa fa-times" aria-hidden="true"></i>
       </div>
+      <!-- this container will drop down to revieal the navigation -->
       <div class="b_nav_dd_cont">
         <!-- example stuff -->
-        <h4 class="b_nav_titles" >Bible Version</h4>
+        <h4 class="b_nav_titles">Bible Version</h4>
         <div class="dark dropdown_main_cont">
           <div class="dark selection_cont">
-            <p id="selection_name"></p>
-           <i id="drop_icon" class="fa fa-angle-down" aria-hidden="true"></i>
+            <div data-ddbtnid="sbv_btn" id="close_bv_dd_btn" class="b_btn_overlay_click"></div>
+            <p id="b_version_choice_prev"></p>
+            <i data-ddbtnid="sbv_btn" class="fa fa-angle-down drop_icon" aria-hidden="true"></i>
           </div>
-          <div class="dark b_dd_list">
+          <div data-ddcontid="sbv_btn" id="b_version_choice_dd_cont" class="dark b_dd_list">
+            <!-- dynamic choices -->
           </div>
         </div>
-        <h4  class="b_nav_titles">Books</h4>
-        <div class="dark b_book_dd_cont">
-          <div class="dark selection_cont">
-            <p id="selection_name">Matthew</p>
-            <i id="drop_icon" class="fa fa-angle-down" aria-hidden="true"></i>
-          </div>
-          <div class="dark b_dd_chapter_cont">
-            <h4  class="b_nav_titles">Chapters</h4>
-            <div class="b_dd_cpts">
-              <div class="chapter_box cb_active">1</div>
-              <div class="chapter_box">2</div>
-              <div class="chapter_box">3</div>
-              <div class="chapter_box">4</div>
-              <div class="chapter_box">5</div>
-              <div class="chapter_box">6</div>
-              <div class="chapter_box">7</div>
-              <div class="chapter_box">8</div>
-              <div class="chapter_box">9</div>
-              <div class="chapter_box">10</div>
-              <div class="chapter_box">11</div>
-              <div class="chapter_box">12</div>
-              <div class="chapter_box">13</div>
-              <div class="chapter_box">14</div>
-              <div class="chapter_box">15</div>
-              <div class="chapter_box">16</div>
-              <div class="chapter_box">17</div>
-              <div class="chapter_box">18</div>
-              <div class="chapter_box">19</div>
-              <div class="chapter_box">20</div>
-              <div class="chapter_box">21</div>
-              <div class="chapter_box">22</div>
-              <div class="chapter_box">23</div>
-              <div class="chapter_box">24</div>
-              <div class="chapter_box">25</div>
-              <div class="chapter_box">26</div>
-              <div class="chapter_box">27</div>
-            </div>
-            <h4  class="b_nav_titles">Favorite Verses</h4>
-          <div class="b_dd_saved_verses_cont">
-            <div class="b_saved_verse_card">
-              <h4 class="b_nav_titles">Matt 13:6-7</h4>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est placeat blanditiis, consequuntur aspernatur a delectus mollitia et praesentium atque facilis temporibus culpa quasi nostrum accusamus.</p>
-              <div class="svd_verse_footer">
-                <i class="fa fa-heart-o"></i>
-                <svg class="share_icon" xmlns="http://www.w3.org/2000/svg" width="15.318" height="15.318" viewBox="0 0 15.318 15.318"><g transform="translate(0.75 0.75)"><path d="M6,18v5.527a1.584,1.584,0,0,0,1.727,1.382H18.091a1.584,1.584,0,0,0,1.727-1.382V18" transform="translate(-6 -11.091)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M17.527,5.764,14.764,3,12,5.764" transform="translate(-7.855 -3)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M18,3v8.982" transform="translate(-11.091 -3)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></g></svg>
-              </div>
-            </div>
-          </div>
-          </div>
-          
+        <h4 class="b_nav_titles">Books</h4>
+        <!-- these will all be dynamically placed -->
+        <div class="b_nav_books_container">
+          <!-- chapter drop down includes
+                - Book name and drop down icon
+                - Dynamically added Chapters
+                - And favorited verses in that book
+                -->
         </div>
       </div>
     </div>
+    <!-- END app header -->
+    <!-- END app header -->
+    <!-- END app header -->
+    <!-- END app header -->
+    <!-- END app header -->
+    
     <div class="dark open"><i class="fa fa-bars" aria-hidden="true"></i></div>
     <div class="dark b_pagenation_cont">
       <div id="pn_btn_cont_back" class="dark b_pn_btn"><div id="b_pn_btn_overlay_back"></div><i id="" class="fa fa-angle-left b_p_back" aria-hidden="true"></i></div>
@@ -204,6 +178,9 @@
     <!-- service worker -->
     <!-- custom scripts -->
     <script src="./bibleData.js"></script>
+    <!-- Loading BibleData and creating HTMl -->
+    <script src="./createAndLoadHtml.js"></script>
+    <!-- loading User -->
     <script src="./user.js"></script>
     <!-- <script src="./index.js"></script> -->
     <script src="./actions.js"></script>

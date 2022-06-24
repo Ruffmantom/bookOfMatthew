@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(function () {
   const menuBtn = $(".open");
   let menuOpen = false;
   // let colorOpen = false;
@@ -33,129 +33,94 @@ $(document).ready(() => {
   const appChapterNumElm = $("#b_chapter_num");
   const pagenationNextBtnElm = $("#b_pn_btn_overlay_next");
   const pagenationBackBtnElm = $("#b_pn_btn_overlay_back");
+  // NAVIGATION actions
+  // NAVIGATION actions
+  // NAVIGATION actions
+  const bibleNavBtnElmID = "b_nav_btn";
+  const bookDropDownBtnElmID = "b_book_c_dd_btn";
+  const closeNaveBtnElm = $(".nav_close_btn");
+  const closeNaveBtnElmID = "close_nav_btn";
+  const bibleVersionBtnId = "close_bv_dd_btn";
+  // Navigation drop down content containers
+  // nav drop down
+  const bibleNavDdContElm = $(".b_nav_dd_cont");
+  // navigation rendering
+  const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
+  // main drop down close function
+  const showOrHideDropDown = (show, cont) => {
+    if (show) {
+      cont.slideDown("fast");
+    } else if (!show) {
+      cont.slideUp("fast");
+    }
+  };
+  // toggle  for drop down containers
+  const toggleDropDown = (btnID, cont) => {
+    cont.slideToggle("fast");
+    btnID ? findAndRotateIcon(btnID) : "";
+  };
+  // find and rotate icon
+  function findAndRotateIcon(id) {
+    let iconArr = Array.from($(".drop_icon"));
+    iconArr.filter((iElm) => {
+      // first remove all rotate
+      if (iElm.dataset.ddbtnid === id) {
+        $(iElm).hasClass("rotate_btnicon")
+          ? $(iElm).removeClass("rotate_btnicon")
+          : $(iElm).addClass("rotate_btnicon");
+      } else {
+        $(iElm).removeClass("rotate_btnicon");
+      }
+    });
+  };
+  // drop down handlers
+  $(".bible_book_navigation").on("click", (e) => {
+    // this function checks for all the type of drop down buttons
+    // Navigation, Bible version, and Book drop down
+    let eIdTag = e.target.id;
+    let ddValId = e.target.dataset.ddbtnid;
+    switch (eIdTag) {
+      // finding the Button clicks and running the open function
+      case bibleNavBtnElmID:
+        // Main Nav DD btn
+        e.stopPropagation();
+        showOrHideDropDown(true, bibleNavDdContElm);
+        closeNaveBtnElm.fadeIn();
+        closeNaveBtnElm.css({ display: "flex" });
+        break;
+      case closeNaveBtnElmID:
+        // close Nav DD btn
+        e.stopPropagation();
+        showOrHideDropDown(false, bibleNavDdContElm);
+        closeNaveBtnElm.fadeOut();
+        break;
+      case bibleVersionBtnId:
+        // Bible DD version drop down
+        e.stopPropagation();
+        toggleDropDown(ddValId, bibleVersionsSelctContElm);
+        break;
+      case bookDropDownBtnElmID:
+        // Book DD btn (atleast 4 with the same ID)
+        e.stopPropagation();
+        let bookContArr = Array.from($(".b_dd_chapter_cont"));
+        bookContArr.forEach((elm) => {
+          let elmBookId = elm.dataset.ddcontid;
+          if (ddValId === elmBookId) {
+            toggleDropDown(elmBookId, $(elm));
+          } else {
+            showOrHideDropDown(false, $(elm));
+          }
+        });
+        break;
+    }
+  });
+  // END NAVIGATION actions
+  // END NAVIGATION actions
+  // END NAVIGATION actions
+  // END NAVIGATION actions
   // End get global variables
   // bring in global data variable
-  var bData = bibleData;
-  createVerseId();
-  function createVerseLine(v, vNum, title, id, isNewParah) {
-    let verse = `${
-      title ? '<p class="v_title">' + title + "</p>" : ""
-    }<span data-verseid=${id} data-versebkg="undefined" class="v_para" onclick="verseElmOnClick(e)"><span class="dark v_num">${
-      isNewParah ? "&emsp;" : ""
-    } ${vNum}</span>${v}</span>`;
-    return verse;
-  }
-  // setting items
-  appVersElm.text(`Version: ${bData.app_version}`);
-  const loadedBible = bData.bibles[0];
-  const loadedBibleType = bData.bibles[0].bible_type;
-  const loadedBibleYear = bData.bibles[0].bible_year;
-  const loadedBookArr = loadedBible.books[0];
-  const loadedChapterName = loadedBookArr.book_name;
-  const loadedChaptersArr = loadedBookArr.chapters;
-  // set html
-  //set settings info
-  appTypeElm.text("Bible Type: " + loadedBibleType);
-  appBibleVersElm.text("Bible Year: " + loadedBibleYear);
-  appDateElm.text();
-  // set chapter elm
-  appChapterElm.text(`The Book of ${loadedChapterName}`);
-  // set pagination state
 
-  let rows = 1;
-  // load chapter and verses function
-  function loadChapterAndVerses(items, cont, rowsPerChapter, chapter) {
-    cont.html("");
-    chapter--;
-    let loopStart = rowsPerChapter * chapter;
-    let loopEnd = loopStart + rowsPerChapter;
-    let paginatedItems = items.slice(loopStart, loopEnd);
-    // load in the btns and chapter number out of chapters.length
-
-    paginatedItems.forEach((c) => {
-      let chapterNumber = c.chapter;
-      let chapterVerses = c.verses;
-      // set chapter number
-      appChapterNumElm.text(`Chapter ${chapterNumber}`);
-      // set up verses
-      chapterVerses.map((v) => {
-        let line = createVerseLine(
-          v.paragraph,
-          v.verse,
-          v.title,
-          v._id,
-          v.new_para
-        );
-        appReadBodyElm.append(line);
-      });
-    });
-
-    $("#b_p_num").text(`Ch. ${chapterState}`);
-    bibleLoaded = true;
-    // load settings and actions
-    loadUserSettings();
-  }
-  function checkDisplay() {
-    // set btn display
-    $("#pn_btn_cont_back").show();
-    $("#pn_btn_cont_next").show();
-    console.log("checkDisplay - chapter state: " + chapterState);
-    if (chapterState >= loadedChaptersArr.length) {
-      // hide next btn since you cant go further than chapter length
-      $("#pn_btn_cont_next").hide();
-    } else if (chapterState == 1) {
-      // hide back btn since you cant go negative chapter length
-      $("#pn_btn_cont_back").hide();
-    }
-  }
-  // btn clicks
-  pagenationNextBtnElm.click(() => {
-    pageClick(true);
-  });
-
-  pagenationBackBtnElm.click(() => {
-    // console.log("clicked back");
-    pageClick(false);
-  });
-
-  function pageClick(next) {
-    bibleLoaded = false;
-    if (next) {
-      // if state greater than or = 1 then you can click but has to be less than amount of chapters
-      if (chapterState >= 1 && chapterState < loadedChaptersArr.length) {
-        chapterState++;
-        // check display sees if state is at 1 and below chapter amount, if so then show next btn
-        checkDisplay();
-        loadChapterAndVerses(
-          loadedChaptersArr,
-          appReadBodyElm,
-          rows,
-          chapterState
-        );
-      }
-    } else {
-      // if state is greaterthan = 2 then it can go down
-      if (chapterState >= 2) {
-        chapterState--;
-        // check display sees if the chapter state is below 2 to hide back btn
-        checkDisplay();
-        loadChapterAndVerses(
-          loadedChaptersArr,
-          appReadBodyElm,
-          rows,
-          chapterState
-        );
-      }
-    }
-    // save user
-    activeUser.userChapterState = chapterState;
-    updateUser(false);
-  }
-  // run loadChapterAndVerses
-  loadChapterAndVerses(loadedChaptersArr, appReadBodyElm, rows, chapterState);
-  checkDisplay();
-  // END LOAD BIBLE ---------------------------------------------
-  // END LOAD BIBLE ---------------------------------------------
   // set colors into color box
   hlColors.map((c) => {
     // this needs to append only once

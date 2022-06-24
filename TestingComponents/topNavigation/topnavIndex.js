@@ -316,6 +316,6 @@ $(function () {
     });
   };
   // START
-  loadAndRenderBible(activeUser)
+  loadAndRenderBible()
   // end
 });
