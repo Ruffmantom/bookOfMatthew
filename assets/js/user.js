@@ -106,8 +106,9 @@ function createId() {
   }
   return id;
 }
-
+// start of jquery
 $(function(){
+  
   var user = {
     id: createId(),
     verses: [],
@@ -116,7 +117,7 @@ $(function(){
     verseFontSize: "16",
     imageUrl: "undefined",
     userName: "Username",
-    userbiblePos: "undefined",
+    userbiblePos: "esv-matt-1",
     usersFavVerses: []
   };
   // function for setting up user if one isnt found
@@ -130,7 +131,7 @@ $(function(){
       } else {
         let t = localStorage.getItem("bibleUser");
         activeUser = JSON.parse(t);
-        // log("user found!");
+        log("user found!");
         var loadTimeout = setTimeout(() => {
           if (bibleLoaded === true) {
             //loading all USER DATA
@@ -152,13 +153,13 @@ $(function(){
   // If user
   // - Load highlighted verses
   function loadVerses() {
-    // log("about to load verses");
+    log("about to load verses");
     if (activeUser.verses.length >= 1) {
       activeUser.verses.map((uv) => {
         addBKG(uv.verse_id, uv.verse_high_light);
       });
     }
-    // log("loaded verses!");
+    log("loaded verses!");
   }
   function loadDarkModeTheme() {
     console.log("about to load theme");
@@ -204,15 +205,14 @@ $(function(){
   }
   function loadUsersBiblePlace() {
     console.log('loading user position and navigation');
-    if (activeUser.userbiblePos === undefined || activeUser.userbiblePos === "undefined") {
-      activeUser.userbiblePos = 'esv-matt-1';
-      updateUser(false, false, false);
+    if (activeUser.userbiblePos !== "esv-matt-1") {
       // loading navigation
       loadNavigationAndBible(activeUser);
       // loading bible
     } else {
       // setting navigation
       loadNavigationAndBible(activeUser);
+      return;
       // loading bible
     }
     // bring in function from topnavindex.js to load top navigation
