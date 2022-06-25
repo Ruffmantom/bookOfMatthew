@@ -85,13 +85,15 @@ $(function () {
         // Main Nav DD btn
         e.stopPropagation();
         showOrHideDropDown(true, bibleNavDdContElm);
+        menuBtn.css({zIndex:'9'})
         closeNaveBtnElm.fadeIn();
         closeNaveBtnElm.css({ display: "flex" });
         break;
-      case closeNaveBtnElmID:
-        // close Nav DD btn
-        e.stopPropagation();
-        showOrHideDropDown(false, bibleNavDdContElm);
+        case closeNaveBtnElmID:
+          // close Nav DD btn
+          e.stopPropagation();
+          showOrHideDropDown(false, bibleNavDdContElm);
+          menuBtn.css({zIndex:'999'})
         closeNaveBtnElm.fadeOut();
         break;
       case bibleVersionBtnId:

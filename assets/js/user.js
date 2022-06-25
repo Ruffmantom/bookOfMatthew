@@ -1,7 +1,9 @@
 const log = (l) => {
   console.log(l);
 };
+// global Active User
 let activeUser;
+// global Update User
 function updateUser(notify, message, alert) {
   localStorage.setItem("bibleUser", JSON.stringify(activeUser));
   if (notify) {
@@ -21,10 +23,11 @@ var notiBoxStyles = [
     transition: "all 250ms ease-out",
   },
 ];
+// notify User
 function notifyUser(mess, alert) {
   const notifBox = $("#noti_box");
   var addNotification = setTimeout(() => {
-    $('#noti_box_text').text(mess ? mess : 'Saved!');
+    $("#noti_box_text").text(mess ? mess : "Saved!");
     notifBox.css(notiBoxStyles[0]);
     notifBox.css({ backgroundColor: alert ? "#ff6666" : "#3be2ff" });
     clearTimeout(addNotification);
@@ -33,7 +36,7 @@ function notifyUser(mess, alert) {
     notifBox.css(notiBoxStyles[1]);
     clearTimeout(removeNotification);
   }, 5000);
-  $('#noti_box_text').text('');
+  $("#noti_box_text").text("");
 }
 //-- bible loadState
 let bibleLoaded = false;
@@ -43,22 +46,28 @@ let darkModeThemeOn = false;
 let verseSizeState = "16";
 let verseFontState = "Georgia";
 // user chapter state
-let chapterState = 1
+let chapterState = 1;
 // darkmode function
 function transitionToDarkMode() {
   let darkElms = $(".dark");
   let darkElmArr = Array.from(darkElms);
   darkElmArr.forEach((elm) => {
     let classString = elm.className;
-    let splitString = classString.split(" ")[1];
-    let finishedClassName = splitString + "_dark";
+    let splitStringArr = classString.split(" ");
+    let fcn='';
+    for (let i = splitStringArr.length; i--;) {
+      fcn += ` ${splitStringArr[i]}_dark`
+      console.log(fcn)
+    }
+    // let splitString = classString.split(" ")[1];
+    // let finishedClassName = splitString + "_dark";
     if (darkModeThemeOn) {
-      $(elm).addClass(finishedClassName);
+      $(elm).addClass(fcn);
       // make html have dark bkg
       $(document.body).css("background-color", "#1f1f1f");
       // log(classString);
     } else {
-      $(elm).removeClass(finishedClassName);
+      $(elm).removeClass(fcn);
       // document background color
       $(document.body).css("background-color", "white");
     }
@@ -88,10 +97,10 @@ const setVerseFontSize = (verseSize) => {
   $("#b_versesize_value").text(`${verseSize}px`);
 };
 const loadNavigationAndBible = (userPositon) => {
-  console.log('hit loadNavigationAndBible func: ' + userPositon);
+  console.log("hit loadNavigationAndBible func: " + userPositon);
   // START
-  loadingRender(userPositon)
-}
+  loadingRender(userPositon);
+};
 // ------------------------------------------------
 // ------------------------------------------------
 // DOCUMENT.READY
@@ -107,8 +116,7 @@ function createId() {
   return id;
 }
 // start of jquery
-$(function(){
-  
+$(function () {
   var user = {
     id: createId(),
     verses: [],
@@ -118,7 +126,7 @@ $(function(){
     imageUrl: "undefined",
     userName: "Username",
     userbiblePos: "esv-matt-1",
-    usersFavVerses: []
+    usersFavVerses: [],
   };
   // function for setting up user if one isnt found
   // if found then load the user data
@@ -127,22 +135,21 @@ $(function(){
       if (localStorage.getItem("bibleUser") === null) {
         localStorage.setItem("bibleUser", JSON.stringify(user));
         activeUser = user;
-        // log("created user");
+        log("created user");
       } else {
         let t = localStorage.getItem("bibleUser");
         activeUser = JSON.parse(t);
         log("user found!");
         var loadTimeout = setTimeout(() => {
-          if (bibleLoaded === true) {
-            //loading all USER DATA
-            loadVerses();
-            loadDarkModeTheme();
-            loadFontAndFontSize();
-            loadImage();
-            loadUsername();
-            // this will be used later when I have more books
-            loadUsersBiblePlace();
-          }
+          console.log("bible loaded: true | about to start Loading");
+          //loading all USER DATA
+          // this will be used later when I have more books
+          loadUsersBiblePlace();
+          loadVerses();
+          loadDarkModeTheme();
+          loadFontAndFontSize();
+          loadImage();
+          loadUsername();
           clearTimeout(loadTimeout);
         }, 150);
       }
@@ -204,7 +211,7 @@ $(function(){
     }
   }
   function loadUsersBiblePlace() {
-    console.log('loading user position and navigation');
+    console.log("loading user position and navigation");
     if (activeUser.userbiblePos !== "esv-matt-1") {
       // loading navigation
       loadNavigationAndBible(activeUser);
@@ -242,4 +249,3 @@ $(function(){
   createUserAndLoad();
   // end of doc ready
 });
-

@@ -17,7 +17,8 @@ const bibleData = {
       bible_type: "ESV",
       bible_id: "b_esv",
       bible_year: "2001 - 2022 Crossway",
-      books: [ // matthew
+      books: [
+        // matthew
         {
           book_name: "Matthew",
           book_id: "esv-nt-matt",
@@ -238,294 +239,317 @@ const bibleData = {
                   verse: "1",
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: "The Visit of the Wise Men<br><br>", //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: "Now after Jesus was born in Bethlehem of Judea in the days of Herod the king, behold, wise men from the east came to Jerusalem,",
+                  paragraph:
+                    "Now after Jesus was born in Bethlehem of Judea in the days of Herod the king, behold, wise men from the east came to Jerusalem,",
                 },
                 {
                   _id: "esv-nt-matt-2-v2",
                   verse: "2",
                   new_para: false,
                   title: "",
-                  paragraph: "saying, \“Where is he who has been born king of the Jews? For we saw his star when it rose and have come to worship him.\”",
+                  paragraph:
+                    "saying, “Where is he who has been born king of the Jews? For we saw his star when it rose and have come to worship him.”",
                 },
                 {
                   _id: "esv-nt-matt-2-v3",
                   verse: "3",
                   new_para: false,
                   title: "",
-                  paragraph: "When Herod the king heard this, he was troubled, and all Jerusalem with him;",
+                  paragraph:
+                    "When Herod the king heard this, he was troubled, and all Jerusalem with him;",
                 },
                 {
                   _id: "esv-nt-matt-2-v4",
                   verse: "4",
                   new_para: false,
                   title: "",
-                  paragraph: "and assembling all the chief prises and scribes of the people, he inquired of them where the Christ was to be born.",
+                  paragraph:
+                    "and assembling all the chief prises and scribes of the people, he inquired of them where the Christ was to be born.",
                 },
                 {
                   _id: "esv-nt-matt-2-v5",
                   verse: "5",
                   new_para: false,
                   title: "",
-                  paragraph: "They told him, “In Bethlehem of Judea for so it is written by the prophet:",
+                  paragraph:
+                    "They told him, “In Bethlehem of Judea for so it is written by the prophet:",
                 },
                 {
                   _id: "esv-nt-matt-2-v6",
                   verse: "6",
                   new_para: true,
                   title: "",
-                  paragraph: "\“‘And you, O Bethlehem, in the land of Judah,<br>are by no means least among the rulers of Judah;<br>for from you shall come a ruler<br>who will shepherd my people Israel.’\”",
+                  paragraph:
+                    "“‘And you, O Bethlehem, in the land of Judah,<br>are by no means least among the rulers of Judah;<br>for from you shall come a ruler<br>who will shepherd my people Israel.’”",
                 },
                 {
                   _id: "esv-nt-matt-2-v7",
                   verse: "7",
                   new_para: true,
                   title: "",
-                  paragraph: "Then Herod summoned the wise men secretly and ascertained from them what time the star had appeared.",
+                  paragraph:
+                    "Then Herod summoned the wise men secretly and ascertained from them what time the star had appeared.",
                 },
                 {
                   _id: "esv-nt-matt-2-v8",
                   verse: "8",
                   new_para: false,
                   title: "",
-                  paragraph: "and he sent them to the Bethlehem, saying, \“Go and search diligently for the child. And when you have found him, bring me word, that I too may come and worship him.\”",
+                  paragraph:
+                    "and he sent them to the Bethlehem, saying, “Go and search diligently for the child. And when you have found him, bring me word, that I too may come and worship him.”",
                 },
                 {
                   _id: "esv-nt-matt-2-v9",
                   verse: "9",
                   new_para: false,
                   title: "",
-                  paragraph: "after listening to the king, they went on their way. And behold, the star that they had seen when it rose went before them until it came to rest over the place where the child was.",
+                  paragraph:
+                    "after listening to the king, they went on their way. And behold, the star that they had seen when it rose went before them until it came to rest over the place where the child was.",
                 },
                 {
                   _id: "esv-nt-matt-2-v10",
                   verse: "10",
                   new_para: false,
                   title: "",
-                  paragraph: "When they saw the star, they rejoiced exceedingly with great joy.",
+                  paragraph:
+                    "When they saw the star, they rejoiced exceedingly with great joy.",
                 },
                 {
                   _id: "esv-nt-matt-2-v11",
                   verse: "11",
                   new_para: false,
                   title: "",
-                  paragraph: "And going into the house, they saw the child with Mary his mother, and they fell down and worshiped him. Then, opening their treasures, they offered him gifts, gold and frankincense and myrrh.",
+                  paragraph:
+                    "And going into the house, they saw the child with Mary his mother, and they fell down and worshiped him. Then, opening their treasures, they offered him gifts, gold and frankincense and myrrh.",
                 },
                 {
                   _id: "esv-nt-matt-2-v12",
                   verse: "12",
                   new_para: false,
                   title: "",
-                  paragraph: "And being warned in a dream not to return to Herod, they departed to their own country by another way.",
+                  paragraph:
+                    "And being warned in a dream not to return to Herod, they departed to their own country by another way.",
                 },
                 {
                   _id: "esv-nt-matt-2-v13",
                   verse: "13",
                   new_para: true,
                   title: "The Flight to Egypt",
-                  paragraph: "Now when they had departed, behold, an angel of the Lord appeared to Joseph in a dream and said, \“Rise, take the child and his mother, and flee to Egypt, and remain there until I tell you, for Herod is about to search for the child, to destroy him.\”",
+                  paragraph:
+                    "Now when they had departed, behold, an angel of the Lord appeared to Joseph in a dream and said, “Rise, take the child and his mother, and flee to Egypt, and remain there until I tell you, for Herod is about to search for the child, to destroy him.”",
                 },
                 {
                   _id: "esv-nt-matt-2-v14",
                   verse: "14",
                   new_para: false,
                   title: "",
-                  paragraph: "And he rose and took the child and his mother by night and departed to Egypt",
+                  paragraph:
+                    "And he rose and took the child and his mother by night and departed to Egypt",
                 },
                 {
                   _id: "esv-nt-matt-2-v15",
                   verse: "15",
                   new_para: false,
                   title: "",
-                  paragraph: "And remained there until the death of Herod. This was to fulfill what the Lord had spoken by the prophet, \“Out of Egypt I called my son.\”",
+                  paragraph:
+                    "And remained there until the death of Herod. This was to fulfill what the Lord had spoken by the prophet, “Out of Egypt I called my son.”",
                 },
                 {
                   _id: "esv-nt-matt-2-v16",
                   verse: "16",
                   new_para: true,
                   title: "Herod Kills the Children",
-                  paragraph: "Then Herod, when he saw that he had been tricked by the wise men, became furious, and he sent and killed all the male children in Bethlehem and in all that region who were two years old or under, according to the time that he had ascertained from the wise men,",
+                  paragraph:
+                    "Then Herod, when he saw that he had been tricked by the wise men, became furious, and he sent and killed all the male children in Bethlehem and in all that region who were two years old or under, according to the time that he had ascertained from the wise men,",
                 },
                 {
                   _id: "esv-nt-matt-2-v17",
                   verse: "17",
                   new_para: false,
                   title: "",
-                  paragraph: "Then was fulfilled what was spoken bu the prophet Jeremiah:<br><br>",
+                  paragraph:
+                    "Then was fulfilled what was spoken bu the prophet Jeremiah:<br><br>",
                 },
                 {
                   _id: "esv-nt-matt-2-v18",
                   verse: "18",
                   new_para: true,
                   title: "",
-                  paragraph: "\“A voice was heard in Ramah,<br>weeping and loud lamentation,<br>Rachel weeping for her children;<br>she refused to be comforted, because they are no more.\”<br>",
+                  paragraph:
+                    "“A voice was heard in Ramah,<br>weeping and loud lamentation,<br>Rachel weeping for her children;<br>she refused to be comforted, because they are no more.”<br>",
                 },
                 {
                   _id: "esv-nt-matt-2-v19",
                   verse: "19",
                   new_para: true,
                   title: "The Return to Nazareth",
-                  paragraph: "But when Herod died, behold, an angel of the Lord appeared in a dream to Joseph in Egypt,",
+                  paragraph:
+                    "But when Herod died, behold, an angel of the Lord appeared in a dream to Joseph in Egypt,",
                 },
                 {
                   _id: "esv-nt-matt-2-v20",
                   verse: "20",
                   new_para: false,
                   title: "",
-                  paragraph: "saying, \“Rise, take the child and his mother and go to the land of Israel, for those who sought the shield’s life are dead.\”",
+                  paragraph:
+                    "saying, “Rise, take the child and his mother and go to the land of Israel, for those who sought the shield’s life are dead.”",
                 },
                 {
                   _id: "esv-nt-matt-2-v21",
                   verse: "21",
                   new_para: false,
                   title: "",
-                  paragraph: "And he rose and took the child and his mother and went to the land of Israel.",
+                  paragraph:
+                    "And he rose and took the child and his mother and went to the land of Israel.",
                 },
                 {
                   _id: "esv-nt-matt-2-v22",
                   verse: "22",
                   new_para: false,
                   title: "",
-                  paragraph: "But when he heard that Archelaus was reigning over Judea in place of his father Herod, he was afraid to go there, and being warned in a dream he withdrew to the district of Galilee.",
+                  paragraph:
+                    "But when he heard that Archelaus was reigning over Judea in place of his father Herod, he was afraid to go there, and being warned in a dream he withdrew to the district of Galilee.",
                 },
                 {
                   _id: "esv-nt-matt-2-v23",
                   verse: "23",
                   new_para: false,
                   title: "",
-                  paragraph: "And he went and lived in a city called Nazarene, so that what was spoken by the prophets might be fulfilled, that he would be called a Nazarene.",
+                  paragraph:
+                    "And he went and lived in a city called Nazarene, so that what was spoken by the prophets might be fulfilled, that he would be called a Nazarene.",
                 },
               ],
             },
             {
               chapter: "3",
               chapter_id: "esv-nt-matt-3",
-              verses: []
+              verses: [],
             },
             {
               chapter: "4",
               chapter_id: "esv-nt-matt-4",
-              verses: []
+              verses: [],
             },
             {
               chapter: "5",
               chapter_id: "esv-nt-matt-5",
-              verses: []
+              verses: [],
             },
             {
               chapter: "6",
               chapter_id: "esv-nt-matt-6",
-              verses: []
+              verses: [],
             },
             {
               chapter: "7",
               chapter_id: "esv-nt-matt-7",
-              verses: []
+              verses: [],
             },
             {
               chapter: "8",
               chapter_id: "esv-nt-matt-8",
-              verses: []
+              verses: [],
             },
             {
               chapter: "9",
               chapter_id: "esv-nt-matt-9",
-              verses: []
+              verses: [],
             },
             {
               chapter: "10",
               chapter_id: "esv-nt-matt-10",
-              verses: []
+              verses: [],
             },
             {
               chapter: "11",
               chapter_id: "esv-nt-matt-11",
-              verses: []
+              verses: [],
             },
             {
               chapter: "12",
               chapter_id: "esv-nt-matt-12",
-              verses: []
+              verses: [],
             },
             {
               chapter: "13",
               chapter_id: "esv-nt-matt-13",
-              verses: []
+              verses: [],
             },
             {
               chapter: "14",
               chapter_id: "esv-nt-matt-14",
-              verses: []
+              verses: [],
             },
             {
               chapter: "15",
               chapter_id: "esv-nt-matt-15",
-              verses: []
+              verses: [],
             },
             {
               chapter: "16",
               chapter_id: "esv-nt-matt-16",
-              verses: []
+              verses: [],
             },
             {
               chapter: "17",
               chapter_id: "esv-nt-matt-17",
-              verses: []
+              verses: [],
             },
             {
               chapter: "18",
               chapter_id: "esv-nt-matt-18",
-              verses: []
+              verses: [],
             },
             {
               chapter: "19",
               chapter_id: "esv-nt-matt-19",
-              verses: []
+              verses: [],
             },
             {
               chapter: "20",
               chapter_id: "esv-nt-matt-20",
-              verses: []
+              verses: [],
             },
             {
               chapter: "21",
               chapter_id: "esv-nt-matt-21",
-              verses: []
+              verses: [],
             },
             {
               chapter: "22",
               chapter_id: "esv-nt-matt-22",
-              verses: []
+              verses: [],
             },
             {
               chapter: "23",
               chapter_id: "esv-nt-matt-23",
-              verses: []
+              verses: [],
             },
             {
               chapter: "24",
               chapter_id: "esv-nt-matt-24",
-              verses: []
+              verses: [],
             },
             {
               chapter: "25",
               chapter_id: "esv-nt-matt-25",
-              verses: []
+              verses: [],
             },
             {
               chapter: "26",
               chapter_id: "esv-nt-matt-26",
-              verses: []
+              verses: [],
             },
             {
               chapter: "27",
               chapter_id: "esv-nt-matt-27",
-              verses: []
+              verses: [],
             },
             {
               chapter: "28",
               chapter_id: "esv-nt-matt-28",
-              verses: []
-            }
+              verses: [],
+            },
           ],
         },
         // adding mark
@@ -536,82 +560,82 @@ const bibleData = {
             {
               chapter: "1",
               chapter_id: "esv-nt-mark-1",
-              verses: []
+              verses: [],
             },
             {
               chapter: "2",
               chapter_id: "esv-nt-mark-2",
-              verses: []
+              verses: [],
             },
             {
               chapter: "3",
               chapter_id: "esv-nt-mark-3",
-              verses: []
+              verses: [],
             },
             {
               chapter: "4",
               chapter_id: "esv-nt-mark-4",
-              verses: []
+              verses: [],
             },
             {
               chapter: "5",
               chapter_id: "esv-nt-mark-5",
-              verses: []
+              verses: [],
             },
             {
               chapter: "6",
               chapter_id: "esv-nt-mark-6",
-              verses: []
+              verses: [],
             },
             {
               chapter: "7",
               chapter_id: "esv-nt-mark-7",
-              verses: []
+              verses: [],
             },
             {
               chapter: "8",
               chapter_id: "esv-nt-mark-8",
-              verses: []
+              verses: [],
             },
             {
               chapter: "9",
               chapter_id: "esv-nt-mark-9",
-              verses: []
+              verses: [],
             },
             {
               chapter: "10",
               chapter_id: "esv-nt-mark-10",
-              verses: []
+              verses: [],
             },
             {
               chapter: "11",
               chapter_id: "esv-nt-mark-11",
-              verses: []
+              verses: [],
             },
             {
               chapter: "12",
               chapter_id: "esv-nt-mark-12",
-              verses: []
+              verses: [],
             },
             {
               chapter: "13",
               chapter_id: "esv-nt-mark-13",
-              verses: []
+              verses: [],
             },
             {
               chapter: "14",
               chapter_id: "esv-nt-mark-14",
-              verses: []
+              verses: [],
             },
             {
               chapter: "15",
               chapter_id: "esv-nt-mark-15",
-              verses: []
+              verses: [],
             },
             {
               chapter: "16",
               chapter_id: "esv-nt-mark-16",
-              verses: []
+              verses: [],
             },
           ],
         }, //adding luke
@@ -622,125 +646,125 @@ const bibleData = {
             {
               chapter: "1",
               chapter_id: "esv-nt-luke-1",
-              verses: []
+              verses: [],
             },
             {
               chapter: "2",
               chapter_id: "esv-nt-luke-2",
-              verses: []
+              verses: [],
             },
             {
               chapter: "3",
               chapter_id: "esv-nt-luke-3",
-              verses: []
+              verses: [],
             },
             {
               chapter: "4",
               chapter_id: "esv-nt-luke-4",
-              verses: []
+              verses: [],
             },
             {
               chapter: "5",
               chapter_id: "esv-nt-luke-5",
-              verses: []
+              verses: [],
             },
             {
               chapter: "6",
               chapter_id: "esv-nt-luke-6",
-              verses: []
+              verses: [],
             },
             {
               chapter: "7",
               chapter_id: "esv-nt-luke-7",
-              verses: []
+              verses: [],
             },
             {
               chapter: "8",
               chapter_id: "esv-nt-luke-8",
-              verses: []
+              verses: [],
             },
             {
               chapter: "9",
               chapter_id: "esv-nt-luke-9",
-              verses: []
+              verses: [],
             },
             {
               chapter: "10",
               chapter_id: "esv-nt-luke-10",
-              verses: []
+              verses: [],
             },
             {
               chapter: "11",
               chapter_id: "esv-nt-luke-11",
-              verses: []
+              verses: [],
             },
             {
               chapter: "12",
               chapter_id: "esv-nt-luke-12",
-              verses: []
+              verses: [],
             },
             {
               chapter: "13",
               chapter_id: "esv-nt-luke-13",
-              verses: []
+              verses: [],
             },
             {
               chapter: "14",
               chapter_id: "esv-nt-luke-14",
-              verses: []
+              verses: [],
             },
             {
               chapter: "15",
               chapter_id: "esv-nt-luke-15",
-              verses: []
+              verses: [],
             },
             {
               chapter: "16",
               chapter_id: "esv-nt-luke-16",
-              verses: []
+              verses: [],
             },
             {
               chapter: "17",
               chapter_id: "esv-nt-matt-17",
-              verses: []
+              verses: [],
             },
             {
               chapter: "18",
               chapter_id: "esv-nt-matt-18",
-              verses: []
+              verses: [],
             },
             {
               chapter: "19",
               chapter_id: "esv-nt-matt-19",
-              verses: []
+              verses: [],
             },
             {
               chapter: "20",
               chapter_id: "esv-nt-matt-20",
-              verses: []
+              verses: [],
             },
             {
               chapter: "21",
               chapter_id: "esv-nt-matt-21",
-              verses: []
+              verses: [],
             },
             {
               chapter: "22",
               chapter_id: "esv-nt-matt-22",
-              verses: []
+              verses: [],
             },
             {
               chapter: "23",
               chapter_id: "esv-nt-matt-23",
-              verses: []
+              verses: [],
             },
             {
               chapter: "24",
               chapter_id: "esv-nt-matt-24",
-              verses: []
-            }
+              verses: [],
+            },
           ],
-        }, // adding John
+        },
         {
           book_name: "John",
           book_id: "esv-nt-john",
@@ -748,111 +772,111 @@ const bibleData = {
             {
               chapter: "1",
               chapter_id: "esv-nt-john-1",
-              verses: []
+              verses: [],
             },
             {
               chapter: "2",
               chapter_id: "esv-nt-john-2",
-              verses: []
+              verses: [],
             },
             {
               chapter: "3",
               chapter_id: "esv-nt-john-3",
-              verses: []
+              verses: [],
             },
             {
               chapter: "4",
               chapter_id: "esv-nt-john-4",
-              verses: []
+              verses: [],
             },
             {
               chapter: "5",
               chapter_id: "esv-nt-john-5",
-              verses: []
+              verses: [],
             },
             {
               chapter: "6",
               chapter_id: "esv-nt-john-6",
-              verses: []
+              verses: [],
             },
             {
               chapter: "7",
               chapter_id: "esv-nt-john-7",
-              verses: []
+              verses: [],
             },
             {
               chapter: "8",
               chapter_id: "esv-nt-john-8",
-              verses: []
+              verses: [],
             },
             {
               chapter: "9",
               chapter_id: "esv-nt-john-9",
-              verses: []
+              verses: [],
             },
             {
               chapter: "10",
               chapter_id: "esv-nt-john-10",
-              verses: []
+              verses: [],
             },
             {
               chapter: "11",
               chapter_id: "esv-nt-john-11",
-              verses: []
+              verses: [],
             },
             {
               chapter: "12",
               chapter_id: "esv-nt-john-12",
-              verses: []
+              verses: [],
             },
             {
               chapter: "13",
               chapter_id: "esv-nt-john-13",
-              verses: []
+              verses: [],
             },
             {
               chapter: "14",
               chapter_id: "esv-nt-john-14",
-              verses: []
+              verses: [],
             },
             {
               chapter: "15",
               chapter_id: "esv-nt-john-15",
-              verses: []
+              verses: [],
             },
             {
               chapter: "16",
               chapter_id: "esv-nt-john-16",
-              verses: []
+              verses: [],
             },
             {
               chapter: "17",
               chapter_id: "esv-nt-john-17",
-              verses: []
+              verses: [],
             },
             {
               chapter: "18",
               chapter_id: "esv-nt-john-18",
-              verses: []
+              verses: [],
             },
             {
               chapter: "19",
               chapter_id: "esv-nt-john-19",
-              verses: []
+              verses: [],
             },
             {
               chapter: "20",
               chapter_id: "esv-nt-john-20",
-              verses: []
+              verses: [],
             },
             {
               chapter: "21",
               chapter_id: "esv-nt-john-21",
-              verses: []
-            }
+              verses: [],
+            },
           ],
-        }
+        },
       ],
-    } // new bible version here
+    }, // new bible version here
   ],
 };
