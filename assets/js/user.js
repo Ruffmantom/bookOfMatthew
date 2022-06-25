@@ -127,6 +127,7 @@ $(function () {
     userName: "Username",
     userbiblePos: "esv-matt-1",
     usersFavVerses: [],
+    userVerseNotes:[],
   };
   // function for setting up user if one isnt found
   // if found then load the user data

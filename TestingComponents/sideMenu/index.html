@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://use.fontawesome.com/ea858508e8.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        outline: 0;
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+      .b_tog_btn_cont {
+        display: flex;
+        height: 100%;
+        align-items: center;
+      }
+      .b_dkm_toggle,
+      .b_tog_bkg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      .b_tog_btn_check {
+        position: relative;
+        width: 90px;
+        height: 46px;
+        overflow: hidden;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+      }
+      .b_tog_checkbox_input {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 3;
+      }
+
+      .b_dkm_toggle {
+        z-index: 2;
+      }
+
+      .b_tog_bkg {
+        width: 100%;
+        background-color: #d5d5d5;
+        transition: 0.3s ease all;
+        z-index: 1;
+      }
+      #b_tog_btn_check .b_dkm_toggle:before,
+      #b_tog_btn_check .b_dkm_toggle:after {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 30px;
+        height: 20px;
+        color: #d5d5d5;
+        font-size: 10px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 1;
+        padding: 9px 4px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #b_tog_btn_check .b_dkm_toggle:before {
+        content: "ON";
+      }
+
+      #b_tog_btn_check .b_dkm_toggle:after {
+        content: "OFF";
+      }
+
+      #b_tog_btn_check .b_dkm_toggle:after {
+        right: -50px;
+        left: auto;
+        background-color: #d5d5d5;
+        color: #353535;
+      }
+
+      #b_tog_btn_check .b_tog_checkbox_input:checked + .b_dkm_toggle:before {
+        left: -50px;
+      }
+
+      #b_tog_btn_check .b_tog_checkbox_input:checked + .b_dkm_toggle:after {
+        right: 4px;
+      }
+
+      #b_tog_btn_check .b_tog_checkbox_input:checked ~ .b_tog_bkg {
+        background-color: #353535;
+      }
+      .color_guy {
+        /* others */
+        color: #00fbff;
+        color: #144b56;
+        color: #1f1f1f;
+        color: #333333;
+        color: #353535;
+        color: #3be2ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="b_tog_btn_cont">
+      <div class="b_tog_btn_check" id="b_tog_btn_check">
+        <input type="checkbox" class="b_tog_checkbox_input" />
+        <span class="b_dkm_toggle"></span>
+        <span class="b_tog_bkg"></span>
+      </div>
+    </div>
+  </body>
+</html>
