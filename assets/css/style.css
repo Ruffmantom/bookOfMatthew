@@ -744,8 +744,8 @@ span {
 
 .b_tog_btn_check {
   position: relative;
-  width: 90px;
-  height: 46px;
+  width: 80px;
+  height: 36px;
   overflow: hidden;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -770,7 +770,7 @@ span {
 
 .b_tog_bkg {
   width: 100%;
-  background-color: #d5d5d5;
+  background-color: #353535;
   transition: 0.3s ease all;
   z-index: 1;
 }
@@ -779,9 +779,9 @@ span {
   position: absolute;
   top: 4px;
   left: 4px;
-  width: 30px;
-  height: 20px;
-  color: #d5d5d5;
+  width: 20px;
+  height: 10px;
+  color: #353535;
   font-size: 10px;
   font-weight: bold;
   text-align: center;
@@ -806,8 +806,8 @@ span {
 #b_tog_btn_check .b_dkm_toggle:after {
   right: -50px;
   left: auto;
-  background-color: #d5d5d5;
-  color: #353535;
+  background-color: white;
+  color: black;
 }
 
 #b_tog_btn_check .b_tog_checkbox_input:checked + .b_dkm_toggle:before {
@@ -819,7 +819,7 @@ span {
 }
 
 #b_tog_btn_check .b_tog_checkbox_input:checked ~ .b_tog_bkg {
-  background-color: #353535;
+  background-color: #d5d5d5;
 }
 /* NEW toggler */
 /* NEW toggler */

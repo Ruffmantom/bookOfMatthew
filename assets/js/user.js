@@ -173,10 +173,12 @@ $(function () {
     console.log("about to load theme");
     if (activeUser.mode === true || activeUser.mode === "true") {
       darkModeThemeOn = true;
-      transitionToDarkMode();
+      $('.b_tog_checkbox_input').attr('checked','checked')
       console.log("loaded theme: dark");
+      transitionToDarkMode();
     } else {
       darkModeThemeOn = false;
+      $('.b_tog_checkbox_input').attr('checked','')
       console.log("loaded theme: light");
       transitionToDarkMode();
     }

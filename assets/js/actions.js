@@ -72,6 +72,24 @@ $(function () {
         $(iElm).removeClass("rotate_btnicon");
       }
     });
+  }
+  // toggle darkmode function
+  const changeDarkMode = (e) => {
+    if (e && !darkModeThemeOn) {
+      console.log("clicked toggle: " + darkModeThemeOn);
+      darkModeThemeOn = true;
+      transitionToDarkMode();
+      //update user
+      activeUser.mode = true;
+      updateUser(true, "Theme Saved!", false);
+    } else {
+      console.log("clicked toggle: " + darkModeThemeOn);
+      darkModeThemeOn = false;
+      transitionToDarkMode();
+      //update user
+      activeUser.mode = false;
+      updateUser(true, "Theme Saved!", false);
+    }
   };
   // drop down handlers
   $(".bible_book_navigation").on("click", (e) => {
@@ -85,15 +103,15 @@ $(function () {
         // Main Nav DD btn
         e.stopPropagation();
         showOrHideDropDown(true, bibleNavDdContElm);
-        menuBtn.css({zIndex:'9'})
+        menuBtn.css({ zIndex: "9" });
         closeNaveBtnElm.fadeIn();
         closeNaveBtnElm.css({ display: "flex" });
         break;
-        case closeNaveBtnElmID:
-          // close Nav DD btn
-          e.stopPropagation();
-          showOrHideDropDown(false, bibleNavDdContElm);
-          menuBtn.css({zIndex:'999'})
+      case closeNaveBtnElmID:
+        // close Nav DD btn
+        e.stopPropagation();
+        showOrHideDropDown(false, bibleNavDdContElm);
+        menuBtn.css({ zIndex: "999" });
         closeNaveBtnElm.fadeOut();
         break;
       case bibleVersionBtnId:
@@ -530,29 +548,11 @@ $(function () {
       },
     },
   ];
-  toggleBtn.click((e) => {
-    if (e && !darkModeThemeOn) {
-      console.log("clicked toggle: " + darkModeThemeOn);
-      toggleBtn.css(togCss[1].css);
-      toggleIcon.removeClass("fa-moon-o");
-      toggleIcon.addClass("fa-sun-o");
-      darkModeThemeOn = true;
-      transitionToDarkMode();
-      //update user
-      activeUser.mode = true;
-      updateUser(true, "Theme Saved!", false);
-    } else {
-      console.log("clicked toggle: " + darkModeThemeOn);
-      toggleBtn.css(togCss[0].css);
-      toggleIcon.addClass("fa-moon-o");
-      toggleIcon.removeClass("fa-sun-o");
-      darkModeThemeOn = false;
-      transitionToDarkMode();
-      //update user
-      activeUser.mode = false;
-      updateUser(true, "Theme Saved!", false);
-    }
+  $(".b_tog_checkbox_input").on("change", (e) => {
+    e.preventDefault();
+    changeDarkMode(e);
   });
+  
   // edit user close btn
   editUserCloseBtn.click((e) => {
     if (e) {
