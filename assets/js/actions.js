@@ -135,12 +135,8 @@ $(function () {
     }
   });
   // END NAVIGATION actions
-  // END NAVIGATION actions
-  // END NAVIGATION actions
-  // END NAVIGATION actions
   // End get global variables
   // bring in global data variable
-
   // set colors into color box
   hlColors.map((c) => {
     // this needs to append only once
@@ -199,7 +195,7 @@ $(function () {
   // verse array to store HL verse for user
   let verseIDArr = [];
   // get verse elements
-  var verseElm = bibleLoaded ? $(".v_para") : "";
+  var verseElm = $(".v_para");
   // creat verse element arr
   let vArr = Array.from(verseElm);
   // get HL box closeBtn
@@ -250,51 +246,10 @@ $(function () {
     }
     checkIfVerseHasBkg();
   };
-  // verseElm.click((e) => {
-  //   console.log("clicked a verse");
-  //   let verseTarget = e.target;
-  //   let verseId = verseTarget.dataset.verseid;
-  //   if (e && verseIDArr.length >= 1) {
-  //     log("recognized second click");
-  //     // log("hit else if verseIDArr.length >= 1")
-  //     // second click
-  //     let check = checkClickedVerse(verseId);
-  //     log("second click is same? " + check);
-
-  //     if (check) {
-  //       // remove underline
-  //       removeUnderline(verseId, false);
-  //       // delete from array
-  //       if (verseIDArr.length === 1) {
-  //         // and close HL box
-  //         openColorMenu(false);
-  //         // clear clicked verse array
-  //         verseIDArr = [];
-  //       } else {
-  //         // delete from array
-  //         deleteVerseFromArray(verseId);
-  //       }
-  //     } else {
-  //       // add underline
-  //       addUnderline(verseId);
-  //       // add to array
-  //       verseIDArr.push(verseId);
-  //     }
-  //   } else {
-  //     // ----------
-  //     // log("hit else if verseIDArr.length === 0")
-  //     log("First ever verse click");
-  //     // first time click add underline and open HL box
-  //     openColorMenu(true);
-  //     var waitToShowBox = setTimeout(() => {
-  //       scrollTo(e);
-  //       clearTimeout(waitToShowBox);
-  //     }, 50);
-  //     addUnderline(verseId);
-  //     verseIDArr.push(verseId);
-  //   }
-  //   checkIfVerseHasBkg();
-  // });
+  // verse click event
+  $('.b_verse_body').on('click',(e)=>{
+    console.log(e)
+  })
   //function to remove specific id from clicked array
   function deleteVerseFromArray(vId) {
     verseIDArr = verseIDArr.filter((x) => {
@@ -552,7 +507,7 @@ $(function () {
     e.preventDefault();
     changeDarkMode(e);
   });
-  
+
   // edit user close btn
   editUserCloseBtn.click((e) => {
     if (e) {

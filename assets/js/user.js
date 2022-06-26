@@ -45,8 +45,6 @@ let darkModeThemeOn = false;
 // set state for verse and font
 let verseSizeState = "16";
 let verseFontState = "Georgia";
-// user chapter state
-let chapterState = 1;
 // darkmode function
 function transitionToDarkMode() {
   let darkElms = $(".dark");
@@ -57,7 +55,7 @@ function transitionToDarkMode() {
     let fcn='';
     for (let i = splitStringArr.length; i--;) {
       fcn += ` ${splitStringArr[i]}_dark`
-      console.log(fcn)
+      // console.log(fcn)
     }
     // let splitString = classString.split(" ")[1];
     // let finishedClassName = splitString + "_dark";
@@ -125,7 +123,7 @@ $(function () {
     verseFontSize: "16",
     imageUrl: "undefined",
     userName: "Username",
-    userbiblePos: "esv-matt-1",
+    userbiblePos: "esv-nt-matt-1",
     usersFavVerses: [],
     userVerseNotes:[],
   };
@@ -178,7 +176,7 @@ $(function () {
       transitionToDarkMode();
     } else {
       darkModeThemeOn = false;
-      $('.b_tog_checkbox_input').attr('checked','')
+      $('.b_tog_checkbox_input').removeAttr('checked');
       console.log("loaded theme: light");
       transitionToDarkMode();
     }

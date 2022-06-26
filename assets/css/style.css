@@ -115,7 +115,7 @@ span {
 }
 .b_nav_dd_cont {
   padding: 15px 20px;
-  height: 90vh;
+  height: 100vh;
   /* for testing purpose */
   display: none;
   /* for testing purpose */
@@ -770,7 +770,7 @@ span {
 
 .b_tog_bkg {
   width: 100%;
-  background-color: #353535;
+  background-color: #f0f0f0;
   transition: 0.3s ease all;
   z-index: 1;
 }
@@ -781,7 +781,7 @@ span {
   left: 4px;
   width: 20px;
   height: 10px;
-  color: #353535;
+  color: #1f1f1f;
   font-size: 10px;
   font-weight: bold;
   text-align: center;
@@ -796,18 +796,18 @@ span {
 }
 
 #b_tog_btn_check .b_dkm_toggle:before {
-  content: "ON";
+  content: "OFF";
 }
 
 #b_tog_btn_check .b_dkm_toggle:after {
-  content: "OFF";
+  content: "ON";
 }
 
 #b_tog_btn_check .b_dkm_toggle:after {
   right: -50px;
   left: auto;
   background-color: white;
-  color: black;
+  color: #1f1f1f;
 }
 
 #b_tog_btn_check .b_tog_checkbox_input:checked + .b_dkm_toggle:before {
@@ -819,7 +819,7 @@ span {
 }
 
 #b_tog_btn_check .b_tog_checkbox_input:checked ~ .b_tog_bkg {
-  background-color: #d5d5d5;
+  background-color: #353535;
 }
 /* NEW toggler */
 /* NEW toggler */
