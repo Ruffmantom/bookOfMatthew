@@ -13,7 +13,7 @@ const loadingRender = (loadedUserData) => {
   const appBibleVersElm = $("#b_version");
   const appDateElm = $("#b_date");
   const bibleBodyElm = $(".b_verse_body");
-  const appChapterElm = $("#b_chapter");
+  const appBookH1Elm = $("#b_book");
   const appChapterNumElm = $("#b_chapter_num");
 
   // get user global variables
@@ -271,7 +271,7 @@ const loadingRender = (loadedUserData) => {
     appBibleVersElm.text("Bible Year: " + loadedBibleYear);
     appDateElm.text();
     // set chapter elm
-    appChapterElm.text(`The Book of ${loadedChapterName}`);
+    appBookH1Elm.text(`The Book of ${loadedChapterName}`);
 
     $("#b_p_num").text(`Ch. ${chapterState}`);
     bibleLoaded = true;
