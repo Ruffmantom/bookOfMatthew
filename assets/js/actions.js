@@ -205,6 +205,7 @@ $(function () {
     console.log("clicked a verse");
     let verseTarget = e.target;
     let verseId = verseTarget.dataset.verseid;
+    console.log(verseId)
     if (e && verseIDArr.length >= 1) {
       log("recognized second click");
       // log("hit else if verseIDArr.length >= 1")
@@ -248,12 +249,15 @@ $(function () {
   };
   // verse click event
   $('.b_verse_body').on('click',(e)=>{
-    console.log(e)
+    // console.log(e.target.className)
+    if(e.target.className === "v_para"){
+      verseElmOnClick(e)
+    }
   })
   //function to remove specific id from clicked array
   function deleteVerseFromArray(vId) {
     verseIDArr = verseIDArr.filter((x) => {
-      log("removed: " + vId + " from clicked verse array");
+      console.log("removed: " + vId + " from clicked verse array");
       return x != vId;
     });
   }
@@ -266,7 +270,7 @@ $(function () {
     verseIDArr.map((v) => {
       if (v === vId) {
         check = true;
-        log("found ID and setting check to true");
+        console.log("found ID and setting check to true");
       }
     });
     return check;
@@ -302,7 +306,8 @@ $(function () {
   });
   // function to add underline when verse is clicked
   function addUnderline(id) {
-    vArr.forEach((v) => {
+    let verseArr = Array.from($('.v_para'));
+    verseArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
         // log("about to add underline to verse: " + id);
@@ -319,7 +324,8 @@ $(function () {
   // - clicked same verse
   // - closed highlight box
   function removeUnderline(id, all) {
-    vArr.forEach((v) => {
+    let verseArr = Array.from($('.v_para'));
+    verseArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
         log("about to remove underline from verse: " + id);
@@ -346,11 +352,12 @@ $(function () {
   // click on color
   colorSwatch.click((e) => {
     // log('clicked color '+ e.target.dataset.colorid)
+    let verseArr = Array.from($('.v_para'));
     let colorId = e.target.dataset.colorid;
     // when color is clicked
     // - highlight selected verse(s)
     let userVerses = [];
-    vArr.forEach((v) => {
+    verseArr.forEach((v) => {
       let vId = v.dataset.verseid;
       verseIDArr.map((i) => {
         if (i === vId) {
@@ -396,7 +403,8 @@ $(function () {
   }
   function checkClickedBkg(id) {
     let checkBkg;
-    vArr.map((v) => {
+    let verseArr = Array.from($('.v_para'));
+    verseArr.map((v) => {
       if (v.dataset.verseid === id) {
         // returns the background of matched verse with ID
         checkBkg = v.dataset.versebkg;
@@ -421,7 +429,8 @@ $(function () {
     });
   }
   const loopThroughverseElements = (sVerseId, color) => {
-    vArr.forEach((v) => {
+    let verseArr = Array.from($('.v_para'));
+    verseArr.forEach((v) => {
       let vId = v.dataset.verseid;
       let vColorId = v.dataset.versebkg;
       if (sVerseId === vId && vColorId === color) {
@@ -480,29 +489,6 @@ $(function () {
   // --------------------END ON SCROLL FUNCTIONALITY -------------------------
   // ---------------------------------------------
   // setting dark mode
-  // goal
-  // get all child elements
-  // add the elements class name to "_dark"
-  // ex: before: .highlight_box | After: .highlight_box_dark etc.
-  // renderer
-  var togCss = [
-    {
-      name: "off",
-      css: {
-        left: "-2px",
-        right: "inherit",
-        transition: "all 350ms ease",
-      },
-    },
-    {
-      name: "on",
-      css: {
-        right: "-2px",
-        left: "inherit",
-        transition: "all 350ms ease",
-      },
-    },
-  ];
   $(".b_tog_checkbox_input").on("change", (e) => {
     e.preventDefault();
     changeDarkMode(e);
