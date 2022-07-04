@@ -228,6 +228,20 @@ const loadingRender = (loadedUserData) => {
   // START Loading Bible body ____________________________________________________________________________________________________________________
   // START Loading Bible body ____________________________________________________________________________________________________________________
   // START Loading Bible body ____________________________________________________________________________________________________________________
+  // Checking amount of chapters and current position
+  function checkDisplay(currentBook) {
+    // set btn display
+    $("#pn_btn_cont_back").show();
+    $("#pn_btn_cont_next").show();
+    console.log('checkDisplay - chapter state: '+chapterState)
+    if (chapterState >= currentBook.length) {
+      // hide next btn since you cant go further than chapter length
+      $("#pn_btn_cont_next").hide();
+    } else if (chapterState == 1 ) {
+      // hide back btn since you cant go negative chapter length
+      $("#pn_btn_cont_back").hide();
+    }
+  }
   // load chapter and verses function
   const loadChapterAndVerses = (items, cont, rowsPerChapter, chapter) => {
     cont.html("");
@@ -265,6 +279,8 @@ const loadingRender = (loadedUserData) => {
     const loadedBookArr = loadedBible.books[0];
     const loadedChapterName = loadedBookArr.book_name;
     const loadedChaptersArr = loadedBookArr.chapters;
+    // check the chapter buttons
+    checkDisplay(loadedChaptersArr)
     // set html
     //set settings info
     appTypeElm.text("Bible Type: " + loadedBibleType);

@@ -714,7 +714,20 @@ $(function () {
       }
       // selectionName.css('font-family', `${font}`)
     });
+    // ------------------------------------------------------
+    // ------------------- Click next chapter btn -----------------------
+    
+      // btn clicks
+  pagenationNextBtnElm.click(() => {
+    pageClick(true);
+  });
 
+  pagenationBackBtnElm.click(() => {
+    // console.log("clicked back");
+    pageClick(false);
+  });
+    // ------------------- Click next chapter btn -----------------------
+    // ------------------------------------------------------
     //----------------------------------
     //end of Document.ready
   });
