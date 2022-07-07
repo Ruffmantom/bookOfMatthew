@@ -205,7 +205,7 @@ $(function () {
     console.log("clicked a verse");
     let verseTarget = e.target;
     let verseId = verseTarget.dataset.verseid;
-    console.log(verseId)
+    console.log(verseId);
     if (e && verseIDArr.length >= 1) {
       log("recognized second click");
       // log("hit else if verseIDArr.length >= 1")
@@ -248,12 +248,12 @@ $(function () {
     checkIfVerseHasBkg();
   };
   // verse click event
-  $('.b_verse_body').on('click',(e)=>{
+  $(".b_verse_body").on("click", (e) => {
     // console.log(e.target.className)
-    if(e.target.className === "v_para"){
-      verseElmOnClick(e)
+    if (e.target.className === "v_para") {
+      verseElmOnClick(e);
     }
-  })
+  });
   //function to remove specific id from clicked array
   function deleteVerseFromArray(vId) {
     verseIDArr = verseIDArr.filter((x) => {
@@ -306,7 +306,7 @@ $(function () {
   });
   // function to add underline when verse is clicked
   function addUnderline(id) {
-    let verseArr = Array.from($('.v_para'));
+    let verseArr = Array.from($(".v_para"));
     verseArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
@@ -324,7 +324,7 @@ $(function () {
   // - clicked same verse
   // - closed highlight box
   function removeUnderline(id, all) {
-    let verseArr = Array.from($('.v_para'));
+    let verseArr = Array.from($(".v_para"));
     verseArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
@@ -352,7 +352,7 @@ $(function () {
   // click on color
   colorSwatch.click((e) => {
     // log('clicked color '+ e.target.dataset.colorid)
-    let verseArr = Array.from($('.v_para'));
+    let verseArr = Array.from($(".v_para"));
     let colorId = e.target.dataset.colorid;
     // when color is clicked
     // - highlight selected verse(s)
@@ -403,7 +403,7 @@ $(function () {
   }
   function checkClickedBkg(id) {
     let checkBkg;
-    let verseArr = Array.from($('.v_para'));
+    let verseArr = Array.from($(".v_para"));
     verseArr.map((v) => {
       if (v.dataset.verseid === id) {
         // returns the background of matched verse with ID
@@ -429,7 +429,7 @@ $(function () {
     });
   }
   const loopThroughverseElements = (sVerseId, color) => {
-    let verseArr = Array.from($('.v_para'));
+    let verseArr = Array.from($(".v_para"));
     verseArr.forEach((v) => {
       let vId = v.dataset.verseid;
       let vColorId = v.dataset.versebkg;
@@ -716,16 +716,72 @@ $(function () {
     });
     // ------------------------------------------------------
     // ------------------- Click next chapter btn -----------------------
-    
-      // btn clicks
-  pagenationNextBtnElm.click(() => {
-    pageClick(true);
-  });
+    let chapterState = parseInt(activeUser.userbiblePos.split("-")[3]);
+    // set local variables to users pos
+    let splitUserPos = activeUser.userbiblePos.split("-");
+    let userBv = splitUserPos[0];
+    let userTe = splitUserPos[1];
+    let userBk = splitUserPos[2];
+    const updateUserPosition = (bv, te, bk, ch) => {
+      let newUserPos = `${bv ? bv : userBv}-${te ? te : userTe}-${
+        bk ? bk : userBk
+      }-${ch ? ch : chapterState}`;
+      console.log(newUserPos);
+      activeUser.userbiblePos = "";
+      activeUser.userbiblePos = newUserPos;
+      nextChapterLoad(true);
+    };
+    // const updateUserChapter = (cNum) => {
+    //   let newUserPos = `${userBv}-${userTe}-${userBk}-${cNum}`;
+    //   console.log(newUserPos);
+    //   activeUser.userbiblePos = "";
+    //   activeUser.userbiblePos = newUserPos;
+    //   nextChapterLoad(true);
+    // };
 
-  pagenationBackBtnElm.click(() => {
-    // console.log("clicked back");
-    pageClick(false);
-  });
+    // btn clicks
+    pagenationNextBtnElm.click(() => {
+      chapterState++;
+      updateUserPosition(undefined, undefined, undefined, chapterState);
+      console.log("next chapter");
+    });
+
+    pagenationBackBtnElm.click(() => {
+      chapterState--;
+      updateUserPosition(undefined, undefined, undefined, chapterState);
+      console.log("back chapter");
+    });
+    // chapter choose
+    // click page num btn handler
+    bibleNavDdContElm.on("click", (e) => {
+      // console.log($(e.target))
+      let elmClasses = e.target.classList;
+      if (
+        elmClasses[1] === "chapter_box" &&
+        e.target.className.split(" ")[1] !== "b_book_c_dd_btn_cl"
+      ) {
+        if (elmClasses[2] !== "cb_active") {
+          console.log("clicked Chapter btn");
+          let splitId = e.target.dataset.chpid.split("-");
+          let btnId_bv = splitId[0];
+          let btnId_te = splitId[1];
+          let btnId_bk = splitId[2];
+          let btn_ch = parseInt(splitId[3]);
+          if (btn_ch !== chapterState) {
+            chapterState = btn_ch;
+            // load HTML
+            updateUserPosition(btnId_bv, btnId_te, btnId_bk, chapterState);
+            console.log("Choose chapter: " + btn_ch);
+          }
+        }
+      } else {
+        return;
+      }
+      // close Nav
+      showOrHideDropDown(false, bibleNavDdContElm);
+      menuBtn.css({ zIndex: "999" });
+      closeNaveBtnElm.fadeOut();
+    });
     // ------------------- Click next chapter btn -----------------------
     // ------------------------------------------------------
     //----------------------------------

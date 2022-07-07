@@ -4,6 +4,8 @@ const loadingRender = (loadedUserData) => {
   // navigation rendering
   const navMainTxt = $("#nav_prev_text");
   const bibleBooksContElm = $(".b_nav_books_container");
+  // clear bibleBooksContElm.html
+  bibleBooksContElm.html("");
   const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
   const bibleVersionPrevElm = $("#b_version_choice_prev");
   // bible body elements
@@ -22,9 +24,11 @@ const loadingRender = (loadedUserData) => {
   let userBv = splitUserPos[0];
   let userTe = splitUserPos[1];
   let userBk = splitUserPos[2];
-  let userCh = splitUserPos[3];
+  let userCh = parseInt(splitUserPos[3]);
+  console.log(typeof userCh);
+  // let userCh = 1;
   // state
-  let chapterState = userCh;
+  // let chapterState = userCh;
   // HTML Creation
   // Create HTML the book drop down
   const createBookDropDownHtml = (
@@ -151,6 +155,7 @@ const loadingRender = (loadedUserData) => {
   };
   // render navigation on users preloaded choices
   const renderBibleVersionChoices = (b_id, b_type, b_year) => {
+    bibleVersionsSelctContElm.html("");
     bibleVersionsSelctContElm.append(
       createBibleVersionChoicesHtml(b_id, b_type, b_year)
     );
@@ -233,11 +238,11 @@ const loadingRender = (loadedUserData) => {
     // set btn display
     $("#pn_btn_cont_back").show();
     $("#pn_btn_cont_next").show();
-    console.log('checkDisplay - chapter state: '+chapterState)
-    if (chapterState >= currentBook.length) {
+    console.log("checkDisplay - chapter state: " + userCh);
+    if (userCh >= currentBook.length) {
       // hide next btn since you cant go further than chapter length
       $("#pn_btn_cont_next").hide();
-    } else if (chapterState == 1 ) {
+    } else if (userCh == 1) {
       // hide back btn since you cant go negative chapter length
       $("#pn_btn_cont_back").hide();
     }
@@ -272,27 +277,49 @@ const loadingRender = (loadedUserData) => {
   const renderVerses = (bData) => {
     // setting items
     appVersElm.text(`Version: ${bibleData.app_version}`);
-    const loadedBible = bData;
-    console.log(bData)
-    const loadedBibleType = loadedBible.bible_type;
-    const loadedBibleYear = loadedBible.bible_year;
-    const loadedBookArr = loadedBible.books[0];
-    const loadedChapterName = loadedBookArr.book_name;
-    const loadedChaptersArr = loadedBookArr.chapters;
+    let loadedBible = bData;
+    console.log(bData);
+    let loadedBibleType = loadedBible.bible_type;
+    let loadedBibleYear = loadedBible.bible_year;
+    let loadedBookArr = loadedBible.books;
+    // work on this section to get the users position better
+    const filterForNameAndChapters = (n, c) => {
+      let chapters;
+      let name;
+      loadedBookArr.filter((b) => {
+        if (b.book_id.includes(userBk)) {
+          chapters = b.chapters;
+          name = b.book_name;
+        }
+      });
+      if (n) {
+        return name;
+      } else {
+        return chapters;
+      }
+    };
+    let loadedBookName = filterForNameAndChapters(true,false);
+    let loadedChaptersArr = filterForNameAndChapters(false,true);
+    console.log(loadedChaptersArr);
     // check the chapter buttons
-    checkDisplay(loadedChaptersArr)
+    checkDisplay(loadedChaptersArr);
     // set html
     //set settings info
     appTypeElm.text("Bible Type: " + loadedBibleType);
     appBibleVersElm.text("Bible Year: " + loadedBibleYear);
     appDateElm.text();
     // set chapter elm
-    appBookH1Elm.text(`The Book of ${loadedChapterName}`);
+    appBookH1Elm.text(`The Book of ${loadedBookName}`);
 
-    $("#b_p_num").text(`Ch. ${chapterState}`);
+    $("#b_p_num").text(`Ch. ${userCh}`);
     bibleLoaded = true;
     // run loadChapterAndVerses
-    loadChapterAndVerses(loadedChaptersArr, bibleBodyElm, 1, chapterState);
+    loadChapterAndVerses(
+      loadedChaptersArr,
+      bibleBodyElm,
+      1,
+      userCh
+    );
   };
   // END Loading Bible body____________________________________________________________________________________________________________________
   // END Loading Bible body____________________________________________________________________________________________________________________
@@ -313,7 +340,7 @@ const loadingRender = (loadedUserData) => {
       } else {
         console.log("starting render");
         newRenderAndLoadNavigationAndVerses(userBv, userBk, userCh, b);
-        renderVerses(b)
+        renderVerses(b);
       }
     });
   }
