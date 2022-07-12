@@ -25,7 +25,7 @@ const loadingRender = (loadedUserData) => {
   let userTe = splitUserPos[1];
   let userBk = splitUserPos[2];
   let userCh = parseInt(splitUserPos[3]);
-  console.log(typeof userCh);
+  // console.log(typeof userCh);
   // let userCh = 1;
   // state
   // let chapterState = userCh;
@@ -104,10 +104,10 @@ const loadingRender = (loadedUserData) => {
     `<div class="font_list_item" data-bibleversion="${bId}">${bVersion.toUpperCase()}: ${bibleInfo}</div>`;
   const createVerseLine = (v, vNum, title, id, isNewParah) => {
     let verse = `${
-      title ? '<p class="v_title">' + title + "</p>" : ""
+      title ? '<p class="v_title">' + title + "</p><br>" : ""
     }<span data-verseid=${id} data-versebkg="undefined" class="v_para" ><span class="dark v_num">${
       isNewParah ? "&emsp;" : ""
-    } ${vNum}</span>${v}</span>`;
+    } ${id.split('v')[2]}</span>${v}</span>`;
     return verse;
   };
   // New Load User and render Function
@@ -238,7 +238,7 @@ const loadingRender = (loadedUserData) => {
     // set btn display
     $("#pn_btn_cont_back").show();
     $("#pn_btn_cont_next").show();
-    console.log("checkDisplay - chapter state: " + userCh);
+    // console.log("checkDisplay - chapter state: " + userCh);
     if (userCh >= currentBook.length) {
       // hide next btn since you cant go further than chapter length
       $("#pn_btn_cont_next").hide();
@@ -278,7 +278,7 @@ const loadingRender = (loadedUserData) => {
     // setting items
     appVersElm.text(`Version: ${bibleData.app_version}`);
     let loadedBible = bData;
-    console.log(bData);
+    // console.log(bData);
     let loadedBibleType = loadedBible.bible_type;
     let loadedBibleYear = loadedBible.bible_year;
     let loadedBookArr = loadedBible.books;
@@ -300,7 +300,7 @@ const loadingRender = (loadedUserData) => {
     };
     let loadedBookName = filterForNameAndChapters(true,false);
     let loadedChaptersArr = filterForNameAndChapters(false,true);
-    console.log(loadedChaptersArr);
+    // console.log(loadedChaptersArr);
     // check the chapter buttons
     checkDisplay(loadedChaptersArr);
     // set html
@@ -338,7 +338,7 @@ const loadingRender = (loadedUserData) => {
         console.log("could not find userdata");
         return;
       } else {
-        console.log("starting render");
+        // console.log("starting render");
         newRenderAndLoadNavigationAndVerses(userBv, userBk, userCh, b);
         renderVerses(b);
       }

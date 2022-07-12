@@ -4,10 +4,10 @@ const log = (l) => {
 // global Active User
 let activeUser;
 // global Update User
-function updateUser(notify, message, alert) {
+function updateUser(notify, message, alert, time) {
   localStorage.setItem("bibleUser", JSON.stringify(activeUser));
   if (notify) {
-    notifyUser(message, alert);
+    notifyUser(message, alert,time);
   }
 }
 //--NOTIFY FUNTION GLOBAL
@@ -24,14 +24,14 @@ var notiBoxStyles = [
   },
 ];
 // notify User
-function notifyUser(mess, alert) {
+function notifyUser(mess, alert,time) {
   const notifBox = $("#noti_box");
   var addNotification = setTimeout(() => {
     $("#noti_box_text").text(mess ? mess : "Saved!");
     notifBox.css(notiBoxStyles[0]);
     notifBox.css({ backgroundColor: alert ? "#ff6666" : "#3be2ff" });
     clearTimeout(addNotification);
-  }, 1500);
+  }, time? time: 1500);
   var removeNotification = setTimeout(() => {
     notifBox.css(notiBoxStyles[1]);
     clearTimeout(removeNotification);
@@ -95,7 +95,7 @@ const setVerseFontSize = (verseSize) => {
   $("#b_versesize_value").text(`${verseSize}px`);
 };
 const loadNavigationAndBible = (userPositon) => {
-  console.log("hit loadNavigationAndBible func: " + userPositon);
+  // console.log("hit loadNavigationAndBible func: " + userPositon);
   // START
   loadingRender(userPositon);
 };
@@ -129,31 +129,35 @@ var user = {
 // function for setting up user if one isnt found
 // if found then load the user data
 function createUserAndLoad() {
-  try {
+ 
     if (localStorage.getItem("bibleUser") === null) {
       localStorage.setItem("bibleUser", JSON.stringify(user));
       activeUser = user;
       log("created user");
+      log("created user and now loading");
+      fullLoad()
     } else {
       let t = localStorage.getItem("bibleUser");
       activeUser = JSON.parse(t);
       log("user found!");
       var loadTimeout = setTimeout(() => {
-        console.log("bible loaded: true | about to start Loading");
+        // console.log("bible loaded: true | about to start Loading");
         //loading all USER DATA
         // this will be used later when I have more books
-        loadUsersBiblePlace();
-        loadVerses();
-        loadDarkModeTheme();
-        loadFontAndFontSize();
-        loadImage();
-        loadUsername();
+        fullLoad();
         clearTimeout(loadTimeout);
       }, 150);
     }
-  } catch (error) {
-    log(error);
-  }
+ 
+}
+const fullLoad =()=>{
+  loadUsersBiblePlace();
+  loadVerses();
+  loadDarkModeTheme();
+  loadFontAndFontSize();
+  loadImage();
+  loadUsername();
+  
 }
 // If user
 // - Load highlighted verses
@@ -167,16 +171,16 @@ function loadVerses() {
   log("loaded verses!");
 }
 function loadDarkModeTheme() {
-  console.log("about to load theme");
+  // console.log("about to load theme");
   if (activeUser.mode === true || activeUser.mode === "true") {
     darkModeThemeOn = true;
     $(".b_tog_checkbox_input").attr("checked", "checked");
-    console.log("loaded theme: dark");
+    // console.log("loaded theme: dark");
     transitionToDarkMode();
   } else {
     darkModeThemeOn = false;
     $(".b_tog_checkbox_input").removeAttr("checked");
-    console.log("loaded theme: light");
+    // console.log("loaded theme: light");
     transitionToDarkMode();
   }
 }
@@ -211,7 +215,7 @@ function loadUsername() {
   }
 }
 function loadUsersBiblePlace() {
-  console.log("loading user position and navigation");
+  // console.log("loading user position and navigation");
   if (activeUser.userbiblePos !== "esv-matt-1") {
     // loading navigation
     loadNavigationAndBible(activeUser);

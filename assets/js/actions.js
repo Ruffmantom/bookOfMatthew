@@ -14,23 +14,28 @@ $(function () {
   const fileInput = $("#image_uploader");
   const chooseFileBtn = $("#upload_image_btn");
   const fileSubmitBtn = $("#submit_imag_btn");
-  const toggleBtn = $("#toggler_btn");
-  const toggleIcon = $("#t_icon");
+  // const toggleBtn = $("#toggler_btn");
+  // const toggleIcon = $("#t_icon");
   const verseIncreaseBtn = $("#v_s_btn_r");
   const verseDecreaseBtn = $("#v_s_btn_l");
+  const clearUserBtn = $('#clear_user_data_btn');
+  const dropDown = $(".selection_cont");
+  const dropList = $(".font_list_cont");
+  const dropIcon = $("#drop_icon");
+  const selectionName = $("#selection_name");
   let userTextSize = parseInt(activeUser.verseFontSize);
   const hlColors = ["#ffff0b", "#16ff60", "#ff6666", "#00fbff", "#ff2fee"];
   // LOAD BIBLE ---------------------------------------------
   // LOAD BIBLE ---------------------------------------------
   // get global variables
-  const appTitleElm = $("#b_title");
-  const appVersElm = $("#app_version");
-  const appTypeElm = $("#b_type");
-  const appBibleVersElm = $("#b_version");
-  const appDateElm = $("#b_date");
-  const appReadBodyElm = $(".b_verse_body");
-  const appChapterElm = $("#b_chapter");
-  const appChapterNumElm = $("#b_chapter_num");
+  // const appTitleElm = $("#b_title");
+  // const appVersElm = $("#app_version");
+  // const appTypeElm = $("#b_type");
+  // const appBibleVersElm = $("#b_version");
+  // const appDateElm = $("#b_date");
+  // const appReadBodyElm = $(".b_verse_body");
+  // const appChapterElm = $("#b_chapter");
+  // const appChapterNumElm = $("#b_chapter_num");
   const pagenationNextBtnElm = $("#b_pn_btn_overlay_next");
   const pagenationBackBtnElm = $("#b_pn_btn_overlay_back");
   // NAVIGATION actions
@@ -76,14 +81,14 @@ $(function () {
   // toggle darkmode function
   const changeDarkMode = (e) => {
     if (e && !darkModeThemeOn) {
-      console.log("clicked toggle: " + darkModeThemeOn);
+      // console.log("clicked toggle: " + darkModeThemeOn);
       darkModeThemeOn = true;
       transitionToDarkMode();
       //update user
       activeUser.mode = true;
       updateUser(true, "Theme Saved!", false);
     } else {
-      console.log("clicked toggle: " + darkModeThemeOn);
+      // console.log("clicked toggle: " + darkModeThemeOn);
       darkModeThemeOn = false;
       transitionToDarkMode();
       //update user
@@ -202,10 +207,10 @@ $(function () {
   const colorCloseBtn = $(".close_hlb");
   // CLICKING THE VERSE
   const verseElmOnClick = (e) => {
-    console.log("clicked a verse");
+    // console.log("clicked a verse");
     let verseTarget = e.target;
     let verseId = verseTarget.dataset.verseid;
-    console.log(verseId);
+    // console.log(verseId);
     if (e && verseIDArr.length >= 1) {
       log("recognized second click");
       // log("hit else if verseIDArr.length >= 1")
@@ -257,7 +262,7 @@ $(function () {
   //function to remove specific id from clicked array
   function deleteVerseFromArray(vId) {
     verseIDArr = verseIDArr.filter((x) => {
-      console.log("removed: " + vId + " from clicked verse array");
+      // console.log("removed: " + vId + " from clicked verse array");
       return x != vId;
     });
   }
@@ -270,7 +275,7 @@ $(function () {
     verseIDArr.map((v) => {
       if (v === vId) {
         check = true;
-        console.log("found ID and setting check to true");
+        // console.log("found ID and setting check to true");
       }
     });
     return check;
@@ -328,7 +333,7 @@ $(function () {
     verseArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
-        log("about to remove underline from verse: " + id);
+        // log("about to remove underline from verse: " + id);
         $(v).css("border-bottom", "none");
       } else if (all === true) {
         // all verses get underline removed
@@ -414,7 +419,7 @@ $(function () {
   }
   // click function for deleteBackground
   removeBkgBtn.click((e) => {
-    console.log(e.target.dataset.colorid);
+    // console.log(e.target.dataset.colorid);
     let colorToDelete = e.target.dataset.colorid;
     // run through clicked Id Array return ID that matches BKG
     // use ID to search VerseElm Array if match
@@ -461,8 +466,8 @@ $(function () {
     });
     updateUser(true, "Saved!", false);
     var saveTimeOut = setTimeout(() => {
-      log("updated user");
-      log(activeUser);
+      // log("updated user");
+      // log(activeUser);
       clearTimeout(saveTimeOut);
     }, 1500);
   }
@@ -509,7 +514,7 @@ $(function () {
   // upload btn and file uploader section
   chooseFileBtn.click(() => {
     // will need to have an onchange for when a file is in
-    console.log("clicked");
+    // console.log("clicked");
     fileInput.click();
   });
   // choose file input change
@@ -526,10 +531,10 @@ $(function () {
       chooseFileBtn.css("display", "none");
       // upload file / save btn show
       fileSubmitBtn.css("display", "flex");
-      console.log("File Selected" + imgUrl);
+      // console.log("File Selected" + imgUrl);
     } catch (error) {
-      console.log("user did not select file");
-      console.log(error);
+      // console.log("user did not select file");
+      // console.log(error);
     }
   });
   var apiSettings = {
@@ -633,8 +638,8 @@ $(function () {
     }
     // update dom
     // if the font gets bigger than 20px add lineheight to body of 2.5
-    console.log(userTextSize);
-    console.log(typeof userTextSize);
+    // console.log(userTextSize);
+    // console.log(typeof userTextSize);
     setVerseFontSize(userTextSize);
     // update user
     activeUser.verseFontSize = userTextSize;
@@ -658,16 +663,9 @@ $(function () {
   ];
   // script from github from other project
   $(document).ready(function () {
-    const dropDown = $(".selection_cont");
-    const dropList = $(".font_list_cont");
-    const dropIcon = $("#drop_icon");
-    const selectionName = $("#selection_name");
-
     let listOpen = false;
     selectionName.text(
-      activeUser.verseFont !== "undefined"
-        ? activeUser.verseFont
-        : verseFontState
+      activeUser.verseFont === "undefined"?  fontList[1]: activeUser.verseFont 
     );
     dropList.hide();
     dropDown.click(() => {
@@ -703,7 +701,7 @@ $(function () {
         dropIcon.addClass("fa-angle-down");
         dropIcon.removeClass("fa-angle-up");
         selectionName.text(font);
-        console.log(font);
+        // console.log(font);
         setVerseFont(font);
         // update user
         activeUser.verseFont = font;
@@ -712,7 +710,6 @@ $(function () {
           clearTimeout(fontChangeTimer);
         }, 3500);
       }
-      // selectionName.css('font-family', `${font}`)
     });
     // ------------------------------------------------------
     // ------------------- Click next chapter btn -----------------------
@@ -726,30 +723,23 @@ $(function () {
       let newUserPos = `${bv ? bv : userBv}-${te ? te : userTe}-${
         bk ? bk : userBk
       }-${ch ? ch : chapterState}`;
-      console.log(newUserPos);
+      // console.log(newUserPos);
       activeUser.userbiblePos = "";
       activeUser.userbiblePos = newUserPos;
       nextChapterLoad(true);
     };
-    // const updateUserChapter = (cNum) => {
-    //   let newUserPos = `${userBv}-${userTe}-${userBk}-${cNum}`;
-    //   console.log(newUserPos);
-    //   activeUser.userbiblePos = "";
-    //   activeUser.userbiblePos = newUserPos;
-    //   nextChapterLoad(true);
-    // };
 
     // btn clicks
     pagenationNextBtnElm.click(() => {
       chapterState++;
       updateUserPosition(undefined, undefined, undefined, chapterState);
-      console.log("next chapter");
+      // console.log("next chapter");
     });
 
     pagenationBackBtnElm.click(() => {
       chapterState--;
       updateUserPosition(undefined, undefined, undefined, chapterState);
-      console.log("back chapter");
+      // console.log("back chapter");
     });
     // chapter choose
     // click page num btn handler
@@ -761,7 +751,7 @@ $(function () {
         e.target.className.split(" ")[1] !== "b_book_c_dd_btn_cl"
       ) {
         if (elmClasses[2] !== "cb_active") {
-          console.log("clicked Chapter btn");
+          // console.log("clicked Chapter btn");
           let splitId = e.target.dataset.chpid.split("-");
           let btnId_bv = splitId[0];
           let btnId_te = splitId[1];
@@ -771,7 +761,7 @@ $(function () {
             chapterState = btn_ch;
             // load HTML
             updateUserPosition(btnId_bv, btnId_te, btnId_bk, chapterState);
-            console.log("Choose chapter: " + btn_ch);
+            // console.log("Choose chapter: " + btn_ch);
           }
         }
       } else {
@@ -783,6 +773,25 @@ $(function () {
       closeNaveBtnElm.fadeOut();
     });
     // ------------------- Click next chapter btn -----------------------
+    // ------------------- Clear user data btn -----------------------
+    // clear the data and reload the app
+    // have a prompt confirming
+    const clearUserData = () => {
+      console.log('clearing user data');
+      // let user know it has been finished
+      notifyUser("Data Cleard!", false, 1000);
+      // reload page
+      var timer = setTimeout(()=>{
+        window.localStorage.removeItem("bibleUser");
+        location.reload(true);
+        clearTimeout(timer);
+      },2500);
+    };
+
+    clearUserBtn.on('click',()=>{
+      clearUserData();
+    })
+    // ------------------- END Clear user data btn -----------------------
     // ------------------------------------------------------
     //----------------------------------
     //end of Document.ready

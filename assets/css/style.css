@@ -609,6 +609,22 @@ span {
   background-color: #1f1f1f;
   color: #ffff;
 }
+.b_v_options_cont{
+  display: flex;
+  padding-top: 10px;
+}
+.options_btn{
+  position: relative;
+  color: #353535;
+}
+.options_btn>i{
+  font-size: 25px;
+  padding: 20px;
+}
+.options_btn_dark{
+  color: #d5d5d5;
+
+}
 .hlb_header {
   display: flex;
   justify-content: space-between;
@@ -664,11 +680,11 @@ span {
   color: #ffff;
 }
 #delete_hl {
-  width: 25%;
   /* display: flex; */
   display: none;
   align-items: center;
   justify-content: center;
+  padding: 0 15px 0 0;
 }
 #hl_colors {
   width: 100%;
@@ -691,6 +707,7 @@ span {
   font-size: 16px;
   border-radius: 50%;
   margin: 0 auto;
+  margin-left: 0;
 }
 .switch {
   width: 55px;
