@@ -792,6 +792,22 @@ $(function () {
       clearUserData();
     })
     // ------------------- END Clear user data btn -----------------------
+    // ------------------- Save user verse -----------------------
+    // this is the format for vav verse
+    /*
+    {
+      verse_ids: ['verse-id-list'],
+      verse_data: 'ESV: 2001 - 2022 Crossway',
+      verse_loc: 'Matthew 6:1-5',
+      verse_text: 'Lorem ipsum dolor sit amet',
+    },
+    // navigator.share()
+    */
+    // ------------------- END Save user verse -----------------------
+    // ------------------- share / copy verse -----------------------
+    // format for sharing
+    // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
+    // ------------------- END share / copy verse -----------------------
     // ------------------------------------------------------
     //----------------------------------
     //end of Document.ready

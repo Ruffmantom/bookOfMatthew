@@ -489,7 +489,156 @@ const bibleData = {
               verses: [
                 {
                   _id: `esv-nt-matt-4-v1`,
-
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: `The Temptation of Jesus`, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `Then Juseus was led up by the Spirit into the wilderness to be tempted by the devil.`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v2`,
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `And after fasting forty days and forty nights, he was hungry.`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v3`,
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `And the tempter came and said to him, "if you are the Son of God, command these stones to become loaves of bread."`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v4`,
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `But he answered, "It is written, <br><br> "'Man shall not live by bread alone,<br>but by every word that comes from the mouth of God.'"<br><br>`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v5`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `Then the devil took him to the holy city and set him on the pinnacle of the temple`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v6`,
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `and said to him, "If you are the Son of God, throw yourself down, for it is written,<br><br>"'He will command his angels concerning you,'<br><br>and<br><br> "'On their hands they will bear you up,<br>lest you strike your foot against a stone.'"<br><br>`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v7`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `Jesus said to him, "Again it is written, 'You shall not put the Lord your God to the test.'"`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v8`,
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `Again, the devil took him to a very high mountain and showed him all the kingdoms of the world and their glory.`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v9`,
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `And he said to him, "All these I will give you, if you will fall down and worship me."`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v10`,
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `Then Jesus said to him, "Be gone, Satan! For it is written,<br><br>"'You shall worship the Lord your God<br>and him only shall you serve.'"<br><br>`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v11`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `Then the devil left him, and behold, angels came and were ministering to him.`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v12`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: `Jesus Begins His Ministry`, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `Now when he heard that John had been arrested, he withdrew into Galilee.`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v13`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v14`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v15`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v16`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v17`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v18`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v19`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v20`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v21`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v22`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v23`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v24`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v25`,
+                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-4-v26`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
                   paragraph: `VERSE`,
