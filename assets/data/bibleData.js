@@ -491,7 +491,7 @@ const bibleData = {
                   _id: `esv-nt-matt-4-v1`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: `The Temptation of Jesus`, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `Then Juseus was led up by the Spirit into the wilderness to be tempted by the devil.`,
+                  paragraph: `Then Jesus was led up by the Spirit into the wilderness to be tempted by the devil.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v2`,
@@ -551,7 +551,7 @@ const bibleData = {
                   _id: `esv-nt-matt-4-v11`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `Then the devil left him, and behold, angels came and were ministering to him.`,
+                  paragraph: `Then the devil left him, and behold, angels came and were ministering to him.<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v12`,
@@ -561,88 +561,82 @@ const bibleData = {
                 },
                 {
                   _id: `esv-nt-matt-4-v13`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `And leaving Nazareth he went and lived in Capernaum by the sea, in the territory of Zebulun and Naphtali,`,
                 },
                 {
                   _id: `esv-nt-matt-4-v14`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `so that what was spoken by the prophet Isaiah might be fulfilled;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v15`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `"The land of Zebulun and the land of Naphtali,<br>the way of the sea, beyond the Jordan, Galilee of the Gentiles--<br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v16`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `the people dwelling in darkness<br>have seen a great light,<br>and for those dwelling in the region and shadow of death,<br>on them a light has dawned."<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v17`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `From that time Jesus began to preach, saying, "Repent, for the kindom of heaven is at hand."<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v18`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  title: `Jesus Calls the First Disciples`, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `While walking by the Sea of Galilee, he saw two brothers, Simon (who is called Peter) and Andrew his brother, casting a net into the sea, for they were fishermen.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v19`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `And he said to them, "Follow me, and I will make you fishers of men."`,
                 },
                 {
                   _id: `esv-nt-matt-4-v20`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `Immediately they left their nets and followed him.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v21`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `And going on from there he saw two other brothers, James the son of Zebedee and John his brother, in the boat with Zebedee their father, mending their nets, and he called them.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v22`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `Immediately they left the boat and their father and followed him.<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v23`,
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  title: `Jesus Ministers to Great Crowds`, //titles get <br><br> after them - might need to add that in the JS
+                  paragraph: `And he went throughout all Galilee, teaching in their synagogues and proclaiming the gospel of the kingdom and healing every disease and every affliction among the people.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v24`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
+                  paragraph: `So his fame spread throughout all Syria, and they brought him all the sick, those afflicted with various diseases and pains, those oppressed by demons, those having seizures, and paralytics, and he healed them.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v25`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
+                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
-                },
-                {
-                  _id: `esv-nt-matt-4-v26`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
-                  paragraph: `VERSE`,
-                },
+                  paragraph: `And great crowds followed him from Galilee and the Decapolis, and from Jerusalem and Judea, and from beyond the Jordan.`,
+                }
               ],
             },
             {
