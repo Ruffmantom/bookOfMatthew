@@ -210,8 +210,8 @@ const bibleData = {
               verses: [
                 {
                   _id: "esv-nt-matt-2-v1",
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: "The Visit of the Wise Men", //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: "The Visit of the Wise Men", 
                   paragraph:
                     "Now after Jesus was born in Bethlehem of Judea in the days of Herod the king, behold, wise men from the east came to Jerusalem,",
                 },
@@ -379,106 +379,106 @@ const bibleData = {
               verses: [
                 {
                   _id: `esv-nt-matt-3-v1`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: `John the Baptist Prepares the Way`, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: `John the Baptist Prepares the Way`, 
                   paragraph: `In those days John the Baptist came preaching in the wilderness of Judea,`,
                 },
                 {
                   _id: `esv-nt-matt-3-v2`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `“Repent, for the kingdom of heaven is at hand.”`,
                 },
                 {
                   _id: `esv-nt-matt-3-v3`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `For this is he who was spoken of by the prophet Isaiah when he said,<br><br>“The voice of one crying in the wilderness:<br>
                     ‘Prepare the way of the Lord;<br>
                     make his paths straight.’”<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-3-v4`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `Now John wore a garment of camel’s hair and a leather belt around his waist, and his food was locusts and wild honey.`,
                 },
                 {
                   _id: `esv-nt-matt-3-v5`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `Then Jerusalem and all Judea and all the region about the Jordan were going out to him,`,
                 },
                 {
                   _id: `esv-nt-matt-3-v6`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `and they were baptized by him in the river Jordan, confessing their sins.`,
                 },
                 {
                   _id: `esv-nt-matt-3-v7`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `But when he saw many of the Pharisees and Sadducees coming to his baptism, he said to them, "You brood of vipers! Who warned you to flee from the wrath to come?`,
                 },
                 {
                   _id: `esv-nt-matt-3-v8`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `Bear fruit in keeping with repentance.`,
                 },
                 {
                   _id: `esv-nt-matt-3-v9`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And do not presume to say to youselves, 'We have Abraham as our father', for I tell you, God is able from these stones to raise up children from Abraham.`,
                 },
                 {
                   _id: `esv-nt-matt-3-v10`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `Even now the axe is laid to the root of the trees. Every tree therefore that does not bear good fruit is cut down and thrown into the fire.<br>`,
                 },
                 {
                   _id: `esv-nt-matt-3-v11`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `"I baptize you with water for repentance, but he who is coming after me is mightier than I, whose sandals I am not worthy to carry. He will baptize you with the Holy Spirit and fire."`,
                 },
                 {
                   _id: `esv-nt-matt-3-v12`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `His winnowing fork is in his hand, and he will clear his threshing floor and gather hiswheat into the barn, but the chaff he will burn with unquenchable fire."<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-3-v13`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: `The Baptism of Jesus`, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: `The Baptism of Jesus`, 
                   paragraph: `Then Jesus came from Galilee to the Jordan to John, to be baptized by him.`,
                 },
                 {
                   _id: `esv-nt-matt-3-v14`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `John would have prevented him, saying, "I need to be baptized by you, and do you come to me?"`,
                 },
                 {
                   _id: `esv-nt-matt-3-v15`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `But Jesus answered him, "Let it be so now, for thus it is fitting for us to fulfill all righteousness." Then he consented.`,
                 },
                 {
                   _id: `esv-nt-matt-3-v16`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And when Jesus was baptized, immediately he went up from the water, and behold, the heavens were opened to him, and he saw the Spirit of God descending like a dove and coming to rest on him;`,
                 },
                 {
                   _id: `esv-nt-matt-3-v17`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `and behold, a voice from heaven said, "This is my beloved Son, with whom I am well pleased."`,
                 },
               ],
@@ -489,152 +489,152 @@ const bibleData = {
               verses: [
                 {
                   _id: `esv-nt-matt-4-v1`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: `The Temptation of Jesus`, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: `The Temptation of Jesus`, 
                   paragraph: `Then Jesus was led up by the Spirit into the wilderness to be tempted by the devil.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v2`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And after fasting forty days and forty nights, he was hungry.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v3`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And the tempter came and said to him, "if you are the Son of God, command these stones to become loaves of bread."`,
                 },
                 {
                   _id: `esv-nt-matt-4-v4`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `But he answered, "It is written, <br><br> "'Man shall not live by bread alone,<br>but by every word that comes from the mouth of God.'"<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v5`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `Then the devil took him to the holy city and set him on the pinnacle of the temple`,
                 },
                 {
                   _id: `esv-nt-matt-4-v6`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `and said to him, "If you are the Son of God, throw yourself down, for it is written,<br><br>"'He will command his angels concerning you,'<br><br>and<br><br> "'On their hands they will bear you up,<br>lest you strike your foot against a stone.'"<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v7`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `Jesus said to him, "Again it is written, 'You shall not put the Lord your God to the test.'"`,
                 },
                 {
                   _id: `esv-nt-matt-4-v8`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `Again, the devil took him to a very high mountain and showed him all the kingdoms of the world and their glory.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v9`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And he said to him, "All these I will give you, if you will fall down and worship me."`,
                 },
                 {
                   _id: `esv-nt-matt-4-v10`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `Then Jesus said to him, "Be gone, Satan! For it is written,<br><br>"'You shall worship the Lord your God<br>and him only shall you serve.'"<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v11`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `Then the devil left him, and behold, angels came and were ministering to him.<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v12`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: `Jesus Begins His Ministry`, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: `Jesus Begins His Ministry`, 
                   paragraph: `Now when he heard that John had been arrested, he withdrew into Galilee.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v13`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And leaving Nazareth he went and lived in Capernaum by the sea, in the territory of Zebulun and Naphtali,`,
                 },
                 {
                   _id: `esv-nt-matt-4-v14`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `so that what was spoken by the prophet Isaiah might be fulfilled;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v15`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `"The land of Zebulun and the land of Naphtali,<br>the way of the sea, beyond the Jordan, Galilee of the Gentiles--<br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v16`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `the people dwelling in darkness<br>have seen a great light,<br>and for those dwelling in the region and shadow of death,<br>on them a light has dawned."<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v17`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: ``, 
                   paragraph: `From that time Jesus began to preach, saying, "Repent, for the kindom of heaven is at hand."<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v18`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: `Jesus Calls the First Disciples`, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: `Jesus Calls the First Disciples`, 
                   paragraph: `While walking by the Sea of Galilee, he saw two brothers, Simon (who is called Peter) and Andrew his brother, casting a net into the sea, for they were fishermen.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v19`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And he said to them, "Follow me, and I will make you fishers of men."`,
                 },
                 {
                   _id: `esv-nt-matt-4-v20`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `Immediately they left their nets and followed him.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v21`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And going on from there he saw two other brothers, James the son of Zebedee and John his brother, in the boat with Zebedee their father, mending their nets, and he called them.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v22`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `Immediately they left the boat and their father and followed him.<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v23`,
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: `Jesus Ministers to Great Crowds`, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: `Jesus Ministers to Great Crowds`, 
                   paragraph: `And he went throughout all Galilee, teaching in their synagogues and proclaiming the gospel of the kingdom and healing every disease and every affliction among the people.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v24`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `So his fame spread throughout all Syria, and they brought him all the sick, those afflicted with various diseases and pains, those oppressed by demons, those having seizures, and paralytics, and he healed them.`,
                 },
                 {
                   _id: `esv-nt-matt-4-v25`,
-                  new_para: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: false, 
+                  title: ``, 
                   paragraph: `And great crowds followed him from Galilee and the Decapolis, and from Jerusalem and Judea, and from beyond the Jordan.`,
                 }
               ],
@@ -645,11 +645,292 @@ const bibleData = {
               verses: [
                 {
                   _id: `esv-nt-matt-5-v1`,
-
-                  new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get <br><br> after them - might need to add that in the JS
+                  new_para: true, 
+                  title: `The Sermon on the Mount`, 
+                  paragraph: `Seeing the crowds, he went up on the mountain, and when he sat down, his disciples came to him.`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v2`,
+                  new_para: true, 
+                  title: `The Beatitudes`, 
                   paragraph: `VERSE`,
                 },
+                {
+                  _id: `esv-nt-matt-5-v3`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v4`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v5`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v6`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v7`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v8`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v9`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v10`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v11`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v12`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v13`,
+                  new_para: true, 
+                  title: `Salt and Light`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v14`,
+                  new_para: true, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v15`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v16`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v17`,
+                  new_para: true, 
+                  title: `Christ Came to Fulfill the Law`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v18`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v19`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v20`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v21`,
+                  new_para: true, 
+                  title: `Anger`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v22`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v23`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v24`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-25`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v26`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v27`,
+                  new_para: true, 
+                  title: `Lust`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v28`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v29`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v30`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v31`,
+                  new_para: true, 
+                  title: `Divorce`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v32`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v33`,
+                  new_para: true, 
+                  title: `Oaths`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v34`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v35`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v36`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v37`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v38`,
+                  new_para: true, 
+                  title: `Retaliation`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v39`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v40`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v41`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v42`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v43`,
+                  new_para: true, 
+                  title: `Love Your Enemies`, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v44`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v45`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v46`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v47`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                },
+                {
+                  _id: `esv-nt-matt-5-v48`,
+                  new_para: false, 
+                  title: ``, 
+                  paragraph: `VERSE`,
+                }
               ],
             },
             {
@@ -658,7 +939,6 @@ const bibleData = {
               verses: [
                 {
                   _id: `esv-nt-matt-6-v1`,
-
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
                   paragraph: `VERSE`,
@@ -671,7 +951,6 @@ const bibleData = {
               verses: [
                 {
                   _id: `esv-nt-matt-7-v1`,
-
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
                   paragraph: `VERSE`,
@@ -684,7 +963,6 @@ const bibleData = {
               verses: [
                 {
                   _id: `esv-nt-matt-8-v1`,
-
                   new_para: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get <br><br> after them - might need to add that in the JS
                   paragraph: `VERSE`,

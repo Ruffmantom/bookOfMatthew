@@ -87,10 +87,13 @@ span {
 }
 #b_chapter_num {
   margin-bottom: 15px;
+  font-size: 25px;
 }
 .v_title {
   font-style: italic;
   opacity: 0.6;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 .bible_book_navigation {
   display: flex;

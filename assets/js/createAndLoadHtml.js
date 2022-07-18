@@ -4,10 +4,12 @@ const loadingRender = (loadedUserData) => {
   // navigation rendering
   const navMainTxt = $("#nav_prev_text");
   const bibleBooksContElm = $(".b_nav_books_container");
+  
   // clear bibleBooksContElm.html
   bibleBooksContElm.html("");
   const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
   const bibleVersionPrevElm = $("#b_version_choice_prev");
+
   // bible body elements
   const appTitleElm = $("#b_title");
   const appVersElm = $("#app_version");
@@ -25,10 +27,7 @@ const loadingRender = (loadedUserData) => {
   let userTe = splitUserPos[1];
   let userBk = splitUserPos[2];
   let userCh = parseInt(splitUserPos[3]);
-  // console.log(typeof userCh);
-  // let userCh = 1;
-  // state
-  // let chapterState = userCh;
+
   // HTML Creation
   // Create HTML the book drop down
   const createBookDropDownHtml = (
@@ -102,12 +101,14 @@ const loadingRender = (loadedUserData) => {
   // create HTML bible version choices
   const createBibleVersionChoicesHtml = (bId, bVersion, bibleInfo) =>
     `<div class="font_list_item" data-bibleversion="${bId}">${bVersion.toUpperCase()}: ${bibleInfo}</div>`;
-  const createVerseLine = (v, vNum, title, id, isNewParah) => {
+  const createVerseLine = (v, title, id, isNewParah) => {
+    let a = id.split('-')[4];
+    let vNumber = a.split('v')[1];
     let verse = `${
-      title ? '<p class="v_title">' + title + "</p><br>" : ""
+      title ? '<p class="v_title">' + title + "</p>" : ""
     }<span data-verseid=${id} data-versebkg="undefined" class="v_para" ><span class="dark v_num">${
       isNewParah ? "&emsp;" : ""
-    } ${id.split('v')[2]}</span>${v}</span>`;
+    } ${vNumber}</span>${v}</span>`;
     return verse;
   };
   // New Load User and render Function
@@ -264,7 +265,6 @@ const loadingRender = (loadedUserData) => {
       chapterVerses.map((v) => {
         let line = createVerseLine(
           v.paragraph,
-          v.verse,
           v.title,
           v._id,
           v.new_para
