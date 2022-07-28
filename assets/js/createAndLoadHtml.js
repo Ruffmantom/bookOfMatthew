@@ -40,7 +40,7 @@ const loadingRender = (loadedUserData) => {
           <div  data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
             <div data-ddbtnid="${bookId}" id="b_book_c_dd_btn" class="b_btn_overlay_click"></div>
             <p id="selection_name">${bookName}</p>
-            <i data-ddbtnid="${bookId}" class="fa fa-angle-down drop_icon" aria-hidden="true"></i>
+            <!-- <i data-ddbtnid="${bookId}" class="fa fa-angle-down drop_icon" aria-hidden="true"></i> -->
           </div>
           <div data-ddcontid="${bookId}" class="dark b_dd_chapter_cont">
             <h4 class="b_nav_titles">Chapters</h4>
