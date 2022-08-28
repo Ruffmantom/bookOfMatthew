@@ -149,8 +149,7 @@ const loadingRender = (loadedUserData) => {
         l = "Luke";
         break;
       default:
-        "John";
-        break;
+        l = "John";
     }
     return l;
   };
