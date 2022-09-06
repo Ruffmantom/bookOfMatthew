@@ -14,11 +14,12 @@ $(function () {
   const fileInput = $("#image_uploader");
   const chooseFileBtn = $("#upload_image_btn");
   const fileSubmitBtn = $("#submit_imag_btn");
+  const optionsCopyBtn = $("#options_btn_copy");
   // const toggleBtn = $("#toggler_btn");
   // const toggleIcon = $("#t_icon");
   const verseIncreaseBtn = $("#v_s_btn_r");
   const verseDecreaseBtn = $("#v_s_btn_l");
-  const clearUserBtn = $('#clear_user_data_btn');
+  const clearUserBtn = $("#clear_user_data_btn");
   const dropDown = $(".selection_cont");
   const dropList = $(".font_list_cont");
   const dropIcon = $("#drop_icon");
@@ -316,6 +317,8 @@ $(function () {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
         // log("about to add underline to verse: " + id);
+        // add data attr data-vselected=true
+        addAndRemoveSelected(true, v);
         if (darkModeThemeOn) {
           $(v).css(addBorder("#d5d5d5"));
         } else {
@@ -324,6 +327,18 @@ $(function () {
       }
     });
   }
+  const addAndRemoveSelected = (add, verse) => {
+    if (add) {
+      console.log("adding selected attr - ");
+      console.log($(verse));
+      $(verse).attr("data-vselected", "true");
+    } else {
+      console.log("removing selected attr");
+      console.log($(verse));
+      $(verse).removeData("vselected");
+      $(verse).removeAttr("data-vselected");
+    }
+  };
   // function to remove underline
   // need functionality for determining if
   // - clicked same verse
@@ -333,6 +348,8 @@ $(function () {
     verseArr.forEach((v) => {
       // just the verse with the id clicked gets underline removed
       if (v.dataset.verseid === id) {
+        //remove data selected
+        addAndRemoveSelected(false, v);
         // log("about to remove underline from verse: " + id);
         $(v).css("border-bottom", "none");
       } else if (all === true) {
@@ -665,7 +682,7 @@ $(function () {
   $(document).ready(function () {
     let listOpen = false;
     selectionName.text(
-      activeUser.verseFont === "undefined"?  fontList[1]: activeUser.verseFont 
+      activeUser.verseFont === "undefined" ? fontList[1] : activeUser.verseFont
     );
     dropList.hide();
     dropDown.click(() => {
@@ -777,23 +794,23 @@ $(function () {
     // clear the data and reload the app
     // have a prompt confirming
     const clearUserData = () => {
-      console.log('clearing user data');
+      console.log("clearing user data");
       // let user know it has been finished
       notifyUser("Data Cleard!", false, 1000);
       // reload page
-      var timer = setTimeout(()=>{
+      var timer = setTimeout(() => {
         window.localStorage.removeItem("bibleUser");
         location.reload(true);
         clearTimeout(timer);
-      },2500);
+      }, 2500);
     };
 
-    clearUserBtn.on('click',()=>{
+    clearUserBtn.on("click", () => {
       clearUserData();
-    })
+    });
     // ------------------- END Clear user data btn -----------------------
     // ------------------- Save user verse -----------------------
-    // this is the format for vav verse
+    // this is the format for saving a verse
     /*
     {
       verse_ids: ['verse-id-list'],
@@ -807,6 +824,37 @@ $(function () {
     // ------------------- share / copy verse -----------------------
     // format for sharing
     // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
+    optionsCopyBtn.on("click", function () {
+      // get verse path
+      let path = [];
+      let selectedVerses = [];
+      let bibleVersion = "";
+      // get path info
+      // look through all verses and find the ones with the selected attr "vselected"
+      // THIS FOREACH IS NOT RUNNING
+
+      vArr.forEach((v) => {
+        console.log("finding selected");
+        if (v.dataset.vselected === "true") {
+          console.log($(v).dataset.verseid);
+          console.log($(v).innerText);
+          // path.push($(v).dataset.verseid)
+          // selectedVerses.push($(v).innerText)
+        }
+      });
+
+      let copydata = `${path}:&emsp;${selectedVerses.join()}&emsp;${bibleVersion}`;
+      // send to copyToClipboard()
+
+      // console.log(path);
+    });
+    function copyToClipboard(element) {
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(element).html()).select();
+      document.execCommand("copy");
+      $temp.remove();
+    }
     // ------------------- END share / copy verse -----------------------
     // ------------------------------------------------------
     //----------------------------------
