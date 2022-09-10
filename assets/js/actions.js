@@ -200,6 +200,8 @@ $(function () {
   // ---------------------------------------------
   // verse array to store HL verse for user
   let verseIDArr = [];
+  // Store all the verse data
+  let clickedVerseDataArr = [];
   // get verse elements
   var verseElm = $(".v_para");
   // creat verse element arr
@@ -211,6 +213,11 @@ $(function () {
     // console.log("clicked a verse");
     let verseTarget = e.target;
     let verseId = verseTarget.dataset.verseid;
+    let verseData = verseTarget.dataset.versetext;
+    let vDataObj = {
+      vId: verseId,
+      vTxt: verseData,
+    };
     // console.log(verseId);
     if (e && verseIDArr.length >= 1) {
       log("recognized second click");
@@ -228,6 +235,8 @@ $(function () {
           openColorMenu(false);
           // clear clicked verse array
           verseIDArr = [];
+          // clear clicked verse data array
+          clickedVerseDataArr = [];
         } else {
           // delete from array
           deleteVerseFromArray(verseId);
@@ -237,6 +246,9 @@ $(function () {
         addUnderline(verseId);
         // add to array
         verseIDArr.push(verseId);
+        // push into verse data array
+        clickedVerseDataArr.push(vDataObj);
+        console.log(clickedVerseDataArr);
       }
     } else {
       // ----------
@@ -250,6 +262,9 @@ $(function () {
       }, 50);
       addUnderline(verseId);
       verseIDArr.push(verseId);
+      // push into verse data array
+      clickedVerseDataArr.push(vDataObj);
+      console.log(clickedVerseDataArr);
     }
     checkIfVerseHasBkg();
   };
@@ -288,6 +303,8 @@ $(function () {
       colorMenu.hide("slide", { direction: "down" }, 350);
       // remove all verses from verseIDArr on close
       verseIDArr = [];
+      // clear clicked verse data array
+      clickedVerseDataArr = [];
       // remove all underlines
       removeUnderline("null", true);
       // remove spacer
@@ -825,28 +842,10 @@ $(function () {
     // format for sharing
     // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
     optionsCopyBtn.on("click", function () {
-      // get verse path
-      let path = [];
-      let selectedVerses = [];
-      let bibleVersion = "";
-      // get path info
-      // look through all verses and find the ones with the selected attr "vselected"
-      // THIS FOREACH IS NOT RUNNING
-
-      vArr.forEach((v) => {
-        console.log("finding selected");
-        if (v.dataset.vselected === "true") {
-          console.log($(v).dataset.verseid);
-          console.log($(v).innerText);
-          // path.push($(v).dataset.verseid)
-          // selectedVerses.push($(v).innerText)
-        }
-      });
-
-      let copydata = `${path}:&emsp;${selectedVerses.join()}&emsp;${bibleVersion}`;
-      // send to copyToClipboard()
-
-      // console.log(path);
+      console.log(clickedVerseDataArr)
+      //for testing
+      createCopyData(clickedVerseDataArr)
+      // copyToClipboard( createCopyData(clickedVerseDataArr))
     });
     function copyToClipboard(element) {
       var $temp = $("<input>");
@@ -854,6 +853,32 @@ $(function () {
       $temp.val($(element).html()).select();
       document.execCommand("copy");
       $temp.remove();
+    }
+    const createCopyData = (vdata)=>{
+      // take data and parse it into string for copying
+      // figure out how many verses..
+
+      // ---------------
+      // *** Things to consider ***
+      // * how many verses are choosen
+      // * what if there are verses chosen in different sections IE: vs:1 and also vs:5-6
+      // * order matters - make sure the verses are in order when taken out of clickedVerseDataArrv IE: vs1-3 not vs:3-1
+      // ---------------
+
+      let verseCount = '';
+      let allVerseTxt = '';
+      let bv = ''
+      if(vdata.length >= 2){
+        // get verse numbers and hyphenate
+        // IE: vs:6-8
+        let vIdArray = []
+        vdata.forEach(vd=>{
+          let i = vd.vId.split('-')[4]
+          vIdArray.push(i);
+        })
+        verseCount = `${vIdArray[0]}-${vIdArray[[vIdArray.length - 1]]}`
+      }
+      console.log(verseCount)
     }
     // ------------------- END share / copy verse -----------------------
     // ------------------------------------------------------

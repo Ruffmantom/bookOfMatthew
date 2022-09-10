@@ -8,6 +8,9 @@ function createVerseId() {
   }
   return id;
 }
+// Need to do some HTML encoding
+  // Double quotes = &#8220; &#8221; = ""
+  // Single quotes = &#8216; &#8217; = ''
 
 // END for future use with Database
 const bibleData = {
@@ -165,14 +168,14 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    'But as he considered these things, behold, an angel of the Lord appeared to him in a dream, saying, "Joseph, son of David, do not fear the take Mary as your wife, for that which is conceived in her is from the Holy Spirit.',
+                    'But as he considered these things, behold, an angel of the Lord appeared to him in a dream, saying, &#8220;Joseph, son of David, do not fear the take Mary as your wife, for that which is conceived in her is from the Holy Spirit.',
                 },
                 {
                   _id: "esv-nt-matt-1-v21",
                   new_para: false,
                   title: "",
                   paragraph:
-                    'She will bear a son, and you shall call his name Jesus, for he will save his prople from their sins."',
+                    'She will bear a son, and you shall call his name Jesus, for he will save his prople from their sins.&#8221;',
                 },
                 {
                   _id: "esv-nt-matt-1-v22",
@@ -186,7 +189,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    '"Behold, the virgin shall conceive and bear a son,<br>and they shall call his name Immanuel"<br> (which means, God with us).<br><br>',
+                    '&#8220;Behold, the virgin shall conceive and bear a son,<br>and they shall call his name Immanuel&#8221;<br> (which means, God with us).<br><br>',
                 },
                 {
                   _id: "esv-nt-matt-1-v24",
@@ -220,7 +223,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "saying, “Where is he who has been born king of the Jews? For we saw his star when it rose and have come to worship him.”",
+                    "saying, &#8220;Where is he who has been born king of the Jews? For we saw his star when it rose and have come to worship him.&#8221;",
                 },
                 {
                   _id: "esv-nt-matt-2-v3",
@@ -241,16 +244,16 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "They told him, “In Bethlehem of Judea for so it is written by the prophet:<br><br>",
+                    "They told him, &#8220;In Bethlehem of Judea for so it is written by the prophet:<br><br>",
                 },
                 {
                   _id: "esv-nt-matt-2-v6",
                   new_para: true,
                   title: "",
-                  paragraph: `“‘And you, O Bethlehem, in the land of Judah,<br>
+                  paragraph: `&#8220;‘And you, O Bethlehem, in the land of Judah,<br>
                     are by no means least among the rulers of Judah;<br>
                     for from you shall come a ruler<br>
-                    who will qshepherd my people Israel.’”<br><br>`,
+                    who will qshepherd my people Israel.’&#8221;<br><br>`,
                 },
                 {
                   _id: "esv-nt-matt-2-v7",
