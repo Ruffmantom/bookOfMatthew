@@ -873,13 +873,31 @@ $(function () {
         // IE: vs:6-8
         let vIdArray = []
         vdata.forEach(vd=>{
-          let i = vd.vId.split('-')[4]
+          let i = parseInt(vd.vId.split('-')[4].split('')[1])
           vIdArray.push(i);
         })
-        verseCount = `${vIdArray[0]}-${vIdArray[[vIdArray.length - 1]]}`
+        checkIfSeparateVerses(vIdArray)
+        // verseCount = `${vIdArray[0]}-${vIdArray[[vIdArray.length - 1]]}`
       }
-      console.log(verseCount)
+      // console.log(verseCount)
     }
+    const checkIfSeparateVerses = (d)=>{
+        // d is a array of numbers
+        let i = 0;
+        let a = parseInt(d[i])
+        console.log(a+1)
+        console.log(d[i])
+        // if(a+1 === parseInt(d[i++])){
+        //   console.log(`${a+1} === ${d[i++]}`)
+        // }else{
+        //   console.log('nope! they do not match')
+        //   console.log(`${a+1} === ${d[i++]}?`)
+          
+        // }
+    }
+
+
+    
     // ------------------- END share / copy verse -----------------------
     // ------------------------------------------------------
     //----------------------------------

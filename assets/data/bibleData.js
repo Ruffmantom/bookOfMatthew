@@ -267,7 +267,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "and he sent them to the Bethlehem, saying, “Go and search diligently for the child. And when you have found him, bring me word, that I too may come and worship him.”",
+                    "and he sent them to the Bethlehem, saying, &#8220;Go and search diligently for the child. And when you have found him, bring me word, that I too may come and worship him.&#8221;",
                 },
                 {
                   _id: "esv-nt-matt-2-v9",
@@ -302,7 +302,7 @@ const bibleData = {
                   new_para: true,
                   title: "The Flight to Egypt",
                   paragraph:
-                    "Now when they had departed, behold, an angel of the Lord appeared to Joseph in a dream and said, “Rise, take the child and his mother, and flee to Egypt, and remain there until I tell you, for Herod is about to search for the child, to destroy him.”",
+                    "Now when they had departed, behold, an angel of the Lord appeared to Joseph in a dream and said, &#8220;Rise, take the child and his mother, and flee to Egypt, and remain there until I tell you, for Herod is about to search for the child, to destroy him.&#8221;",
                 },
                 {
                   _id: "esv-nt-matt-2-v14",
@@ -316,7 +316,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "And remained there until the death of Herod. This was to fulfill what the Lord had spoken by the prophet, “Out of Egypt I called my son.”<br><br>",
+                    "And remained there until the death of Herod. This was to fulfill what the Lord had spoken by the prophet, &#8220;Out of Egypt I called my son.&#8221;<br><br>",
                 },
                 {
                   _id: "esv-nt-matt-2-v16",
@@ -337,7 +337,7 @@ const bibleData = {
                   new_para: true,
                   title: "",
                   paragraph:
-                    "“A voice was heard in Ramah,<br>weeping and loud lamentation,<br>Rachel weeping for her children;<br>she refused to be comforted, because they are no more.”<br><br>",
+                    "&#8220;A voice was heard in Ramah,<br>weeping and loud lamentation,<br>Rachel weeping for her children;<br>she refused to be comforted, because they are no more.&#8221;<br><br>",
                 },
                 {
                   _id: "esv-nt-matt-2-v19",
@@ -351,7 +351,7 @@ const bibleData = {
                   new_para: false,
                   title: "",
                   paragraph:
-                    "saying, “Rise, take the child and his mother and go to the land of Israel, for those who sought the shield’s life are dead.”",
+                    "saying, “Rise, take the child and his mother and go to the land of Israel, for those who sought the shield’s life are dead.&#8221;",
                 },
                 {
                   _id: "esv-nt-matt-2-v21",
@@ -390,15 +390,15 @@ const bibleData = {
                   _id: `esv-nt-matt-3-v2`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `“Repent, for the kingdom of heaven is at hand.”`,
+                  paragraph: `&#8220;Repent, for the kingdom of heaven is at hand.&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-3-v3`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `For this is he who was spoken of by the prophet Isaiah when he said,<br><br>“The voice of one crying in the wilderness:<br>
+                  paragraph: `For this is he who was spoken of by the prophet Isaiah when he said,<br><br>&#8220;The voice of one crying in the wilderness:<br>
                     ‘Prepare the way of the Lord;<br>
-                    make his paths straight.’”<br><br>`,
+                    make his paths straight.’&#8221;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-3-v4`,
@@ -422,7 +422,7 @@ const bibleData = {
                   _id: `esv-nt-matt-3-v7`,
                   new_para: true, 
                   title: ``, 
-                  paragraph: `But when he saw many of the Pharisees and Sadducees coming to his baptism, he said to them, "You brood of vipers! Who warned you to flee from the wrath to come?`,
+                  paragraph: `But when he saw many of the Pharisees and Sadducees coming to his baptism, he said to them, &#8220;You brood of vipers! Who warned you to flee from the wrath to come?`,
                 },
                 {
                   _id: `esv-nt-matt-3-v8`,
@@ -446,13 +446,13 @@ const bibleData = {
                   _id: `esv-nt-matt-3-v11`,
                   new_para: true, 
                   title: ``, 
-                  paragraph: `"I baptize you with water for repentance, but he who is coming after me is mightier than I, whose sandals I am not worthy to carry. He will baptize you with the Holy Spirit and fire."`,
+                  paragraph: `&#8220;I baptize you with water for repentance, but he who is coming after me is mightier than I, whose sandals I am not worthy to carry. He will baptize you with the Holy Spirit and fire.&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-3-v12`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `His winnowing fork is in his hand, and he will clear his threshing floor and gather hiswheat into the barn, but the chaff he will burn with unquenchable fire."<br><br>`,
+                  paragraph: `His winnowing fork is in his hand, and he will clear his threshing floor and gather hiswheat into the barn, but the chaff he will burn with unquenchable fire.&#8221;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-3-v13`,
@@ -464,13 +464,13 @@ const bibleData = {
                   _id: `esv-nt-matt-3-v14`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `John would have prevented him, saying, "I need to be baptized by you, and do you come to me?"`,
+                  paragraph: `John would have prevented him, saying, &#8220;I need to be baptized by you, and do you come to me?&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-3-v15`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `But Jesus answered him, "Let it be so now, for thus it is fitting for us to fulfill all righteousness." Then he consented.`,
+                  paragraph: `But Jesus answered him, "Let it be so now, for thus it is fitting for us to fulfill all righteousness.&#8221; Then he consented.`,
                 },
                 {
                   _id: `esv-nt-matt-3-v16`,
@@ -482,7 +482,7 @@ const bibleData = {
                   _id: `esv-nt-matt-3-v17`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `and behold, a voice from heaven said, "This is my beloved Son, with whom I am well pleased."`,
+                  paragraph: `and behold, a voice from heaven said, &#8220;This is my beloved Son, with whom I am well pleased.&#8221;`,
                 },
               ],
             },
@@ -506,13 +506,13 @@ const bibleData = {
                   _id: `esv-nt-matt-4-v3`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `And the tempter came and said to him, "if you are the Son of God, command these stones to become loaves of bread."`,
+                  paragraph: `And the tempter came and said to him, &#8220;if you are the Son of God, command these stones to become loaves of bread.&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-4-v4`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `But he answered, "It is written, <br><br> "'Man shall not live by bread alone,<br>but by every word that comes from the mouth of God.'"<br><br>`,
+                  paragraph: `But he answered, &#8220;It is written, <br><br> &#8220;'Man shall not live by bread alone,<br>but by every word that comes from the mouth of God.'&#8221;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v5`,
@@ -524,13 +524,13 @@ const bibleData = {
                   _id: `esv-nt-matt-4-v6`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `and said to him, "If you are the Son of God, throw yourself down, for it is written,<br><br>"'He will command his angels concerning you,'<br><br>and<br><br> "'On their hands they will bear you up,<br>lest you strike your foot against a stone.'"<br><br>`,
+                  paragraph: `and said to him, &#8220;If you are the Son of God, throw yourself down, for it is written,<br><br>&#8220;'He will command his angels concerning you,'<br><br>and<br><br> &#8220;'On their hands they will bear you up,<br>lest you strike your foot against a stone.'&#8221;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v7`,
                   new_para: true, 
                   title: ``, 
-                  paragraph: `Jesus said to him, "Again it is written, 'You shall not put the Lord your God to the test.'"`,
+                  paragraph: `Jesus said to him, &#8220;Again it is written, 'You shall not put the Lord your God to the test.'&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-4-v8`,
@@ -542,13 +542,13 @@ const bibleData = {
                   _id: `esv-nt-matt-4-v9`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `And he said to him, "All these I will give you, if you will fall down and worship me."`,
+                  paragraph: `And he said to him, &#8220;All these I will give you, if you will fall down and worship me.&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-4-v10`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `Then Jesus said to him, "Be gone, Satan! For it is written,<br><br>"'You shall worship the Lord your God<br>and him only shall you serve.'"<br><br>`,
+                  paragraph: `Then Jesus said to him, &#8220;Be gone, Satan! For it is written,<br><br>&#8221;'You shall worship the Lord your God<br>and him only shall you serve.'&#8221;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v11`,
@@ -578,19 +578,19 @@ const bibleData = {
                   _id: `esv-nt-matt-4-v15`,
                   new_para: true, 
                   title: ``, 
-                  paragraph: `"The land of Zebulun and the land of Naphtali,<br>the way of the sea, beyond the Jordan, Galilee of the Gentiles--<br>`,
+                  paragraph: `&#8220;The land of Zebulun and the land of Naphtali,<br>the way of the sea, beyond the Jordan, Galilee of the Gentiles--<br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v16`,
                   new_para: true, 
                   title: ``, 
-                  paragraph: `the people dwelling in darkness<br>have seen a great light,<br>and for those dwelling in the region and shadow of death,<br>on them a light has dawned."<br><br>`,
+                  paragraph: `the people dwelling in darkness<br>have seen a great light,<br>and for those dwelling in the region and shadow of death,<br>on them a light has dawned.&#8221;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v17`,
                   new_para: true, 
                   title: ``, 
-                  paragraph: `From that time Jesus began to preach, saying, "Repent, for the kindom of heaven is at hand."<br><br>`,
+                  paragraph: `From that time Jesus began to preach, saying, &#8220;Repent, for the kindom of heaven is at hand.&#8221;<br><br>`,
                 },
                 {
                   _id: `esv-nt-matt-4-v18`,
@@ -602,7 +602,7 @@ const bibleData = {
                   _id: `esv-nt-matt-4-v19`,
                   new_para: false, 
                   title: ``, 
-                  paragraph: `And he said to them, "Follow me, and I will make you fishers of men."`,
+                  paragraph: `And he said to them, &#8220;Follow me, and I will make you fishers of men.&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-4-v20`,
