@@ -253,7 +253,8 @@ function addBKG(uv_id, uv_c) {
 const nextChapterLoad = (scroll) => {
   loadUsersBiblePlace();
   loadVerses();
-  loadDarkModeTheme();
+  // this was adding unnessasary darkmode classes
+  //loadDarkModeTheme();
   loadFontAndFontSize();
   loadImage();
   // loadUsername();

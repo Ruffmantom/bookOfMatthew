@@ -215,6 +215,7 @@ $(function () {
     let verseId = verseTarget.dataset.verseid;
     let verseData = verseTarget.dataset.versetext;
     let vDataObj = {
+      _id: parseInt(verseId.split("-")[4].split('')[1]),
       vId: verseId,
       vTxt: verseData,
     };
@@ -842,9 +843,9 @@ $(function () {
     // format for sharing
     // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
     optionsCopyBtn.on("click", function () {
-      console.log(clickedVerseDataArr)
+      console.log(clickedVerseDataArr);
       //for testing
-      createCopyData(clickedVerseDataArr)
+      createCopyData(clickedVerseDataArr);
       // copyToClipboard( createCopyData(clickedVerseDataArr))
     });
     function copyToClipboard(element) {
@@ -854,7 +855,7 @@ $(function () {
       document.execCommand("copy");
       $temp.remove();
     }
-    const createCopyData = (vdata)=>{
+    const createCopyData = (vdata) => {
       // take data and parse it into string for copying
       // figure out how many verses..
 
@@ -864,40 +865,38 @@ $(function () {
       // * what if there are verses chosen in different sections IE: vs:1 and also vs:5-6
       // * order matters - make sure the verses are in order when taken out of clickedVerseDataArrv IE: vs1-3 not vs:3-1
       // ---------------
-
-      let verseCount = '';
-      let allVerseTxt = '';
-      let bv = ''
-      if(vdata.length >= 2){
-        // get verse numbers and hyphenate
-        // IE: vs:6-8
-        let vIdArray = []
-        vdata.forEach(vd=>{
-          let i = parseInt(vd.vId.split('-')[4].split('')[1])
-          vIdArray.push(i);
-        })
-        checkIfSeparateVerses(vIdArray)
-        // verseCount = `${vIdArray[0]}-${vIdArray[[vIdArray.length - 1]]}`
-      }
+      console.log(vdata);
+      // let verseCount = '';
+      // let allVerseTxt = '';
+      // let bv = ''
+      // if(vdata.length >= 2){
+      //   // get verse numbers and hyphenate
+      //   // IE: vs:6-8
+      //   let vIdArray = []
+      //   vdata.forEach(vd=>{
+      //     let i = parseInt(vd.vId.split('-')[4].split('')[1])
+      //     vIdArray.push(i);
+      //   })
+      //   checkIfSeparateVerses(vIdArray)
+      //   // verseCount = `${vIdArray[0]}-${vIdArray[[vIdArray.length - 1]]}`
+      // }
       // console.log(verseCount)
-    }
-    const checkIfSeparateVerses = (d)=>{
-        // d is a array of numbers
-        let i = 0;
-        let a = parseInt(d[i])
-        console.log(a+1)
-        console.log(d[i])
-        // if(a+1 === parseInt(d[i++])){
-        //   console.log(`${a+1} === ${d[i++]}`)
-        // }else{
-        //   console.log('nope! they do not match')
-        //   console.log(`${a+1} === ${d[i++]}?`)
-          
-        // }
-    }
+    };
+    const checkIfSeparateVerses = (d) => {
+      // d is a array of numbers
+      let i = 0;
+      let a = parseInt(d[i]);
+      console.log(a + 1);
+      console.log(d[i]);
+      // if(a+1 === parseInt(d[i++])){
+      //   console.log(`${a+1} === ${d[i++]}`)
+      // }else{
+      //   console.log('nope! they do not match')
+      //   console.log(`${a+1} === ${d[i++]}?`)
 
+      // }
+    };
 
-    
     // ------------------- END share / copy verse -----------------------
     // ------------------------------------------------------
     //----------------------------------

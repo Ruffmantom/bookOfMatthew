@@ -4,7 +4,7 @@ const loadingRender = (loadedUserData) => {
   // navigation rendering
   const navMainTxt = $("#nav_prev_text");
   const bibleBooksContElm = $(".b_nav_books_container");
-  
+
   // clear bibleBooksContElm.html
   bibleBooksContElm.html("");
   const bibleVersionsSelctContElm = $("#b_version_choice_dd_cont");
@@ -101,14 +101,11 @@ const loadingRender = (loadedUserData) => {
   // create HTML bible version choices
   const createBibleVersionChoicesHtml = (bId, bVersion, bibleInfo) =>
     `<div class="font_list_item" data-bibleversion="${bId}">${bVersion.toUpperCase()}: ${bibleInfo}</div>`;
-  const createVerseLine = (v, title, id, isNewParah) => {
-    let a = id.split('-')[4];
-    let vNumber = a.split('v')[1];
+  const createVerseLine = (v, title, id, tab,bg_br,end_br,gap) => {
+    let a = id.split("-")[4];
+    let vNumber = a.split("v")[1];
     let verse = `${
-      title ? '<p class="v_title">' + title + "</p>" : ""
-    }<span data-verseid=${id} data-versebkg="undefined" data-versetext='${v}' class="v_para" ><span class="dark v_num">${
-      isNewParah ? "&emsp;" : ""
-    } ${vNumber}</span>${v}</span>`;
+      title ? '<p class="v_title">' + title + "</p>" : ""}<span data-verseid=${id} data-versebkg="undefined" data-versetext='${v}' class="v_para" >${bg_br ? "<br>" : ""}<span class="dark v_num">${tab ? "&emsp;":""} ${vNumber}</span>${v}</span>${end_br?"<br>":""}${gap? "<br><br>":""}`;
     return verse;
   };
   // New Load User and render Function
@@ -262,12 +259,7 @@ const loadingRender = (loadedUserData) => {
       appChapterNumElm.text(`Chapter ${chapterNumber}`);
       // set up verses
       chapterVerses.map((v) => {
-        let line = createVerseLine(
-          v.paragraph,
-          v.title,
-          v._id,
-          v.new_para
-        );
+        let line = createVerseLine(v.paragraph, v.title, v._id, v.tab, v.beg_break,v.end_break,v.gap);
         bibleBodyElm.append(line);
       });
     });
@@ -297,8 +289,8 @@ const loadingRender = (loadedUserData) => {
         return chapters;
       }
     };
-    let loadedBookName = filterForNameAndChapters(true,false);
-    let loadedChaptersArr = filterForNameAndChapters(false,true);
+    let loadedBookName = filterForNameAndChapters(true, false);
+    let loadedChaptersArr = filterForNameAndChapters(false, true);
     // console.log(loadedChaptersArr);
     // check the chapter buttons
     checkDisplay(loadedChaptersArr);
@@ -313,12 +305,7 @@ const loadingRender = (loadedUserData) => {
     $("#b_p_num").text(`Ch. ${userCh}`);
     bibleLoaded = true;
     // run loadChapterAndVerses
-    loadChapterAndVerses(
-      loadedChaptersArr,
-      bibleBodyElm,
-      1,
-      userCh
-    );
+    loadChapterAndVerses(loadedChaptersArr, bibleBodyElm, 1, userCh);
   };
   // END Loading Bible body____________________________________________________________________________________________________________________
   // END Loading Bible body____________________________________________________________________________________________________________________
