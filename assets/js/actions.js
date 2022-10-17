@@ -215,7 +215,7 @@ $(function () {
     let verseId = verseTarget.dataset.verseid;
     let verseData = verseTarget.dataset.versetext;
     let vDataObj = {
-      _id: parseInt(verseId.split("-")[4].split('')[1]),
+      _id: parseInt(verseId.split("-")[4].split("")[1]),
       vId: verseId,
       vTxt: verseData,
     };
@@ -845,7 +845,12 @@ $(function () {
     optionsCopyBtn.on("click", function () {
       console.log(clickedVerseDataArr);
       //for testing
-      createCopyData(clickedVerseDataArr);
+
+      // filter list from least to greatest
+      let sortedCopyData = clickedVerseDataArr.sort((a, b) => a._id - b._id);
+      // this is the function to get the share,copy, and save data
+      let gotData = getCpyBk(sortedCopyData);
+      console.log(gotData)
       // copyToClipboard( createCopyData(clickedVerseDataArr))
     });
     function copyToClipboard(element) {
@@ -855,46 +860,56 @@ $(function () {
       document.execCommand("copy");
       $temp.remove();
     }
-    const createCopyData = (vdata) => {
-      // take data and parse it into string for copying
-      // figure out how many verses..
 
-      // ---------------
-      // *** Things to consider ***
-      // * how many verses are choosen
-      // * what if there are verses chosen in different sections IE: vs:1 and also vs:5-6
-      // * order matters - make sure the verses are in order when taken out of clickedVerseDataArrv IE: vs1-3 not vs:3-1
-      // ---------------
-      console.log(vdata);
-      // let verseCount = '';
-      // let allVerseTxt = '';
-      // let bv = ''
-      // if(vdata.length >= 2){
-      //   // get verse numbers and hyphenate
-      //   // IE: vs:6-8
-      //   let vIdArray = []
-      //   vdata.forEach(vd=>{
-      //     let i = parseInt(vd.vId.split('-')[4].split('')[1])
-      //     vIdArray.push(i);
-      //   })
-      //   checkIfSeparateVerses(vIdArray)
-      //   // verseCount = `${vIdArray[0]}-${vIdArray[[vIdArray.length - 1]]}`
-      // }
-      // console.log(verseCount)
+    const getCpyBk = (cd) => {
+      let as = cd[0].vId.split("-");
+      let bk = as[2];
+      let bt = as[0].toUpperCase();
+      let bkName = bk.charAt(0).toUpperCase() + bk.slice(1);
+      let chap = as[3];
+      // create array of just the numbers
+      let cpVerNumArr = cd.map((id) => {
+        return id._id;
+      });
+      //   console.log(cpVerNumArr);
+      let joinedVerseNums = splitVerseSequence(cpVerNumArr);
+      let joinedVerses = joinVerses(cd);
+      // this is the copy data, share data and save data
+      return`"${joinedVerses}" ${bkName} ${chap}:${joinedVerseNums} ${bt}`
     };
-    const checkIfSeparateVerses = (d) => {
-      // d is a array of numbers
-      let i = 0;
-      let a = parseInt(d[i]);
-      console.log(a + 1);
-      console.log(d[i]);
-      // if(a+1 === parseInt(d[i++])){
-      //   console.log(`${a+1} === ${d[i++]}`)
-      // }else{
-      //   console.log('nope! they do not match')
-      //   console.log(`${a+1} === ${d[i++]}?`)
-
-      // }
+    const splitVerseSequence = (arrnew) => {
+      let arr2 = [];
+      for (let j = 0; j < arrnew.length - 1; j++) {
+        if (arrnew[j + 1] - 1 !== arrnew[j]) {
+          arr2.push(arrnew.splice(0, j + 1));
+          j = 0;
+        }
+      }
+      if (arrnew.length > 0) {
+        arr2.push(arrnew.splice(0));
+      }
+      return formatVerseNums(arr2);
+    };
+    const formatVerseNums = (arrays) => {
+      let newArr = [];
+      arrays.forEach((arr) => {
+        if (arr.length > 2) {
+          // console.log(arr)
+          newArr.push(`${arr[0]}-${arr[arr.length - 1]}`);
+        } else {
+          newArr.push(arr.join("-"));
+        }
+      });
+      let cpytext = newArr.join(",");
+      return cpytext;
+      // if the length of the array is
+    };
+    const joinVerses = (arr) => {
+      let verses = [];
+      arr.forEach((a) => {
+        verses.push(a.vTxt);
+      });
+      return verses.join("");
     };
 
     // ------------------- END share / copy verse -----------------------
