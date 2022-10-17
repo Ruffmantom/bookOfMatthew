@@ -126,6 +126,15 @@ span {
 .b_nav_titles {
   margin: 15px 0;
 }
+#hidden_copy_input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 0;
+  width: 0;
+  height: 0;
+}
 .b_nav_prev {
   position: relative;
   padding: 25px 20px;

@@ -843,22 +843,17 @@ $(function () {
     // format for sharing
     // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
     optionsCopyBtn.on("click", function () {
-      console.log(clickedVerseDataArr);
-      //for testing
-
       // filter list from least to greatest
       let sortedCopyData = clickedVerseDataArr.sort((a, b) => a._id - b._id);
       // this is the function to get the share,copy, and save data
       let gotData = getCpyBk(sortedCopyData);
-      console.log(gotData)
-      // copyToClipboard( createCopyData(clickedVerseDataArr))
+      // console.log(typeof(gotData))
+      copyToClipboard(gotData.toString())
     });
     function copyToClipboard(element) {
-      var $temp = $("<input>");
-      $("body").append($temp);
-      $temp.val($(element).html()).select();
-      document.execCommand("copy");
-      $temp.remove();
+      navigator.clipboard.writeText(element)
+      // notify user it has been copied
+      notifyUser("Copied!", false, 500);
     }
 
     const getCpyBk = (cd) => {
