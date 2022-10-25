@@ -7,7 +7,7 @@ let activeUser;
 function updateUser(notify, message, alert, time) {
   localStorage.setItem("bibleUser", JSON.stringify(activeUser));
   if (notify) {
-    notifyUser(message, alert,time);
+    notifyUser(message, alert, time);
   }
 }
 //--NOTIFY FUNTION GLOBAL
@@ -24,14 +24,17 @@ var notiBoxStyles = [
   },
 ];
 // notify User
-function notifyUser(mess, alert,time) {
+function notifyUser(mess, alert, time) {
   const notifBox = $("#noti_box");
-  var addNotification = setTimeout(() => {
-    $("#noti_box_text").text(mess ? mess : "Saved!");
-    notifBox.css(notiBoxStyles[0]);
-    notifBox.css({ backgroundColor: alert ? "#ff6666" : "#3be2ff" });
-    clearTimeout(addNotification);
-  }, time? time: 1500);
+  var addNotification = setTimeout(
+    () => {
+      $("#noti_box_text").text(mess ? mess : "Saved!");
+      notifBox.css(notiBoxStyles[0]);
+      notifBox.css({ backgroundColor: alert ? "#ff6666" : "#3be2ff" });
+      clearTimeout(addNotification);
+    },
+    time ? time : 1500
+  );
   var removeNotification = setTimeout(() => {
     notifBox.css(notiBoxStyles[1]);
     clearTimeout(removeNotification);
@@ -118,7 +121,7 @@ var user = {
   id: createId(),
   verses: [],
   mode: false,
-  verseFont: "undefined",
+  verseFont: "Georgia",
   verseFontSize: "16",
   imageUrl: "undefined",
   userName: "Username",
@@ -129,36 +132,33 @@ var user = {
 // function for setting up user if one isnt found
 // if found then load the user data
 function createUserAndLoad() {
- 
-    if (localStorage.getItem("bibleUser") === null) {
-      localStorage.setItem("bibleUser", JSON.stringify(user));
-      activeUser = user;
-      log("created user");
-      log("created user and now loading");
-      fullLoad()
-    } else {
-      let t = localStorage.getItem("bibleUser");
-      activeUser = JSON.parse(t);
-      log("user found!");
-      var loadTimeout = setTimeout(() => {
-        // console.log("bible loaded: true | about to start Loading");
-        //loading all USER DATA
-        // this will be used later when I have more books
-        fullLoad();
-        clearTimeout(loadTimeout);
-      }, 150);
-    }
- 
+  if (localStorage.getItem("bibleUser") === null) {
+    localStorage.setItem("bibleUser", JSON.stringify(user));
+    activeUser = user;
+    log("created user");
+    log("created user and now loading");
+    fullLoad();
+  } else {
+    let t = localStorage.getItem("bibleUser");
+    activeUser = JSON.parse(t);
+    log("user found!");
+    var loadTimeout = setTimeout(() => {
+      // console.log("bible loaded: true | about to start Loading");
+      //loading all USER DATA
+      // this will be used later when I have more books
+      fullLoad();
+      clearTimeout(loadTimeout);
+    }, 150);
+  }
 }
-const fullLoad =()=>{
+const fullLoad = () => {
   loadUsersBiblePlace();
   loadVerses();
   loadDarkModeTheme();
   loadFontAndFontSize();
   loadImage();
   loadUsername();
-  
-}
+};
 // If user
 // - Load highlighted verses
 function loadVerses() {
@@ -226,11 +226,6 @@ function loadUsersBiblePlace() {
     return;
     // loading bible
   }
-  // bring in function from topnavindex.js to load top navigation
-  // userbiblePos:"esv-matt-1", // default start
-  // load bible
-  // load book
-  // load chapter
 }
 function addBKG(uv_id, uv_c) {
   // log("adding background to: " + uv_id);
@@ -260,11 +255,11 @@ const nextChapterLoad = (scroll) => {
   // loadUsername();
   // clearTimeout(loadTimeout);
   updateUser(false, false, false);
-  if(scroll){
+  if (scroll) {
     // scroll page back to top
     $(".bible_read_body").animate(
       {
-        scrollTop: 0
+        scrollTop: 0,
       },
       1
     );
@@ -277,6 +272,9 @@ const nextChapterLoad = (scroll) => {
 // ------------------------------------------------
 // start of jquery
 $(function () {
+  // redner font choice
+  const selectionName = $("#selection_name");
+  selectionName.text("Georgia");
   // when app loads it creates user
   createUserAndLoad();
   // end of doc ready

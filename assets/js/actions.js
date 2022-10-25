@@ -1,13 +1,16 @@
+function createSerializedId() {
+  var s = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%`;
+  var id = ``;
+  for (let i = 0; i < 10 + 1; i++) {
+    let b = s.split(``);
+    id += b[Math.floor(Math.random() * 67)];
+  }
+  return id;
+}
+
 $(function () {
+  // BUTTONS
   const menuBtn = $(".open");
-  let menuOpen = false;
-  // let colorOpen = false;
-  const apiKey = "622f91b0503eed7cb5964a9ae2ca95ae";
-  // const apiLink = ''
-  const menuElm = $("#app_menu_id");
-  const colorMenu = $(".highlight_box");
-  const hlBox = $("#hl_colors");
-  const deleteHlBox = $("#delete_hl");
   const removeBkgBtn = $("#delete_bkg_btn");
   const editUserCloseBtn = $("#exit_edit");
   const bibleUserImageBtn = $("#b_user_img");
@@ -15,39 +18,34 @@ $(function () {
   const chooseFileBtn = $("#upload_image_btn");
   const fileSubmitBtn = $("#submit_imag_btn");
   const optionsCopyBtn = $("#options_btn_copy");
-  // const toggleBtn = $("#toggler_btn");
-  // const toggleIcon = $("#t_icon");
   const verseIncreaseBtn = $("#v_s_btn_r");
   const verseDecreaseBtn = $("#v_s_btn_l");
   const clearUserBtn = $("#clear_user_data_btn");
+  const pagenationNextBtnElm = $("#b_pn_btn_overlay_next");
+  const pagenationBackBtnElm = $("#b_pn_btn_overlay_back");
+  const bookDropDownBtnElmID = "b_book_c_dd_btn";
+  const closeNaveBtnElm = $(".nav_close_btn");
+  const saveVerseBtn = $("#options_btn_save");
+  // CONTAINERS AND OTHER HTML OBJECTS
+  const menuElm = $("#app_menu_id");
+  const colorMenu = $(".highlight_box");
+  const hlBox = $("#hl_colors");
+  const deleteHlBox = $("#delete_hl");
   const dropDown = $(".selection_cont");
   const dropList = $(".font_list_cont");
   const dropIcon = $("#drop_icon");
   const selectionName = $("#selection_name");
+  // STATE AND OTHER DATA VARIABLES
+  let menuOpen = false;
   let userTextSize = parseInt(activeUser.verseFontSize);
   const hlColors = ["#ffff0b", "#16ff60", "#ff6666", "#00fbff", "#ff2fee"];
-  // LOAD BIBLE ---------------------------------------------
-  // LOAD BIBLE ---------------------------------------------
-  // get global variables
-  // const appTitleElm = $("#b_title");
-  // const appVersElm = $("#app_version");
-  // const appTypeElm = $("#b_type");
-  // const appBibleVersElm = $("#b_version");
-  // const appDateElm = $("#b_date");
-  // const appReadBodyElm = $(".b_verse_body");
-  // const appChapterElm = $("#b_chapter");
-  // const appChapterNumElm = $("#b_chapter_num");
-  const pagenationNextBtnElm = $("#b_pn_btn_overlay_next");
-  const pagenationBackBtnElm = $("#b_pn_btn_overlay_back");
-  // NAVIGATION actions
-  // NAVIGATION actions
-  // NAVIGATION actions
-  const bibleNavBtnElmID = "b_nav_btn";
-  const bookDropDownBtnElmID = "b_book_c_dd_btn";
-  const closeNaveBtnElm = $(".nav_close_btn");
-  const closeNaveBtnElmID = "close_nav_btn";
+  const apiKey = "622f91b0503eed7cb5964a9ae2ca95ae";
   const bibleVersionBtnId = "close_bv_dd_btn";
-  // Navigation drop down content containers
+  const closeNaveBtnElmID = "close_nav_btn";
+  const bibleNavBtnElmID = "b_nav_btn";
+  // id serializer
+
+  // Navigation drop down content containers actions
   // nav drop down
   const bibleNavDdContElm = $(".b_nav_dd_cont");
   // navigation rendering
@@ -108,6 +106,9 @@ $(function () {
       case bibleNavBtnElmID:
         // Main Nav DD btn
         e.stopPropagation();
+        // load navigation
+        loadNavigationAndBible(activeUser);
+        //
         showOrHideDropDown(true, bibleNavDdContElm);
         menuBtn.css({ zIndex: "9" });
         closeNaveBtnElm.fadeIn();
@@ -310,6 +311,11 @@ $(function () {
       removeUnderline("null", true);
       // remove spacer
       $(".body_spacer").remove();
+      // heart button reset
+      // heart to turn color
+      $("#pop_up_heart").removeClass("fa-heart");
+      $("#pop_up_heart").addClass("fa-heart-o");
+      $("#pop_up_heart").css({ color: "black" });
     } else {
       // log("Opening HL box");
       // add spacer for bottom text to move up
@@ -697,221 +703,259 @@ $(function () {
     "Work Sans",
   ];
   // script from github from other project
-  $(document).ready(function () {
-    let listOpen = false;
-    selectionName.text(
-      activeUser.verseFont === "undefined" ? fontList[1] : activeUser.verseFont
-    );
-    dropList.hide();
-    dropDown.click(() => {
-      if (listOpen) {
-        dropList.hide();
-        dropDown.removeClass("select_open");
-        listOpen = false;
-        dropIcon.addClass("fa-angle-down");
-        dropIcon.removeClass("fa-angle-up");
-      } else {
-        dropList.show();
-        dropDown.addClass("select_open");
-        listOpen = true;
-        dropIcon.addClass("fa-angle-up");
-        dropIcon.removeClass("fa-angle-down");
-      }
-    });
+  let listOpen = false;
+  console.log("about to load font type");
+  // set font selection on load
+  if (activeUser) {
+    selectionName.text(activeUser.verseFont);
+  }
+  selectionName.text(fontList[1]);
 
-    fontList.map((f, i) => {
-      dropList.append(() => {
-        return `<div class="font_list_item" data-fontKey="${f}" style="font-family:${f}">${f}</div>`;
-      });
-    });
-    const fontListItem = $(".font_list_item");
-    fontListItem.click(function () {
-      var font = $(this).attr("data-fontKey");
-      // console.log(font);
-      if (listOpen) {
-        listOpen = false;
-        dropList.hide();
-        dropDown.removeClass("select_open");
-        listOpen = false;
-        dropIcon.addClass("fa-angle-down");
-        dropIcon.removeClass("fa-angle-up");
-        selectionName.text(font);
-        // console.log(font);
-        setVerseFont(font);
-        // update user
-        activeUser.verseFont = font;
-        var fontChangeTimer = setTimeout(() => {
-          updateUser(notifyUser);
-          clearTimeout(fontChangeTimer);
-        }, 3500);
-      }
-    });
-    // ------------------------------------------------------
-    // ------------------- Click next chapter btn -----------------------
-    let chapterState = parseInt(activeUser.userbiblePos.split("-")[3]);
-    // set local variables to users pos
-    let splitUserPos = activeUser.userbiblePos.split("-");
-    let userBv = splitUserPos[0];
-    let userTe = splitUserPos[1];
-    let userBk = splitUserPos[2];
-    const updateUserPosition = (bv, te, bk, ch) => {
-      let newUserPos = `${bv ? bv : userBv}-${te ? te : userTe}-${
-        bk ? bk : userBk
-      }-${ch ? ch : chapterState}`;
-      // console.log(newUserPos);
-      activeUser.userbiblePos = "";
-      activeUser.userbiblePos = newUserPos;
-      nextChapterLoad(true);
-    };
-
-    // btn clicks
-    pagenationNextBtnElm.click(() => {
-      chapterState++;
-      updateUserPosition(undefined, undefined, undefined, chapterState);
-      // console.log("next chapter");
-    });
-
-    pagenationBackBtnElm.click(() => {
-      chapterState--;
-      updateUserPosition(undefined, undefined, undefined, chapterState);
-      // console.log("back chapter");
-    });
-    // chapter choose
-    // click page num btn handler
-    bibleNavDdContElm.on("click", (e) => {
-      // console.log($(e.target))
-      let elmClasses = e.target.classList;
-      if (
-        elmClasses[1] === "chapter_box" &&
-        e.target.className.split(" ")[1] !== "b_book_c_dd_btn_cl"
-      ) {
-        if (elmClasses[2] !== "cb_active") {
-          // console.log("clicked Chapter btn");
-          let splitId = e.target.dataset.chpid.split("-");
-          let btnId_bv = splitId[0];
-          let btnId_te = splitId[1];
-          let btnId_bk = splitId[2];
-          let btn_ch = parseInt(splitId[3]);
-          if (btn_ch !== chapterState) {
-            chapterState = btn_ch;
-            // load HTML
-            updateUserPosition(btnId_bv, btnId_te, btnId_bk, chapterState);
-            // console.log("Choose chapter: " + btn_ch);
-          }
-        }
-      } else {
-        return;
-      }
-      // close Nav
-      showOrHideDropDown(false, bibleNavDdContElm);
-      menuBtn.css({ zIndex: "999" });
-      closeNaveBtnElm.fadeOut();
-    });
-    // ------------------- Click next chapter btn -----------------------
-    // ------------------- Clear user data btn -----------------------
-    // clear the data and reload the app
-    // have a prompt confirming
-    const clearUserData = () => {
-      console.log("clearing user data");
-      // let user know it has been finished
-      notifyUser("Data Cleard!", false, 1000);
-      // reload page
-      var timer = setTimeout(() => {
-        window.localStorage.removeItem("bibleUser");
-        location.reload(true);
-        clearTimeout(timer);
-      }, 2500);
-    };
-
-    clearUserBtn.on("click", () => {
-      clearUserData();
-    });
-    // ------------------- END Clear user data btn -----------------------
-    // ------------------- Save user verse -----------------------
-    // this is the format for saving a verse
-    /*
-    {
-      verse_ids: ['verse-id-list'],
-      verse_data: 'ESV: 2001 - 2022 Crossway',
-      verse_loc: 'Matthew 6:1-5',
-      verse_text: 'Lorem ipsum dolor sit amet',
-    },
-    // navigator.share()
-    */
-    // ------------------- END Save user verse -----------------------
-    // ------------------- share / copy verse -----------------------
-    // format for sharing
-    // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
-    optionsCopyBtn.on("click", function () {
-      // filter list from least to greatest
-      let sortedCopyData = clickedVerseDataArr.sort((a, b) => a._id - b._id);
-      // this is the function to get the share,copy, and save data
-      let gotData = getCpyBk(sortedCopyData);
-      // console.log(typeof(gotData))
-      copyToClipboard(gotData.toString())
-    });
-    function copyToClipboard(element) {
-      navigator.clipboard.writeText(element)
-      // notify user it has been copied
-      notifyUser("Copied!", false, 500);
+  dropList.hide();
+  dropDown.click(() => {
+    if (listOpen) {
+      dropList.hide();
+      dropDown.removeClass("select_open");
+      listOpen = false;
+      dropIcon.addClass("fa-angle-down");
+      dropIcon.removeClass("fa-angle-up");
+    } else {
+      dropList.show();
+      dropDown.addClass("select_open");
+      listOpen = true;
+      dropIcon.addClass("fa-angle-up");
+      dropIcon.removeClass("fa-angle-down");
     }
-
-    const getCpyBk = (cd) => {
-      let as = cd[0].vId.split("-");
-      let bk = as[2];
-      let bt = as[0].toUpperCase();
-      let bkName = bk.charAt(0).toUpperCase() + bk.slice(1);
-      let chap = as[3];
-      // create array of just the numbers
-      let cpVerNumArr = cd.map((id) => {
-        return id._id;
-      });
-      //   console.log(cpVerNumArr);
-      let joinedVerseNums = splitVerseSequence(cpVerNumArr);
-      let joinedVerses = joinVerses(cd);
-      // this is the copy data, share data and save data
-      return`"${joinedVerses}" ${bkName} ${chap}:${joinedVerseNums} ${bt}`
-    };
-    const splitVerseSequence = (arrnew) => {
-      let arr2 = [];
-      for (let j = 0; j < arrnew.length - 1; j++) {
-        if (arrnew[j + 1] - 1 !== arrnew[j]) {
-          arr2.push(arrnew.splice(0, j + 1));
-          j = 0;
-        }
-      }
-      if (arrnew.length > 0) {
-        arr2.push(arrnew.splice(0));
-      }
-      return formatVerseNums(arr2);
-    };
-    const formatVerseNums = (arrays) => {
-      let newArr = [];
-      arrays.forEach((arr) => {
-        if (arr.length > 2) {
-          // console.log(arr)
-          newArr.push(`${arr[0]}-${arr[arr.length - 1]}`);
-        } else {
-          newArr.push(arr.join("-"));
-        }
-      });
-      let cpytext = newArr.join(",");
-      return cpytext;
-      // if the length of the array is
-    };
-    const joinVerses = (arr) => {
-      let verses = [];
-      arr.forEach((a) => {
-        verses.push(a.vTxt);
-      });
-      return verses.join("");
-    };
-
-    // ------------------- END share / copy verse -----------------------
-    // ------------------------------------------------------
-    //----------------------------------
-    //end of Document.ready
   });
+
+  fontList.map((f, i) => {
+    dropList.append(() => {
+      return `<div class="font_list_item" data-fontkey="${f}" style="font-family:${f}">${f}</div>`;
+    });
+  });
+  const fontListItem = $(".font_list_item");
+  fontListItem.on("click", (e) => {
+    console.log("clicked a font");
+    var font = $(e.target).attr("data-fontkey");
+    console.log(font);
+    if (listOpen) {
+      listOpen = false;
+      dropList.hide();
+      dropDown.removeClass("select_open");
+      listOpen = false;
+      dropIcon.addClass("fa-angle-down");
+      dropIcon.removeClass("fa-angle-up");
+      selectionName.text(font);
+      // console.log(font);
+      setVerseFont(font);
+      // update user
+      activeUser.verseFont = font;
+      var fontChangeTimer = setTimeout(() => {
+        updateUser(notifyUser);
+        clearTimeout(fontChangeTimer);
+      }, 3500);
+    }
+  });
+  // ------------------------------------------------------
+  // ------------------- Click next chapter btn -----------------------
+  let chapterState = parseInt(activeUser.userbiblePos.split("-")[3]);
+  // set local variables to users pos
+  let splitUserPos = activeUser.userbiblePos.split("-");
+  let userBv = splitUserPos[0];
+  let userTe = splitUserPos[1];
+  let userBk = splitUserPos[2];
+  const updateUserPosition = (bv, te, bk, ch) => {
+    let newUserPos = `${bv ? bv : userBv}-${te ? te : userTe}-${
+      bk ? bk : userBk
+    }-${ch ? ch : chapterState}`;
+    // console.log(newUserPos);
+    activeUser.userbiblePos = "";
+    activeUser.userbiblePos = newUserPos;
+    nextChapterLoad(true);
+  };
+
+  // btn clicks
+  pagenationNextBtnElm.click(() => {
+    chapterState++;
+    updateUserPosition(undefined, undefined, undefined, chapterState);
+    // console.log("next chapter");
+  });
+
+  pagenationBackBtnElm.click(() => {
+    chapterState--;
+    updateUserPosition(undefined, undefined, undefined, chapterState);
+    // console.log("back chapter");
+  });
+  // chapter choose
+  // click page num btn handler
+  bibleNavDdContElm.on("click", (e) => {
+    // console.log($(e.target))
+    let elmClasses = e.target.classList;
+    if (
+      elmClasses[1] === "chapter_box" &&
+      e.target.className.split(" ")[1] !== "b_book_c_dd_btn_cl"
+    ) {
+      if (elmClasses[2] !== "cb_active") {
+        // console.log("clicked Chapter btn");
+        let splitId = e.target.dataset.chpid.split("-");
+        let btnId_bv = splitId[0];
+        let btnId_te = splitId[1];
+        let btnId_bk = splitId[2];
+        let btn_ch = parseInt(splitId[3]);
+        if (btn_ch !== chapterState) {
+          chapterState = btn_ch;
+          // load HTML
+          updateUserPosition(btnId_bv, btnId_te, btnId_bk, chapterState);
+          // console.log("Choose chapter: " + btn_ch);
+        }
+      }
+    } else {
+      return;
+    }
+    // close Nav
+    showOrHideDropDown(false, bibleNavDdContElm);
+    menuBtn.css({ zIndex: "999" });
+    closeNaveBtnElm.fadeOut();
+  });
+  // ------------------- Click next chapter btn -----------------------
+  // ------------------- Clear user data btn -----------------------
+  // clear the data and reload the app
+  // have a prompt confirming
+  const clearUserData = () => {
+    console.log("clearing user data");
+    // let user know it has been finished
+    notifyUser("Data Cleard!", false, 1000);
+    // reload page
+    var timer = setTimeout(() => {
+      window.localStorage.removeItem("bibleUser");
+      location.reload(true);
+      clearTimeout(timer);
+    }, 2500);
+  };
+
+  clearUserBtn.on("click", () => {
+    clearUserData();
+  });
+
+  // Copy data, save data and share data State
+  let formmatedSaveVerse = {};
+  // ------------------- END Clear user data btn -----------------------
+  // ------------------- Save user verse -----------------------
+  saveVerseBtn.on("click", (e) => {
+    getClickedData();
+    // console.log(formmatedSaveVerse)
+    // save to the user
+    activeUser.usersFavVerses.push(formmatedSaveVerse);
+    updateUser(true, "Verse Saved!", false, 150);
+    // heart to turn color
+    $("#pop_up_heart").removeClass("fa-heart-o");
+    $("#pop_up_heart").addClass("fa-heart");
+    $("#pop_up_heart").css({ borderColor: "black", color: "#00fbff" });
+    var closeColorMenuTimer = setTimeout(() => {
+      // close HL box
+      openColorMenu(false);
+      clearTimeout(closeColorMenuTimer);
+    }, 1000);
+    // clear state
+    formmatedSaveVerse = {};
+  });
+  // ------------------- END Save user verse -----------------------
+  // ------------------- share / copy verse -----------------------
+  // format for sharing
+  // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
+  optionsCopyBtn.on("click", function () {
+    let d = getClickedData();
+    copyToClipboard(d.toString());
+  });
+  // copy to clipboard
+  function copyToClipboard(element) {
+    navigator.clipboard.writeText(element);
+    // notify user it has been copied
+    notifyUser("Copied!", false, 500);
+  }
+  // get the clicked data
+  function getClickedData() {
+    // filter list from least to greatest
+    let sortedCopyData = clickedVerseDataArr.sort((a, b) => a._id - b._id);
+    // this is the function to get the share,copy, and save data
+    let gotData = getCpyBk(sortedCopyData);
+    return gotData;
+  }
+  const removeExtraFormatting=(string)=>{
+    let newStr =  string.split(' ').filter(words=>{
+      return words != "<br>"
+    })
+    console.log(newStr)
+  }
+  // format the data
+  const getCpyBk = (cd) => {
+    let as = cd[0].vId.split("-");
+    let bk = as[2];
+    let bt = as[0].toUpperCase();
+    let bkName = bk.charAt(0).toUpperCase() + bk.slice(1);
+    let chap = as[3];
+    // create array of just the numbers
+    let cpVerNumArr = cd.map((id) => {
+      return id._id;
+    });
+    let joinedVerseNums = splitVerseSequence(cpVerNumArr);
+    let joinedVerses = joinVerses(cd);
+    // this is the copy data, share data and save data
+    // function to filter out <br>
+    removeExtraFormatting(joinedVerses)
+    // Create the save verse data
+    let joinedCopyData = `"${joinedVerses}" ${bkName} ${chap}:${joinedVerseNums} ${bt}`;
+    formmatedSaveVerse.save_id = createSerializedId();
+    formmatedSaveVerse.verse_data = bt;
+    formmatedSaveVerse.book_id = bkName;
+    formmatedSaveVerse.verse_loc = `${bkName} ${chap}:${joinedVerseNums} ${bt}`;
+    formmatedSaveVerse.verse_text = joinedVerses;
+    formmatedSaveVerse.share_data = joinedCopyData;
+    // Return the copy data
+    return joinedCopyData;
+  };
+  // split the verse sequence to help format
+  const splitVerseSequence = (arrnew) => {
+    let arr2 = [];
+    for (let j = 0; j < arrnew.length - 1; j++) {
+      if (arrnew[j + 1] - 1 !== arrnew[j]) {
+        arr2.push(arrnew.splice(0, j + 1));
+        j = 0;
+      }
+    }
+    if (arrnew.length > 0) {
+      arr2.push(arrnew.splice(0));
+    }
+    return formatVerseNums(arr2);
+  };
+  // format the verse arrays
+  const formatVerseNums = (arrays) => {
+    let newArr = [];
+    arrays.forEach((arr) => {
+      if (arr.length > 2) {
+        // console.log(arr)
+        newArr.push(`${arr[0]}-${arr[arr.length - 1]}`);
+      } else {
+        newArr.push(arr.join("-"));
+      }
+    });
+    let cpytext = newArr.join(",");
+    return cpytext;
+    // if the length of the array is
+  };
+  // Join the verses
+  const joinVerses = (arr) => {
+    let verses = [];
+    arr.forEach((a) => {
+      verses.push(a.vTxt);
+    });
+    return verses.join("");
+  };
+  // ------------------- END share / copy verse -----------------------
+  // ------------------- Save verse to saved verses -----------------------
+
+  // ------------------- END Save verse to saved verses -----------------------
+  // ------------------------------------------------------
   //-------------------------------------------
   // end of doc ready
 });

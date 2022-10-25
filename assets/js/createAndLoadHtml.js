@@ -37,9 +37,9 @@ const loadingRender = (loadedUserData) => {
     favVArr,
     chapters
   ) => `<div class="dark b_book_dd_cont">
-          <div  data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
+          <div data-ddbtnid="${bookId}" class="dark b_book_c_dd_btn_cl">
             <div data-ddbtnid="${bookId}" id="b_book_c_dd_btn" class="b_btn_overlay_click"></div>
-            <p id="selection_name">${bookName}</p>
+            <p>${bookName}</p>
             <!-- <i data-ddbtnid="${bookId}" class="fa fa-angle-down drop_icon" aria-hidden="true"></i> -->
           </div>
           <div data-ddcontid="${bookId}" class="dark b_dd_chapter_cont">
@@ -63,10 +63,12 @@ const loadingRender = (loadedUserData) => {
                  ? favVArr
                      .map((fv) => {
                        return renderSavedVerseCard(
+                         fv.save_id,
+                         fv.bible_data,
+                         fv.book_id,
                          fv.verse_loc,
                          fv.verse_text,
-                         fv.verse_ids,
-                         fv.verse_share_data
+                         fv.share_data
                        );
                      })
                      .join("")
@@ -77,14 +79,29 @@ const loadingRender = (loadedUserData) => {
         </div>`;
 
   // Create HTML the saved verse card
-  const renderSavedVerseCard = (vLoc, vTxt, vId, vShrData) =>
+  /*
+    save_id
+    bible_data
+    book_id
+    verse_loc
+    verse_text
+    share_data
+  */
+  const renderSavedVerseCard = (
+    save_id,
+    bible_data,
+    book_id,
+    verse_loc,
+    verse_text,
+    share_data
+  ) =>
     // vId can be a single or array of ID's
-    `<div class="b_saved_verse_card">
-                <h5 class="">${vLoc}</h4>
-                  <p>${vTxt}</p>
+    `<div class="b_saved_verse_card" data-cardid="${save_id}">
+                <h5 class="">${verse_loc}</h4>
+                  <p>${verse_text}</p>
                   <div class="svd_verse_footer">
-                    <i data-verseid="${vId}" class="fa fa-heart svd_vc_heart svd_true"></i>
-                    <svg data-shareid="${vId}" data-shardata="${vShrData}" class="share_icon" xmlns="http://www.w3.org/2000/svg" width="15.318" height="15.318"
+                    <i data-verseid="${save_id}" class="fa fa-heart svd_vc_heart svd_true"></i>
+                    <svg data-shareid="${save_id}" data-shardata="${share_data}" class="share_icon" xmlns="http://www.w3.org/2000/svg" width="15.318" height="15.318"
                       viewBox="0 0 15.318 15.318">
                       <g transform="translate(0.75 0.75)">
                         <path d="M6,18v5.527a1.584,1.584,0,0,0,1.727,1.382H18.091a1.584,1.584,0,0,0,1.727-1.382V18"
@@ -101,11 +118,18 @@ const loadingRender = (loadedUserData) => {
   // create HTML bible version choices
   const createBibleVersionChoicesHtml = (bId, bVersion, bibleInfo) =>
     `<div class="font_list_item" data-bibleversion="${bId}">${bVersion.toUpperCase()}: ${bibleInfo}</div>`;
-  const createVerseLine = (v, title, id, tab,bg_br,end_br,gap) => {
+  const createVerseLine = (v, title, id, tab, bg_br, end_br, gap) => {
     let a = id.split("-")[4];
     let vNumber = a.split("v")[1];
     let verse = `${
-      title ? '<p class="v_title">' + title + "</p>" : ""}<span data-verseid=${id} data-versebkg="undefined" data-versetext='${v}' class="v_para" >${bg_br ? "<br>" : ""}<span class="dark v_num">${tab ? "&emsp;":""} ${vNumber}</span>${v}</span>${end_br?"<br>":""}${gap? "<br><br>":""}`;
+      title ? '<p class="v_title">' + title + "</p>" : ""
+    }<span data-verseid=${id} data-versebkg="undefined" data-versetext='${v}' class="v_para" >${
+      bg_br ? "<br>" : ""
+    }<span class="dark v_num">${
+      tab ? "&emsp;" : ""
+    } ${vNumber}</span>${v}</span>${end_br ? "<br>" : ""}${
+      gap ? "<br><br>" : ""
+    }`;
     return verse;
   };
   // New Load User and render Function
@@ -174,7 +198,7 @@ const loadingRender = (loadedUserData) => {
           bName,
           bId,
           favVerses,
-          favVerses ? findAndGetFavVerses(bId) : "",
+          favVerses ? findAndGetFavVerses(bId.split('-')[2]) : "",
           bookChapters
         )
       );
@@ -200,35 +224,37 @@ const loadingRender = (loadedUserData) => {
   const findSavedVerses = (ddId) => {
     let isInBook = false;
     loadedUserData.usersFavVerses.map((fv) => {
-      let fvId = fv.verse_ids[0];
-      // book drop down
-      // verse Id ex: esv-nt-matt-1-v1
-      let findBook = fvId.split("-")[2].toLowerCase();
-      if (findBook === ddId.toLowerCase()) {
+      // console.log(fv);
+      if (fv.book_id.toLowerCase() === ddId.toLowerCase()) {
         isInBook = true;
       }
     });
     return isInBook;
   };
   // create the fav verses cards
-  const findAndGetFavVerses = (contId) => {
+  const findAndGetFavVerses = (contBkId) => {
     let favVArr = [];
     loadedUserData.usersFavVerses.map((fv) => {
-      let fvId = fv.verse_ids[0];
-      // book drop down
-      // verse Id ex: esv-nt-matt-1-v1 example of book id esv-nt-matt
-      let favVerseBookId = fvId.split("-");
-      let findFavsId = `${favVerseBookId[0]}-${favVerseBookId[1]}-${favVerseBookId[2]}`;
-      if (findFavsId === contId.toLowerCase()) {
+      console.log(fv.book_id.toLowerCase())
+      console.log(contBkId.toLowerCase())
+      
+      // let fvId = fv.verse_ids[0];
+      // // book drop down
+      // // verse Id ex: esv-nt-matt-1-v1 example of book id esv-nt-matt
+      // let favVerseBookId = fvId.split("-");
+      // let findFavsId = `${favVerseBookId[0]}-${favVerseBookId[1]}-${favVerseBookId[2]}`;
+     
+      // if (findFavsId === contBkId.toLowerCase()) {
+      //   favVArr.push(fv);
+      // }
+      if ( fv.book_id.toLowerCase() === contBkId.toLowerCase()) {
         favVArr.push(fv);
       }
     });
+    console.log(favVArr)
     return favVArr;
   };
   // end
-  // START Loading Bible body ____________________________________________________________________________________________________________________
-  // START Loading Bible body ____________________________________________________________________________________________________________________
-  // START Loading Bible body ____________________________________________________________________________________________________________________
   // START Loading Bible body ____________________________________________________________________________________________________________________
   // Checking amount of chapters and current position
   function checkDisplay(currentBook) {
@@ -259,7 +285,15 @@ const loadingRender = (loadedUserData) => {
       appChapterNumElm.text(`Chapter ${chapterNumber}`);
       // set up verses
       chapterVerses.map((v) => {
-        let line = createVerseLine(v.paragraph, v.title, v._id, v.tab, v.beg_break,v.end_break,v.gap);
+        let line = createVerseLine(
+          v.paragraph,
+          v.title,
+          v._id,
+          v.tab,
+          v.beg_break,
+          v.end_break,
+          v.gap
+        );
         bibleBodyElm.append(line);
       });
     });
