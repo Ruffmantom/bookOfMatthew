@@ -148,6 +148,10 @@ span {
   border-radius: 7px;
   margin-bottom: 15px;
 }
+.b_saved_verse_card_dark{
+  background-color: #353535;
+  color: #ffff;
+}
 .b_saved_verse_card > h5,
 .b_saved_verse_card > p {
   padding-bottom: 10px;

@@ -96,7 +96,7 @@ const loadingRender = (loadedUserData) => {
     share_data
   ) =>
     // vId can be a single or array of ID's
-    `<div class="b_saved_verse_card" data-cardid="${save_id}">
+    `<div class="dark b_saved_verse_card" data-cardid="${save_id}">
                 <h5 class="">${verse_loc}</h4>
                   <p>${verse_text}</p>
                   <div class="svd_verse_footer">

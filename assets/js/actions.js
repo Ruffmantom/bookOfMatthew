@@ -949,7 +949,8 @@ $(function () {
     arr.forEach((a) => {
       verses.push(a.vTxt);
     });
-    return verses.join("");
+    // this regex removes HTML from a srting
+    return verses.join("").replace(/(<([^>]+)>)/gi,"").trim();
   };
   // ------------------- END share / copy verse -----------------------
   // ------------------- Save verse to saved verses -----------------------
