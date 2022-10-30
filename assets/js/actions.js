@@ -165,6 +165,8 @@ $(function () {
               clearTimeout(removeTimer)
             }, 500);
           }
+          // if no saved verses then add text showing there are no saved verses
+          // if more than 3 saved verses, then show button to show pop up of all the verses.
         });
         break;
       case svdCrdShareBtn:
