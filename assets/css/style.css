@@ -156,6 +156,7 @@ span {
 .b_saved_verse_card > p {
   padding-bottom: 10px;
 }
+
 .svd_verse_footer {
   display: flex;
   align-content: center;
@@ -166,7 +167,7 @@ span {
 }
 /* for saved verses color #00fbff */
 .svd_true {
-  color: #00fbff;
+  color: #ff0957;
 }
 .open {
   position: absolute;
@@ -392,9 +393,6 @@ span {
   overflow-y: scroll;
   border-radius: 0 0 5px 5px;
   background-color: white;
-  /* border-left: 1px solid #d5d5d5;
-  border-right: 1px solid #d5d5d5;
-  border-bottom: 1px solid #d5d5d5; */
   border: 1px solid #d5d5d5;
   box-shadow: 0 15px 15px #00000026;
   position: absolute;
@@ -842,7 +840,22 @@ span {
   background-color: white;
   color: #1f1f1f;
 }
-
+.svd_card_options{
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  position: relative;
+}
+.fa-share_dark{
+  color: white;
+}
+.svd_card_options>i{
+  font-size: 18px;
+  
+}
 #b_tog_btn_check .b_tog_checkbox_input:checked + .b_dkm_toggle:before {
   left: -50px;
 }

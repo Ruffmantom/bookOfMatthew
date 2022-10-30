@@ -26,6 +26,10 @@ $(function () {
   const bookDropDownBtnElmID = "b_book_c_dd_btn";
   const closeNaveBtnElm = $(".nav_close_btn");
   const saveVerseBtn = $("#options_btn_save");
+  const svdCrdShareBtn = "svd_crd_share";
+  const svdCrdHeartBtn = "svc_heart_btn";
+  const verseOptionsShareBtn = $("#options_btn_share");
+
   // CONTAINERS AND OTHER HTML OBJECTS
   const menuElm = $("#app_menu_id");
   const colorMenu = $(".highlight_box");
@@ -35,6 +39,7 @@ $(function () {
   const dropList = $(".font_list_cont");
   const dropIcon = $("#drop_icon");
   const selectionName = $("#selection_name");
+  const svdVerseCardHrtIcon = $("#svd_heart_icon");
   // STATE AND OTHER DATA VARIABLES
   let menuOpen = false;
   let userTextSize = parseInt(activeUser.verseFontSize);
@@ -126,6 +131,55 @@ $(function () {
         e.stopPropagation();
         toggleDropDown(ddValId, bibleVersionsSelctContElm);
         break;
+      case svdCrdHeartBtn:
+        // Bible DD version drop down
+        // will need this icon id: svdVerseCardHrtIcon
+        e.stopPropagation();
+        // toggleDropDown(ddValId, bibleVersionsSelctContElm);
+        // console.log("clicked saved heart!");
+
+        // need to remove it from user first
+        // --- get id from button
+        let cardId = e.target.dataset.verseid;
+        let cardArr = Array.from($(".b_saved_verse_card"));
+        // --- search for that in the users saved verses
+        let newSavedVerseArr = activeUser.usersFavVerses.filter((v) => {
+          return v.save_id !== cardId;
+        });
+        // --- filter it out and save new array to user
+        // console.log("new user saved verses", newSavedVerseArr);
+        // save the user
+        activeUser.usersFavVerses = newSavedVerseArr; 
+        // update user
+        updateUser(true, "Removed!", false);
+        // notifyUser("Removed", false, 500);
+        // then fade out from html
+        // --- take that id and search for the correct card
+        cardArr.filter((card) => {
+          let foundId = card.dataset.cardid;
+          // console.log(foundId)
+          if (cardId === foundId) {
+            // --- fadeOut()
+            let removeTimer = setTimeout(() => {
+              $(card).fadeOut(1000);
+              clearTimeout(removeTimer)
+            }, 500);
+          }
+        });
+        break;
+      case svdCrdShareBtn:
+        // Bible DD version drop down
+        e.stopPropagation();
+        // toggleDropDown(ddValId, bibleVersionsSelctContElm);
+        // console.log('clicked saved share btn!')
+        // get data from the verse card
+        let d = e.target.dataset.sharedata.toString();
+        // let d = e.target;
+        // console.log();
+        if (e && d) {
+          shareOrCopyData(JSON.parse(d), true);
+        }
+        break;
       case bookDropDownBtnElmID:
         // Book DD btn (atleast 4 with the same ID)
         e.stopPropagation();
@@ -216,7 +270,7 @@ $(function () {
     let verseId = verseTarget.dataset.verseid;
     let verseData = verseTarget.dataset.versetext;
     let vDataObj = {
-      _id: parseInt(verseId.split("-")[4].split("")[1]),
+      _id: parseInt(verseId.split("-")[4].split("v")[1]),
       vId: verseId,
       vTxt: verseData,
     };
@@ -250,7 +304,7 @@ $(function () {
         verseIDArr.push(verseId);
         // push into verse data array
         clickedVerseDataArr.push(vDataObj);
-        console.log(clickedVerseDataArr);
+        // console.log(clickedVerseDataArr);
       }
     } else {
       // ----------
@@ -266,7 +320,7 @@ $(function () {
       verseIDArr.push(verseId);
       // push into verse data array
       clickedVerseDataArr.push(vDataObj);
-      console.log(clickedVerseDataArr);
+      // console.log(clickedVerseDataArr);
     }
     checkIfVerseHasBkg();
   };
@@ -315,7 +369,10 @@ $(function () {
       // heart to turn color
       $("#pop_up_heart").removeClass("fa-heart");
       $("#pop_up_heart").addClass("fa-heart-o");
-      $("#pop_up_heart").css({ color: "black" });
+      // $("#pop_up_heart").css({ color: "black" });
+      $("#pop_up_heart").css(
+        activeUser.mode ? { color: "#d5d5d5" } : { color: "black" }
+      );
     } else {
       // log("Opening HL box");
       // add spacer for bottom text to move up
@@ -353,12 +410,12 @@ $(function () {
   }
   const addAndRemoveSelected = (add, verse) => {
     if (add) {
-      console.log("adding selected attr - ");
-      console.log($(verse));
+      // console.log("adding selected attr - ");
+      // console.log($(verse));
       $(verse).attr("data-vselected", "true");
     } else {
-      console.log("removing selected attr");
-      console.log($(verse));
+      // console.log("removing selected attr");
+      // console.log($(verse));
       $(verse).removeData("vselected");
       $(verse).removeAttr("data-vselected");
     }
@@ -704,7 +761,7 @@ $(function () {
   ];
   // script from github from other project
   let listOpen = false;
-  console.log("about to load font type");
+  // console.log("about to load font type");
   // set font selection on load
   if (activeUser) {
     selectionName.text(activeUser.verseFont);
@@ -735,9 +792,9 @@ $(function () {
   });
   const fontListItem = $(".font_list_item");
   fontListItem.on("click", (e) => {
-    console.log("clicked a font");
+    // console.log("clicked a font");
     var font = $(e.target).attr("data-fontkey");
-    console.log(font);
+    // console.log(font);
     if (listOpen) {
       listOpen = false;
       dropList.hide();
@@ -822,7 +879,7 @@ $(function () {
   // clear the data and reload the app
   // have a prompt confirming
   const clearUserData = () => {
-    console.log("clearing user data");
+    // console.log("clearing user data");
     // let user know it has been finished
     notifyUser("Data Cleard!", false, 1000);
     // reload page
@@ -850,7 +907,7 @@ $(function () {
     // heart to turn color
     $("#pop_up_heart").removeClass("fa-heart-o");
     $("#pop_up_heart").addClass("fa-heart");
-    $("#pop_up_heart").css({ borderColor: "black", color: "#00fbff" });
+    $("#pop_up_heart").css({ color: "#ff6666" });
     var closeColorMenuTimer = setTimeout(() => {
       // close HL box
       openColorMenu(false);
@@ -860,19 +917,8 @@ $(function () {
     formmatedSaveVerse = {};
   });
   // ------------------- END Save user verse -----------------------
+
   // ------------------- share / copy verse -----------------------
-  // format for sharing
-  // verse_share_data: 'Matthew 6:1-5<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque dolor nobis!<br>ESV: 2001 - 2022 Crossway'
-  optionsCopyBtn.on("click", function () {
-    let d = getClickedData();
-    copyToClipboard(d.toString());
-  });
-  // copy to clipboard
-  function copyToClipboard(element) {
-    navigator.clipboard.writeText(element);
-    // notify user it has been copied
-    notifyUser("Copied!", false, 500);
-  }
   // get the clicked data
   function getClickedData() {
     // filter list from least to greatest
@@ -881,12 +927,12 @@ $(function () {
     let gotData = getCpyBk(sortedCopyData);
     return gotData;
   }
-  const removeExtraFormatting=(string)=>{
-    let newStr =  string.split(' ').filter(words=>{
-      return words != "<br>"
-    })
-    console.log(newStr)
-  }
+  const removeExtraFormatting = (string) => {
+    let newStr = string.split(" ").filter((words) => {
+      return words != "<br>";
+    });
+    return newStr;
+  };
   // format the data
   const getCpyBk = (cd) => {
     let as = cd[0].vId.split("-");
@@ -895,14 +941,16 @@ $(function () {
     let bkName = bk.charAt(0).toUpperCase() + bk.slice(1);
     let chap = as[3];
     // create array of just the numbers
-    let cpVerNumArr = cd.map((id) => {
-      return id._id;
+    let cpVerNumArr = []
+    cd.map((id) => {
+      console.log(id)
+      cpVerNumArr.push(id._id);
     });
     let joinedVerseNums = splitVerseSequence(cpVerNumArr);
     let joinedVerses = joinVerses(cd);
     // this is the copy data, share data and save data
     // function to filter out <br>
-    removeExtraFormatting(joinedVerses)
+    removeExtraFormatting(joinedVerses);
     // Create the save verse data
     let joinedCopyData = `"${joinedVerses}" ${bkName} ${chap}:${joinedVerseNums} ${bt}`;
     formmatedSaveVerse.save_id = createSerializedId();
@@ -916,6 +964,7 @@ $(function () {
   };
   // split the verse sequence to help format
   const splitVerseSequence = (arrnew) => {
+    console.log("Start splitVerseSequence: ", arrnew)
     let arr2 = [];
     for (let j = 0; j < arrnew.length - 1; j++) {
       if (arrnew[j + 1] - 1 !== arrnew[j]) {
@@ -926,10 +975,12 @@ $(function () {
     if (arrnew.length > 0) {
       arr2.push(arrnew.splice(0));
     }
+    console.log("End splitVerseSequence: ", arr2)
     return formatVerseNums(arr2);
   };
   // format the verse arrays
   const formatVerseNums = (arrays) => {
+    console.log('Start formatVerseNums ', arrays)
     let newArr = [];
     arrays.forEach((arr) => {
       if (arr.length > 2) {
@@ -940,6 +991,7 @@ $(function () {
       }
     });
     let cpytext = newArr.join(",");
+    console.log('End formatVerseNums ', cpytext)
     return cpytext;
     // if the length of the array is
   };
@@ -950,13 +1002,56 @@ $(function () {
       verses.push(a.vTxt);
     });
     // this regex removes HTML from a srting
-    return verses.join("").replace(/(<([^>]+)>)/gi,"").trim();
+    return verses
+      .join("")
+      .replace(/(<([^>]+)>)/gi, "")
+      .trim();
   };
-  // ------------------- END share / copy verse -----------------------
-  // ------------------- Save verse to saved verses -----------------------
+  // function to share or copy data
+  const shareOrCopyData = (data, share) => {
+    if (share && navigator.share) {
+      navigator.share({
+        text: data,
+        url: "https://ruffmantom.github.io/bookOfMatthew/",
+        title: "The Gospel App",
+      });
+    } else {
+      // copyToClipboard(d.toString());
+      navigator.clipboard.writeText(data);
+      // notify user it has been copied
+      notifyUser("Copied!", false, 500);
+    }
+    // close HL box
+    openColorMenu(false);
+  };
+  // End saved card share button
 
-  // ------------------- END Save verse to saved verses -----------------------
-  // ------------------------------------------------------
-  //-------------------------------------------
+  // SHARE & COPY ACTIONS ------------------------------
+  // for saved verses actions refer to [ $(".bible_book_navigation").on ]
+  // color box share button
+  verseOptionsShareBtn.on("click", (e) => {
+    // gets data from clicked verses
+    let d = getClickedData();
+    if (e) {
+      shareOrCopyData(d.toString(), true);
+    }
+  });
+  // color box copy button
+  optionsCopyBtn.on("click", function (e) {
+    let d = getClickedData();
+    if (e) {
+      shareOrCopyData(d.toString(), false);
+    }
+  });
+  // ------------------- END share / copy verse -----------------------
+
+  // Rmove saved verse from saved verses
+  // svdCrdHeartBtn.on('click',(e)=>{
+  //   if(e){
+  //     console.log('clicked heart!')
+  //   }
+  // })
+  // End remove saved verse from saved verses
+
   // end of doc ready
 });

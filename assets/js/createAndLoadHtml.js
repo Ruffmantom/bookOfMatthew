@@ -96,23 +96,19 @@ const loadingRender = (loadedUserData) => {
     share_data
   ) =>
     // vId can be a single or array of ID's
-    `<div class="dark b_saved_verse_card" data-cardid="${save_id}">
+    `<div class="${loadedUserData.mode? 'b_saved_verse_card b_saved_verse_card_dark':'b_saved_verse_card'}" data-cardid="${save_id}">
                 <h5 class="">${verse_loc}</h4>
                   <p>${verse_text}</p>
                   <div class="svd_verse_footer">
-                    <i data-verseid="${save_id}" class="fa fa-heart svd_vc_heart svd_true"></i>
-                    <svg data-shareid="${save_id}" data-shardata="${share_data}" class="share_icon" xmlns="http://www.w3.org/2000/svg" width="15.318" height="15.318"
-                      viewBox="0 0 15.318 15.318">
-                      <g transform="translate(0.75 0.75)">
-                        <path d="M6,18v5.527a1.584,1.584,0,0,0,1.727,1.382H18.091a1.584,1.584,0,0,0,1.727-1.382V18"
-                          transform="translate(-6 -11.091)" fill="none" stroke="#000" stroke-linecap="round"
-                          stroke-linejoin="round" stroke-width="1.5" />
-                        <path d="M17.527,5.764,14.764,3,12,5.764" transform="translate(-7.855 -3)" fill="none"
-                          stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
-                        <path d="M18,3v8.982" transform="translate(-11.091 -3)" fill="none" stroke="#000"
-                          stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
-                      </g>
-                    </svg>
+                    <div class="svd_card_options">
+                      <div id="svc_heart_btn" data-verseid="${save_id}" class="b_btn_overlay_click"></div>
+                      <i id="svd_heart_icon" class="fa fa-heart svd_vc_heart
+                      svd_true"></i>
+                    </div>
+                    <div class="svd_card_options">
+                      <div id="svd_crd_share" data-sharedata='${JSON.stringify(share_data)}' class="svd_vrs_share_btn b_btn_overlay_click"></div>
+                        <i class="fa ${loadedUserData.mode? 'fa-share fa-share_dark':'fa-share'}"></i>
+                      </div>
                   </div>
               </div>`;
   // create HTML bible version choices
@@ -215,6 +211,11 @@ const loadingRender = (loadedUserData) => {
       let findId = `${cId[2]}-${cId[3]}`;
       if (findId === findUserCurrChId) {
         $(c).addClass("cb_active");
+        if(loadedUserData.mode ){
+          $(c).addClass("cb_active_dark");
+        }else{
+          $(c).removeClass("cb_active_dark");
+        }
       } else {
         $(c).removeClass("cb_active");
       }
@@ -235,18 +236,9 @@ const loadingRender = (loadedUserData) => {
   const findAndGetFavVerses = (contBkId) => {
     let favVArr = [];
     loadedUserData.usersFavVerses.map((fv) => {
-      console.log(fv.book_id.toLowerCase())
-      console.log(contBkId.toLowerCase())
+      // console.log(fv.book_id.toLowerCase())
+      // console.log(contBkId.toLowerCase())
       
-      // let fvId = fv.verse_ids[0];
-      // // book drop down
-      // // verse Id ex: esv-nt-matt-1-v1 example of book id esv-nt-matt
-      // let favVerseBookId = fvId.split("-");
-      // let findFavsId = `${favVerseBookId[0]}-${favVerseBookId[1]}-${favVerseBookId[2]}`;
-     
-      // if (findFavsId === contBkId.toLowerCase()) {
-      //   favVArr.push(fv);
-      // }
       if ( fv.book_id.toLowerCase() === contBkId.toLowerCase()) {
         favVArr.push(fv);
       }
