@@ -149,7 +149,7 @@ $(function () {
         // --- filter it out and save new array to user
         // console.log("new user saved verses", newSavedVerseArr);
         // save the user
-        activeUser.usersFavVerses = newSavedVerseArr; 
+        activeUser.usersFavVerses = newSavedVerseArr;
         // update user
         updateUser(true, "Removed!", false);
         // notifyUser("Removed", false, 500);
@@ -824,9 +824,8 @@ $(function () {
   let userTe = splitUserPos[1];
   let userBk = splitUserPos[2];
   const updateUserPosition = (bv, te, bk, ch) => {
-    let newUserPos = `${bv ? bv : userBv}-${te ? te : userTe}-${
-      bk ? bk : userBk
-    }-${ch ? ch : chapterState}`;
+    let newUserPos = `${bv ? bv : userBv}-${te ? te : userTe}-${bk ? bk : userBk
+      }-${ch ? ch : chapterState}`;
     // console.log(newUserPos);
     activeUser.userbiblePos = "";
     activeUser.userbiblePos = newUserPos;
@@ -935,6 +934,14 @@ $(function () {
     });
     return newStr;
   };
+  function returnDateStamp() {
+    let getTime = new Date()
+    var datetime = getTime.getDay() + "/" + getTime.getMonth()
+      + "/" + getTime.getFullYear() + " "
+      + getTime.getHours() + ":"
+      + getTime.getMinutes() + ":" + getTime.getSeconds();
+    return datetime
+  }
   // format the data
   const getCpyBk = (cd) => {
     let as = cd[0].vId.split("-");
@@ -961,6 +968,8 @@ $(function () {
     formmatedSaveVerse.verse_loc = `${bkName} ${chap}:${joinedVerseNums} ${bt}`;
     formmatedSaveVerse.verse_text = joinedVerses;
     formmatedSaveVerse.share_data = joinedCopyData;
+    formmatedSaveVerse.date = returnDateStamp();
+    console.log(formmatedSaveVerse)
     // Return the copy data
     return joinedCopyData;
   };

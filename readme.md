@@ -7,8 +7,9 @@ I wanted to try and make a similar app that has a lot of the same functionality 
 - Allow for users to have a profile image and username  (even tho this is a local app only) X
 - Allow for dark mode. X
 - Allow for notes in scripture
-- Allow for a user to copy/share the verse and have the reference with it.
-- navigation to different books, with user pinned verses
+- Allow for a user to copy/share the verse and have the reference with it. X
+- navigation to different books, with user saved/hearted verses X
+- Add notes to saved/hearted verses.
 
 ## About this app and how to run it
 This app is made with HTML5, CCS3, and Js/Jquery library.
