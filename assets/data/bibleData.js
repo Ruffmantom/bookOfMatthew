@@ -143,7 +143,7 @@ const bibleData = {
                 {
                   _id: `esv-nt-matt-1-v12`,
 
-                  tab: true,
+                  tab: false,
                   beg_break: false,
                   end_break: false,
                   gap: false,
@@ -193,7 +193,7 @@ const bibleData = {
                 {
                   _id: `esv-nt-matt-1-v17`,
 
-                  tab: true,
+                  tab: false,
                   beg_break: false,
                   end_break: false,
                   gap: false,
