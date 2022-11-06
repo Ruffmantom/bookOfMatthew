@@ -896,14 +896,17 @@ $(function () {
   });
 
   // Copy data, save data and share data State
-  let formmatedSaveVerse = {};
+  let formmatedSaveVerse = {
+    user_comment:'',
+  };
   // ------------------- END Clear user data btn -----------------------
   // ------------------- Save user verse -----------------------
   saveVerseBtn.on("click", (e) => {
     getClickedData();
     // console.log(formmatedSaveVerse)
     // save to the user
-    activeUser.usersFavVerses.push(formmatedSaveVerse);
+    // add saved verse to beginning instead of end
+    activeUser.usersFavVerses.unshift(formmatedSaveVerse);
     updateUser(true, "Verse Saved!", false, 150);
     // heart to turn color
     $("#pop_up_heart").removeClass("fa-heart-o");

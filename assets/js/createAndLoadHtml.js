@@ -59,46 +59,55 @@ const loadingRender = (loadedUserData) => {
             <div data-bookid="${bookId}" class="b_dd_saved_verses_cont">
               <!-- Favorite verse card - these will be added when the user likes a verse  -->
              ${
-               favVArr.length >= 1
-                 ? favVArr
-                     .map((fv) => {
-                       return renderSavedVerseCard(
-                         fv.save_id,
-                         fv.bible_data,
-                         fv.book_id,
-                         fv.verse_loc,
-                         fv.verse_text,
-                         fv.share_data
-                       );
-                     })
-                     .join("")
-                 : ""
+              // instead of .map we will use a for loop and show the newest to oldest hearted verse
+              // up to three and then link for pop up
+               favVArr.length >= 1 
+                  ? 
+              // sortAndRenderSavedVerses(favVArr)
+                   favVArr
+                       .map((fv) => {
+                         return renderSavedVerseCard(
+                           fv.save_id,
+                           fv.bible_data,
+                           fv.book_id,
+                           fv.verse_loc,
+                           fv.verse_text,
+                           fv.share_data,
+                           fv.date
+                         );
+                       })
+                       .join("")
+                 
+                  : ""
              }
             </div>
           </div>
         </div>`;
 
-  // Create HTML the saved verse card
-  /*
-    save_id
-    bible_data
-    book_id
-    verse_loc
-    verse_text
-    share_data
-  */
+
+        // Create HTML the saved verse card
+        /*
+          save_id
+          bible_data
+          book_id
+          verse_loc
+          verse_text
+          share_data
+        */
   const renderSavedVerseCard = (
     save_id,
     bible_data,
     book_id,
     verse_loc,
     verse_text,
-    share_data
+    share_data,
+    saved_date
   ) =>
     // vId can be a single or array of ID's
     `<div class="${loadedUserData.mode? 'b_saved_verse_card b_saved_verse_card_dark':'b_saved_verse_card'}" data-cardid="${save_id}">
                 <h5 class="">${verse_loc}</h4>
                   <p>${verse_text}</p>
+                  <p class="svd_verse_date">Saved on ${saved_date.split(' ')[0]}</p>
                   <div class="svd_verse_footer">
                     <div class="svd_card_options">
                       <div id="svc_heart_btn" data-verseid="${save_id}" class="b_btn_overlay_click"></div>
@@ -108,7 +117,11 @@ const loadingRender = (loadedUserData) => {
                     <div class="svd_card_options">
                       <div id="svd_crd_share" data-sharedata='${JSON.stringify(share_data)}' class="svd_vrs_share_btn b_btn_overlay_click"></div>
                         <i class="fa ${loadedUserData.mode? 'fa-share fa-share_dark':'fa-share'}"></i>
-                      </div>
+                    </div>
+                    <div class="svd_card_options">
+                      <div id="svd_crd_comment" data-carddata='${JSON.stringify(share_data)}' data-cardid="${save_id}" class="svd_vrs_share_btn b_btn_overlay_click"></div>
+                      <i class="fa fa-comment" aria-hidden="true"></i>
+                    </div>
                   </div>
               </div>`;
   // create HTML bible version choices

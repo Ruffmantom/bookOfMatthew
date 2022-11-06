@@ -856,6 +856,10 @@ span {
   font-size: 18px;
   
 }
+.svd_verse_date{
+  font-size: 12px;
+  opacity: .4;
+}
 #b_tog_btn_check .b_tog_checkbox_input:checked + .b_dkm_toggle:before {
   left: -50px;
 }
