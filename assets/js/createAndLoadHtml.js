@@ -64,8 +64,7 @@ const loadingRender = (loadedUserData) => {
                favVArr.length >= 1 
                   ? 
               // sortAndRenderSavedVerses(favVArr)
-                   favVArr
-                       .map((fv) => {
+                  favVArr.slice(0,3).map((fv) => {
                          return renderSavedVerseCard(
                            fv.save_id,
                            fv.bible_data,
@@ -80,6 +79,7 @@ const loadingRender = (loadedUserData) => {
                  
                   : ""
              }
+             ${favVArr.length > 3? `<p id="seeAllVersesBtn" ${loadedUserData.mode ? "class='upload_image_btn upload_image_btn_dark'" : "class='dark upload_image_btn'"}>See All Your Saved Verses</p>`:''}
             </div>
           </div>
         </div>`;
@@ -107,7 +107,7 @@ const loadingRender = (loadedUserData) => {
     `<div class="${loadedUserData.mode? 'b_saved_verse_card b_saved_verse_card_dark':'b_saved_verse_card'}" data-cardid="${save_id}">
                 <h5 class="">${verse_loc}</h4>
                   <p>${verse_text}</p>
-                  <p class="svd_verse_date">Saved on ${saved_date.split(' ')[0]}</p>
+                  <p class="svd_verse_date">Saved on ${saved_date}</p>
                   <div class="svd_verse_footer">
                     <div class="svd_card_options">
                       <div id="svc_heart_btn" data-verseid="${save_id}" class="b_btn_overlay_click"></div>

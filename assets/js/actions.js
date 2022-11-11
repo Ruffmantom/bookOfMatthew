@@ -937,14 +937,6 @@ $(function () {
     });
     return newStr;
   };
-  function returnDateStamp() {
-    let getTime = new Date()
-    var datetime = getTime.getDay() + "/" + getTime.getMonth()
-      + "/" + getTime.getFullYear() + " "
-      + getTime.getHours() + ":"
-      + getTime.getMinutes() + ":" + getTime.getSeconds();
-    return datetime
-  }
   // format the data
   const getCpyBk = (cd) => {
     let as = cd[0].vId.split("-");
@@ -971,7 +963,7 @@ $(function () {
     formmatedSaveVerse.verse_loc = `${bkName} ${chap}:${joinedVerseNums} ${bt}`;
     formmatedSaveVerse.verse_text = joinedVerses;
     formmatedSaveVerse.share_data = joinedCopyData;
-    formmatedSaveVerse.date = returnDateStamp();
+    formmatedSaveVerse.date = new Date().toLocaleDateString()
     console.log(formmatedSaveVerse)
     // Return the copy data
     return joinedCopyData;
