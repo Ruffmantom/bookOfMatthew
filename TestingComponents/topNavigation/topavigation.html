@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <script src="https://use.fontawesome.com/ea858508e8.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </head>
+
+  <body>
+    <div class="dark bible_book_navigation bible_book_navigation_open">
+      <!-- this text will be replaced by JS current book and bible type -->
+      <div class="b_nav_prev">
+        <div id="b_nav_btn" class="b_btn_overlay_click"></div>
+        <p id="nav_prev_text"></p>
+      </div>
+      <!-- close button ABSOLUTE -->
+      <div  class="nav_close_btn">
+        <div id="close_nav_btn" class="b_btn_overlay_click"></div>
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <!-- this container will drop down to revieal the navigation -->
+      <div class="b_nav_dd_cont">
+        <!-- example stuff -->
+        <h4 class="b_nav_titles">Bible Version</h4>
+        <div class="dark dropdown_main_cont">
+          <div class="dark selection_cont">
+            <div data-ddbtnid="sbv_btn" id="close_bv_dd_btn" class="b_btn_overlay_click"></div>
+            <p id="b_version_choice_prev"></p>
+            <i data-ddbtnid="sbv_btn" class="fa fa-angle-down drop_icon" aria-hidden="true"></i>
+          </div>
+          <div data-ddcontid="sbv_btn" id="b_version_choice_dd_cont" class="dark b_dd_list">
+            <!-- dynamic choices -->
+          </div>
+        </div>
+        <h4 class="b_nav_titles">Books</h4>
+        <!-- these will all be dynamically placed -->
+        <div class="b_nav_books_container">
+          <!-- chapter drop down includes
+                - Book name and drop down icon
+                - Dynamically added Chapters
+                - And favorited verses in that book
+                -->
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/data/bibleData.js"></script>
+    <script src="./topnavIndex.js"></script>
+  </body>
+</html>
