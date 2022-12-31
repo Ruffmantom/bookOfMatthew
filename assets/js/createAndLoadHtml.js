@@ -159,7 +159,10 @@ const loadingRender = (loadedUserData) => {
     // set active chapter
     setActivChapter();
   };
-
+  // add content pop up window
+  const createContentPopUp=()=>{
+    
+  }
   // find bible choice info and set choice
   const setBibleVersionChoice = (version, info) => {
     // find version in data and set p tag
