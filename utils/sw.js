@@ -1,4 +1,4 @@
-var cacheName = "hello-pwa";
+var cacheName = "thegospel-pwa";
 var filesToCache = ["/", "/index.html", "/assets/css/style.css","/assets/js/user.js","/assets/js/actions.js","/assets/js/fontActions.js",'/assets/data/bibleData.js'];
 self.addEventListener("install", function (e) {
   e.waitUntil(
