@@ -343,7 +343,7 @@ const bibleData = {
                   paragraph: `&#8220; &#8216;And you, O Bethlehem, in the land of Judah,<br>
                     are by no means least among the rulers of Judah;<br>
                     for from you shall come a ruler<br>
-                    who will qshepherd my people Israel.&#8216; &#8221;`,
+                    who will qshepherd my people Israel.&#8217; &#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-2-v7`,
@@ -551,7 +551,7 @@ const bibleData = {
                   title: ``,
                   paragraph: `For this is he who was spoken of by the prophet Isaiah when he said,<br><br>&#8220;The voice of one crying in the wilderness:<br>
                     &#8216;Prepare the way of the Lord;<br>
-                    make his paths straight.&#8216; &#8221;`,
+                    make his paths straight.&#8217; &#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-3-v4`,
@@ -734,7 +734,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false,
                   title: ``,
                   paragraph: `But he answered, &#8220;It is written, <br><br> &#8220; &#8216;Man shall not live by bread alone,<br>but by every word that comes from the mouth of God.&#8217; &#8221;`,
@@ -742,7 +742,7 @@ const bibleData = {
                 {
                   _id: `esv-nt-matt-4-v5`,
 
-                  tab: true,
+                  tab: false,
                   beg_break: false,
                   end_break: false,
                   gap: false,
@@ -754,8 +754,8 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: false,
-                  gap: true,
+                  end_break: true,
+                  gap: false,
                   title: ``,
                   paragraph: `and said to him, &#8220;If you are the Son of God, throw yourself down, for it is written,<br><br>&#8220; &#8216;He will command his angels concerning you,&#8217;<br><br>and<br><br> &#8220; &#8216;On their hands they will bear you up,<br>lest you strike your foot against a stone.&#8217; &#8221;<br>`,
                 },
@@ -797,7 +797,7 @@ const bibleData = {
                   end_break: false,
                   gap: true,
                   title: ``,
-                  paragraph: `Then Jesus said to him, &#8220;Be gone, Satan! For it is written,<br><br>&#8221;&#8216;You shall worship the Lord your God<br>and him only shall you serve.&#8217; &#8221;`,
+                  paragraph: `Then Jesus said to him, &#8220;Be gone, Satan! For it is written,<br><br>&#8220;&#8216;You shall worship the Lord your God<br>and him only shall you serve.&#8217; &#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-4-v11`,
@@ -1163,7 +1163,7 @@ const bibleData = {
                   end_break: false,
                   gap: false,
                   title: `Anger`,
-                  paragraph: `&#8220;You have herd that it was said to those of old, &#8216;You shall not murder, and whoever murders will be liable to judgment.&#8216;`,
+                  paragraph: `&#8220;You have herd that it was said to those of old, &#8216;You shall not murder, and whoever murders will be liable to judgment.&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-5-v22`,
@@ -1173,7 +1173,7 @@ const bibleData = {
                   end_break: false,
                   gap: false,
                   title: ``,
-                  paragraph: `But I say to you that everyone who is angry with his brother will be liable to judgment; whoever insults his brother will be liable to the council; and whoever says, &#8216;You Fool!&#8216; will be liable to the hell of fire.`,
+                  paragraph: `But I say to you that everyone who is angry with his brother will be liable to judgment; whoever insults his brother will be liable to the council; and whoever says, &#8216;You Fool!&#8217; will be liable to the hell of fire.`,
                 },
                 {
                   _id: `esv-nt-matt-5-v23`,
@@ -1223,7 +1223,7 @@ const bibleData = {
                   end_break: false,
                   gap: false,
                   title: `Lust`,
-                  paragraph: `&#8220;You have herd that it was said, &#8216;You shall not commit adultery.&#8216;`,
+                  paragraph: `&#8220;You have herd that it was said, &#8216;You shall not commit adultery.&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-5-v28`,
@@ -1263,7 +1263,7 @@ const bibleData = {
                   end_break: false,
                   gap: false,
                   title: `Divorce`,
-                  paragraph: `&#8220;it was also said, &#8216;Whoever diverse his wife, let him give her a certificate of diverse.&#8216;`,
+                  paragraph: `&#8220;it was also said, &#8216;Whoever diverse his wife, let him give her a certificate of diverse.&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-5-v32`,
@@ -1283,7 +1283,7 @@ const bibleData = {
                   end_break: false,
                   gap: false,
                   title: `Oaths`,
-                  paragraph: `&#8220;Again you have herd that it was said to those of old, &#8216;You shall not swear falsely, but shall perform to the Lord what you have sworm.&#8216;`,
+                  paragraph: `&#8220;Again you have herd that it was said to those of old, &#8216;You shall not swear falsely, but shall perform to the Lord what you have sworm.&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-5-v34`,
@@ -1333,7 +1333,7 @@ const bibleData = {
                   end_break: false,
                   gap: false,
                   title: `Retaliation`,
-                  paragraph: `&#8220;You have herd that it was said, &#8216;An eye for an eye and a tooth for a tooth.&#8216;`,
+                  paragraph: `&#8220;You have herd that it was said, &#8216;An eye for an eye and a tooth for a tooth.&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-5-v39`,
@@ -1383,7 +1383,7 @@ const bibleData = {
                   end_break: false,
                   gap: false,
                   title: `Love Your Enemies`,
-                  paragraph: `&#8220;You have heard that it was said, &#8216;You shall love your neighbor and hate your enemy.&#8216;`,
+                  paragraph: `&#8220;You have heard that it was said, &#8216;You shall love your neighbor and hate your enemy.&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-5-v44`,
@@ -1483,7 +1483,7 @@ const bibleData = {
                   beg_break: false,
                   end_break: false,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: `The Lord&#8216;s Prayer`, //titles get  after them - might need to add that in the JS
+                  title: `The Lord&#8217;s Prayer`, //titles get  after them - might need to add that in the JS
                   paragraph: `&#8220;And when you pray, you must not be like the hypocrites. For they love to stand and pray in the synagogues and at the street corners, that they may be seen by others. Truly, I say to you, they have received their reward.`,
                 },
                 {
@@ -1778,7 +1778,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `Why do you see the speck that is in your brother&#8216;s eye, but do not notice the log that is in your own eye?`,
+                  paragraph: `Why do you see the speck that is in your brother&#8217;s eye, but do not notice the log that is in your own eye?`,
                 },
                 {
                   _id: `esv-nt-matt-7-v4`,
@@ -1787,7 +1787,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `Or how can you say to your brother, &#8216;Let me take the speck out of your eye,&#8216; when there is a log in your own eye?`,
+                  paragraph: `Or how can you say to your brother, &#8216;Let me take the speck out of your eye,&#8217; when there is a log in your own eye?`,
                 },
                 {
                   _id: `esv-nt-matt-7-v5`,
@@ -1940,7 +1940,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: `I Never Knew You`, 
-                  paragraph: `&#8220;Not everyone who says to me, &#8216;Lord, Lord,&#8216; will enter the kingdom of heaven, but the one who does the will of my Father who is in heaven.`,
+                  paragraph: `&#8220;Not everyone who says to me, &#8216;Lord, Lord,&#8217; will enter the kingdom of heaven, but the one who does the will of my Father who is in heaven.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v22`,
@@ -1949,7 +1949,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `On that day many will say to me, &#8216;Lord, Lord, did we not prophesy in your name, and cast out demons in your name, and do many mighty works in your name?`,
+                  paragraph: `On that day many will say to me, &#8216;Lord, Lord, did we not prophesy in your name, and cast out demons in your name, and do many mighty works in your name?&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-7-v23`,
@@ -1958,7 +1958,7 @@ const bibleData = {
                   end_break: true,
                   gap: false, 
                   title: ``, 
-                  paragraph: `And then will I declare to them, &#8216;I never knew you; depart from me, you workers of lawlessness.&#8216;`,
+                  paragraph: `And then will I declare to them, &#8216;I never knew you; depart from me, you workers of lawlessness.&#8217;`,
                 },
                 {
                   _id: `esv-nt-matt-7-v24`,
