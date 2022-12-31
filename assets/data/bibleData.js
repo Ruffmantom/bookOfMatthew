@@ -1447,7 +1447,7 @@ const bibleData = {
                   beg_break: false,
                   end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get  after them - might need to add that in the JS
+                  title: `Giving to the Needy`, //titles get  after them - might need to add that in the JS
                   paragraph: `"Beware of practicing your righteousness before other people in order to be seen by them, for then you will have no reward from your Father who is in heaven.`,
                 },
                 {
@@ -1520,7 +1520,7 @@ const bibleData = {
                   end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
-                  paragraph: `Pray then like this:<br>”Our Father in heaven,<br>hallowed be your name.`,
+                  paragraph: `Pray then like this:<br><br>”Our Father in heaven,<br>hallowed be your name.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v10`,
