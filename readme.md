@@ -8,13 +8,13 @@ I wanted to try and make a similar app that has a lot of the same functionality 
 - Allow for dark mode. X
 - Allow for notes in scripture
 - Allow for a user to copy/share the verse and have the reference with it. X
-- navigation to different books, with user saved/hearted verses X
+- navigation to different books, with user saved/hearted verse's X
 - Add notes to saved/hearted verses.
 
 ## About this app and how to run it
 This app is made with HTML5, CCS3, and Js/Jquery library.
 - Download this project and open it in your code editor
-- Next, right-click the HTML and "Open with live server"
+- Next, right-click the HTML and "Open with live-server"
 
 The best way to view this app is in mobile view.
 To view the live version click here: https://ruffmantom.github.io/bookOfMatthew/
