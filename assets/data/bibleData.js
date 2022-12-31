@@ -241,7 +241,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `All this took place to fulfill what the Lord had spoken bu the prophet:`,
@@ -251,7 +251,7 @@ const bibleData = {
 
                   tab: true,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `&#8220;Behold, the virgin shall conceive and bear a son,<br>and they shall call his name Immanuel&#8221;<br> (which means, God with us).`,
@@ -327,7 +327,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `They told him, &#8220;In Bethlehem of Judea for so it is written by the prophet:`,
@@ -337,7 +337,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `&#8220; &#8216;And you, O Bethlehem, in the land of Judah,<br>
@@ -450,7 +450,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `Then was fulfilled what was spoken bu the prophet Jeremiah:`,
@@ -460,7 +460,7 @@ const bibleData = {
 
                   tab: true,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `&#8220;A voice was heard in Ramah,<br>weeping and loud lamentation,<br>Rachel weeping for her children;<br>she refused to be comforted, because they are no more.&#8221;`,
@@ -546,7 +546,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `For this is he who was spoken of by the prophet Isaiah when he said,<br><br>&#8220;The voice of one crying in the wilderness:<br>
@@ -754,7 +754,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `and said to him, &#8220;If you are the Son of God, throw yourself down, for it is written,<br><br>&#8220; &#8216;He will command his angels concerning you,&#8217;<br><br>and<br><br> &#8220; &#8216;On their hands they will bear you up,<br>lest you strike your foot against a stone.&#8217; &#8221;<br>`,
@@ -794,7 +794,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `Then Jesus said to him, &#8220;Be gone, Satan! For it is written,<br><br>&#8221;&#8216;You shall worship the Lord your God<br>and him only shall you serve.&#8217; &#8221;`,
@@ -834,7 +834,7 @@ const bibleData = {
 
                   tab: false,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `so that what was spoken by the prophet Isaiah might be fulfilled:`,
@@ -854,7 +854,7 @@ const bibleData = {
 
                   tab: true,
                   beg_break: true,
-                  end_break: true,
+                  end_break: false,
                   gap: true,
                   title: ``,
                   paragraph: `the people dwelling in darkness<br>have seen a great light,<br>and for those dwelling in the region and shadow of death,<br>on them a light has dawned.&#8221;`,
@@ -1445,7 +1445,7 @@ const bibleData = {
                   _id: `esv-nt-matt-6-v1`,
                   tab: true,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `"Beware of practicing your righteousness before other people in order to be seen by them, for then you will have no reward from your Father who is in heaven.`,
@@ -1461,7 +1461,7 @@ const bibleData = {
                 },
                 {
                   _id: `esv-nt-matt-6-v3`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
                   end_break: false,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
@@ -1470,9 +1470,9 @@ const bibleData = {
                 },
                 {
                   _id: `esv-nt-matt-6-v4`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `so that your giving may be in secret. And your Father who sees in secret will reward you.`,
@@ -1483,14 +1483,14 @@ const bibleData = {
                   beg_break: false,
                   end_break: false,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get  after them - might need to add that in the JS
-                  paragraph: `“And when you pray, you must not be like the hypocrites. For they love to stand and pray in the synagogues and at the street corners, that they may be seen by others. Truly, I say to you, they have received their reward.`,
+                  title: `The Lord&#8216;s Prayer`, //titles get  after them - might need to add that in the JS
+                  paragraph: `&#8220;And when you pray, you must not be like the hypocrites. For they love to stand and pray in the synagogues and at the street corners, that they may be seen by others. Truly, I say to you, they have received their reward.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v6`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `But when you pray, go into your room and shut the door and pray to your Father who is in secret. And your Father who sees in secret will reward you.`,
@@ -1506,7 +1506,7 @@ const bibleData = {
                 },
                 {
                   _id: `esv-nt-matt-6-v8`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
                   end_break: false,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
@@ -1515,52 +1515,52 @@ const bibleData = {
                 },
                 {
                   _id: `esv-nt-matt-6-v9`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `Pray then like this:<br>”Our Father in heaven,<br>hallowed be your name.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v10`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `Your kingdom come,<br>your will be done,<br>on earth as it is in heaven.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v11`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `Give us this day our daily bread,`,
                 },
                 {
                   _id: `esv-nt-matt-6-v12`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `and forgive us our debts,<br>as we also have forgiven our debtors.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v13`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
-                  gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
+                  end_break: true,
+                  gap: true, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `And lead us not into temptation,<br>but deliver us from evil.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v14`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
                   end_break: false,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
@@ -1569,9 +1569,9 @@ const bibleData = {
                 },
                 {
                   _id: `esv-nt-matt-6-v15`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `But if you do not forgive others their trespasses, neither will your Father forgive your trespasses.`,
@@ -1582,12 +1582,12 @@ const bibleData = {
                   beg_break: false,
                   end_break: false,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
-                  title: ``, //titles get  after them - might need to add that in the JS
+                  title: `Fasting`, //titles get  after them - might need to add that in the JS
                   paragraph: `“And when you fastm do not look gloomy like the hypocrites, for they desfigure their faces that their fasting may be seen by others. Truly, I say to you, they have received their reward.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v17`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
                   end_break: false,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
@@ -1596,9 +1596,9 @@ const bibleData = {
                 },
                 {
                   _id: `esv-nt-matt-6-v18`,
-                  tab: true,
+                  tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, // can be true or false if true - it will add a <br> else it will be a regular span
                   title: ``, //titles get  after them - might need to add that in the JS
                   paragraph: `That your fasting may not be seen by others but by your Father who is in secret. And your Father who sees in secret will reward you.`,
@@ -1610,7 +1610,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: `Lay Up Treasures in Heaven`, 
-                  paragraph: `DQDo not lay up for yourselves treasures on earth, where moth and rust destroy and where thieves break in and steal,`,
+                  paragraph: `&#8220;Do not lay up for yourselves treasures on earth, where moth and rust destroy and where thieves break in and steal,`,
                 },
                 {
                   _id: `esv-nt-matt-6-v20`,
@@ -1625,7 +1625,7 @@ const bibleData = {
                   _id: `esv-nt-matt-6-v21`,
                   tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: ``, 
                   paragraph: `For where your treasure is, there your heart will be also.`,
@@ -1637,13 +1637,13 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `DQThe eye is the lamp of the body. So, if your eye is healthy, your whole body will be full of light,`,
+                  paragraph: `&#8220;The eye is the lamp of the body. So, if your eye is healthy, your whole body will be full of light,`,
                 },
                 {
                   _id: `esv-nt-matt-6-v23`,
                   tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: ``, 
                   paragraph: `but if your eye is bad, your whole body will be full of darkness. If then the light in you is darkness, how great is the darkness!`,
@@ -1652,19 +1652,19 @@ const bibleData = {
                   _id: `esv-nt-matt-6-v24`,
                   tab: true,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: ``, 
-                  paragraph: `DQNo one can serve two masters, for either he will hate the one and love the other or he will be devoted to the one and despise the other. You cannot serve God and money.`,
+                  paragraph: `&#8220;No one can serve two masters, for either he will hate the one and love the other or he will be devoted to the one and despise the other. You cannot serve God and money.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v25`,
                   tab: true,
                   beg_break: false,
-                  end_break: true,
+                  end_break: false,
                   gap: false, 
                   title: `Do Not Be Anxious`, 
-                  paragraph: `DQTherefore I tell you, do not be anxious about your life, what you will eat or what you will drink, nor about your body, what you will put on. Is not life more than food, and the body more than clothing?`,
+                  paragraph: `&#8220;Therefore I tell you, do not be anxious about your life, what you will eat or what you will drink, nor about your body, what you will put on. Is not life more than food, and the body more than clothing?`,
                 },
                 {
                   _id: `esv-nt-matt-6-v26`,
@@ -1718,7 +1718,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `Therefore do not be anxious, saying SQWhat shall we eat?SQ or SQWhat shall we drink?SQ or SQWhat shall we wear?SQ`,
+                  paragraph: `Therefore do not be anxious, saying &#8216;What shall we eat?&#8216; or &#8216;What shall we drink?&#8216; or &#8216;What shall we wear?&#8216;`,
                 },
                 {
                   _id: `esv-nt-matt-6-v32`,
@@ -1735,14 +1735,14 @@ const bibleData = {
                   beg_break: false,
                   end_break: true,
                   gap: false, 
-                  title: `TITLE`, 
+                  title: ``, 
                   paragraph: `But seek first the kingdom of God and his righteousness, and all these things will be added to you.`,
                 },
                 {
                   _id: `esv-nt-matt-6-v34`,
                   tab: true,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: ``, 
                   paragraph: `Therefore do not be anxious about tomorrow, for tomorrow will be anxious for itself. Sufficient for the day is its own trouble.`,
@@ -1760,7 +1760,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: `Judging Others`, 
-                  paragraph: `DQJudge not, that you be not judged.`,
+                  paragraph: `&#8220;Judge not, that you be not judged.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v2`,
@@ -1778,7 +1778,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `Why do you see the speck that is in your brotherSQs eye, but do not notice the log that is in your own eye?`,
+                  paragraph: `Why do you see the speck that is in your brother&#8216;s eye, but do not notice the log that is in your own eye?`,
                 },
                 {
                   _id: `esv-nt-matt-7-v4`,
@@ -1787,25 +1787,25 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `Or how can you say to your brother, SQLet me take the speck out of your eye,SQ when there is a log in your own eye?`,
+                  paragraph: `Or how can you say to your brother, &#8216;Let me take the speck out of your eye,&#8216; when there is a log in your own eye?`,
                 },
                 {
                   _id: `esv-nt-matt-7-v5`,
                   tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: ``, 
-                  paragraph: `You hypocrite, first take the log out of your own eye, and then you will see clearly to take the speck out of your brotherSQs eye.`,
+                  paragraph: `You hypocrite, first take the log out of your own eye, and then you will see clearly to take the speck out of your brother&#8216;s eye.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v6`,
                   tab: true,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: ``, 
-                  paragraph: `DQDo not give dogs what is holy, and do not throw your pearls before pigs, lest they trample them underfoot and turn to attack you.`,
+                  paragraph: `&#8220;Do not give dogs what is holy, and do not throw your pearls before pigs, lest they trample them underfoot and turn to attack you.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v7`,
@@ -1814,7 +1814,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: `Ask, and it Will Be Given`, 
-                  paragraph: `DQAsk, and it will be given to you; seek, and you will find; knock, and it will be opened to you.`,
+                  paragraph: `&#8220;Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v8`,
@@ -1848,7 +1848,7 @@ const bibleData = {
                   tab: false,
                   beg_break: false,
                   end_break: true,
-                  gap: true, 
+                  gap: false, 
                   title: ``, 
                   paragraph: `If you then, who are evil, know how how to give good gifts to your children, how much more will your Father who is in heaven gice good things to those who ask him!`,
                 },
@@ -1856,26 +1856,26 @@ const bibleData = {
                   _id: `esv-nt-matt-7-v12`,
                   tab: true,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: `The Golden Rule`, 
-                  paragraph: `DQSo whatever you wish that others would do to you, do also to them, for this is the Law and the Prophets.`,
+                  paragraph: `&#8220;So whatever you wish that others would do to you, do also to them, for this is the Law and the Prophets.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v13`,
-                  tab: false,
+                  tab: true,
                   beg_break: false,
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `DQEnter by the narrow gate. For the gate is wide and the way is easy that leads to destruction, and those who enter by it are many.`,
+                  paragraph: `&#8220;Enter by the narrow gate. For the gate is wide and the way is easy that leads to destruction, and those who enter by it are many.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v14`,
                   tab: false,
                   beg_break: false,
                   end_break: true,
-                  gap: true, 
+                  gap: false, 
                   title: ``, 
                   paragraph: `For the gate is narrow and the way is hard that leads to life, and those who find it are few.`,
                 },
@@ -1886,7 +1886,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: `Tree and Its Fruit`, 
-                  paragraph: `DQBeware of false prophets, who come to you in sheepSQs clothing but inwardly are ravenous wolves.`,
+                  paragraph: `&#8220;Beware of false prophets, who come to you in sheep&#8216;s clothing but inwardly are ravenous wolves.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v16`,
@@ -1929,7 +1929,7 @@ const bibleData = {
                   tab: false,
                   beg_break: false,
                   end_break: true,
-                  gap: true, 
+                  gap: false, 
                   title: ``, 
                   paragraph: `Thus you will recognize them by their fruits.`,
                 },
@@ -1940,7 +1940,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: `I Never Knew You`, 
-                  paragraph: `DQNot everyone who says to me, SQLord, Lord,SQ will enter the kingdom of heaven, but the one who does the will of my Father who is in heaven.`,
+                  paragraph: `&#8220;Not everyone who says to me, &#8216;Lord, Lord,&#8216; will enter the kingdom of heaven, but the one who does the will of my Father who is in heaven.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v22`,
@@ -1949,16 +1949,16 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: ``, 
-                  paragraph: `On that day many will say to me, SQLord, Lord, did we not prophesy in your name, and cast out demons in your name, and do many mighty works in your name?`,
+                  paragraph: `On that day many will say to me, &#8216;Lord, Lord, did we not prophesy in your name, and cast out demons in your name, and do many mighty works in your name?`,
                 },
                 {
                   _id: `esv-nt-matt-7-v23`,
                   tab: false,
                   beg_break: false,
                   end_break: true,
-                  gap: true, 
+                  gap: false, 
                   title: ``, 
-                  paragraph: `And then will I declare to them, SQI never knew you; depart from me, you workers of lawlessness.SQ`,
+                  paragraph: `And then will I declare to them, &#8216;I never knew you; depart from me, you workers of lawlessness.&#8216;`,
                 },
                 {
                   _id: `esv-nt-matt-7-v24`,
@@ -1967,7 +1967,7 @@ const bibleData = {
                   end_break: false,
                   gap: false, 
                   title: `Build Your House on the Rock`, 
-                  paragraph: `DQEveryone then who hears these words of mine and does them will be like a wise man who built his house on the rock.`,
+                  paragraph: `&#8220;Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock.`,
                 },
                 {
                   _id: `esv-nt-matt-7-v25`,
@@ -1992,9 +1992,9 @@ const bibleData = {
                   tab: false,
                   beg_break: false,
                   end_break: true,
-                  gap: true, 
+                  gap: false, 
                   title: ``, 
-                  paragraph: `And the rain fell, and the floods came, and the winds blew and beat against that house, and it fell, and great was the fall of it.DQ`,
+                  paragraph: `And the rain fell, and the floods came, and the winds blew and beat against that house, and it fell, and great was the fall of it.&#8221;`,
                 },
                 {
                   _id: `esv-nt-matt-7-v28`,
@@ -2009,7 +2009,7 @@ const bibleData = {
                   _id: `esv-nt-matt-7-v29`,
                   tab: false,
                   beg_break: false,
-                  end_break: false,
+                  end_break: true,
                   gap: false, 
                   title: ``, 
                   paragraph: `for he was teaching them as one who had authority, and not as their scribes.`,
